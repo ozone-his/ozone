@@ -1,0 +1,10 @@
+model,res_id,name,module
+product.product,1,c51ee728-41d8-4af5-ac54-6dc57615e457,inventory
+product.product,2,f6bf9666-4776-4b0e-ae44-0bfa1d4cec06,inventory
+product.product,3,e1a77dc7-c7d6-41d2-9c4e-93acc1093bcf,inventory
+product.product,4,65235e81-e4b5-41c0-a0a8-6daf7d10b3b6,inventory
+product.product,5,d4b88db9-ba41-4764-bfdd-35f5d155cb97,inventory
+product.product,6,ab3b5775-7080-4cb1-8be5-54e367940145,inventory
+product.product,7,43402f97-6aed-43d4-912f-d89140693f6c,inventory
+product.product,8,0828ef1a-9ba4-43e0-8033-04b19b593f95,inventory
+product.product,9,c108ee98-5abc-43f3-9653-fc920d79e133,inventory
