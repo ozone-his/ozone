@@ -12,3 +12,6 @@ mvn clean package
 
 ## Trying and Running Ozone HIS
 Check [ozone-docker](https://github.com/ozone-his/ozone-docker).
+
+## Find Us
+[Website](http://ozone-his.com) - [Forum](https://talk.openmrs.org/c/software/ozone-his) - [Slack](https://openmrs.slack.com/archives/C02PYQD5D0A)
