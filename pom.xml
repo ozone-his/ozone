@@ -32,7 +32,7 @@
 
     <!-- EIP routes -->
     <eipRoutesSenaite>1.0.0-SNAPSHOT</eipRoutesSenaite>
-    <eipRoutesOdoo>1.0-SNAPSHOT</eipRoutesOdoo>
+    <eipRoutesOdoo>1.0.0-SNAPSHOT</eipRoutesOdoo>
 
     <!-- Ozone modules -->
   </properties>
