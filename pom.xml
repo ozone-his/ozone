@@ -46,9 +46,9 @@
     </dependency>
     <dependency>
       <groupId>org.openmrs.distro</groupId>
-      <artifactId>openmrs-distro-package</artifactId>
+      <artifactId>referenceapplication-package</artifactId>
       <type>zip</type>
-      <version>3.1.0-SNAPSHOT</version>
+      <version>3.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>net.mekomsolutions</groupId>
@@ -95,7 +95,7 @@
           </execution>
           <!-- OpenMRS config -->
           <execution>
-            <id>unpack-openmrs-distro-package</id>
+            <id>unpack-referenceapplication-package</id>
             <phase>package</phase>
             <goals>
               <goal>unpack-dependencies</goal>
@@ -104,9 +104,10 @@
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
               <outputDirectory>${distro.openmrsDistroConfigDir}</outputDirectory>
-              <includeArtifactIds>openmrs-distro-package</includeArtifactIds>
+              <includeArtifactIds>referenceapplication-package</includeArtifactIds>
             </configuration>
           </execution>
+          
 
 
           <!-- EIP routes -->
@@ -151,7 +152,7 @@
             </configuration>
           </execution>
         </executions>
-        
+
       </plugin>
 
       <plugin>
@@ -201,9 +202,6 @@
                 </copy>
                 <copy todir="${distro.baseDir}/spa">
                   <fileset dir="${distro.openmrsDistroConfigDir}/spa"></fileset>
-                </copy>
-                <copy todir="${distro.baseDir}/spa_config">
-                  <fileset dir="${distro.openmrsDistroConfigDir}/spa_config"></fileset>
                 </copy>
               </target>
             </configuration>
