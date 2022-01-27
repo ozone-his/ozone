@@ -1,0 +1,186 @@
+{
+    "name": "Blood Orders",
+    "description": "desssssss333",
+    "version": "2",
+    "published": true,
+    "retired": false,
+    "encounter": "Admission",
+    "pages": [
+      {
+        "label": "Lab Orders",
+        "sections": [
+          {
+            "label": "Test Orders",
+            "isExpanded": "true",
+            "questions": [
+              {
+                "type": "obsGroup",
+                "label": "Test orders",
+                "questionOptions": {
+                  "concept": "e1a77dc7-c7d6-41d2-9c4e-93acc1093bcf",
+                  "rendering": "group"
+                },
+                "questions": [
+                  {
+                    "label": "Tests Ordered",
+                    "id": "order1",
+                    "type": "testOrder",
+                    "questionOptions": {
+                      "rendering": "repeating",
+                      "orderSettingUuid": "INPATIENT",
+                      "orderType": "testorder",
+                      "selectableOrders": [
+                        
+                        {
+                          "concept": "ccbba877-1de6-4f01-8191-c86a2a139b5f",
+                          "label": "Albumine dans le sang"
+                        },
+                      
+                        {
+                          "concept": "d9cec232-89c8-4f05-85f8-18b2dcdd04b3",
+                          "label": "Amylase"
+                        },
+                        {
+                          "concept": "4e4a3c4d-73bb-42e9-a4c9-a3173938e535",
+                          "label": "ASO (Antistreptolysine O)"
+                        },
+                        {
+                          "concept": "afa4d5ed-0f81-4c16-8061-7647f46660e9",
+                          "label": "BHCG"
+                        },
+                        {
+                          "concept": "896a4080-a67a-42ea-9c16-d76dd546f9b7",
+                          "label": "Bilan Hépatique (AST-ALT-TBil-ALKP-LDH)"
+                        },
+                        {
+                          "concept": "6b5afe48-603e-433b-935b-bae7480c9562",
+                          "label": "Bilan Lipidique (Chol-Trig-HDLC-LDL-VLDL)"
+                        },
+                        {
+                          "concept": "8bf2d98d-4245-485f-84eb-be58a2e04915",
+                          "label": "Bilan Renal (BUN-Creat-Urée-Acide Urique)"
+                        },
+                        {
+                          "concept": "061e56ba-de5c-4561-9a76-7b157b891cb6",
+                          "label": "Bilan Thyroïdien"
+                        },
+                        {
+                          "concept": "62cb0655-e3da-41c3-a7f2-8574dec3ea41",
+                          "label": "Chimie Sanguine (Glycemie-BUN-Urée-Créatine)"
+                        },
+                        {
+                          "concept": "16f83b5f-ac14-43ef-93fa-14d15884f78e",
+                          "label": "Ionogramme (Na, K, Cl, CO₂)"
+                        },
+                        {
+                          "concept": "14fcec2c-3270-4b6f-974d-b237a62ee29a",
+                          "label": "Créatinine Kinase (CK)"
+                        },
+                        {
+                          "concept": "665d4e20-2fd5-4c73-9c77-dded5164b8c8",
+                          "label": "Créatinine Kinase MB"
+                        },
+                        {
+                          "concept": "5384cbbf-717b-4d18-b300-f34606a5b73c",
+                          "label": "CRP"
+                        },
+                        {
+                          "concept": "97685dc5-db61-471d-a11e-4e5ec8d470f4",
+                          "label": "ECBC des Liquides (TP-ALB-LDH-GLU-WBC-RBC-Diff…)"
+                        },
+                        {
+                          "concept": "f4ca3fa3-f2c1-47f2-9344-a6e2f82fc8b3",
+                          "label": "Fer (Fe)"
+                        },
+                        {
+                          "concept": "41737137-c9b5-4410-9b33-0ee8039908b7",
+                          "label": "Filaire test Diurne"
+                        },
+                        {
+                          "concept": "785b40ec-5829-46b2-8bb8-e808f8621501",
+                          "label": "Filaire test Nocturne"
+                        },
+                        {
+                          "concept": "9b10ba90-0463-4000-8a0c-4c9b3816c288",
+                          "label": "Glycemie Plasmatique"
+                        },
+                        {
+                          "concept": "3448df1c-68c0-4921-8dcf-36f5eeff4343",
+                          "label": "Glycemie Capillaire"
+                        },
+                        {
+                          "concept": "220d5285-ad5f-449d-b601-bcde944c85fa",
+                          "label": "Groupe Sanguin (ABO, Rh)"
+                        },
+                        {
+                          "concept": "ec7fd2c3-cb77-4fe8-bb35-354fa37de045",
+                          "label": "Hemoglobine Glycolysilé(HBA1C)"
+                        },
+                        {
+                          "concept": "40d9472b-fd37-418f-bd8c-da0942ed523f",
+                          "label": "H-Pilori test"
+                        },
+                        {
+                          "concept": "cbe84fa7-c035-45f8-82a8-5941e9273614",
+                          "label": "Lame Peripherique"
+                        },
+                        {
+                          "concept": "41340e80-7d51-4444-8ad8-d21280994602",
+                          "label": "Lipase"
+                        },
+                        {
+                          "concept": "f5141095-5734-405c-8fd7-12350dfa686d",
+                          "label": "Magnesium (Mg)"
+                        },
+                        {
+                          "concept": "92b3b57d-9f9f-4d16-a94d-774c0bd38f15",
+                          "label": "Malaria test"
+                        },
+                        {
+                          "concept": "b3911053-fa59-4eec-ab3a-a1e791f3de16",
+                          "label": "Panel Cardiaque (CKMB-MYOGLOBINE-TREPONINE)"
+                        },
+                        {
+                          "concept": "1e72558f-0554-4c00-a99d-94fd83878fd5",
+                          "label": "Proteine Serique"
+                        },
+                        {
+                          "concept": "42c7d71b-5763-4894-aa3a-7fccc378a7d6",
+                          "label": "PSA"
+                        },
+                        {
+                          "concept": "b82b8ee0-62bc-42cc-aae9-5fae283e0e60",
+                          "label": "PT-INR"
+                        },
+                        {
+                          "concept": "60a512f8-46ab-470c-a8ec-7c7d30255291",
+                          "label": "RPR"
+                        },
+                        {
+                          "concept": "9aac4d91-2c2a-4dbe-869d-c411868d1d84",
+                          "label": "Sickling test"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "encounterLocation",
+                    "label": "Facility name (site/satellite clinic required):",
+                    "id": "location",
+                    "required": "true",
+                    "questionOptions": {
+                      "rendering": "ui-select-extended"
+                    }
+                  }
+                ],
+                "id": "__nnqywzLEn"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "processor": "EncounterFormProcessor",
+    "uuid": "xxxx",
+    "referencedForms": []
+  }

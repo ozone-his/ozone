@@ -1,0 +1,60 @@
+{
+  "name": "Skin Orders",
+  "description": "desssssss333",
+  "version": "2",
+  "published": true,
+  "retired": false,
+  "encounter": "Admission",
+  "pages": [
+    {
+      "label": "Lab Orders",
+      "sections": [
+        {
+          "label": "Test Orders",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obsGroup",
+              "label": "Test orders",
+              "questionOptions": {
+                "concept": "e1a77dc7-c7d6-41d2-9c4e-93acc1093bcf",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Tests Ordered",
+                  "id": "order1",
+                  "type": "testOrder",
+                  "questionOptions": {
+                    "rendering": "repeating",
+                    "orderSettingUuid": "INPATIENT",
+                    "orderType": "testorder",
+                    "selectableOrders": [
+                      {
+                        "concept": "b3712d70-875a-4ac7-aba2-c14774e55c9e",
+                        "label": "Mantoux test"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "encounterLocation",
+                  "label": "Facility name (site/satellite clinic required):",
+                  "id": "location",
+                  "required": "true",
+                  "questionOptions": {
+                    "rendering": "ui-select-extended"
+                  }
+                }
+              ],
+              "id": "__nnqywzLEn"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "uuid": "xxxx",
+  "referencedForms": []
+}

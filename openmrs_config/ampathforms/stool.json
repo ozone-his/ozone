@@ -1,0 +1,68 @@
+{
+  "name": "Stool Orders",
+  "description": "desssssss333",
+  "version": "2",
+  "published": true,
+  "retired": false,
+  "encounter": "Admission",
+  "pages": [
+    {
+      "label": "Lab Orders",
+      "sections": [
+        {
+          "label": "Test Orders",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obsGroup",
+              "label": "Test orders",
+              "questionOptions": {
+                "concept": "e1a77dc7-c7d6-41d2-9c4e-93acc1093bcf",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Tests Ordered",
+                  "id": "order1",
+                  "type": "testOrder",
+                  "questionOptions": {
+                    "rendering": "repeating",
+                    "orderSettingUuid": "INPATIENT",
+                    "orderType": "testorder",
+                    "selectableOrders": [
+                      {
+                        "concept": "14ea7b4d-6c0d-4eda-a8a2-01d8edb5ecce",
+                        "label": "H-Pilori dans les selles"
+                      },
+                      {
+                        "concept": "71c5b4ae-5eb2-40a8-be87-3974bac78a95",
+                        "label": "Sang Occulte"
+                      },
+                      {
+                        "concept": "a895379e-e2e8-448e-b9a1-4fd99b1af4fd",
+                        "label": "Selles"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "encounterLocation",
+                  "label": "Facility name (site/satellite clinic required):",
+                  "id": "location",
+                  "required": "true",
+                  "questionOptions": {
+                    "rendering": "ui-select-extended"
+                  }
+                }
+              ],
+              "id": "__nnqywzLEn"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "uuid": "xxxx",
+  "referencedForms": []
+}

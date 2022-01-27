@@ -1,0 +1,16 @@
+<config>
+  <globalProperties>
+    <globalProperty>
+      <property>default_locale</property>
+      <value>fr</value>
+    </globalProperty>
+    <globalProperty>
+      <property>locale.allowed.list</property>
+      <value>en, fr</value>
+    </globalProperty>
+    <globalProperty>
+      <property>exti18n.reverseI18nSupport</property>
+      <value>false</value>
+    </globalProperty>
+  </globalProperties>
+</config>
