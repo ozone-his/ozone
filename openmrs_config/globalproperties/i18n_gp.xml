@@ -2,7 +2,7 @@
   <globalProperties>
     <globalProperty>
       <property>default_locale</property>
-      <value>fr</value>
+      <value>en</value>
     </globalProperty>
     <globalProperty>
       <property>locale.allowed.list</property>
