@@ -1,4 +1,0 @@
-"id","name","category_id/id","factor","uom_type","rounding"
-"product.product_uom_dozen","Dozen(s)","product.product_uom_categ_unit","0.0833333333333","Bigger than the reference Unit of Measure","0.01"
-"product.product_uom_litre","Liter(s)","product.product_uom_categ_vol","1.0","Reference Unit of Measure for this category","0.01"
-"product.product_uom_gram","g","product.product_uom_categ_kgm","1000.0","Smaller than the reference Unit of Measure","0.01"
