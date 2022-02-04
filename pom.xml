@@ -183,7 +183,9 @@
                   <fileset dir="${distro.ozoneTempConfigDir}/ozone_config"></fileset>
                 </copy>
                 <copy todir="${distro.baseDir}/eip_config">
-                  <fileset dir="${distro.ozoneTempConfigDir}/eip_config"></fileset>
+                  <fileset dir="${distro.ozoneTempConfigDir}/eip_config">
+                    <exclude name="/routes/odoo/prp/**" />
+                  </fileset>
                 </copy>
                 <copy todir="${distro.baseDir}/openmrs_config">
                   <fileset dir="${distro.ozoneTempConfigDir}/openmrs_config"></fileset>
