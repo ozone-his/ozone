@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.mekomsolutions</groupId>
   <artifactId>ozone-distro</artifactId>
-  <name>Ozone  distribution</name>
+  <name>Ozone Distribution</name>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -17,7 +17,6 @@
   </organization>
 
   <properties>
-
     <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
     <distro.ozoneTempConfigDir>${distro.baseDir}/ozone_config_temp</distro.ozoneTempConfigDir>
     <ozoneConfigVersion>1.0.0-SNAPSHOT</ozoneConfigVersion>
