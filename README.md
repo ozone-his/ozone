@@ -1,11 +1,19 @@
 # Ozone HIS - The 'Distro' Project
 
 ## Overview
-This distribution is a child of the OpenMRS 3 distro Ref App that adds to it all components that make it an integrated health information system.
+A **Maven project** that gathers all artefacts that make the **FOSS distribution of Ozone HIS**.
 
-It is put together as a **Maven project** that gathers all artefacts that make the **FOSS distribution of Ozone HIS**.
+It depends on the OpenMRS 3 distro Ref App
+```xml
+<dependency>
+  <groupId>org.openmrs.distro</groupId>
+  <artifactId>referenceapplication-package</artifactId>
+  <type>zip</type>
+</dependency>
+```
+and then _augment_ OpenMRS 3 with all components that make Ozone FOSS an integrated health information system.
 
-Building it fecthes and brings in one place all the Ozone artifacts, simply run:
+Building it fecthes and brings in one place all Ozone's artifacts, simply run:
 ```
 mvn clean package
 ```
