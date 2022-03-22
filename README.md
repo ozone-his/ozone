@@ -1,5 +1,7 @@
 # Ozone HIS - The 'Distro' Project
+>_The entreprise-grade health information system that augments OpenMRS 3._
 
+This is the official project to build and package Ozone HIS.
 ## Overview
 A **Maven project** that gathers all artefacts that make the **FOSS distribution of Ozone HIS**.
 
