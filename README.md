@@ -26,7 +26,7 @@ Check [ozone-docker](https://github.com/ozone-his/ozone-docker).
 ## 3. Find us
 [Slack](https://openmrs.slack.com/archives/C02PYQD5D0A) - [Forum](https://talk.openmrs.org/c/software/ozone-his) - [Website](http://ozone-his.com)
 
-<sub>:warning: Self sign-up [here](https://slack.openmrs.org/) before accessing our Slack space for the first time.</sub>
+<sub>:information_source: Self sign-up [here](https://slack.openmrs.org/) before accessing our Slack space for the first time.</sub>
 ## 4. Report an issue
 1. Either start a conversation on Slack about it,
 1. Or start a thread on our forum about it.
