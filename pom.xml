@@ -36,7 +36,7 @@
     </dependency>
     <dependency>
       <groupId>org.openmrs.distro</groupId>
-      <artifactId>referenceapplication-package</artifactId>
+      <artifactId>referenceapplication-distro</artifactId>
       <type>zip</type>
       <version>3.0.0-SNAPSHOT</version>
     </dependency>
@@ -64,7 +64,7 @@
         <executions>
           <!-- OpenMRS config -->
           <execution>
-            <id>unpack-referenceapplication-package</id>
+            <id>unpack-referenceapplication-distro</id>
             <phase>package</phase>
             <goals>
               <goal>unpack-dependencies</goal>
@@ -73,7 +73,7 @@
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
               <outputDirectory>${distro.openmrsDistroConfigDir}</outputDirectory>
-              <includeArtifactIds>referenceapplication-package</includeArtifactIds>
+              <includeArtifactIds>referenceapplication-distro</includeArtifactIds>
             </configuration>
           </execution>
 
@@ -137,13 +137,10 @@
                   <fileset dir="${distro.openmrsDistroConfigDir}/openmrs_config"></fileset>
                 </copy>
                 <copy todir="${distro.baseDir}/openmrs_core">
-                  <fileset dir="${distro.openmrsDistroConfigDir}/openmrs_core"></fileset>
+                  <fileset file="${distro.openmrsDistroConfigDir}/sdk-distro/web/openmrs.war"></fileset>
                 </copy>
                 <copy todir="${distro.baseDir}/openmrs_modules">
-                  <fileset dir="${distro.openmrsDistroConfigDir}/openmrs_modules"></fileset>
-                </copy>
-                <copy todir="${distro.baseDir}/spa">
-                  <fileset dir="${distro.openmrsDistroConfigDir}/spa"></fileset>
+                  <fileset dir="${distro.openmrsDistroConfigDir}/sdk-distro/web/modules"></fileset>
                 </copy>
               </target>
             </configuration>
