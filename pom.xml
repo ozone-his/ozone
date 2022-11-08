@@ -47,6 +47,18 @@
       <type>omod</type>
     </dependency>
     <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>patientsummary-omod</artifactId>
+      <version>2.2.0</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>commonreports-omod</artifactId>
+      <version>1.2.0-SNAPSHOT</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
       <groupId>net.mekomsolutions</groupId>
       <artifactId>ozone-config</artifactId>
       <version>${ozoneConfigVersion}</version>
