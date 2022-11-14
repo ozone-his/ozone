@@ -1,7 +1,11 @@
 # Ozone - The 'Distro' Project
 >_The entreprise-grade health information system that augments OpenMRS 3._
 
-This is the official project to build and package Ozone FOSS.
+This is the official Maven project for the free and open-source software flavour of Ozone, aka **Ozone FOSS**.
+This Maven project makes it easy to build and package Ozone FOSS.
+
+:bulb: **Pro tip:** There is a *pro* flavour of Ozone, aka "Ozone Pro", that adds a number of entreprise features to Ozone FOSS.
+
 ## 1. Overview
 A **Maven project** that gathers all artefacts that make the **FOSS distribution of Ozone**.
 
@@ -28,5 +32,5 @@ Check [ozone-docker](https://github.com/ozone-his/ozone-docker).
 
 <sub>:information_source: Self sign-up [here](https://slack.openmrs.org/) before accessing our Slack space for the first time.</sub>
 ## 4. Report an issue
-1. Either start a conversation on Slack about it,
-1. Or start a thread on our forum about it.
+1. Either start a conversation on [Slack](https://openmrs.slack.com/archives/C02PYQD5D0A) about it,
+1. Or start a thread on our [forum](https://talk.openmrs.org/c/software/ozone-his) about it.
