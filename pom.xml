@@ -25,6 +25,11 @@
     <distro.openmrscoreDir>${distro.baseDir}/openmrs_core</distro.openmrscoreDir>
     <distro.openmrsmodulesDir>${distro.baseDir}/openmrs_modules</distro.openmrsmodulesDir>
     <distro.odooAddonsDir>${distro.baseDir}/odoo_addons</distro.odooAddonsDir>
+    <odoo_initializerVersion>2.1.0-SNAPSHOT</odoo_initializerVersion>
+    <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
+    <serialization.xstreamVersion>0.2.16</serialization.xstreamVersion>
+    <patientsummaryVersion>2.2.0</patientsummaryVersion>
+    <commonreportsVersion>1.2.0</commonreportsVersion>
   </properties>
 
   <dependencies>
@@ -38,24 +43,24 @@
       <groupId>org.openmrs.distro</groupId>
       <artifactId>referenceapplication-distro</artifactId>
       <type>zip</type>
-      <version>3.0.0-SNAPSHOT</version>
+      <version>${referenceapplicationDistroVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.openmrs.module</groupId>
       <artifactId>serialization.xstream-omod</artifactId>
-      <version>0.2.16-SNAPSHOT</version>
+      <version>${serialization.xstreamVersion}</version>
       <type>omod</type>
     </dependency>
     <dependency>
       <groupId>org.openmrs.module</groupId>
       <artifactId>patientsummary-omod</artifactId>
-      <version>2.2.0</version>
+      <version>${patientsummaryVersion}</version>
       <type>jar</type>
     </dependency>
     <dependency>
       <groupId>org.openmrs.module</groupId>
       <artifactId>commonreports-omod</artifactId>
-      <version>1.2.0-SNAPSHOT</version>
+      <version>${commonreportsVersion}</version>
       <type>jar</type>
     </dependency>
     <dependency>
