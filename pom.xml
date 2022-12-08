@@ -25,7 +25,7 @@
     <distro.openmrscoreDir>${distro.baseDir}/openmrs_core</distro.openmrscoreDir>
     <distro.openmrsmodulesDir>${distro.baseDir}/openmrs_modules</distro.openmrsmodulesDir>
     <distro.odooAddonsDir>${distro.baseDir}/odoo_addons</distro.odooAddonsDir>
-    <odoo_initializerVersion>2.1.0-SNAPSHOT</odoo_initializerVersion>
+    <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
     <serialization.xstreamVersion>0.2.16</serialization.xstreamVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
