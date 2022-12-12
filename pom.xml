@@ -25,7 +25,7 @@
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
     <serialization.xstreamVersion>0.2.16</serialization.xstreamVersion>
 
-    <!-- Target folders for the final pacagge -->
+    <!-- Target folders for the final package -->
     <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
     <distro.openmrsConfigDir>${distro.baseDir}/openmrs_config</distro.openmrsConfigDir>
     <distro.openmrsCoreDir>${distro.baseDir}/openmrs_core</distro.openmrsCoreDir>
