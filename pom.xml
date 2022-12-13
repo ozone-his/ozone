@@ -17,19 +17,24 @@
   </organization>
 
   <properties>
-    <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
-    <distro.ozoneTempConfigDir>${distro.baseDir}/ozone_config_temp</distro.ozoneTempConfigDir>
-    <ozoneConfigVersion>1.0.0-SNAPSHOT</ozoneConfigVersion>
-    <distro.openmrsconfigDir>${distro.baseDir}/openmrs_config</distro.openmrsconfigDir>
-    <distro.openmrsDistroConfigDir>${distro.baseDir}/openmrs_distro</distro.openmrsDistroConfigDir>
-    <distro.openmrscoreDir>${distro.baseDir}/openmrs_core</distro.openmrscoreDir>
-    <distro.openmrsmodulesDir>${distro.baseDir}/openmrs_modules</distro.openmrsmodulesDir>
-    <distro.odooAddonsDir>${distro.baseDir}/odoo_addons</distro.odooAddonsDir>
+    <!-- Dependency versions -->
+    <commonreportsVersion>1.2.0</commonreportsVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
+    <ozoneConfigVersion>1.0.0-SNAPSHOT</ozoneConfigVersion>
+    <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
     <serialization.xstreamVersion>0.2.16</serialization.xstreamVersion>
-    <patientsummaryVersion>2.2.0</patientsummaryVersion>
-    <commonreportsVersion>1.2.0</commonreportsVersion>
+
+    <!-- Target folders for the final package -->
+    <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
+    <distro.openmrsConfigDir>${distro.baseDir}/openmrs_config</distro.openmrsConfigDir>
+    <distro.openmrsCoreDir>${distro.baseDir}/openmrs_core</distro.openmrsCoreDir>
+    <distro.openmrsModulesDir>${distro.baseDir}/openmrs_modules</distro.openmrsModulesDir>
+    <distro.odooAddonsDir>${distro.baseDir}/odoo_addons</distro.odooAddonsDir>
+    
+    <!-- Folders for the dependency copy -->
+    <distro.ozoneConfigDir>${project.build.directory}/ozone_config</distro.ozoneConfigDir>
+    <distro.openmrsDistroDir>${project.build.directory}/openmrs_distro</distro.openmrsDistroDir>
   </properties>
 
   <dependencies>
@@ -89,7 +94,7 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.openmrsDistroConfigDir}</outputDirectory>
+              <outputDirectory>${distro.openmrsDistroDir}</outputDirectory>
               <includeArtifactIds>referenceapplication-distro</includeArtifactIds>
             </configuration>
           </execution>
@@ -104,7 +109,7 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.openmrsmodulesDir}</outputDirectory>
+              <outputDirectory>${distro.openmrsModulesDir}</outputDirectory>
               <!-- copying jars and omods only -->
               <includeTypes>jar, omod</includeTypes>
             </configuration>
@@ -120,7 +125,7 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.ozoneTempConfigDir}</outputDirectory>
+              <outputDirectory>${distro.ozoneConfigDir}</outputDirectory>
               <includeArtifactIds>ozone-config</includeArtifactIds>
             </configuration>
           </execution>
@@ -150,14 +155,14 @@
             <phase>package</phase>
             <configuration>
               <target>
-                <copy todir="${distro.baseDir}/openmrs_config">
-                  <fileset dir="${distro.openmrsDistroConfigDir}/openmrs_config"></fileset>
+                <copy todir="${distro.openmrsConfigDir}">
+                  <fileset dir="${distro.openmrsDistroDir}/openmrs_config"></fileset>
                 </copy>
-                <copy todir="${distro.baseDir}/openmrs_core">
-                  <fileset file="${distro.openmrsDistroConfigDir}/sdk-distro/web/openmrs.war"></fileset>
+                <copy todir="${distro.openmrsCoreDir}">
+                  <fileset file="${distro.openmrsDistroDir}/sdk-distro/web/openmrs.war"></fileset>
                 </copy>
-                <copy todir="${distro.baseDir}/openmrs_modules">
-                  <fileset dir="${distro.openmrsDistroConfigDir}/sdk-distro/web/modules"></fileset>
+                <copy todir="${distro.openmrsModulesDir}">
+                  <fileset dir="${distro.openmrsDistroDir}/sdk-distro/web/modules"></fileset>
                 </copy>
               </target>
             </configuration>
@@ -171,8 +176,8 @@
             <phase>package</phase>
             <configuration>
               <target>
-                <move todir="${distro.openmrsmodulesDir}">
-                  <fileset dir="${distro.openmrsmodulesDir}" />
+                <move todir="${distro.openmrsModulesDir}">
+                  <fileset dir="${distro.openmrsModulesDir}" />
                   <mapper type="regexp" from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" />
                 </move>
               </target>
@@ -187,36 +192,22 @@
             <configuration>
               <target>
                 <copy todir="${distro.baseDir}/senaite_config">
-                  <fileset dir="${distro.ozoneTempConfigDir}/senaite_config"></fileset>
+                  <fileset dir="${distro.ozoneConfigDir}/senaite_config"></fileset>
                 </copy>
                 <copy todir="${distro.baseDir}/odoo_config">
-                  <fileset dir="${distro.ozoneTempConfigDir}/odoo_config"></fileset>
+                  <fileset dir="${distro.ozoneConfigDir}/odoo_config"></fileset>
                 </copy>
                 <copy todir="${distro.baseDir}/ozone_config">
-                  <fileset dir="${distro.ozoneTempConfigDir}/ozone_config"></fileset>
+                  <fileset dir="${distro.ozoneConfigDir}/ozone_config"></fileset>
                 </copy>
                 <copy todir="${distro.baseDir}/eip_config">
-                  <fileset dir="${distro.ozoneTempConfigDir}/eip_config">
+                  <fileset dir="${distro.ozoneConfigDir}/eip_config">
                     <exclude name="/routes/odoo/prp/**" />
                   </fileset>
                 </copy>
-                <copy todir="${distro.baseDir}/openmrs_config">
-                  <fileset dir="${distro.ozoneTempConfigDir}/openmrs_config"></fileset>
+                <copy todir="${distro.openmrsConfigDir}">
+                  <fileset dir="${distro.ozoneConfigDir}/openmrs_config"></fileset>
                 </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>clean-ozone-temp-directory</id>
-            <phase>package</phase>
-            <configuration>
-              <target>
-                <delete includeEmptyDirs="true">
-                  <fileset dir="${distro.ozoneTempConfigDir}" />
-                </delete>
               </target>
             </configuration>
             <goals>
@@ -292,9 +283,6 @@
     <repository>
       <id>mks-nexus-public</id>
       <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
-      <snapshots>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
     </repository>
     <repository>
       <id>openmrs-repo</id>
@@ -310,7 +298,6 @@
       </releases>
       <snapshots>
         <enabled>true</enabled>
-        <updatePolicy>interval:10080</updatePolicy>
       </snapshots>
     </repository>
   </repositories>
