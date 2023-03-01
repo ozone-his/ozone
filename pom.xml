@@ -3,7 +3,7 @@
   <groupId>com.ozonehis</groupId>
   <artifactId>ozone-distro</artifactId>
   <name>Ozone Distribution</name>
-  <version>1.0.0-alpha.1</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <organization>
@@ -23,7 +23,7 @@
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <ozoneConfigVersion>1.1.0</ozoneConfigVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
-    <referenceapplicationDistroVersion>3.0.0-beta.2</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
     <serialization.xstreamVersion>0.2.16</serialization.xstreamVersion>
     <referencedemodataVersion>2.1.0</referencedemodataVersion>
 
