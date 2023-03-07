@@ -4,7 +4,7 @@
 This is the official Maven project for the free and open-source software flavour of Ozone, aka **Ozone FOSS**.
 This Maven project makes it easy to build and package Ozone FOSS.
 
-:bulb: **Did you know?** There is a *pro* flavour of Ozone, aka **Ozone Pro**, that adds a number of enterprise features to Ozone FOSS.
+:bulb: **Did you know?** There is a *pro* flavour of Ozone, aka **Ozone Pro**, that adds a number of entreprise features to Ozone FOSS.
 
 ## 1. Overview
 A **Maven project** that gathers all artefacts that make the **FOSS distribution of Ozone**.
