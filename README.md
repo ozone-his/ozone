@@ -1,5 +1,5 @@
 # Ozone - The 'Distro' Project
->_The entreprise-grade health information system that augments OpenMRS 3._
+>_The enterprise-grade health information system that augments OpenMRS 3._
 
 This is the official Maven project for the free and open-source software flavour of Ozone, aka **Ozone FOSS**.
 This Maven project makes it easy to build and package Ozone FOSS.
