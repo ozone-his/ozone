@@ -7,7 +7,7 @@ This Maven project makes it easy to build and package Ozone FOSS.
 :bulb: **Did you know?** There is a *pro* flavour of Ozone, aka **Ozone Pro**, that adds a number of enterprise features to Ozone FOSS.
 
 ## 1. Overview
-A **Maven project** that gathers all artifacts that make the **FOSS distribution of Ozone**.
+A **Maven project** that gathers all artefacts that make the **FOSS distribution of Ozone**.
 
 It depends on the OpenMRS 3 distro Ref App
 ```xml
