@@ -4,10 +4,10 @@
 This is the official Maven project for the free and open-source software flavour of Ozone, aka **Ozone FOSS**.
 This Maven project makes it easy to build and package Ozone FOSS.
 
-:bulb: **Did you know?** There is a *pro* flavour of Ozone, aka **Ozone Pro**, that adds a number of entreprise features to Ozone FOSS.
+:bulb: **Did you know?** There is a *pro* flavour of Ozone, aka **Ozone Pro**, that adds a number of enterprise features to Ozone FOSS.
 
 ## 1. Overview
-A **Maven project** that gathers all artefacts that make the **FOSS distribution of Ozone**.
+A **Maven project** that gathers all artifacts that make the **FOSS distribution of Ozone**.
 
 It depends on the OpenMRS 3 distro Ref App
 ```xml
@@ -17,7 +17,7 @@ It depends on the OpenMRS 3 distro Ref App
   <type>zip</type>
 </dependency>
 ```
-and then _augments_ OpenMRS 3 with all components that make Ozone FOSS an fully integrated health information system.
+and then _augments_ OpenMRS 3 with all components that make Ozone FOSS a fully integrated health information system.
 
 Building it fetches and brings in one place all Ozone's artifacts, simply run:
 ```
