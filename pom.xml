@@ -24,8 +24,6 @@
     <ozoneConfigVersion>1.1.0</ozoneConfigVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
-    <serialization.xstreamVersion>0.2.16</serialization.xstreamVersion>
-    <referencedemodataVersion>2.1.0</referencedemodataVersion>
 
     <!-- Target folders for the final package -->
     <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
@@ -54,12 +52,6 @@
     </dependency>
     <dependency>
       <groupId>org.openmrs.module</groupId>
-      <artifactId>serialization.xstream-omod</artifactId>
-      <version>${serialization.xstreamVersion}</version>
-      <type>omod</type>
-    </dependency>
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
       <artifactId>patientsummary-omod</artifactId>
       <version>${patientsummaryVersion}</version>
       <type>jar</type>
@@ -68,12 +60,6 @@
       <groupId>org.openmrs.module</groupId>
       <artifactId>commonreports-omod</artifactId>
       <version>${commonreportsVersion}</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
-      <artifactId>referencedemodata-omod</artifactId>
-      <version>${referencedemodataVersion}</version>
       <type>jar</type>
     </dependency>
     <dependency>
