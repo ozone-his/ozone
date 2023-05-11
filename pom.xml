@@ -19,11 +19,11 @@
 
   <properties>
     <!-- Dependency versions -->
-    <commonreportsVersion>1.2.0</commonreportsVersion>
-    <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
-    <ozoneConfigVersion>1.3.0</ozoneConfigVersion>
-    <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <referenceapplicationDistroVersion>3.0.0-beta.6</referenceapplicationDistroVersion>
+    <ozoneConfigVersion>1.3.0</ozoneConfigVersion>
+    <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
+    <commonreportsVersion>1.2.0</commonreportsVersion>
+    <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- Target folders for the final package -->
     <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
@@ -38,18 +38,32 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>net.mekomsolutions.odoo</groupId>
-      <artifactId>odoo_initializer</artifactId>
-      <version>${odoo_initializerVersion}</version>
-      <type>zip</type>
-    </dependency>
+
+    <!-- OpenMRS Ref App -->
     <dependency>
       <groupId>org.openmrs.distro</groupId>
       <artifactId>referenceapplication-distro</artifactId>
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
+    
+    <!-- Ozone Config -->
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-config</artifactId>
+      <version>${ozoneConfigVersion}</version>
+      <type>zip</type>
+    </dependency>
+
+    <!--  Odoo addons-->
+    <dependency>
+      <groupId>net.mekomsolutions.odoo</groupId>
+      <artifactId>odoo_initializer</artifactId>
+      <version>${odoo_initializerVersion}</version>
+      <type>zip</type>
+    </dependency>
+
+    <!--  OpenMRS modules -->
     <dependency>
       <groupId>org.openmrs.module</groupId>
       <artifactId>patientsummary-omod</artifactId>
@@ -63,17 +77,12 @@
       <type>jar</type>
     </dependency>
     <dependency>
-      <groupId>com.ozonehis</groupId>
-      <artifactId>ozone-config</artifactId>
-      <version>${ozoneConfigVersion}</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
       <groupId>org.openmrs.module</groupId>
       <artifactId>fhir2-omod</artifactId>
       <version>1.10.0-20230509.193209-21</version>
       <type>jar</type>
     </dependency>
+
   </dependencies>
 
   <build>
