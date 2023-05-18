@@ -21,7 +21,7 @@
     <!-- Dependency versions -->
     <commonreportsVersion>1.2.0</commonreportsVersion>
     <odoo_initializerVersion>2.2.0-SNAPSHOT</odoo_initializerVersion>
-    <ozoneConfigVersion>1.2.0-SNAPSHOT</ozoneConfigVersion>
+    <ozoneConfigVersion>1.4.0-SNAPSHOT</ozoneConfigVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
 
