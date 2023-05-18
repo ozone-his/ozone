@@ -181,6 +181,20 @@
           </execution>
 
           <execution>
+            <phase>package</phase>
+            <configuration>
+              <tasks>
+                <replace token= "&lt;value&gt;50&lt;/value&gt;" value="&lt;value&gt;0&lt;/value&gt;" dir="${distro.openmrsConfigDir}">                                 
+                  <include name="globalproperties/globalproperties_core-demo.xml"/>
+                </replace>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+
+          <execution>
             <id>rename-jars-to-omod</id>
             <phase>package</phase>
             <configuration>
