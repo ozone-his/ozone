@@ -76,12 +76,6 @@
       <version>${commonreportsVersion}</version>
       <type>jar</type>
     </dependency>
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
-      <artifactId>fhir2-omod</artifactId>
-      <version>1.10.0-20230509.193209-21</version>
-      <type>jar</type>
-    </dependency>
 
   </dependencies>
 
