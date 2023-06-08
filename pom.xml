@@ -19,8 +19,8 @@
 
   <properties>
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
-    <ozoneConfigVersion>1.4.0-SNAPSHOT</ozoneConfigVersion>
+    <referenceapplicationDistroVersion>3.0.0-beta.9</referenceapplicationDistroVersion>
+    <ozoneConfigVersion>1.3.1</ozoneConfigVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <commonreportsVersion>1.2.0</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
