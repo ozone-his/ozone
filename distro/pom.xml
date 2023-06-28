@@ -3,7 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ozonehis</groupId>
   <artifactId>ozone-distro</artifactId>
-  <name>Ozone Distribution</name>
+  <name>Ozone Distro</name>
+  <description>Resources to run Ozone</description>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -21,11 +22,18 @@
   <properties>
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
-    <ozoneConfigVersion>1.6.0-SNAPSHOT</ozoneConfigVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <commonreportsVersion>1.4.0-SNAPSHOT</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
+    <eipDemoOpenMRSVersion></eipDemoOpenMRSVersion>
+    <eipOpenMRSSenaiteVersion>1.2.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
+    <eipOdooOpenMRSVersion>1.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
     <ozoneDockerVersion>1.0.0-SNAPSHOT</ozoneDockerVersion>
+
+    <!-- Some artifact Ids -->
+    <eipOpenMRSSenaiteArtifactId>eip-routes-senaite</eipOpenMRSSenaiteArtifactId>
+    <eipOdooOpenMRSArtifactId>openmrs-odoo</eipOdooOpenMRSArtifactId>
+
     <!-- Target folders for the final package -->
     <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
     <distro.openmrsConfigDir>${distro.baseDir}/openmrs_config</distro.openmrsConfigDir>
@@ -36,7 +44,9 @@
     <!-- Folders for the dependency copy -->
     <distro.ozoneConfigDir>${project.build.directory}/ozone_config</distro.ozoneConfigDir>
     <distro.openmrsDistroDir>${project.build.directory}/openmrs_distro</distro.openmrsDistroDir>
-    <distro.dockerDir>${project.build.directory}/docker</distro.dockerDir>
+
+    <!-- Classifier for the dependency report artifact -->
+    <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
 
   <dependencies>
@@ -48,13 +58,6 @@
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
 
-    <!-- Ozone Config -->
-    <dependency>
-      <groupId>com.ozonehis</groupId>
-      <artifactId>ozone-config</artifactId>
-      <version>${ozoneConfigVersion}</version>
-      <type>zip</type>
-    </dependency>
     <!--  Odoo addons-->
     <dependency>
       <groupId>net.mekomsolutions.odoo</groupId>
@@ -62,6 +65,7 @@
       <version>${odoo_initializerVersion}</version>
       <type>zip</type>
     </dependency>
+
     <!--  OpenMRS modules -->
     <dependency>
       <groupId>org.openmrs.module</groupId>
@@ -75,6 +79,21 @@
       <version>${commonreportsVersion}</version>
       <type>jar</type>
     </dependency>
+
+    <!-- EIP services -->
+    <dependency>
+      <groupId>net.mekomsolutions</groupId>
+      <artifactId>${eipOpenMRSSenaiteArtifactId}</artifactId>
+      <version>${eipOpenMRSSenaiteVersion}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>net.mekomsolutions.eip</groupId>
+      <artifactId>${eipOdooOpenMRSArtifactId}</artifactId>
+      <version>${eipOdooOpenMRSVersion}</version>
+      <type>zip</type>
+    </dependency>
+
     <!-- Ozone Docker -->
     <dependency>
       <groupId>com.ozonehis</groupId>
@@ -93,79 +112,203 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <version>2.8</version>
         <executions>
-
-          <!-- OpenMRS config -->
           <execution>
-            <id>unpack-referenceapplication-distro</id>
-            <phase>prepare-package</phase>
+            <id>Copy Odoo Initializer add-on</id>
+            <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.openmrsDistroDir}</outputDirectory>
-              <includeArtifactIds>referenceapplication-distro</includeArtifactIds>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons</outputDirectory>
+              <includeArtifactIds>odoo_initializer</includeArtifactIds>
             </configuration>
           </execution>
 
-          <!-- OpenMRS modules -->
           <execution>
-            <id>copy-jars</id>
-            <phase>prepare-package</phase>
+            <id>Copy OpenMRS modules in a temporary location</id>
+            <phase>generate-resources</phase>
             <goals>
               <goal>copy-dependencies</goal>
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.openmrsModulesDir}</outputDirectory>
+              <outputDirectory>${project.build.directory}/openmrs_modules/</outputDirectory>
               <!-- copying jars and omods only -->
               <includeTypes>jar, omod</includeTypes>
             </configuration>
           </execution>
 
-          <!-- Ozone config -->
           <execution>
-            <id>unpack-ozone-config</id>
-            <phase>prepare-package</phase>
+            <id>Unpack EIP OpenMRS SENAITE routes in a temporary location</id>
+            <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.ozoneConfigDir}</outputDirectory>
-              <includeArtifactIds>ozone-config</includeArtifactIds>
+              <outputDirectory>${project.build.directory}/${eipOpenMRSSenaiteArtifactId}</outputDirectory>
+              <includeArtifactIds>${eipOpenMRSSenaiteArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
           <execution>
-            <id>unpack-odoo-initializer</id>
-            <phase>prepare-package</phase>
+            <id>Unpack EIP Odoo OpenMRS routes in a temporary location</id>
+            <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.odooAddonsDir}</outputDirectory>
-              <includeArtifactIds>odoo_initializer</includeArtifactIds>
+              <outputDirectory>${project.build.directory}/${eipOdooOpenMRSArtifactId}</outputDirectory>
+              <includeArtifactIds>${eipOdooOpenMRSArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
-          <!-- Ozone Docker -->
           <execution>
-            <id>unpack-ozone-docker</id>
-            <phase>prepare-package</phase>
+            <id>Unpack OpenMRS Ref App in a temporary location</id>
+            <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${distro.dockerDir}</outputDirectory>
-              <includeArtifactIds>ozone-docker-compose</includeArtifactIds>
+              <outputDirectory>${project.build.directory}/referenceapplication-distro</outputDirectory>
+              <includeArtifactIds>referenceapplication-distro</includeArtifactIds>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <!-- Copy configs/ folder -->
+            <id>Copy local configs/ resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <markersDirectory>${project.build.directory}/</markersDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/configs</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/configs</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <!-- Copy data/ folder -->
+            <id>Copy local data/ resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <markersDirectory>${project.build.directory}/</markersDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/data</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/data</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy EIP OpenMRS SENAITE routes -->
+            <id>Copy EIP OpenMRS SENAITE routes</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <markersDirectory>${project.build.directory}/</markersDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/eip-openmrs-senaite/routes</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/${eipOpenMRSSenaiteArtifactId}/routes/senaite</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy EIP Odoo OpenMRS routes -->
+            <id>Copy EIP Odoo OpenMRS routes</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <markersDirectory>${project.build.directory}/</markersDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/eip-odoo-openmrs/routes</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy OpenMRS modules -->
+            <id>Copy OpenMRS modules</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <markersDirectory>${project.build.directory}/</markersDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/openmrs_modules</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+      <!-- Exclude resource files as speficied in dependency-excludes.txt -->
+      <plugin>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <groupId>org.codehaus.mojo</groupId>
+        <executions>
+          <execution>
+            <id>Run exclude-files.sh</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.basedir}/exclude-files.sh</executable>
+              <commandlineArgs>${project.basedir}/dependency-excludes.txt
+                ${project.build.directory}/referenceapplication-distro</commandlineArgs>
             </configuration>
           </execution>
         </executions>
@@ -175,35 +318,13 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.7</version>
         <executions>
-
           <execution>
-            <id>copy-openmrs-distro</id>
-            <phase>package</phase>
+            <id>Rename JAR to OMOD</id>
+            <phase>process-resources</phase>
             <configuration>
               <target>
-                <copy todir="${distro.openmrsConfigDir}">
-                  <fileset dir="${distro.openmrsDistroDir}/openmrs_config"/>
-                </copy>
-                <copy todir="${distro.openmrsCoreDir}">
-                  <fileset file="${distro.openmrsDistroDir}/sdk-distro/web/openmrs.war"/>
-                </copy>
-                <copy todir="${distro.openmrsModulesDir}">
-                  <fileset dir="${distro.openmrsDistroDir}/sdk-distro/web/modules"/>
-                </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>rename-jars-to-omod</id>
-            <phase>package</phase>
-            <configuration>
-              <target>
-                <move todir="${distro.openmrsModulesDir}">
-                  <fileset dir="${distro.openmrsModulesDir}"/>
+                <move todir="${project.build.directory}/openmrs_modules">
+                  <fileset dir="${project.build.directory}/openmrs_modules"/>
                   <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp"/>
                 </move>
               </target>
@@ -214,55 +335,17 @@
           </execution>
 
           <execution>
-            <id>copy-ozone-config</id>
-            <phase>package</phase>
+            <id>Copy filtered resources</id>
+            <phase>prepare-package</phase>
             <configuration>
               <target>
-                <copy todir="${distro.baseDir}/senaite_config">
-                  <fileset dir="${distro.ozoneConfigDir}/senaite_config"/>
-                </copy>
-                <copy todir="${distro.baseDir}/odoo_config">
-                  <fileset dir="${distro.ozoneConfigDir}/odoo_config"/>
-                </copy>
-                <copy todir="${distro.baseDir}/ozone_config">
-                  <fileset dir="${distro.ozoneConfigDir}/ozone_config"/>
-                </copy>
-                <copy todir="${distro.baseDir}/eip_config">
-                  <fileset dir="${distro.ozoneConfigDir}/eip_config">
-                    <exclude name="/routes/odoo/prp/**"/>
-                  </fileset>
-                </copy>
-                <copy todir="${distro.openmrsConfigDir}">
-                  <fileset dir="${distro.ozoneConfigDir}/openmrs_config"/>
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config">
+                  <fileset dir="${project.build.directory}/referenceapplication-distro/openmrs_config" />
                 </copy>
               </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>move-odoo-addons</id>
-            <phase>package</phase>
-            <configuration>
               <target>
-                <move todir="${distro.baseDir}/odoo_config/addons">
-                  <fileset dir="${distro.baseDir}/odoo_addons"/>
-                </move>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>copy-ozone-docker</id>
-            <phase>package</phase>
-            <configuration>
-              <target>
-                <copy todir="${project.build.directory}/configuration">
-                  <fileset dir="${distro.openmrsDistroDir}/openmrs_config"/>
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
+                  <fileset dir="${project.build.directory}/referenceapplication-distro/sdk-distro/web/modules" />
                 </copy>
               </target>
             </configuration>
@@ -273,7 +356,7 @@
         </executions>
       </plugin>
 
-      <!-- Packaging the distro as a installable/deployable file -->
+      <!-- packaging the distro as a installable/deployable file -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -294,77 +377,9 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
-          <resources>
-            <resource>
-              <directory>${project.basedir}</directory>
-              <includes>
-                <include>services.yml</include>
-              </includes>
-            </resource>
-          </resources>
-        </configuration>
-        <executions>
-          <execution>
-            <id>copy-resources</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-     
-      <!-- Compile a dependency report -->
-      <plugin>
-        <groupId>net.mekomsolutions.maven.plugin</groupId>
-        <artifactId>dependency-tracker-maven-plugin</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <executions>
-          <execution>
-            <id>Complile dependency report</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>track</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- Attach the dependency report to the build -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <id>Attach the dependency report</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>
-                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt</file>
-                  <type>txt</type>
-                  <classifier>${dependencyReportClassifier}</classifier>
-                </artifact>
-              </artifacts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
     </plugins>
   </build>
-  
+
   <repositories>
     <repository>
       <id>mks-nexus-public</id>
@@ -438,9 +453,6 @@
                 <goals>
                   <goal>validate-configurations</goal>
                 </goals>
-                <configuration>
-                  <sourceDir>${project.build.directory}/configuration</sourceDir>
-                </configuration>
               </execution>
             </executions>
           </plugin>
