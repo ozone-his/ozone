@@ -231,6 +231,37 @@
               <goal>run</goal>
             </goals>
           </execution>
+
+          <!-- copy over merged/packaged OpenMRS configuration for validation -->
+          <execution>
+            <id>copy-merged-config</id>
+            <phase>pre-integration-test</phase>
+            <configuration>
+              <target>
+                <copy todir="${project.basedir}/configuration">
+                  <fileset dir="${distro.openmrsDistroDir}/openmrs_config"></fileset>
+                </copy>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+
+          <!-- delete/clean-up copied OpenMRS configuration for validation -->
+          <execution>
+            <id>delete-merged-config</id>
+            <phase>post-integration-test</phase>
+            <configuration>
+              <target>  
+                <delete dir="${project.basedir}/configuration"/>  
+              </target>  
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          
         </executions>
       </plugin>
 
@@ -314,6 +345,51 @@
         <enabled>false</enabled>
       </snapshots>
     </pluginRepository>
+    <pluginRepository>
+      <id>openmrs-snapshots</id>
+      <name>OpenMRS Public Repository</name>
+      <url>https://mavenrepo.openmrs.org/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+    <pluginRepository>
+      <id>mks-nexus-public</id>
+      <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>mks-nexus-snapshots</id>
+      <url>https://nexus.mekomsolutions.net/repository/maven-snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
   </pluginRepositories>
 
+  <profiles>
+    <profile>
+      <id>validator</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openmrs.maven.plugins</groupId>
+            <artifactId>openmrs-packager-maven-plugin</artifactId>
+            <version>1.7.0</version>
+            <executions>
+              <execution>
+                <id>validate-configurations</id>
+                <phase>integration-test</phase>
+                <goals>
+                  <goal>validate-configurations</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
