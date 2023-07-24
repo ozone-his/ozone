@@ -4,7 +4,7 @@
   <groupId>com.ozonehis</groupId>
   <artifactId>ozone-distro</artifactId>
   <name>Ozone Distribution</name>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0-alpha.4</version>
   <packaging>pom</packaging>
 
   <organization>
