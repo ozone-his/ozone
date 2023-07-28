@@ -1,9 +1,9 @@
-name: Build, validate and publish on dependency changes.
+name: Publish upon dependency changes.
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/60 * * * *"
+    - cron: '*/60 * * * *'
 
 jobs:
   build:
