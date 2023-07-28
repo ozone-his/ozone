@@ -9,18 +9,22 @@ version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 artifactId=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
 groupId=$(mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout)
 classifier=$(mvn help:evaluate -Dexpression=dependencyReportClassifier -q -DforceStdout)
-artifact=${groupId}:${artifactId}:${version}::${classifier}
-file=/tmp/${artifactId}-${version}-${classifier}.txt
+artifact=${groupId}:${artifactId}:${version}:txt:${classifier}
+filename=${artifactId}-${version}-${classifier}.txt
+absolutePath=/tmp/$filename
+
+rm -f $absolutePath
 
 echo "Fetch remote dependency report..."
 set +e
-mvn org.apache.maven.plugins:maven-dependency-plugin:3.2.0:get -DremoteRepositories=${remoteRepoUrl} -Dartifact=${artifact} -Dtransitive=false
-mvn org.apache.maven.plugins:maven-dependency-plugin:3.2.0:unpack -Dproject.basedir=/tmp/ -Dartifact=${artifact} -DoutputDirectory=/tmp/
+mvn org.apache.maven.plugins:maven-dependency-plugin:3.6.0:get -DremoteRepositories=${remoteRepoUrl} -Dartifact=${artifact} -Dtransitive=false
+mvn org.apache.maven.plugins:maven-dependency-plugin:3.6.0:copy -Dartifact=${artifact} -DoutputDirectory=/tmp/ -Dmdep.useBaseVersion=true
 set -e
 
 # If no dependency report was fetched, create an empty one.
-if [ ! -f "$file" ]; then
-    touch $file
+if [ ! -f "$absolutePath" ]; then
+    echo "Remote dependency file is not found at $absolutePath. Creating an empty one and continue."
+    touch $absolutePath
 fi
 
 # Build the local dependency report
