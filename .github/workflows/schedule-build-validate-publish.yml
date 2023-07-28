@@ -18,6 +18,11 @@ jobs:
           distribution: "temurin"
           java-version: "8"
 
+      - name: Restore Maven cache
+        uses: skjolber/maven-cache-github-action@v1
+        with:
+          step: restore
+
       - name: Set settings.xml
         uses: s4u/maven-settings-action@v2.8.0
         with:
@@ -41,8 +46,13 @@ jobs:
 
       - name: Build and Validate
         run: mvn --batch-mode --update-snapshots --activate-profiles validator clean package
-        if: ${{ steps.compareDependencyChanges.outputs.hasChanged }}
+        if: ${{ steps.compareDependencyChanges.outputs.hasChanged == '1' }}
 
       - name: Build and publish
         run: mvn --batch-mode clean deploy
-        if: ${{ github.ref == 'refs/heads/main' && steps.compareDependencyChanges.outputs.hasChanged }}
+        if: ${{ github.ref == 'refs/heads/main' && steps.compareDependencyChanges.outputs.hasChanged == '1' }}
+
+      - name: Save Maven cache
+        uses: skjolber/maven-cache-github-action@v1
+        with:
+          step: save
