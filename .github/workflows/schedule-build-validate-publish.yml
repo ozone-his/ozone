@@ -1,0 +1,48 @@
+name: Publish upon dependency changes.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/60 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: "8"
+
+      - name: Set settings.xml
+        uses: s4u/maven-settings-action@v2.8.0
+        with:
+          servers: |
+            [
+            {
+              "id": "mks-nexus-public-releases",
+              "username": "${{ secrets.NEXUS_USERNAME }}",
+              "password": "${{ secrets.NEXUS_PASSWORD }}"
+            },
+            {
+              "id": "mks-nexus-public-snapshots",
+              "username": "${{ secrets.NEXUS_USERNAME }}",
+              "password": "${{ secrets.NEXUS_PASSWORD }}"
+            }]
+        if: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Check for dependency changes
+        id: compareDependencyChanges
+        run: bash compare-dependency-reports.sh
+
+      - name: Build and Validate
+        run: mvn --batch-mode --update-snapshots --activate-profiles validator clean package
+        if: ${{ steps.compareDependencyChanges.outputs.hasChanged }}
+
+      - name: Build and publish
+        run: mvn --batch-mode clean deploy
+        if: ${{ github.ref == 'refs/heads/main' && steps.compareDependencyChanges.outputs.hasChanged }}

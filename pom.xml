@@ -34,6 +34,9 @@
     <!-- Folders for the dependency copy -->
     <distro.ozoneConfigDir>${project.build.directory}/ozone_config</distro.ozoneConfigDir>
     <distro.openmrsDistroDir>${project.build.directory}/openmrs_distro</distro.openmrsDistroDir>
+    
+    <!-- Classifier for the dependency report artifact -->
+    <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
 
   <dependencies>
@@ -310,6 +313,48 @@
           </execution>
         </executions>
       </plugin>
+     
+      <!-- Compile a dependency report -->
+      <plugin>
+        <groupId>net.mekomsolutions.maven.plugin</groupId>
+        <artifactId>dependency-tracker-maven-plugin</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <id>Complile dependency report</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>track</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Attach the dependency report to the build -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>Attach the dependency report</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>
+                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt</file>
+                  <type>txt</type>
+                  <classifier>${dependencyReportClassifier}</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
     </plugins>
   </build>
@@ -395,5 +440,18 @@
       </build>
     </profile>
   </profiles>
+
+  <distributionManagement>
+    <repository>
+      <name>Mekom Solutions Nexus repo for releases</name>
+      <id>mks-nexus-public-releases</id>
+      <url>https://nexus.mekomsolutions.net/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <name>Mekom Solutions Nexus repo for snapshots</name>
+      <id>mks-nexus-public-snapshots</id>
+      <url>https://nexus.mekomsolutions.net/repository/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 </project>
