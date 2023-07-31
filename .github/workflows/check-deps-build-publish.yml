@@ -1,0 +1,37 @@
+name: Check for dependency changes
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/60 * * * *'
+
+jobs:
+  check-for-dependency-changes:
+    outputs:
+      hasChanged: ${{ steps.compareDependencyChanges.outputs.hasChanged }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: "8"
+
+      - name: Check for dependency changes
+        id: compareDependencyChanges
+        run: bash .github/workflows/compare-dependency-reports.sh
+
+  build-and-publish:
+    needs: check-for-dependency-changes
+    uses: mekomsolutions/mekom-github-workflow-maven/.github/workflows/build-publish-workflow.yml@main
+    with:
+      webhook-url: https://openmrs-cd.mekomsolutions.net/generic-webhook-trigger/invoke
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+      OCD3_USERNAME: ${{ secrets.OCD3_USERNAME }}
+      OCD3_PASSWORD: ${{ secrets.OCD3_PASSWORD }}  
+    if: ${{ needs.check-for-dependency-changes.outputs.hasChanged == '1' }}

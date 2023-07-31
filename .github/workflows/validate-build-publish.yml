@@ -1,0 +1,39 @@
+name: Validate and optionally publish (if pushed on main)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: ["8"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: ${{ matrix.java }}
+          cache: "maven"
+
+      - name: Validate
+        run: mvn --batch-mode --update-snapshots --activate-profiles validator clean package
+
+  build-and-publish:
+    needs: validate
+    uses: mekomsolutions/mekom-github-workflow-maven/.github/workflows/build-publish-workflow.yml@main
+    with:
+      webhook-url: https://openmrs-cd.mekomsolutions.net/generic-webhook-trigger/invoke
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+      OCD3_USERNAME: ${{ secrets.OCD3_USERNAME }}
+      OCD3_PASSWORD: ${{ secrets.OCD3_PASSWORD }}
+    if: ${{ github.ref == 'refs/heads/main' }}
