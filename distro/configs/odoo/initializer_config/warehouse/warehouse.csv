@@ -1,0 +1,3 @@
+"id","name","code","lot_stock_id/id","partner_id/id"
+"init.warehouse0","Pharmacy","PHARM","stock.stock_location_stock","base.main_partner"
+"init.warehouse1","Warehouse","WAREH","stock.stock_location_stock","base.main_partner"

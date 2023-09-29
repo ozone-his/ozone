@@ -1,0 +1,2 @@
+id,name,type,code,profit_account_id/id,loss_account_id/id
+init.journal_journal,Journal,Cash,JOU,l10n_generic_coa.1_cash_diff_income,l10n_generic_coa.1_cash_diff_expense

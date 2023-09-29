@@ -1,0 +1,24 @@
+{
+    "models" : [
+        {
+            "model_name": "account.tax",
+            "folder": "taxes",
+            "field_rules": {}
+        },
+        {
+            "model_name": "stock.picking.type",
+            "folder": "stock_picking_type",
+            "field_rules": {}
+        },
+        {
+            "model_name": "stock.location.route",
+            "folder": "stock_location_route",
+            "field_rules": {}
+        },
+        {
+            "model_name": "ir.actions.act_window",
+            "folder": "act_window",
+            "field_rules": {}
+        }
+    ]
+}

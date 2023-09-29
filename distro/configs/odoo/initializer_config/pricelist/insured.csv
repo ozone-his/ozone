@@ -1,0 +1,3 @@
+"id","name","discount_policy",sequence,currency_id/id,"item_ids/applied_on","item_ids/base","item_ids/compute_price","item_ids/min_quantity","item_ids/price_surcharge",item_ids/categ_id/id
+"init.product_pricelist_insured_patients","Insured Patients","Discount included in the price",16,base.USD,"Product Category","Sales Price","Formula","1","5",product.categ_services_lab_test_orders
+,,,,,"Product Category","Sales Price","Formula","1","0.12",product.categ_products_drug_orders

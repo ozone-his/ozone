@@ -1,0 +1,2 @@
+"id","name","discount_policy",sequence,currency_id/id,"item_ids/applied_on","item_ids/base","item_ids/compute_price","item_ids/min_quantity","item_ids/percent_price"
+"init.product_pricelist_discounted","Discounted","Discount included in the price",16,base.USD,"All Products","Sales Price","Percentage (discount)","1","20"

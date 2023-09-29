@@ -1,0 +1,7 @@
+databases:
+- database_name: PostgreSQL
+  sqlalchemy_uri: postgresql://analytics:{ANALYTICS_DB_PASSWORD}@postgresql:5432/analytics
+  tables: []
+  allow_file_upload: true
+  allow_ctas: true
+  allow_cvas: true

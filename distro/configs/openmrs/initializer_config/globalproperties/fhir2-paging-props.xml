@@ -1,0 +1,14 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>fhir2.paging.default</property>
+            <value>1000</value>
+            <description>Set default page size</description>
+        </globalProperty>
+        <globalProperty>
+            <property>fhir2.paging.maximum</property>
+            <value>1000</value>
+            <description>Set maximum page size</description>
+        </globalProperty>
+    </globalProperties>
+</config>

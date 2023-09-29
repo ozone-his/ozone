@@ -1,0 +1,5 @@
+"id","name","company_id/id","line_ids/days","line_ids/option","line_ids/sequence","line_ids/value","line_ids/value_amount",note
+"init.account_payment_term_15days","15 Days","base.main_company","15","days after the invoice date","200","Balance","0.0",Payment term: 15 Days
+"init.account_payment_term_30days","30 Days","base.main_company","30","days after the invoice date","300","Balance","0.0",Payment term: 30 Days
+"init.account_payment_term_60days","60 Days","base.main_company","60","days after the invoice date","500","Balance","0.0",Payment term: 60 Days
+"init.account_payment_term_90days","90 Days","base.main_company","90","days after the invoice date","10","Balance","0.0",Payment term: 90 Days
