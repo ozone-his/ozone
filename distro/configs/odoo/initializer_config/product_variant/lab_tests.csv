@@ -1,0 +1,48 @@
+id,name,categ_id/id,type,purchase_ok,invoice_policy,lst_price
+init.851AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Mean corpuscular volume,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,37.0
+init.163695AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Crystals type in urine sediment by light microscopy test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,50.0
+init.1338AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Lymphocytes (%) - microscopic exam,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,27.0
+init.161447AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Stool microscopy with concentration,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,42.0
+init.729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Platelets,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,55.0
+init.163686AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Yeast presence in urine sediment by light microscopy,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,46.0
+init.1325AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Hepatitis C test - qualitative,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,52.0
+init.161448AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Kinyoun's stain for coccidians,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,27.0
+init.160735AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"Bacteriuria test, urine",product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,18.0
+init.1015AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Hematocrit,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,44.0
+init.163688AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Spore presence in urine test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,35.1
+init.163687AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Yeast hyphae presence in urine sediment by light microscopy test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,34.3
+init.1016AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Red cell distribution width,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,33.4
+init.163689AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Trichomonas vaginalis presence in urine sediment by light microscopy,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,32.6
+init.163426AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"Combined % of monocytes, eosinophils and basophils",product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,31.7
+init.655AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Total bilirubin,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,30.9
+init.161450AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"Stool fat test, semi-quantitative",product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,30.0
+init.678AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,White blood cells,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,29.2
+init.717AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Total protein,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,28.3
+init.857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Blood urea nitrogen,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,27.5
+init.163683AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Erythrocytes presence in urine sediment by light microscopy test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,26.6
+init.161445AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Urine routine and microscopy,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,25.8
+init.163699AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Urea measurement (calculated),product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,25.0
+init.21AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Haemoglobin,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,24.1
+init.654AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Serum glutamic-pyruvic transaminase,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,23.3
+init.160225AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Sickle cell screening test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,22.4
+init.159430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Hepatitis B Surface Antigen Test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,21.6
+init.163684AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Leukocytes presence in urine sediment by light microscopy,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,20.7
+init.161449AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Stool test for reducing substance,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,19.9
+init.653AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Serum glutamic-oxaloacetic transaminase,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,19.0
+init.790AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Serum creatinine (umol/L),product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,18.2
+init.163696AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Casts presence in urine sediment by light microscopy test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,17.3
+init.887AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Serum glucose,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,16.5
+init.304AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Stool exam,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,15.6
+init.785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Alkaline phosphatase,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,14.8
+init.159362AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Fecal occult blood test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,13.9
+init.679AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Red blood cells,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,13.1
+init.1336AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Neutrophils (%) - microscopic exam,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,12.2
+init.163692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Epithelial casts presence in urine sediment by light microscopy test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,11.4
+init.1018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Mean corpuscular hemoglobin,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,10.5
+init.1017AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Mean cell hemoglobin concentration,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,9.7
+init.161431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Sickling test only,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,8.8
+init.161488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Renal function panel,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,8.0
+init.953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Liver function tests,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,7.1
+init.161451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Stool test,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,6.3
+init.163697AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Urine microscopy panel,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,5.4
+init.1019AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Complete blood count,product.categ_services_lab_test_orders,service,FALSE,Ordered quantities,60.0

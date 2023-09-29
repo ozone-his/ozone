@@ -1,0 +1,50 @@
+id,name,factor,category_id/id,rounding,uom_type
+init.162264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,International units,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162362AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Kilogram,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162263AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Milliliter,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162356AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Drop,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162374AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Scoopful,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.162371AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Pint,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162363AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Lozenge,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162372AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Puff,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Vial,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.162360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Gum,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.161554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Gram,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.161553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Milligram,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.162361AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Inch,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162357AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Enema,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.162375AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Spray,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.1518AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Suppository,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162380AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Tube,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Nebulizer,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Ring pessary,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162354AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Can,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162358AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Fluid ounce,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162381AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Gallon,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162378AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Tablespoon,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162365AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Metric drop,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162376AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Application,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162262AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Liter,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.1608AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Capsule,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Milliequivalent,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Million units,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162369AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Pad,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162351AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Bar,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.165171AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Milligram per meter squared,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162370AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Patch,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162383AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Biscuit wafer,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162355AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Container,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.1513AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Tablet,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162379AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Teaspoon,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162377AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Syringe,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162335AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Ampule(s),1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162366AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Microgram,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Kit,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162400AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Inhaler,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Each,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162398AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Dose pack,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162397AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Cartridge,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Box,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.162395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Bag,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.1514AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Packets,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure

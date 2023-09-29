@@ -1,0 +1,2 @@
+id,name,res_model,context
+sale.action_quotations_with_onboarding,Quotations,sale.order,{'search_default_my_quotation': 0}

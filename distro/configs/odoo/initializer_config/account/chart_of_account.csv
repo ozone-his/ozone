@@ -1,0 +1,3 @@
+id,name,user_type_id/id,code,reconcile
+init.1_conf_a_sale,Product Sales,account.data_account_type_revenue,200000,
+init.1_conf_cog,Cost of Revenue,account.data_account_type_direct_costs,210000,

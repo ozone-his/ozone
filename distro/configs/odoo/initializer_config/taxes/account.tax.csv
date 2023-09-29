@@ -1,0 +1,3 @@
+id,amount,company_id/id,sequence,amount_type,tax_group_id/id,name,type_tax_use,active
+l10n_generic_coa.1_sale_tax_template,15,base.main_company,1,Percentage of Price,account.tax_group_taxes,Tax 15.00%,Sales,False
+l10n_generic_coa.1_purchase_tax_template,15,base.main_company,1,Percentage of Price,account.tax_group_taxes,Tax 15.00%,Purchases,False

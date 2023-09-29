@@ -1,0 +1,4 @@
+"id","name","value_reference","type","res_id","fields_id/id"
+"init.property_partner_receivable","property_account_receivable_id","account.account,18","Many2One","","account.field_res_partner__property_account_receivable_id"
+"init.property_partner_payable","property_account_payable_id","account.account,51","Many2One","","account.field_res_partner__property_account_payable_id"
+"init.property_category_account_income","property_account_income_categ_id","account.account,105","Many2One","","account.field_product_category__property_account_income_categ_id"

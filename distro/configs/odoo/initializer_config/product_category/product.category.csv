@@ -1,0 +1,23 @@
+id,name,parent_id/id,property_valuation,property_cost_method,property_account_income_categ_id/id,property_account_expense_categ_id/id
+product.categ_services_ent_orders,ENT,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_general_surgery_orders,General Surgery,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_lab_histo_test_orders,Histopathology,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_lab_test_orders,Laboratory,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_products_materials_orders,Materials,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_maxillo_orders,Maxillofacial,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_obstetrics_orders,Obstetrics,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_ophtamology_orders,Ophtamology,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_orthopedics_orders,Orthopedics and Traumatology,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_plastic_surgery_orders,Plastic Surgery,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_procedure_orders,Procedures,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_radiology_orders,Radiology,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_urology_orders,Urology,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_woundNoAnesth_orders,Wound Dressing Without Anesthesia,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_woundWithAnesth_orders,Wound Dressing With Anesthesia,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_wounds_orders,Wounds,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_others_orders,Others,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_exoneration_orders,Exoneration,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_insurance_orders,Insurance,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_dental_orders,Dental,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_services_consultation_orders,Consultation,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
+product.categ_products_drug_orders,Drugs,,Manual,Standard Price,init.1_conf_a_sale,init.1_conf_cog
