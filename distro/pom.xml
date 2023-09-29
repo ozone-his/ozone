@@ -370,7 +370,7 @@
             <configuration>
               <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
+                <descriptor>assembly.xml</descriptor>
               </descriptors>
             </configuration>
           </execution>
@@ -443,6 +443,7 @@
       </snapshots>
     </repository>
   </repositories>
+  
   <pluginRepositories>
     <pluginRepository>
       <id>openmrs-repo</id>
