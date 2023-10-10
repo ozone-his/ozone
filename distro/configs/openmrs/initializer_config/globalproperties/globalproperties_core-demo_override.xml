@@ -1,0 +1,8 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>referencedemodata.createDemoPatientsOnNextStartup</property>
+            <value>0</value>
+        </globalProperty>
+    </globalProperties>
+</config>
