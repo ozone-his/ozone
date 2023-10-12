@@ -240,23 +240,9 @@
             <phase>pre-integration-test</phase>
             <configuration>
               <target>
-                <copy todir="${project.basedir}/configuration">
+                <copy todir="${project.build.directory}/configuration">
                   <fileset dir="${distro.openmrsDistroDir}/openmrs_config"/>
                 </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <!-- delete/clean-up copied OpenMRS config post-validation -->
-          <execution>
-            <id>delete-merged-config</id>
-            <phase>post-integration-test</phase>
-            <configuration>
-              <target>
-                <delete dir="${project.basedir}/configuration"/>
               </target>
             </configuration>
             <goals>
@@ -432,6 +418,9 @@
                 <goals>
                   <goal>validate-configurations</goal>
                 </goals>
+                <configuration>
+                  <sourceDir>${project.build.directory}/configuration</sourceDir>
+                </configuration>
               </execution>
             </executions>
           </plugin>
