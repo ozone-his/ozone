@@ -2,6 +2,9 @@ export db_name=$SUPERSET_DB
 export db_username=$SUPERSET_DB_USER
 export db_password=$SUPERSET_DB_PASSWORD
 
+
+echo "Creating '$db_username' user and '$db_name' database..."
+
 createuser ${db_username}
 createdb ${db_name}
 
