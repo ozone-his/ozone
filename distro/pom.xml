@@ -121,7 +121,8 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons</outputDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons</outputDirectory>
               <includeArtifactIds>odoo_initializer</includeArtifactIds>
             </configuration>
           </execution>
@@ -244,7 +245,8 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/${eipOpenMRSSenaiteArtifactId}/routes/senaite</directory>
+                  <directory>
+                    ${project.build.directory}/${eipOpenMRSSenaiteArtifactId}/routes/senaite</directory>
                 </resource>
               </resources>
             </configuration>
@@ -264,7 +266,8 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/</directory>
+                  <directory>
+                    ${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/</directory>
                 </resource>
               </resources>
             </configuration>
@@ -324,8 +327,8 @@
             <configuration>
               <target>
                 <move todir="${project.build.directory}/openmrs_modules">
-                  <fileset dir="${project.build.directory}/openmrs_modules"/>
-                  <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp"/>
+                  <fileset dir="${project.build.directory}/openmrs_modules" />
+                  <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
                 </move>
               </target>
             </configuration>
@@ -339,8 +342,10 @@
             <phase>prepare-package</phase>
             <configuration>
               <target>
-                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config">
-                  <fileset dir="${project.build.directory}/referenceapplication-distro/openmrs_config" />
+                <copy
+                  todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config">
+                  <fileset
+                    dir="${project.build.directory}/referenceapplication-distro/openmrs_config" />
                 </copy>
               </target>
             </configuration>
@@ -353,11 +358,29 @@
             <phase>prepare-package</phase>
             <configuration>
               <target>
-                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
-                  <fileset dir="${project.build.directory}/referenceapplication-distro/sdk-distro/web/modules" />
+                <copy
+                  todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
+                  <fileset
+                    dir="${project.build.directory}/referenceapplication-distro/sdk-distro/web/modules" />
                 </copy>
               </target>
-                </configuration>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+
+          <execution>
+            <id>remove-obs-and-prp-routes</id>
+            <phase>process-resources</phase>
+            <configuration>
+              <target>
+                <delete includeEmptyDirs="true">
+                  <fileset dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/obs" />
+                  <fileset dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/prp" />
+                </delete>
+              </target>
+            </configuration>
             <goals>
               <goal>run</goal>
             </goals>
@@ -452,7 +475,7 @@
       </snapshots>
     </repository>
   </repositories>
-  
+
   <pluginRepositories>
     <pluginRepository>
       <id>openmrs-repo</id>
