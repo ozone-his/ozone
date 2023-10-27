@@ -6,7 +6,7 @@ set -e
 #
 
 if [ "${true}" == "" ]; then
-    # Running from source
+    # Running from repo
     echo "[INFO] Running from repo root directory. Moving to the build dir..."
     cd target/ozone*
 fi

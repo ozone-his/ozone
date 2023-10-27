@@ -19,13 +19,25 @@ It depends on the OpenMRS 3 distro Ref App
 ```
 and then _augments_ OpenMRS 3 with all components that make Ozone FOSS a fully integrated health information system.
 
-Building it fetches and brings in one place all Ozone's artifacts, simply run:
-```
+## 2. Try Ozone
+
+```bash
+git clone https://github.com/ozone-his/ozone-distro
 mvn clean package
+./start-demo.sh
 ```
 
-## 2. Try Ozone
-Check [ozone-docker](https://github.com/ozone-his/ozone-docker).
+Access each Ozone FOSS components at the following URL:
+
+| HIS Component     | URL                            | Username | Password |
+|-------------------|--------------------------------|----------|----------|
+| OpenMRS 3         | http://localhost/openmrs/spa   | admin    | Admin123 |
+| OpenMRS Legacy UI | http://localhost/openmrs       | admin    | Admin123 |
+| SENAITE           | http://localhost:8081/senaite  | admin    | password |
+| Odoo              | http://localhost:8069          | admin    | admin    |
+| Superset          | http://localhost:8088          | admin    | password |
+
+Ozone FOSS requires you to log into each component separately.
 
 ## 3. Find us
 [Slack](https://openmrs.slack.com/archives/C02PYQD5D0A) - [Forum](https://talk.openmrs.org/c/software/ozone-his) - [Website](http://ozone-his.com)
