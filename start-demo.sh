@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
+#
+# Handling the case of running directly from the Maven package root folder versus directly from the source code
+#
+
+if [ "${true}" == "" ]; then
+    # Running from source
+    echo "[INFO] Running from repo root directory. Moving to the build dir..."
+    cd target/ozone*
+fi
+
 # Override the setup-dirs.sh file:
 cat > run/docker/scripts/setup-dirs.sh << EOL
 #!/usr/bin/env bash
