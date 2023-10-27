@@ -21,13 +21,14 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    
+
     <!-- Dependency versions -->
     <ozoneDistroVersion>1.0.0-SNAPSHOT</ozoneDistroVersion>
     <ozoneDockerComposeVersion>1.0.0-SNAPSHOT</ozoneDockerComposeVersion>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
+    <true>true</true>
   </properties>
 
   <modules>
@@ -66,7 +67,8 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/run/docker</outputDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/run/docker</outputDirectory>
               <includeArtifactIds>ozone-docker-compose</includeArtifactIds>
             </configuration>
           </execution>
@@ -80,7 +82,8 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/distro</outputDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/distro</outputDirectory>
               <includeArtifactIds>ozone-distro</includeArtifactIds>
             </configuration>
           </execution>
@@ -169,16 +172,17 @@
                   <directory>${project.basedir}</directory>
                   <includes>
                     <include>start-demo.sh</include>
-                    </includes>
+                  </includes>
+                  <filtering>true</filtering>
                 </resource>
               </resources>
             </configuration>
           </execution>
-          </executions>
-        </plugin>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-  
+
   <repositories>
     <repository>
       <id>mks-nexus-public</id>
