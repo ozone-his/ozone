@@ -20,6 +20,8 @@
   </developers>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    
     <!-- Dependency versions -->
     <ozoneDistroVersion>1.0.0-SNAPSHOT</ozoneDistroVersion>
     <ozoneDockerComposeVersion>1.0.0-SNAPSHOT</ozoneDockerComposeVersion>
@@ -149,6 +151,31 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>Copy start-demo.sh script</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}</directory>
+                  <includes>
+                    <include>start-demo.sh</include>
+                    </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          </executions>
+        </plugin>
     </plugins>
   </build>
   

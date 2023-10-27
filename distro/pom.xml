@@ -20,6 +20,8 @@
   </developers>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
