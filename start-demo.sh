@@ -7,8 +7,11 @@ set -e
 
 if [ "${true}" == "" ]; then
     # Running from repo
-    echo "[INFO] Running from repo root directory. Moving to the build dir..."
-    cd target/ozone*
+    version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+    artifactId=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)  
+    buildDir=target/$artifactId-$version/
+    echo "[INFO] Running from repo root directory. Moving to the build dir: '$buildDir'..."
+    cd $buildDir
 fi
 
 # Override the setup-dirs.sh file:

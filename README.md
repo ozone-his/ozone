@@ -19,7 +19,14 @@ It depends on the OpenMRS 3 distro Ref App
 ```
 and then _augments_ OpenMRS 3 with all components that make Ozone FOSS a fully integrated health information system.
 
-## 2. Try Ozone
+## 2. Try Ozone FOSS in Gitpod
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-distro)
+
+It may take some time to setup Ozone for the first time, so hang tight :hourglass_flowing_sand:
+
+When ready Gitpod will launch the tab for OpenMRS 3.
+
+## 2. Try Ozone locally
 
 ```bash
 git clone https://github.com/ozone-his/ozone-distro
