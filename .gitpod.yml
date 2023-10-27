@@ -1,0 +1,18 @@
+tasks:
+  - name: Run Ozone FOSS
+    init: mvn clean package
+    command: ./start-demo.sh
+ports:
+  - name: OpenMRS
+    description: OpenMRS 3
+    port: 80
+    onOpen: open-browser
+  - name: Odoo
+    description: Odoo
+    port: 8069
+  - name: Superset
+    description: Superset
+    port: 8088
+  - name: SENAITE
+    description: SENAITE
+    port: 8081
