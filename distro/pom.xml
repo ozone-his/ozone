@@ -28,7 +28,7 @@
     <commonreportsVersion>1.4.0-SNAPSHOT</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <eipDemoOpenMRSVersion></eipDemoOpenMRSVersion>
-    <eipOpenMRSSenaiteVersion>1.2.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
+    <eipOpenMRSSenaiteVersion>1.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
     <eipOdooOpenMRSVersion>1.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
     <ozoneDockerVersion>1.0.0-SNAPSHOT</ozoneDockerVersion>
 
