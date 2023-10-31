@@ -21,7 +21,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    
+
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
@@ -373,13 +373,15 @@
           </execution>
 
           <execution>
-            <id>remove-obs-and-prp-routes</id>
+            <id>Remove unneeded EIP Odoo OpenMRS PRP and Obs routes</id>
             <phase>process-resources</phase>
             <configuration>
               <target>
                 <delete includeEmptyDirs="true">
-                  <fileset dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/obs" />
-                  <fileset dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/prp" />
+                  <fileset
+                    dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/obs" />
+                  <fileset
+                    dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/prp" />
                 </delete>
               </target>
             </configuration>
@@ -387,6 +389,24 @@
               <goal>run</goal>
             </goals>
           </execution>
+
+          <!-- copy over merged/packaged OpenMRS config for validation at the integration-test phase -->
+          <execution>
+            <id>Copy OpenMRS config for validation</id>
+            <phase>pre-integration-test</phase>
+            <configuration>
+              <target>
+                <copy todir="${project.build.directory}/configuration">
+                  <fileset
+                    dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config" />
+                </copy>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+
         </executions>
       </plugin>
 
@@ -452,6 +472,7 @@
           </execution>
         </executions>
       </plugin>
+
     </plugins>
   </build>
 
@@ -524,11 +545,14 @@
             <version>1.7.0</version>
             <executions>
               <execution>
-                <id>validate-configurations</id>
+                <id>Validate OpenMRS configuration</id>
                 <phase>integration-test</phase>
                 <goals>
                   <goal>validate-configurations</goal>
                 </goals>
+                <configuration>
+                  <sourceDir>${project.build.directory}/configuration</sourceDir>
+                </configuration>
               </execution>
             </executions>
           </plugin>
