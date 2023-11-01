@@ -96,14 +96,6 @@
       <type>zip</type>
     </dependency>
 
-    <!-- Ozone Docker -->
-    <dependency>
-      <groupId>com.ozonehis</groupId>
-      <artifactId>ozone-docker-compose</artifactId>
-      <version>${ozoneDockerVersion}</version>
-      <type>zip</type>
-    </dependency>
-
   </dependencies>
 
   <build>
