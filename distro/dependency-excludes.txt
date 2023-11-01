@@ -1,8 +1,0 @@
-#
-# Escaped regex pattern. Supports multiple lines.
-#
-# Eg:
-# \.\*openmrs_config.\*appointment.\*
-# \.\*openmrs_config.\*ampathforms.\*json
-#
-\.\*openmrs_config.\*globalproperties_core-demo.\*xml
