@@ -295,27 +295,29 @@
             </configuration>
           </execution>
 
-        </executions>
-      </plugin>
-
-      <!-- Exclude resource files as speficied in dependency-excludes.txt -->
-      <plugin>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>3.1.0</version>
-        <groupId>org.codehaus.mojo</groupId>
-        <executions>
           <execution>
-            <id>Run exclude-files.sh</id>
+            <!-- Exclude files from O3 Ref App -->
+            <id>Exclude some OpenMRS Ref App files</id>
             <phase>process-resources</phase>
             <goals>
-              <goal>exec</goal>
+              <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <executable>${project.basedir}/exclude-files.sh</executable>
-              <commandlineArgs>${project.basedir}/dependency-excludes.txt
-                ${project.build.directory}/referenceapplication-distro</commandlineArgs>
+              <markersDirectory>${project.build.directory}/</markersDirectory>
+              <outputDirectory>
+                ${project.build.directory}/openmrs_config</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/referenceapplication-distro/openmrs_config</directory>
+                  <excludes>
+                    <exclude>**/*globalproperties_core-demo*</exclude>
+                  </excludes>
+                </resource>
+              </resources>
             </configuration>
           </execution>
+
         </executions>
       </plugin>
 
@@ -347,7 +349,7 @@
                 <copy
                   todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config">
                   <fileset
-                    dir="${project.build.directory}/referenceapplication-distro/openmrs_config" />
+                    dir="${project.build.directory}/openmrs_config" />
                 </copy>
               </target>
             </configuration>
