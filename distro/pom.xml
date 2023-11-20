@@ -30,11 +30,10 @@
     <eipDemoOpenMRSVersion></eipDemoOpenMRSVersion>
     <eipOpenMRSSenaiteVersion>1.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
     <eipOdooOpenMRSVersion>1.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
-    <ozoneDockerVersion>1.0.0-SNAPSHOT</ozoneDockerVersion>
 
     <!-- Some artifact Ids -->
-    <eipOpenMRSSenaiteArtifactId>eip-routes-senaite</eipOpenMRSSenaiteArtifactId>
-    <eipOdooOpenMRSArtifactId>openmrs-odoo</eipOdooOpenMRSArtifactId>
+    <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
+    <eipOdooOpenMRSArtifactId>eip-odoo-openmrs</eipOdooOpenMRSArtifactId>
 
     <!-- Target folders for the final package -->
     <distro.baseDir>${project.build.directory}/${project.artifactId}-${project.version}</distro.baseDir>
@@ -84,13 +83,13 @@
 
     <!-- EIP services -->
     <dependency>
-      <groupId>net.mekomsolutions</groupId>
+      <groupId>com.ozonehis</groupId>
       <artifactId>${eipOpenMRSSenaiteArtifactId}</artifactId>
       <version>${eipOpenMRSSenaiteVersion}</version>
       <type>zip</type>
     </dependency>
     <dependency>
-      <groupId>net.mekomsolutions.eip</groupId>
+      <groupId>com.ozonehis</groupId>
       <artifactId>${eipOdooOpenMRSArtifactId}</artifactId>
       <version>${eipOdooOpenMRSVersion}</version>
       <type>zip</type>
