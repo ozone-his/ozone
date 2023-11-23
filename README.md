@@ -31,7 +31,8 @@ When ready Gitpod will launch the tab for OpenMRS 3.
 ```bash
 git clone https://github.com/ozone-his/ozone-distro
 mvn clean package
-./start-demo.sh
+cd target/ && source ./go-to-scripts-dir.sh && ./start-demo.sh
+
 ```
 
 Access each Ozone FOSS components at the following URL:
