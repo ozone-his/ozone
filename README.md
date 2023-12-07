@@ -35,6 +35,19 @@ source target/go-to-scripts-dir.sh
 ./start-demo.sh
 ```
 
+## 2-bis. Try Ozone locally with Traefik as the proxy
+
+```bash
+git clone https://github.com/ozone-his/ozone-distro
+mvn clean package
+source target/go-to-scripts-dir.sh
+export TRAEFIK="true"
+./start-demo.sh
+```
+
+## 3. Browse Ozone
+
+
 Access each Ozone FOSS components at the following URL:
 
 | HIS Component     | URL                            | Username | Password |
@@ -46,6 +59,7 @@ Access each Ozone FOSS components at the following URL:
 | Superset          | http://localhost:8088          | admin    | password |
 
 Ozone FOSS requires you to log into each component separately.
+
 
 ## 3. Find us
 [Slack](https://openmrs.slack.com/archives/C02PYQD5D0A) - [Forum](https://talk.openmrs.org/c/software/ozone-his) - [Website](http://ozone-his.com)
