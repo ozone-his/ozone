@@ -186,6 +186,26 @@
         <version>3.3.0</version>
         <executions>
           <execution>
+            <!-- Copy binaries/ folder -->
+            <id>Copy local binaries/ resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <markersDirectory>${project.build.directory}/</markersDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/binaries</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
             <!-- Copy configs/ folder -->
             <id>Copy local configs/ resources</id>
             <phase>prepare-package</phase>
@@ -204,6 +224,7 @@
               </resources>
             </configuration>
           </execution>
+          
           <execution>
             <!-- Copy data/ folder -->
             <id>Copy local data/ resources</id>
