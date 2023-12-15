@@ -193,7 +193,6 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <markersDirectory>${project.build.directory}/</markersDirectory>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries</outputDirectory>
               <overwrite>true</overwrite>
@@ -213,7 +212,6 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <markersDirectory>${project.build.directory}/</markersDirectory>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/configs</outputDirectory>
               <overwrite>true</overwrite>
@@ -233,7 +231,6 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <markersDirectory>${project.build.directory}/</markersDirectory>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/data</outputDirectory>
               <overwrite>true</overwrite>
@@ -253,7 +250,6 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <markersDirectory>${project.build.directory}/</markersDirectory>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries/eip-openmrs-senaite/routes</outputDirectory>
               <overwrite>true</overwrite>
@@ -274,7 +270,6 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <markersDirectory>${project.build.directory}/</markersDirectory>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries/eip-odoo-openmrs/routes</outputDirectory>
               <overwrite>true</overwrite>
@@ -295,7 +290,6 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <markersDirectory>${project.build.directory}/</markersDirectory>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules</outputDirectory>
               <overwrite>true</overwrite>
@@ -315,7 +309,6 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <markersDirectory>${project.build.directory}/</markersDirectory>
               <outputDirectory>
                 ${project.build.directory}/openmrs_config</outputDirectory>
               <overwrite>true</overwrite>
