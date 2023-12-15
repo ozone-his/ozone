@@ -14,18 +14,38 @@ When ready Gitpod will launch the tab for OpenMRS 3.
 
 ## (option 2) Try Ozone locally using the embedded Apache 2 proxy
 
+Clone
 ```bash
 git clone https://github.com/ozone-his/ozone-distro
+cd ozone-distro
+```
+
+Build
+```bash
 scripts/mvnw clean package
+```
+
+Run
+```bash
 source target/go-to-scripts-dir.sh
 ./start-demo.sh
 ```
 
 ## (option 3) Try Ozone locally assuming Traefik is running on the host
 
+Clone
 ```bash
 git clone https://github.com/ozone-his/ozone-distro
+cd ozone-distro
+```
+
+Build
+```bash
 scripts/mvnw clean package
+```
+
+Run
+```bash
 source target/go-to-scripts-dir.sh
 export TRAEFIK="true"
 ./start-demo.sh
