@@ -128,6 +128,13 @@
               <resources>
                 <resource>
                   <directory>${project.basedir}/scripts</directory>
+                  <filtering>false</filtering>
+                </resource>         
+                <resource>
+                  <directory>${project.basedir}/scripts</directory>
+                  <includes>
+                    <include>*.sh</include>
+                  </includes>
                   <filtering>true</filtering>
                 </resource>
               </resources>
