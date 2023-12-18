@@ -1,0 +1,6 @@
+version: 1
+# Build and publish are handled by GitHub Actions. Only using OCD3 to trigger downstream jobs.
+build:
+  bash_commands: "echo 'Build is handled by GitHub Actions. Skipping...' && exit 0"
+deploy:
+  bash_commands: "echo 'Publishing is handled by GitHub Actions. Skipping...' && exit 0"
