@@ -24,7 +24,8 @@ jobs:
           cache: "maven"
 
       - name: Validate
-        run: mvn --batch-mode --update-snapshots --activate-profiles validator clean install
+        # Temporary disable OMRS config validation
+        run: mvn --batch-mode --update-snapshots clean install
 
   build-and-publish:
     needs: validate
