@@ -1,3 +1,5 @@
+image:
+  file: .gitpod.dockerfile
 tasks:
   - name: Run Ozone FOSS
     init: scripts/mvnw clean package
