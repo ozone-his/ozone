@@ -1,8 +1,6 @@
-image:
-  file: .gitpod.dockerfile
 tasks:
   - name: Run Ozone FOSS
-    init: scripts/mvnw clean package
+    init: sudo apt-get update && sudo apt-get install -y gettext-base && sudo rm -rf /var/lib/apt/lists/* && scripts/mvnw clean package
     command: source target/go-to-scripts-dir.sh && ./start-demo.sh
 ports:
   - name: OpenMRS
