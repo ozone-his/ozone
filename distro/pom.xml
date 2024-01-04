@@ -130,8 +130,8 @@
           </execution>
 
           <execution>
-            <id>Copy EIP OpenMRS SENAITE routes to a temporary location</id>
-            <phase>package</phase>
+            <id>Copy EIP OpenMRS SENAITE JAR</id>
+            <phase>prepare-package</phase>
             <goals>
               <goal>copy</goal>
             </goals>
@@ -151,8 +151,8 @@
           </execution>
 
           <execution>
-            <id>Copy EIP Odoo OpenMRS routes in a temporary location</id>
-            <phase>package</phase>
+            <id>Copy EIP Odoo OpenMRS JAR</id>
+            <phase>prepare-package</phase>
             <goals>
               <goal>copy</goal>
             </goals>
