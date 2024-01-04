@@ -31,7 +31,7 @@
     <eipOpenMRSSenaiteVersion>1.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
     <eipOdooOpenMRSVersion>1.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
 
-    <!-- Some artifact Ids -->
+    <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
     <eipOdooOpenMRSArtifactId>eip-odoo-openmrs</eipOdooOpenMRSArtifactId>
 
@@ -86,13 +86,13 @@
       <groupId>com.ozonehis</groupId>
       <artifactId>${eipOpenMRSSenaiteArtifactId}</artifactId>
       <version>${eipOpenMRSSenaiteVersion}</version>
-      <type>zip</type>
+      <type>jar</type>
     </dependency>
     <dependency>
       <groupId>com.ozonehis</groupId>
       <artifactId>${eipOdooOpenMRSArtifactId}</artifactId>
       <version>${eipOdooOpenMRSVersion}</version>
-      <type>zip</type>
+      <type>jar</type>
     </dependency>
 
   </dependencies>
@@ -103,7 +103,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.8</version>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>Copy Odoo Initializer add-on</id>
@@ -136,30 +136,43 @@
           </execution>
 
           <execution>
-            <id>Unpack EIP OpenMRS SENAITE routes to a temporary location</id>
-            <phase>generate-resources</phase>
+            <id>Copy EIP OpenMRS SENAITE routes to a temporary location</id>
+            <phase>package</phase>
             <goals>
-              <goal>unpack-dependencies</goal>
+              <goal>copy</goal>
             </goals>
             <configuration>
-              <excludeTransitive>true</excludeTransitive>
+              <artifactItems>
+                <artifactItem>
+                    <groupId>com.ozonehis</groupId>
+                    <artifactId>${eipOpenMRSSenaiteArtifactId}</artifactId>
+                    <version>${eipOpenMRSSenaiteVersion}</version>
+                    <type>jar</type>
+                    <overWrite>true</overWrite>
+                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOpenMRSSenaiteArtifactId}</outputDirectory>
+                </artifactItem>
+              </artifactItems>
               <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${project.build.directory}/${eipOpenMRSSenaiteArtifactId}</outputDirectory>
-              <includeArtifactIds>${eipOpenMRSSenaiteArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
           <execution>
-            <id>Unpack EIP Odoo OpenMRS routes in a temporary location</id>
-            <phase>generate-resources</phase>
+            <id>Copy EIP Odoo OpenMRS routes in a temporary location</id>
+            <phase>package</phase>
             <goals>
-              <goal>unpack-dependencies</goal>
+              <goal>copy</goal>
             </goals>
             <configuration>
-              <excludeTransitive>true</excludeTransitive>
-              <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${project.build.directory}/${eipOdooOpenMRSArtifactId}</outputDirectory>
-              <includeArtifactIds>${eipOdooOpenMRSArtifactId}</includeArtifactIds>
+                <artifactItems>
+                  <artifactItem>
+                    <groupId>com.ozonehis</groupId>
+                    <artifactId>${eipOdooOpenMRSArtifactId}</artifactId>
+                    <version>${eipOdooOpenMRSVersion}</version>
+                    <type>jar</type>
+                    <overWrite>true</overWrite>
+                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOdooOpenMRSArtifactId}</outputDirectory>
+                  </artifactItem>
+                </artifactItems>
             </configuration>
           </execution>
 
@@ -237,46 +250,6 @@
               <resources>
                 <resource>
                   <directory>${project.basedir}/data</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
-            <!-- Copy EIP OpenMRS SENAITE routes -->
-            <id>Copy EIP OpenMRS SENAITE routes</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/eip-openmrs-senaite/routes</outputDirectory>
-              <overwrite>true</overwrite>
-              <resources>
-                <resource>
-                  <directory>
-                    ${project.build.directory}/${eipOpenMRSSenaiteArtifactId}/routes/senaite</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
-            <!-- Copy EIP Odoo OpenMRS routes -->
-            <id>Copy EIP Odoo OpenMRS routes</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/eip-odoo-openmrs/routes</outputDirectory>
-              <overwrite>true</overwrite>
-              <resources>
-                <resource>
-                  <directory>
-                    ${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/</directory>
                 </resource>
               </resources>
             </configuration>
@@ -372,24 +345,6 @@
                   <fileset
                     dir="${project.build.directory}/referenceapplication-distro/sdk-distro/web/modules" />
                 </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>Remove unneeded EIP Odoo OpenMRS PRP and Obs routes</id>
-            <phase>process-resources</phase>
-            <configuration>
-              <target>
-                <delete includeEmptyDirs="true">
-                  <fileset
-                    dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/obs" />
-                  <fileset
-                    dir="${project.build.directory}/${eipOdooOpenMRSArtifactId}/${eipOdooOpenMRSArtifactId}-${eipOdooOpenMRSVersion}/routes/prp" />
-                </delete>
               </target>
             </configuration>
             <goals>
