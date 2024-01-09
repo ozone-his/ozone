@@ -12,7 +12,7 @@ It may take some time to setup Ozone for the first time, so hang tight :hourglas
 
 When ready Gitpod will launch the tab for OpenMRS 3.
 
-## (option 2) Try Ozone locally using the embedded Nginx Revers proxy
+## (option 2) Try Ozone locally using the embedded Nginx Reverse proxy
 
 Clone
 ```bash
