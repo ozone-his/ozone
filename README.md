@@ -31,6 +31,9 @@ source target/go-to-scripts-dir.sh
 ./start-demo.sh
 ```
 
+Tip: After running `source target/go-to-scripts-dir.sh` command you can use `popd` to easily move back to the root directory, if needed.
+
+
 ## (option 3) Try Ozone locally assuming Traefik is running on the host
 
 Clone
