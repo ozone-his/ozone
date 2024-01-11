@@ -6,7 +6,7 @@
 
 ## (option 1) Try Ozone FOSS in Gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-distro)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-distro/tree/1.0.0-alpha.9)
 
 It may take some time to setup Ozone for the first time, so hang tight :hourglass_flowing_sand:
 

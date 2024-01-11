@@ -5,7 +5,7 @@
   <artifactId>ozone-distro</artifactId>
   <name>Ozone Distro</name>
   <description></description>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0-alpha.9</version>
   <packaging>pom</packaging>
 
   <organization>
@@ -25,10 +25,10 @@
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.0.0-beta.16</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
-    <commonreportsVersion>1.4.0-SNAPSHOT</commonreportsVersion>
+    <commonreportsVersion>1.3.0</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
-    <eipOpenMRSSenaiteVersion>1.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
-    <eipOdooOpenMRSVersion>1.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
+    <eipOpenMRSSenaiteVersion>1.3.0</eipOpenMRSSenaiteVersion>
+    <eipOdooOpenMRSVersion>1.3.0</eipOdooOpenMRSVersion>
 
     <!-- Some artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
