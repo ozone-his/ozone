@@ -5,7 +5,7 @@
   <artifactId>ozone</artifactId>
   <name>Ozone</name>
   <description></description>
-  <version>1.0.0-alpha.9</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <organization>
@@ -23,8 +23,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <ozoneDistroVersion>1.0.0-alpha.9</ozoneDistroVersion>
-    <ozoneDockerComposeVersion>1.0.0-alpha.9</ozoneDockerComposeVersion>
+    <ozoneDistroVersion>1.0.0-SNAPSHOT</ozoneDistroVersion>
+    <ozoneDockerComposeVersion>1.0.0-SNAPSHOT</ozoneDockerComposeVersion>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
