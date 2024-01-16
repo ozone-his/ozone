@@ -284,7 +284,26 @@
       <id>validator</id>
       <build>
         <plugins>
-
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>copy-config</id>
+                <phase>pre-integration-test</phase>
+                <configuration>
+                  <target>
+                    <copy todir="${project.build.directory}/validator/configuration">
+                      <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config"/>
+                    </copy>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
           <!-- hooking the OpenMRS config validation to the integration-test phase -->
           <plugin>
             <groupId>org.openmrs.maven.plugins</groupId>
@@ -297,6 +316,10 @@
                 <goals>
                   <goal>validate-configurations</goal>
                 </goals>
+                <configuration>
+                  <sourceDir>
+                    ${project.build.directory}/validator/configuration</sourceDir>
+                </configuration>
               </execution>
             </executions>
           </plugin>
