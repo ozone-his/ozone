@@ -6,7 +6,7 @@
 
 ## (option 1) Try Ozone FOSS in Gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-distro)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone)
 
 It may take some time to setup Ozone for the first time, so hang tight :hourglass_flowing_sand:
 
@@ -16,8 +16,8 @@ When ready Gitpod will launch the tab for OpenMRS 3.
 
 Clone
 ```bash
-git clone https://github.com/ozone-his/ozone-distro
-cd ozone-distro
+git clone https://github.com/ozone-his/ozone
+cd ozone
 ```
 
 Build
@@ -38,8 +38,8 @@ Tip: After running `source target/go-to-scripts-dir.sh` command you can use `pop
 
 Clone
 ```bash
-git clone https://github.com/ozone-his/ozone-distro
-cd ozone-distro
+git clone https://github.com/ozone-his/ozone
+cd ozone
 ```
 
 Build
