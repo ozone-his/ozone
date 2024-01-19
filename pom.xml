@@ -1,5 +1,12 @@
 <project>
 
+  <parent>
+    <groupId>com.ozonehis</groupId>
+    <artifactId>ozone-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>ozone-parent</relativePath>
+  </parent>
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ozonehis</groupId>
   <artifactId>ozone</artifactId>
@@ -32,6 +39,8 @@
   </properties>
 
   <modules>
+    <module>ozone-parent</module>
+    <module>ozone-distro-parent</module>
     <module>distro</module>
   </modules>
 
@@ -56,7 +65,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.8</version>
         <executions>
           <execution>
             <id>Copy Ozone Docker Compose</id>
@@ -66,7 +74,6 @@
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <useBaseVersion>true</useBaseVersion>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/run/docker</outputDirectory>
               <includeArtifactIds>ozone-docker-compose</includeArtifactIds>
@@ -81,7 +88,6 @@
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <useBaseVersion>true</useBaseVersion>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/distro</outputDirectory>
               <includeArtifactIds>ozone-distro</includeArtifactIds>
@@ -93,7 +99,6 @@
       <plugin>
         <artifactId>exec-maven-plugin</artifactId>
         <groupId>org.codehaus.mojo</groupId>
-        <version>3.1.1</version>
         <executions>
           <execution><!-- Replace the Ozone Dir value in order for start-demo.sh to work -->
             <id>Set OZONE_DIR (needed by start-demo.sh)</id>
@@ -112,7 +117,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.3.0</version>
         <executions>
           <execution>
             <!-- Copy and substitute some helper files (for demo and Gitpod) -->
@@ -147,7 +151,6 @@
       <plugin>
         <groupId>net.mekomsolutions.maven.plugin</groupId>
         <artifactId>dependency-tracker-maven-plugin</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
         <executions>
           <execution>
             <id>Complile dependency report</id>
@@ -163,7 +166,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.7</version>
         <executions>
 
           <execution>
@@ -206,7 +208,6 @@
           </execution>
         </executions>
       </plugin>
-
     </plugins>
   </build>
 
