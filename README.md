@@ -6,18 +6,18 @@
 
 ## (option 1) Try Ozone FOSS in Gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-distro)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone)
 
 It may take some time to setup Ozone for the first time, so hang tight :hourglass_flowing_sand:
 
 When ready Gitpod will launch the tab for OpenMRS 3.
 
-## (option 2) Try Ozone locally using the embedded Apache 2 proxy
+## (option 2) Try Ozone locally using the embedded Nginx Reverse proxy
 
 Clone
 ```bash
-git clone https://github.com/ozone-his/ozone-distro
-cd ozone-distro
+git clone https://github.com/ozone-his/ozone
+cd ozone
 ```
 
 Build
@@ -31,12 +31,15 @@ source target/go-to-scripts-dir.sh
 ./start-demo.sh
 ```
 
+Tip: After running `source target/go-to-scripts-dir.sh` command you can use `popd` to easily move back to the root directory, if needed.
+
+
 ## (option 3) Try Ozone locally assuming Traefik is running on the host
 
 Clone
 ```bash
-git clone https://github.com/ozone-his/ozone-distro
-cd ozone-distro
+git clone https://github.com/ozone-his/ozone
+cd ozone
 ```
 
 Build

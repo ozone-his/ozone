@@ -25,7 +25,7 @@ jobs:
 
       - name: Validate
         # Temporary disable OMRS config validation
-        run: mvn --batch-mode --update-snapshots clean install
+        run: mvn --batch-mode --update-snapshots clean install -P validator
 
   build-and-publish:
     needs: validate
