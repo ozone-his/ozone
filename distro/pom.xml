@@ -34,8 +34,8 @@
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <commonreportsVersion>1.4.0-SNAPSHOT</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
-    <eipOpenMRSSenaiteVersion>1.4.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
-    <eipOdooOpenMRSVersion>1.4.0-SNAPSHOT</eipOdooOpenMRSVersion>
+    <eipOpenMRSSenaiteVersion>2.0.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
+    <eipOdooOpenMRSVersion>2.0.0-SNAPSHOT</eipOdooOpenMRSVersion>
 
     <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
