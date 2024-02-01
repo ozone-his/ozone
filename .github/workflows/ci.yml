@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  release:
+    types: [published]
+
+jobs:
+  validate:
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
+    with:
+      java-version: "8"
+      maven-args: "-P validator" #  OMRS config validation
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+
+  pre-release:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: validate
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+
+  release:
+    if: ${{ github.event_name == 'release' }}
+    needs: validate
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
