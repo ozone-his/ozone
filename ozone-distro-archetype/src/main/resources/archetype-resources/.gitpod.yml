@@ -1,0 +1,10 @@
+tasks:
+  - name: Run Ozone ${distributionName}
+    before: sudo apt-get update && sudo apt-get install -y gettext-base && sudo rm -rf /var/lib/apt/lists/*
+    init: mvnw clean package
+    command: source target/go-to-scripts-dir.sh && ./start.sh
+ports:
+  - name: OpenMRS
+    description: OpenMRS 3
+    port: 80
+    onOpen: open-browser

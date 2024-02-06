@@ -1,6 +1,6 @@
 # Ozone
 
-> The entreprise-grade health information system that augments OpenMRS 3.
+> The enterprise-grade health information system that augments OpenMRS 3
 
 # Quick start
 
@@ -63,3 +63,23 @@ For example:
 Ozone FOSS requires you to log into each component separately.
 
 💡 **Did you know?** Ozone Pro comes with single sign-on (SSO) and all its integration layer is secured with OAuth2.
+
+## Create Your Own Distribution
+
+This Ozone project provides tooling to help create your own distribution. To get started, you first need to install the
+archetype by running:
+
+```bash
+mvn -pl ozone-distro-archetype clean install
+```
+
+Once that's done, you can use the Maven Archetype by running:
+
+```bash
+mvn archetype:generate -DarchetypeGroupId=com.ozonehis -DarchetypeArtifactId=ozone-distro-archetype
+```
+
+This will prompt you for details about your project and create a standard Maven repository in the local directory.
+
+**Note** You do **not** want your distribution to be part of the Ozone source code, so you should create it in a directory
+that does not contain this project.
