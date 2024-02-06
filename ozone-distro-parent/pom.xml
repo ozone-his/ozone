@@ -70,6 +70,32 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
+         <execution>
+            <!-- Exclude files from Ozone -->
+            <id>Exclude unneeded Ozone files</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/ozone</directory>
+                  <excludes>
+                    <exclude>distro/**/addresshierarchy/*.*</exclude>
+                    <exclude>distro/**/ampathforms/*.json</exclude>
+                    <exclude>distro/**/ampathformstranslations/*.json</exclude>
+                    <exclude>distro/**/globalproperties/i18n.xml</exclude>
+                    <exclude>distro/**/*demo.*</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
           <execution>
             <!-- Copy and substitute some helper files (for demo and Gitpod) -->
             <id>Copy and substitute some helper files</id>
@@ -148,35 +174,9 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.parent.basedir}/configs</directory>
+                  <directory>${project.basedir}/configs</directory>
                   <excludes>
                     <exclude>.gitkeep</exclude>
-                  </excludes>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
-            <!-- Exclude files from Ozone -->
-            <id>Exclude unneeded Ozone files</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
-              <overwrite>true</overwrite>
-              <resources>
-                <resource>
-                  <directory>${project.build.directory}/ozone</directory>
-                  <excludes>
-                    <exclude>distro/**/addresshierarchy/*.*</exclude>
-                    <exclude>distro/**/ampathforms/*.json</exclude>
-                    <exclude>distro/**/ampathformstranslations/*.json</exclude>
-                    <exclude>distro/**/globalproperties/i18n.xml</exclude>
-                    <exclude>distro/**/*demo.*</exclude>
                   </excludes>
                 </resource>
               </resources>
