@@ -70,16 +70,15 @@ This Ozone project provides tooling to help create your own distribution. To get
 archetype by running:
 
 ```bash
-mvn -pl ozone-distro-archetype clean install
+./scripts/mvn -pl ozone-distro-archetype clean install
 ```
 
 Once that's done, you can use the Maven Archetype by running:
 
 ```bash
-mvn archetype:generate -DarchetypeGroupId=com.ozonehis -DarchetypeArtifactId=ozone-distro-archetype
+./scripts/mvn archetype:generate -DarchetypeGroupId=com.ozonehis -DarchetypeArtifactId=ozone-distro-archetype
 ```
 
 This will prompt you for details about your project and create a standard Maven repository in the local directory.
 
-**Note** You do **not** want your distribution to be part of the Ozone source code, so you should create it in a directory
-that does not contain this project.
+**Note** You do **not** want your distribution to be part of the Ozone source code, so you should create it in a directory that does not contain this project.
