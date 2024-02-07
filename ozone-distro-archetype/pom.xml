@@ -5,6 +5,7 @@
     <groupId>com.ozonehis</groupId>
     <artifactId>ozone-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../ozone-parent</relativePath>
   </parent>
 
   <artifactId>ozone-distro-archetype</artifactId>
