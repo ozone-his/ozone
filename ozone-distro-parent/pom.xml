@@ -230,73 +230,20 @@
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
-        <version>3.0.2</version>
         <executions>
           <execution>
             <id>Rebuild OpenMRS Frontend if necessary</id>
             <goals>
               <goal>execute</goal>
             </goals>
-            <phase>process-classes</phase>
+            <phase>process-resources</phase>
             <configuration>
               <scripts>
-                <script><![CDATA[
-                  import java.nio.file.Paths
-
-                  log.info("Checking for frontend customizations in ${Paths.get("${project.build.directory}", "openmrs_frontend", "spa-assemble-config.json").toString()}")
-
-                  frontendCustomizationsFile = Paths.get("${project.build.directory}", "openmrs_frontend", "spa-assemble-config.json").toFile()
-                  if (frontendCustomizationsFile.exists()) {
-                    log.info("Found frontend customizations. Rebuilding frontend...")
-
-                    refAppConfigFile = Paths.get("${project.build.directory}", "openmrs_frontend", "reference-application-spa-assemble-config.json").toFile()
-                    slurper = new groovy.json.JsonSlurper()
-                    refAppConfig = slurper.parse(refAppConfigFile)
-                    openmrsVersion = refAppConfig["coreVersion"]
-
-                    def assembleProcess = "npx --legacy-peer-deps openmrs@${openmrsVersion} assemble --manifest --mode config --config ${refAppConfigFile.getAbsolutePath()} --config ${frontendCustomizationsFile.getAbsolutePath()} --target ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/frontend".execute()
-                    assembleProcess.consumeProcessOutput(System.out, System.err)
-                    assembleProcess.waitFor()
-
-                    if (assembleProcess.exitValue() != 0) {
-                      throw new RuntimeException("'openmrs assemble' step failed. See previous messages for details.")
-                    }
-
-                    def buildProcess = "npx --legacy-peer-deps openmrs@${openmrsVersion} build --config-url "\$SPA_CONFIG_URLS" --default-locale "\$SPA_DEFAULT_LOCALE" --target ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/frontend".execute()
-                    buildProcess.consumeProcessOutput(System.out, System.err)
-                    buildProcess.waitFor()
-
-                    if (buildProcess.exitValue() != 0) {
-                      throw new RuntimeException("'openmrs build' step failed. See previous messages for details.")
-                    }
-                  } else {
-                    log.info("No frontend customizations found.")
-                  }
-                ]]></script>
+                <script>file://${project.basedir}/scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
               </scripts>
             </configuration>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.groovy</groupId>
-            <artifactId>groovy</artifactId>
-            <version>4.0.18</version>
-            <scope>runtime</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.groovy</groupId>
-            <artifactId>groovy-ant</artifactId>
-            <version>4.0.18</version>
-            <scope>runtime</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.groovy</groupId>
-            <artifactId>groovy-json</artifactId>
-            <version>4.0.18</version>
-            <scope>runtime</scope>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
   </build>

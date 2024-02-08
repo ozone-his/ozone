@@ -197,7 +197,7 @@
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/referenceapplication-frontend</outputDirectory>
+              <outputDirectory>${project.build.directory}/openmrs_frontend</outputDirectory>
               <includeArtifactIds>referenceapplication-frontend</includeArtifactIds>
             </configuration>
           </execution>
@@ -260,6 +260,30 @@
               <resources>
                 <resource>
                   <directory>${project.basedir}/data</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy scripts -->
+            <id>Copy local scripts</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/scripts</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/scripts</directory>
+                  <includes>
+                    <include>
+                      openmrs/frontend_assembly/build-openmrs-frontend.groovy
+                    </include>
+                  </includes>
                 </resource>
               </resources>
             </configuration>
@@ -330,11 +354,15 @@
 
           <execution>
             <id>Rename spa-assemble-config.json to reference-application-spa-assemble-config.json</id>
-            <phase>process-resources</phase>
+            <phase>generate-resources</phase>
             <configuration>
               <target>
-                <move todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_assembly">
-                  <fileset dir="${project.build.directory}/referenceapplication-frontend" />
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_assembly">
+                  <fileset dir="${project.build.directory}/openmrs_frontend" />
+                  <mapper from="spa-assemble-config.json" to="reference-application-spa-assemble-config.json" type="regexp" />
+                </copy>
+                <move todir="${project.build.directory}/openmrs_frontend">
+                  <fileset dir="${project.build.directory}/openmrs_frontend" />
                   <mapper from="spa-assemble-config.json" to="reference-application-spa-assemble-config.json" type="regexp" />
                 </move>
               </target>
@@ -393,6 +421,25 @@
             <goals>
               <goal>run</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Build OpenMRS Frontend</id>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <scripts>
+                <script>file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
+              </scripts>
+            </configuration>
           </execution>
         </executions>
       </plugin>
