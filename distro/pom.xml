@@ -126,6 +126,7 @@
               <outputDirectory>${project.build.directory}/openmrs_modules/</outputDirectory>
               <!-- copying jars and omods only -->
               <includeTypes>jar, omod</includeTypes>
+              <excludeGroupIds>com.ozonehis</excludeGroupIds>
             </configuration>
           </execution>
 
