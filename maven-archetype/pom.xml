@@ -8,11 +8,11 @@
     <relativePath>../ozone-parent</relativePath>
   </parent>
 
-  <artifactId>ozone-distro-archetype</artifactId>
+  <artifactId>maven-archetype</artifactId>
   <packaging>maven-archetype</packaging>
 
-  <name>Archetype - Ozone Distribution</name>
-  <description>A Maven Archetype for Ozone distributions</description>
+  <name>Ozone Implementation Archetype</name>
+  <description>A Maven Archetype for Ozone implementation projects</description>
 
   <url>https://www.ozone-his.com</url>
 

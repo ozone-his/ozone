@@ -41,7 +41,7 @@
     <module>ozone-parent</module>
     <module>ozone-distro-parent</module>
     <module>distro</module>
-    <module>ozone-distro-archetype</module>
+    <module>maven-archetype</module>
   </modules>
 
   <dependencies>
