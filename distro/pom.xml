@@ -124,7 +124,8 @@
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
               <outputDirectory>${project.build.directory}/openmrs_modules/</outputDirectory>
-              <!-- copying jars and omods only -->
+              <!-- Copying JARs and OMODs only.
+               Exclude any 'com.ozonehis' artifact to make sure EIP routes are not copied over -->
               <includeTypes>jar, omod</includeTypes>
               <excludeGroupIds>com.ozonehis</excludeGroupIds>
             </configuration>
