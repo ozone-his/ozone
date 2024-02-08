@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ozonehis</groupId>
-  <artifactId>ozone-parent</artifactId>
-  <name>Ozone Parent</name>
+  <artifactId>maven-commons</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <name>Ozone Maven Commons</name>
+  <description>Parent project for Ozone containing shared dependency versions and settings</description>
   <packaging>pom</packaging>
-  <description>Parent project for Ozone containing shared dependency versions</description>
 
   <organization>
     <name>Ozone HIS</name>
