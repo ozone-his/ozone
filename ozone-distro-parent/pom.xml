@@ -262,7 +262,7 @@
                       throw new RuntimeException("'openmrs assemble' step failed. See previous messages for details.")
                     }
 
-                    def buildProcess = "npx --legacy-peer-deps openmrs@${openmrsVersion} build --target ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/frontend".execute()
+                    def buildProcess = "npx --legacy-peer-deps openmrs@${openmrsVersion} build --config-url "\$SPA_CONFIG_URLS" --default-locale "\$SPA_DEFAULT_LOCALE" --target ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/frontend".execute()
                     buildProcess.consumeProcessOutput(System.out, System.err)
                     buildProcess.waitFor()
 
