@@ -1,0 +1,5 @@
+Uuid,Void/Retire,Name,Description,Parent,Attribute|id_prefix,Tags,Address 1,Address 2,Address 3,Address 4,Address 5,Address 6,City/Village,County/District,State/Province,Postal Code,Country
+833d0c66-e29a-4d31-ac13-ca9050d1bfa9,,Haiti Clinic A,,,A-,Login Location; Visit Location; Admission Location; Appointment Location,,,,,,,,,,,
+57d10489-ac5e-4d60-9838-32b098293863,,Haiti Clinic B,,,B-,Login Location; Visit Location; Admission Location; Appointment Location,,,,,,,,,,,
+44a70fba-0e1f-480d-a51e-c91454e4ca1a,,Haiti Clinic C,,,C-,Login Location; Visit Location; Admission Location; Appointment Location,,,,,,,,,,,
+49780ca0-8931-11e9-bab0-47c7bc1d8a31,,Inpatient Ward,,833d0c66-e29a-4d31-ac13-ca9050d1bfa9,,Visit Location; Admission Location,,,,,,,,,,,

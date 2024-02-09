@@ -1,0 +1,4 @@
+uuid,Void/Retire,Same as mappings,Fully specified name:en,Fully specified name:fr,Short name:en,Short name:fr,Description:en,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:1100
+b6b02232-2a9f-43c9-a66f-b13d4acc4a93,,,Date/Time,Date/Heure,Date/Time,Date/Heure,,,Misc,Datetime,,,,,,,,,,,
+7d15e31b-021f-9f99-50e6-50ace62f3962,,CIEL:164378,Action taken,Action posée,Action taken,Action posée,,,Misc,Text,,,,,,,,,,,
+0ab68a6e-4002-400b-8d3f-21c8cdd78dac,,,Emergency Set,Urgence set,Emergency,Urgence,,,ConvSet,N/A,,,Date/Heure;Action posée;Autres observations,,,,,,,,

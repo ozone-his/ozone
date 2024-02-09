@@ -1,0 +1,3 @@
+Uuid,Void/Retire,Name,Description,Required,Format,Format description,Validator,Location behavior,Uniqueness behavior,_order:1000
+b303f207-a094-457f-9833-f1cdc7b5d184,,Numéro Dossier,Unique number used in facility,TRUE,[A-Z]{1}-[0-9]{7},"Identifier should be 1 letter, followed by a dash and 7 numerical characters. Eg, A-0010902",,NOT_USED,UNIQUE,
+e705fedf-16c6-4304-bde4-c3c22ea2cfa0,,Ancien Numéro Dossier,Used to register legacy dossier number,FALSE,,,,NOT_USED,,

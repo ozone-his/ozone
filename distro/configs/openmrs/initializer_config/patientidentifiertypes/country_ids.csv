@@ -1,0 +1,5 @@
+Uuid,Void/Retire,Name,Description,Required,Format,Format description,Validator,Location behavior,Uniqueness behavior,_order:500
+e26ca279-8f57-44a5-9ed8-8cc16e90e559,,Biometrics Reference Code,Code referencing a patient's record in an external biometrics system,FALSE,,,,NOT_USED,,
+e797f826-8e8f-11e7-bb31-be2e44b06b34,,NIF,"Numéro d'Identité Fiscale, The Haiti Tax Identification Number (NIF) is issued by the Direction Générale des Impôts (DGI) since 1987.  Any Haitian natural or legal person gets this 10-digit number.",FALSE,,,,NOT_USED,,
+e797face-8e8f-11e7-bb31-be2e44b06b34,,CIN,"Carte d'Identification Nationale, The Haiti national identification card is meant to replace the fiscal identity card.  Created 2005.",FALSE,,,,NOT_USED,,
+f54ed6b9-f5b9-4fd5-a588-8f7561a78401,,ECID,Code referencing a patient's record in the SEDISH Master Person Index (Enterprise Client ID),FALSE,,,,NOT_USED,,

@@ -1,0 +1,11 @@
+Uuid,Void/Retire,Name,Description,View privilege,Edit privilege,_order:1000
+dd528487-82a5-4082-9c72-ed246bd49591,,Consultation,Consultation encounter,,,
+a7feb1a0-4bd8-48d1-acfd-ce282d139f06,,REG,Registration encounter,,,
+ccfbdaaf-c0fb-45ec-b4fc-958fef5c5965,,ADMISSION,ADMISSION encounter,,,
+c521ee59-85dc-455d-ade6-969a27524594,,DISCHARGE,DISCHARGE encounter,,,
+c74fcf9d-9597-44a9-a311-c41fa98516cd,,TRANSFER,TRANSFER encounter,,,
+84fd2097-63cb-47d4-8392-d553fb6ef571,,RADIOLOGY,RADIOLOGY encounter,,,
+a4f57f5c-f1d5-4934-8c0d-d32083421bc8,,INVESTIGATION,INVESTIGATION encounter,,,
+b3730730-c47a-46ca-ad66-9871ffb31722,,LAB_RESULT,LAB_RESULT encounter,,,
+89b87ad8-b9df-495c-9279-331515093d89,,Patient Document,Patient Document Encounter Type,,,
+579141eb-fe07-4c3e-8a54-f10024aaa4e8,,VALIDATION NOTES,Validation Notes encounter,,,

@@ -1,0 +1,2 @@
+Uuid,Void/Retire,Entity name,Name,Description,Min occurs,Max occurs,Datatype classname,Datatype config,Preferred handler classname,Handler config
+8811dce5-e0fd-448a-97c5-a37f46159d75,,Location,id_prefix,Identifier Prefix used to support location-based prefix,0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,
