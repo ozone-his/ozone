@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <groupId>com.ozonehis</groupId>
-    <artifactId>ozone-parent</artifactId>
+    <artifactId>maven-commons</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>ozone-parent</relativePath>
+    <relativePath>maven-commons</relativePath>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ozone</artifactId>
   <name>Ozone</name>
-  <description />
+  <description>The enterprise-grade health information system built with OpenMRS 3</description>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -38,8 +38,8 @@
   </properties>
 
   <modules>
-    <module>ozone-parent</module>
-    <module>ozone-distro-parent</module>
+    <module>maven-commons</module>
+    <module>maven-parent</module>
     <module>distro</module>
     <module>maven-archetype</module>
   </modules>
@@ -153,7 +153,7 @@
         <artifactId>dependency-tracker-maven-plugin</artifactId>
         <executions>
           <execution>
-            <id>Complile dependency report</id>
+            <id>Compile dependency report</id>
             <phase>compile</phase>
             <goals>
               <goal>track</goal>
@@ -210,81 +210,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <repositories>
-    <repository>
-      <id>mks-nexus-public</id>
-      <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
-    </repository>
-    <repository>
-      <id>mks-nexus-public-snapshots</id>
-      <name>Mekom Solutions Nexus repo for snapshots</name>
-      <url>https://nexus.mekomsolutions.net/repository/maven-snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>openmrs-repo</id>
-      <name>OpenMRS Nexus Repository</name>
-      <url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
-    </repository>
-    <repository>
-      <id>sonatype-nexus-snapshots</id>
-      <name>Sonatype Nexus Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>openmrs-repo</id>
-      <name>OpenMRS Nexus Repository</name>
-      <url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>openmrs-snapshots</id>
-      <name>OpenMRS Public Repository</name>
-      <url>https://mavenrepo.openmrs.org/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </pluginRepository>
-    <pluginRepository>
-      <id>mks-nexus-public</id>
-      <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>mks-nexus-snapshots</id>
-      <url>https://nexus.mekomsolutions.net/repository/maven-snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
-
-  <distributionManagement>
-    <repository>
-      <name>Mekom Solutions Nexus repo for releases</name>
-      <id>mks-nexus-public-releases</id>
-      <url>https://nexus.mekomsolutions.net/repository/maven-releases</url>
-    </repository>
-    <snapshotRepository>
-      <name>Mekom Solutions Nexus repo for snapshots</name>
-      <id>mks-nexus-public-snapshots</id>
-      <url>https://nexus.mekomsolutions.net/repository/maven-snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 </project>
