@@ -12,7 +12,11 @@ def run(String command) {
     }
 }
 
+// add the Maven wrapper
 run("mvn wrapper:wrapper")
 Files.move(projectDirectory.resolve(".mvn"), projectDirectory.resolve("scripts").resolve(".mvn"))
 Files.move(projectDirectory.resolve("mvnw"), projectDirectory.resolve("scripts").resolve("mvnw"))
 Files.move(projectDirectory.resolve("mvnw.cmd"), projectDirectory.resolve("scripts").resolve("mvnw.cmd"))
+
+// set the version of the parent to the version of the archetype
+run("mvn versions:update-parent -DskipResolution -DparentVersion=${request.archetypeVersion} -DgenerateBackupPoms=false")
