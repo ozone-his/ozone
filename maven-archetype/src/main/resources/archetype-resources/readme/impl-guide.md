@@ -1,12 +1,12 @@
 #  Ozone ${distributionName} - Implementer Guide
 
-This distribution can be run using the Ozone Docker project, which is the default configuration for this. The quick start command below is for demonstration and trial purposes and would not be suitable for a stable environment.
+This distribution can be run using the [Ozone Docker Compose](https://github.com/ozone-his/ozone-docker-compose) project, which is the default configuration for this. The quick start command below is for demonstration and trial purposes and would not be suitable for a stable environment.
 
 ## Quick Start
 
 Build
 ```bash
-./mvnw clean package
+./scripts/mvnw clean package
 ```
 
 Run
