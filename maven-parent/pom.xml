@@ -40,6 +40,12 @@
       <type>zip</type>
       <version>${ozone.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-scripts</artifactId>
+      <type>zip</type>
+      <version>${ozone.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -59,6 +65,18 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/ozone</outputDirectory>
               <includeArtifactIds>ozone</includeArtifactIds>
+            </configuration>
+          </execution>
+          <execution>
+            <id>Unpack Ozone Scripts</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <includeArtifactIds>ozone-scripts</includeArtifactIds>
             </configuration>
           </execution>
         </executions>
@@ -238,7 +256,7 @@
             <phase>process-resources</phase>
             <configuration>
               <scripts>
-                <script>file://${project.basedir}/scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
+                <script>file://${project.build.directory}/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
               </scripts>
             </configuration>
           </execution>

@@ -266,30 +266,6 @@
           </execution>
 
           <execution>
-            <!-- Copy scripts -->
-            <id>Copy local scripts</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/scripts</outputDirectory>
-              <overwrite>true</overwrite>
-              <resources>
-                <resource>
-                  <directory>${project.basedir}/scripts</directory>
-                  <includes>
-                    <include>
-                      openmrs/frontend_assembly/build-openmrs-frontend.groovy
-                    </include>
-                  </includes>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
             <!-- Copy OpenMRS modules -->
             <id>Copy OpenMRS modules</id>
             <phase>prepare-package</phase>
