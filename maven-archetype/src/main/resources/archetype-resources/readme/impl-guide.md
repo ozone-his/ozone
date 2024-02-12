@@ -35,12 +35,12 @@ Re-build:
 Then start afresh:
 ```bash
 source target/go-to-scripts-dir.sh
-./start-ozone.sh
+./start.sh
 ```
 
 #### Option 2. Replace only the files needed, directly in the mounted Docker volume
 ```bash
-rsync -av configs/ target/ozone-kenya-<version>/distro/configs
+rsync -av configs/ target/ozone-${distributionName}-<version>/distro/configs
 ```
 (replace `<version>` with the current version of ozone-kenya)
 
@@ -52,9 +52,9 @@ This can be achieved by providing your exclusion path in the main pom.xml, using
 Eg.:
 ```xml
 <directory>${project.build.directory}/ozone</directory>
-  <excludes>
-    <exclude>distro/**/appointment*</exclude>
-    <exclude>distro/**/concepts*demo.csv</exclude>
-    ...
-  <excludes>
+<excludes>
+  <exclude>distro/**/appointment*</exclude>
+  <exclude>distro/**/concepts*demo.csv</exclude>
+  ...
+<excludes>
 ```

@@ -40,17 +40,17 @@ under the License.
       </includes>
     </fileSet>
     <fileSet>
-      <directory>scripts</directory>
+      <directory />
       <includes>
-        <include>**/*.sh</include>
+        <include>.gitignore</include>
       </includes>
     </fileSet>
     <fileSet filtered="true">
       <directory />
       <includes>
-        <include>.gitignore</include>
         <include>.gitpod.yml</include>
         <include>README.md</include>
+        <include>readme/**/*.md</include>
       </includes>
     </fileSet>
   </fileSets>
