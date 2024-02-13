@@ -13,7 +13,7 @@
 
   <artifactId>ozone-scripts</artifactId>
   <name>Ozone Scripts</name>
-  <description>Shared scripts for Ozone</description>
+  <description>Shared utility scripts for Ozone</description>
   <packaging>pom</packaging>
 
   <organization>
