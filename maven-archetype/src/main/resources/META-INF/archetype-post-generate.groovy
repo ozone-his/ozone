@@ -46,6 +46,8 @@ private static void checkForZipSlip(File destination, File dir) {
     }
 }
 
+// rename gitignore to .gitignore
+projectDirectory.resolve("gitignore").toFile().renameTo(projectDirectory.resolve(".gitignore").toFile())
 
 // Download the Maven wrapper without directly using Maven to do so
 // Less flexible, but beginner friendly!

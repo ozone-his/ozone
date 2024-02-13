@@ -42,7 +42,7 @@ under the License.
     <fileSet>
       <directory />
       <includes>
-        <include>.gitignore</include>
+        <include>gitignore</include>
       </includes>
     </fileSet>
     <fileSet filtered="true">
