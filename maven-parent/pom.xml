@@ -222,13 +222,28 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
-            <id>Rename JAR to OMOD</id>
+            <id>Determine if we need custom OMODs</id>
             <phase>process-resources</phase>
             <goals>
               <goal>run</goal>
             </goals>
             <configuration>
               <target>
+                <condition property="custom.omods.available">
+                  <available file="${project.build.directory}/openmrs_modules/*.jar" type="file" />
+                </condition>
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Rename JAR to OMOD</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target if="custom.omods.available">
                 <move todir="${project.build.directory}/openmrs_modules">
                   <fileset dir="${project.build.directory}/openmrs_modules" />
                   <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
@@ -246,7 +261,7 @@
               <goal>run</goal>
             </goals>
             <configuration>
-              <target>
+              <target if="custom.omods.available">
                 <delete>
                   <fileset dir="${project.build.directory}/openmrs_modules" excludes="**/*.omod" />
                 </delete>
