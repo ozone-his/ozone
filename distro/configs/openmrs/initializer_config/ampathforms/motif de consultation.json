@@ -1,0 +1,23 @@
+{
+    "name": "Motif de consultation",
+    "description": "Motif de consultation form",
+    "version": "1",
+    "published": true,
+    "retired": false,
+    "encounter": "Motif de consultation",
+    "processor": "EncounterFormProcessor",
+    "uuid": "xxxx",
+    "referencedForms": [],
+    "pages": [
+        {
+            "label": "Motif de consultation",
+            "sections": [
+                {
+                    "isExpanded": "true",
+                    "label": "Motif de consultation",
+                    "questions": []
+                }
+            ]
+        }
+    ]
+}

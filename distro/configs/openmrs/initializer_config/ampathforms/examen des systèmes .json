@@ -1,0 +1,23 @@
+{
+    "name": "Examen des systemes",
+    "description": "Examen des systemes form",
+    "version": "1",
+    "published": true,
+    "retired": false,
+    "encounter": "examen des systemes",
+    "processor": "EncounterFormProcessor",
+    "uuid": "xxxx",
+    "referencedForms": [],
+    "pages": [
+        {
+            "label": "Examen des systemes",
+            "sections": [
+                {
+                    "isExpanded": "true",
+                    "label": "Examen des systemes",
+                    "questions": []
+                }
+            ]
+        }
+    ]
+}
