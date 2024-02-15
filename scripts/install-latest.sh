@@ -20,7 +20,8 @@ echo ""
 echo " See https://docs.ozone-his.com/ for how to set it up for production."
 echo ""
 
-# Default to current code version
+
+# TODO: Replace this default with the latest stable version
 ozoneVersion=${1:-1.0.0-SNAPSHOT}
 
 echo "$INFO Ozone version: $ozoneVersion"
