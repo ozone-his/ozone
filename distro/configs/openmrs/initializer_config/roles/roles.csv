@@ -1,5 +1,0 @@
-Uuid,Role name,Description,Inherited roles,Privileges
-4a899553-f1f6-4c5a-8647-09572d5d9ea8,Doctor,,Registration-App;Programs-App;Clinical-App;Radiology-App;PatientDocuments-App;Reports-App;Admin-App;OrderFulfillment-App;Appointments:FullAccess,app:document-upload;Get Bed Type;Edit Bed Type;Get Bed Tags;Edit Bed Tags;Edit Beds;Manage Locations;Get Location Attribute Types;Manage Location Attribute Types;Manage Location Tags
-20e3cb77-1b5c-4ec7-9a12-aca4d3d61ad2,Admin,,SuperAdmin,
-bfb83797-9ec6-41c9-822d-c37b4386e520,Nurse,,Registration-App;Clinical-App-Observations,app:document-upload;Get Bed Type;Edit Bed Type;Get Bed Tags;Edit Bed Tags;Edit Beds;Manage Locations;Get Location Attribute Types;Manage Location Attribute Types;Manage Location Tags
-b4037ddd-6383-4248-b262-777a45296cd1,Registrar,,Registration-App,
