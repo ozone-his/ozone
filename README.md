@@ -1,6 +1,6 @@
 # Ozone
 
-> The entreprise-grade health information system that augments OpenMRS 3.
+> The enterprise-grade health information system that augments OpenMRS 3
 
 # Quick start
 

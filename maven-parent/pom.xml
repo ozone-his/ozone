@@ -40,6 +40,12 @@
       <type>zip</type>
       <version>${ozone.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-scripts</artifactId>
+      <type>zip</type>
+      <version>${ozone.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -76,6 +82,19 @@
               <includeTypes>jar, omod</includeTypes>
             </configuration>
           </execution>
+          
+          <execution>
+            <id>Unpack Ozone Scripts</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <includeArtifactIds>ozone-scripts</includeArtifactIds>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -104,6 +123,49 @@
                     <exclude>distro/**/globalproperties/i18n.xml</exclude>
                     <exclude>distro/**/*demo.*</exclude>
                   </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy reference-application-spa-assemble-config.json to frontend working directory -->
+            <id>Copy reference-application-spa-assemble-config.json to local working directory</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/openmrs_frontend</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/ozone/distro/configs/openmrs/frontend_assembly</directory>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy local spa-assemble-config.json if any -->
+            <id>Copy spa-assemble-config.json</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/openmrs_frontend
+              </outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/configs/openmrs/frontend_assembly</directory>
+                  <includes>
+                    <include>spa-assemble-config.json</include>
+                  </includes>
+                  <filtering>false</filtering>
                 </resource>
               </resources>
             </configuration>
@@ -266,6 +328,25 @@
                   <fileset dir="${project.build.directory}/openmrs_modules" excludes="**/*.omod" />
                 </delete>
               </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Rebuild OpenMRS Frontend if necessary</id>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <scripts>
+                <script>file://${project.build.directory}/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
+              </scripts>
             </configuration>
           </execution>
         </executions>

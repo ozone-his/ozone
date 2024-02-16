@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 https://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+  name="Ozone Distribution Archetype">
+
+  <requiredProperties>
+    <requiredProperty key="distributionName" />
+    <requiredProperty key="version">
+      <!-- Work-around for https://issues.apache.org/jira/browse/ARCHETYPE-308
+           By using an expression, we should prompt for the value, with a default of 1.0.0-SNAPSHOT -->
+      <defaultValue>${package.getClass().forName("java.lang.String").getConstructor($package.getClass().forName("java.lang.String")).newInstance("1.0.0-SNAPSHOT")}</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+
+  <fileSets>
+    <fileSet>
+      <directory>config</directory>
+      <includes>
+        <include>**/*.*</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory />
+      <includes>
+        <include>gitignore</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true">
+      <directory />
+      <includes>
+        <include>.gitpod.yml</include>
+        <include>README.md</include>
+        <include>readme/**/*.md</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>

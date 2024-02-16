@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.0.0-beta.16</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <commonreportsVersion>1.4.0-SNAPSHOT</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
@@ -48,6 +48,13 @@
     <dependency>
       <groupId>org.openmrs.distro</groupId>
       <artifactId>referenceapplication-distro</artifactId>
+      <type>zip</type>
+      <version>${referenceapplicationDistroVersion}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openmrs.distro</groupId>
+      <artifactId>referenceapplication-frontend</artifactId>
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
@@ -96,7 +103,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.2.0</version>
         <executions>
           <execution>
             <id>Copy Odoo Initializer add-on</id>
@@ -181,6 +187,18 @@
             </configuration>
           </execution>
 
+          <execution>
+            <id>Unpack OpenMRS Ref App frontend configuration</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${project.build.directory}/openmrs_frontend</outputDirectory>
+              <includeArtifactIds>referenceapplication-frontend</includeArtifactIds>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -324,6 +342,26 @@
               </target>
             </configuration>
           </execution>
+          
+          <execution>
+            <id>Rename spa-assemble-config.json to reference-application-spa-assemble-config.json</id>
+            <phase>generate-resources</phase>
+            <configuration>
+              <target>
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_assembly">
+                  <fileset dir="${project.build.directory}/openmrs_frontend" />
+                  <mapper from="spa-assemble-config.json" to="reference-application-spa-assemble-config.json" type="regexp" />
+                </copy>
+                <move todir="${project.build.directory}/openmrs_frontend">
+                  <fileset dir="${project.build.directory}/openmrs_frontend" />
+                  <mapper from="spa-assemble-config.json" to="reference-application-spa-assemble-config.json" type="regexp" />
+                </move>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
 
           <execution>
             <id>Copy filtered OpenMRS configuration</id>
@@ -341,6 +379,7 @@
               <goal>run</goal>
             </goals>
           </execution>
+
           <execution>
             <id>Copy filtered OpenMRS modules</id>
             <phase>prepare-package</phase>
@@ -373,6 +412,25 @@
             <goals>
               <goal>run</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Build OpenMRS Frontend</id>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <scripts>
+                <script>file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
+              </scripts>
+            </configuration>
           </execution>
         </executions>
       </plugin>
