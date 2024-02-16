@@ -40,6 +40,7 @@
   <modules>
     <module>maven-commons</module>
     <module>maven-parent</module>
+    <module>scripts</module>
     <module>distro</module>
   </modules>
 
