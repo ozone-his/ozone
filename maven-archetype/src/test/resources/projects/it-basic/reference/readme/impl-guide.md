@@ -1,0 +1,55 @@
+#  Ozone basicDistribution - Implementer Guide
+
+This distribution can be run using the [Ozone Docker Compose](https://github.com/ozone-his/ozone-docker-compose) project, which is the default configuration for this. The quick start command below is for demonstration and trial purposes and would not be suitable for a stable environment.
+
+
+Build
+```bash
+./scripts/mvnw clean package
+```
+
+Run
+```bash
+source target/go-to-scripts-dir.sh
+./start-ozone.sh
+```
+
+
+If needed to work on the distro configurations and see the results, you have several options:
+- (1) Turn down the whole project with its volumes, build again and run.
+- (2) Replace files in the mounted Docker volume (all files or only individual files)
+
+```bash
+source target/go-to-scripts-dir.sh
+./destroy-demo.sh
+```
+
+Re-build:
+```bash
+./scripts/mvnw clean package
+```
+
+Then start afresh:
+```bash
+source target/go-to-scripts-dir.sh
+./start.sh
+```
+
+```bash
+rsync -av configs/ target/ozone-basicDistribution-<version>/distro/configs
+```
+(replace `<version>` with the current version of ozone-kenya)
+
+
+It is possible to exclude some of the files inherited from the parent Ozone Distro transitive dependencies (thus the OpenMRS Distro Reference Application).
+This can be achieved by providing your exclusion path in the main pom.xml, using the Maven Resource plugin `excludes`:
+
+Eg.:
+```xml
+<directory>${project.build.directory}/ozone</directory>
+<excludes>
+  <exclude>distro/**/appointment*</exclude>
+  <exclude>distro/**/concepts*demo.csv</exclude>
+  ...
+<excludes>
+```

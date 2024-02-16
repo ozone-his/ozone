@@ -13,6 +13,7 @@ jobs:
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
       java-version: "8"
+      maven-phase: "install"
       maven-args: "-P validator" #  OMRS config validation
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
