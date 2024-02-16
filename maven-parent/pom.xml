@@ -67,6 +67,22 @@
               <includeArtifactIds>ozone</includeArtifactIds>
             </configuration>
           </execution>
+
+          <execution>
+            <id>Copy OpenMRS modules to a temporary location</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <useBaseVersion>true</useBaseVersion>
+              <outputDirectory>${project.build.directory}/openmrs_modules/</outputDirectory>
+              <!-- copying jars and omods only -->
+              <includeTypes>jar, omod</includeTypes>
+            </configuration>
+          </execution>
+          
           <execution>
             <id>Unpack Ozone Scripts</id>
             <phase>generate-resources</phase>
@@ -239,6 +255,79 @@
                   </excludes>
                 </resource>
               </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy OpenMRS modules -->
+            <id>Copy OpenMRS modules</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/openmrs_modules</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Determine if we need custom OMODs</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <condition property="custom.omods.available">
+                  <available file="${project.build.directory}/openmrs_modules/*.jar" type="file" />
+                </condition>
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Rename JAR to OMOD</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target if="custom.omods.available">
+                <move todir="${project.build.directory}/openmrs_modules">
+                  <fileset dir="${project.build.directory}/openmrs_modules" />
+                  <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
+                </move>
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Remove non-OMODs from Modules</id>
+            <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the openmrs_modules folder.
+                 This job, run after "Rename JAR to OMOD" removes the non-OMODs -->
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target if="custom.omods.available">
+                <delete>
+                  <fileset dir="${project.build.directory}/openmrs_modules" excludes="**/*.omod" />
+                </delete>
+              </target>
             </configuration>
           </execution>
         </executions>

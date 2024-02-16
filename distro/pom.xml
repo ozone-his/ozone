@@ -128,10 +128,8 @@
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
               <outputDirectory>${project.build.directory}/openmrs_modules/</outputDirectory>
-              <!-- Copying JARs and OMODs only.
-               Exclude any 'com.ozonehis' artifact to make sure EIP routes are not copied over -->
+              <!-- Copying JARs and OMODs only. -->
               <includeTypes>jar, omod</includeTypes>
-              <excludeGroupIds>com.ozonehis</excludeGroupIds>
             </configuration>
           </execution>
 
@@ -328,6 +326,23 @@
             </goals>
           </execution>
 
+          <execution>
+            <id>Remove non-OMODs from Modules</id>
+            <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the openmrs_modules folder.
+                 This job, run after "Rename JAR to OMOD" removes the non-OMODs -->
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <delete>
+                  <fileset dir="${project.build.directory}/openmrs_modules" excludes="**/*.omod" />
+                </delete>
+              </target>
+            </configuration>
+          </execution>
+          
           <execution>
             <id>Rename spa-assemble-config.json to reference-application-spa-assemble-config.json</id>
             <phase>generate-resources</phase>
