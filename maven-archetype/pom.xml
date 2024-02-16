@@ -30,5 +30,15 @@
         <version>3.2.1</version>
       </extension>
     </extensions>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>3.2.1</version>
+        <configuration>
+          <ignoreEOLStyle>true</ignoreEOLStyle>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
