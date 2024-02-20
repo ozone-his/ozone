@@ -284,53 +284,46 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
-            <id>Determine if we need custom OMODs</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target>
-                <condition property="custom.omods.available">
-                  <available file="${project.build.directory}/openmrs_modules/*.jar" type="file" />
-                </condition>
-              </target>
-            </configuration>
-          </execution>
-
-          <execution>
             <id>Rename JAR to OMOD</id>
             <phase>process-resources</phase>
             <goals>
               <goal>run</goal>
             </goals>
             <configuration>
-              <target if="custom.omods.available">
-                <move todir="${project.build.directory}/openmrs_modules">
-                  <fileset dir="${project.build.directory}/openmrs_modules" />
-                  <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
-                </move>
-              </target>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>Remove non-OMODs from Modules</id>
-            <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the openmrs_modules folder.
-                 This job, run after "Rename JAR to OMOD" removes the non-OMODs -->
-            <phase>process-resources</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target if="custom.omods.available">
-                <delete>
-                  <fileset dir="${project.build.directory}/openmrs_modules" excludes="**/*.omod" />
-                </delete>
+              <target>
+                <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath"/>
+                <mkdir dir="${project.build.directory}/openmrs_modules" />
+                <if>
+                  <resourcecount when="greater" count="0">
+                    <fileset dir="${project.build.directory}/openmrs_modules" includes="*-omod-*.jar" />
+                  </resourcecount>
+                  <then>
+                    <move todir="${project.build.directory}/openmrs_modules">
+                      <fileset dir="${project.build.directory}/openmrs_modules" />
+                      <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
+                    </move>
+                    <delete>
+                      <fileset dir="${project.build.directory}/openmrs_modules" excludes="**/*.omod" />
+                    </delete>
+                  </then>
+                </if>
               </target>
             </configuration>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+            <exclusions>
+              <exclusion>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
