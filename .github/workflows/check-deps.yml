@@ -11,8 +11,8 @@ jobs:
     with:
       java-version: "8"
       notify-ocd3: true
-      ocd3-username: ${{ secrets.OCD3_USERNAME }}
-      ocd3-password: ${{ secrets.OCD3_PASSWORD }}
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+      OCD3_USERNAME: ${{ secrets.OCD3_USERNAME }}
+      OCD3_PASSWORD: ${{ secrets.OCD3_PASSWORD }}
