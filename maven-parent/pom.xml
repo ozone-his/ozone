@@ -267,7 +267,7 @@
             </goals>
             <configuration>
               <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules</outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/distro/binaries/openmrs/modules</outputDirectory>
               <overwrite>true</overwrite>
               <resources>
                 <resource>
