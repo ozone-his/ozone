@@ -17,7 +17,7 @@ if (!shouldBuildFrontend) {
     if (frontendCustomizationsFile.exists()) {
         log.info("Found frontend customizations. Rebuilding frontend...")
 
-        assembleCommand += "--config ${frontendCustomizationsFile.getAbsolutePath()}"
+        assembleCommand += " --config ${frontendCustomizationsFile.getAbsolutePath()}"
         shouldBuildFrontend = true
     }
 }
