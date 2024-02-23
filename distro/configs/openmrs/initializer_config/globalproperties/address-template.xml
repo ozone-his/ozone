@@ -1,0 +1,62 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>visits.assignmentHandler</property>
+            <value>org.openmrs.api.handler.ExistingVisitAssignmentHandler</value>
+        </globalProperty>
+        <globalProperty>
+            <property>layout.address.format</property>
+            <value><![CDATA[
+                "<org.openmrs.layout.address.AddressTemplate>
+                  <nameMappings class="linked-hash-map">
+                    <entry>
+                      <string>country</string>
+                      <string>Pays</string>
+                    </entry>
+                    <entry>
+                      <string>stateProvince</string>
+                      <string>Département</string>
+                    </entry>
+                    <entry>
+                      <string>cityVillage</string>
+                      <string>Commune</string>
+                    </entry>
+                    <entry>
+                      <string>address2</string>
+                      <string>Adresse</string>
+                    </entry>
+                  </nameMappings>
+                  <sizeMappings class="linked-hash-map">
+                    <entry>
+                      <string>country</string>
+                      <string>40</string>
+                    </entry>
+                    <entry>
+                      <string>stateProvince</string>
+                      <string>40</string>
+                    </entry>
+                    <entry>
+                      <string>cityVillage</string>
+                      <string>40</string>
+                    </entry>
+                    <entry>
+                      <string>address2</string>
+                      <string>40</string>
+                    </entry>
+                  </sizeMappings>
+                  <elementDefaults class="linked-hash-map">
+                    <entry>
+                      <string>country</string>
+                      <string>Haiti</string>
+                    </entry>
+                  </elementDefaults>
+                  <lineByLineFormat>
+                    <string>address2</string>
+                    <string>cityVillage stateProvince country</string>
+                  </lineByLineFormat>
+                  <maxTokens>0</maxTokens>
+                </org.openmrs.layout.address.AddressTemplate>"
+            ]]></value>
+        </globalProperty>
+    </globalProperties>
+</config>
