@@ -91,7 +91,7 @@
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}</outputDirectory>
+              <outputDirectory>${project.build.directory}/scripts</outputDirectory>
               <includeArtifactIds>ozone-scripts</includeArtifactIds>
             </configuration>
           </execution>
@@ -200,6 +200,20 @@
                 </resource>
                 <resource>
                   <directory>${project.basedir}/scripts</directory>
+                  <includes>
+                    <include>*.sh</include>
+                  </includes>
+                  <excludes>
+                    <exclude>start-ozone.sh</exclude>
+                  </excludes>
+                  <filtering>true</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.build.directory}/scripts</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.build.directory}/scripts</directory>
                   <includes>
                     <include>*.sh</include>
                   </includes>
