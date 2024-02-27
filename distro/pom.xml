@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.0.0-SNAPSHOT</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.0.0-beta.17</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <commonreportsVersion>1.4.0-SNAPSHOT</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
