@@ -432,6 +432,19 @@
               </scripts>
             </configuration>
           </execution>
+
+          <execution>
+            <id>Generate ERPNext data import script</id>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <scripts>
+                <script>file://${project.basedir}/../scripts/erpnext/data_import/generate-import-script.groovy</script>
+              </scripts>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
