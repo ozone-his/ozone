@@ -34,7 +34,7 @@ under the License.
 
   <fileSets>
     <fileSet>
-      <directory>config</directory>
+      <directory>configs</directory>
       <includes>
         <include>**/*.*</include>
       </includes>
