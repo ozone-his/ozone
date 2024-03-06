@@ -11,10 +11,6 @@ def outputDirectory = "${project.groupId}" == "com.ozonehis" && "${project.artif
     "${project.build.directory}/${project.artifactId}-${project.version}/distro/binaries/openmrs/frontend"
 
 def outputDirectoryFile = new File(outputDirectory)
-if (outputDirectoryFile.exists()) {
-    outputDirectoryFile.eachFile(it -> it.delete())
-    outputDirectoryFile.eachDir(it -> { if (it.getName() != "ozone") { it.deleteDir() } })
-}
 
 def assembleCommand = "npx --legacy-peer-deps openmrs@${openmrsVersion} assemble --manifest --mode config --target ${outputDirectory} --config ${refAppConfigFile.getAbsolutePath()}"
 log.info("Project: ${project.groupId}:${project.artifactId}")
@@ -32,6 +28,12 @@ if (!shouldBuildFrontend) {
 }
 
 if (shouldBuildFrontend) {
+    log.info("Cleaning ${outputDirectory}...")
+    if (outputDirectoryFile.exists()) {
+        outputDirectoryFile.eachFile(it -> it.delete())
+        outputDirectoryFile.eachDir(it -> { if (it.getName() != "ozone") { it.deleteDir() } })
+    }
+
     log.info("Running assemble command...")
 
     def assembleProcess = assembleCommand.execute()
