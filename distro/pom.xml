@@ -297,7 +297,7 @@
                 <resource>
                   <directory>${project.build.directory}/referenceapplication-distro/openmrs_config</directory>
                   <excludes>
-                    <exclude>**/*globalproperties_core-demo*</exclude>
+                    <exclude>**/globalproperties-core_demo*</exclude>
                   </excludes>
                 </resource>
               </resources>
