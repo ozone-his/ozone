@@ -74,7 +74,15 @@ $mvn dependency:copy \
 -DoutputDirectory=./ \
 -DuseBaseVersion=true
 
-mv ozone-1.0.0-*.zip ozone-${ozoneVersion}.zip  
+# Account for some inconsistencies in some systems where Maven copies the files without a timestamp.
+# Only rename the file if it is time-stamped.
+if [ ! -f "ozone-${ozoneVersion}.zip" ]
+then
+    echo "$INFO Rename to 'ozone-${ozoneVersion}.zip'..."
+    mv ozone-1.0.0-*.zip ozone-${ozoneVersion}.zip
+fi
+
+echo "$INFO Unzipping..."
 unzip ozone-${ozoneVersion}.zip -d ${ozoneInstallFolder}
 rm ozone-${ozoneVersion}.zip
 pushd ozone/run/docker/scripts/
