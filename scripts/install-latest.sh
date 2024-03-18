@@ -74,7 +74,7 @@ $mvn dependency:copy \
 -DoutputDirectory=./ \
 -DuseBaseVersion=true
 
-# Account for some inconsisitencies in some systems where Maven copies the files without a timestamp.
+# Account for some inconsistencies in some systems where Maven copies the files without a timestamp.
 # Only rename the file if it is time-stamped.
 if [ ! -f "ozone-${ozoneVersion}.zip" ]
 then
