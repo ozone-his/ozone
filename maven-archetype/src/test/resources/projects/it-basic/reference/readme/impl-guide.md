@@ -1,4 +1,4 @@
-#  Ozone basicDistribution - Implementer Guide
+#  basicDistribution - Implementer Guide
 
 This distribution can be run using the [Ozone Docker Compose](https://github.com/ozone-his/ozone-docker-compose) project, which is the default configuration for this. The quick start command below is for demonstration and trial purposes and would not be suitable for a stable environment.
 
@@ -11,7 +11,7 @@ Build
 Run
 ```bash
 source target/go-to-scripts-dir.sh
-./start-ozone.sh
+./start-demo.sh
 ```
 
 
@@ -32,13 +32,13 @@ Re-build:
 Then start afresh:
 ```bash
 source target/go-to-scripts-dir.sh
-./start.sh
+./start-demo.sh
 ```
 
 ```bash
-rsync -av configs/ target/ozone-basicDistribution-<version>/distro/configs
+rsync -av configs/ target/ozone-basic-<version>/distro/configs
 ```
-(replace `<version>` with the current version of ozone-kenya)
+(replace `<version>` with the current version of basicDistribution)
 
 
 It is possible to exclude some of the files inherited from the parent Ozone Distro transitive dependencies (thus the OpenMRS Distro Reference Application).
