@@ -2,8 +2,7 @@
 
 **${distributionName}** is a distribution of [Ozone HIS](https://www.ozone-his.com).
 
-## Implementer Guide
-A technical guide to help implementers building and running the project can be found [here](readme/impl-guide.md).
+Please refer to the online Ozone documentation for instructions how to run the project: https://docs.ozone-his.com/create-distro/#available-commands
 
 ## Release Notes
 
