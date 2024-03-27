@@ -86,18 +86,3 @@ new FileOutputStream(wrapperDir.resolve("maven-wrapper.properties").toFile()).wi
     it << "distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/${mavenVersion}/apache-maven-${mavenVersion}-bin.zip\n"
     it << "wrapperUrl=${wrapperJarUrl}\n"
 }
-
-def isWindows = System.properties["os.name"].toLowerCase().contains("windows")
-if (!isWindows) {
-    run("chmod +x ${projectDirectory.resolve("scripts").resolve("mvnw").toString()}")
-    run("chmod +x ${projectDirectory.resolve("scripts").resolve("mvnwDebug").toString()}")
-}
-
-// set the version of the parent to the version of the archetype
-// NB at this point, we just use the Maven wrapper to do things
-def mvnwCommand = isWindows ?
-    projectDirectory.resolve("scripts").resolve("mvnw.cmd").toString() :
-    projectDirectory.resolve("scripts").resolve("mvnw").toString()
-
-run("${mvnwCommand} versions:update-parent -DskipResolution -DparentVersion=${request.archetypeVersion} -DgenerateBackupPoms=false")
-
