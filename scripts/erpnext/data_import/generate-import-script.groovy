@@ -70,8 +70,7 @@ log.info("Found ${orderedCsvFiles.size()} ERPNext Configuration CSV files to imp
 
 def scriptFile = "${project.build.directory}/${project.artifactId}-${project.version}/binaries/erpnext/scripts/data-import.sh" as Object
 
-ant.echo(file: scriptFile, message: "#!/bin/bash\n", append: false)
-ant.echo(file: scriptFile, message: "\n", append: true)
+ant.echo(file: scriptFile, message: "#!/bin/bash\n\n", append: false)
 
 /**
  * For each sorted CSV file, generate a shell script command to import the file into the ERPNext instance.
