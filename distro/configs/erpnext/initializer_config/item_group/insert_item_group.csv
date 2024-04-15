@@ -1,0 +1,23 @@
+Item Group Name,Parent Item Group,Is Group,Company,Default Warehouse,Default Price List
+ENT,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+General Surgery,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Histopathology,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Laboratory,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Materials,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Maxillofacial,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Obstetrics,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Ophtamology,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Orthopedics and Traumatology,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Plastic Surgery,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Procedures,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Radiology,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Urology,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Wound Dressing Without Anesthesia,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Wound Dressing With Anesthesia,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Wounds,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Others,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Exoneration,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Insurance,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Dental,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Consultation,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
+Drugs,All Item Groups,0,Ozone Demo,Ozone Warehouse,Standard Selling
