@@ -17,3 +17,6 @@ ports:
   - name: SENAITE
     description: SENAITE
     port: 8081
+  - name: ERPNext
+    description: ERPNext
+    port: 8082
