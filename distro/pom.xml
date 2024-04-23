@@ -34,10 +34,12 @@
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <eipOpenMRSSenaiteVersion>2.0.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
     <eipOdooOpenMRSVersion>2.0.0-SNAPSHOT</eipOdooOpenMRSVersion>
+    <eipERPNextOpenMRSVersion>1.0.0-SNAPSHOT</eipERPNextOpenMRSVersion>
 
     <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
     <eipOdooOpenMRSArtifactId>eip-odoo-openmrs</eipOdooOpenMRSArtifactId>
+    <eipERPNextOpenMRSArtifactId>eip-erpnext-openmrs</eipERPNextOpenMRSArtifactId>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
@@ -93,6 +95,11 @@
       <artifactId>${eipOdooOpenMRSArtifactId}</artifactId>
       <version>${eipOdooOpenMRSVersion}</version>
       <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>${eipERPNextOpenMRSArtifactId}</artifactId>
+      <version>${eipERPNextOpenMRSVersion}</version>
     </dependency>
 
   </dependencies>
@@ -173,6 +180,26 @@
                 </artifactItems>
             </configuration>
           </execution>
+
+            <execution>
+                <id>Copy EIP ERPNext OpenMRS JAR</id>
+                <phase>prepare-package</phase>
+                <goals>
+                <goal>copy</goal>
+                </goals>
+                <configuration>
+                    <artifactItems>
+                    <artifactItem>
+                        <groupId>com.ozonehis</groupId>
+                        <artifactId>${eipERPNextOpenMRSArtifactId}</artifactId>
+                        <version>${eipERPNextOpenMRSVersion}</version>
+                        <type>jar</type>
+                        <overWrite>true</overWrite>
+                        <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipERPNextOpenMRSArtifactId}</outputDirectory>
+                    </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
 
           <execution>
             <id>Unpack OpenMRS Ref App in a temporary location</id>
