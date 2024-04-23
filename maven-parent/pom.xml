@@ -104,6 +104,7 @@
         <executions>
          <execution>
             <!-- Exclude files from Ozone -->
+            <!-- We exclude nothing here, but distros should override this with any exclusions they need -->
             <id>Exclude unneeded Ozone files</id>
             <phase>process-resources</phase>
             <goals>
@@ -116,13 +117,6 @@
               <resources>
                 <resource>
                   <directory>${project.build.directory}/ozone</directory>
-                  <excludes>
-                    <exclude>distro/**/addresshierarchy/*.*</exclude>
-                    <exclude>distro/**/ampathforms/*.json</exclude>
-                    <exclude>distro/**/ampathformstranslations/*.json</exclude>
-                    <exclude>distro/**/globalproperties/i18n.xml</exclude>
-                    <exclude>distro/**/*demo.*</exclude>
-                  </excludes>
                 </resource>
               </resources>
             </configuration>
