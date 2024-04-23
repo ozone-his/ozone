@@ -36,6 +36,16 @@ ID,Default Unit of Measure,Item Code,Item Group,Item Name
 785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Alkaline phosphatase,Laboratory,Alkaline phosphatase
 159362AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Fecal occult blood test,Laboratory,Fecal occult blood test
 1019AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Complete blood count,Laboratory,Complete blood count
+679AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Red blood cells,Laboratory,Red blood cells
+1336AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Neutrophils (%) - microscopic exam,Laboratory,Neutrophils (%) - microscopic exam
+163692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Epithelial casts presence in urine sediment by light microscopy test,Laboratory,Epithelial casts presence in urine sediment by light microscopy test
+1018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Mean corpuscular hemoglobin,Laboratory,Mean corpuscular hemoglobin
+1017AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Mean cell hemoglobin concentration,Laboratory,Mean cell hemoglobin concentration
+161431AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Sickling test only,Laboratory,Sickling test only
+161488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Renal function panel,Laboratory,Renal function panel
+953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Liver function tests,Laboratory,Liver function tests
+161451AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Stool test,Laboratory,Stool test
+163697AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Unit,Urine microscopy panel,Laboratory,Urine microscopy panel
 3543c654-0834-4c90-982c-5e277005c15d,Tablet,Griséofulvine Co 500mg,Drugs,Griséofulvine Co 500mg
 0bd1bf31-b974-421f-854d-b9d463630a2b,Tablet,Tylenol 325mg,Drugs,Tylenol 325mg
 3af6ca73-f2ee-43ff-8464-fa00bf525e9b,Tablet,Advil 200mg,Drugs,Advil 200mg
