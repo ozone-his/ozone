@@ -30,13 +30,16 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <ozone.artifactId>ozone</ozone.artifactId>
+    <ozone.groupId>com.ozonehis</ozone.groupId>
     <ozone.version>1.0.0-SNAPSHOT</ozone.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>com.ozonehis</groupId>
-      <artifactId>ozone</artifactId>
+      <groupId>${ozone.groupId}</groupId>
+      <artifactId>${ozone.artifactId}</artifactId>
       <type>zip</type>
       <version>${ozone.version}</version>
     </dependency>
