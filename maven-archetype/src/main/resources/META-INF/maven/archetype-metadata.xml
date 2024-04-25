@@ -51,6 +51,7 @@ under the License.
         <include>.gitpod.yml</include>
         <include>README.md</include>
         <include>readme/**/*.md</include>
+        <include>assembly.xml</include>
       </includes>
     </fileSet>
   </fileSets>
