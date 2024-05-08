@@ -34,6 +34,8 @@
     <ozone.artifactId>ozone</ozone.artifactId>
     <ozone.groupId>com.ozonehis</ozone.groupId>
     <ozone.version>1.0.0-SNAPSHOT</ozone.version>
+    <ozone-scripts.version>1.0.0-SNAPSHOT</ozone-scripts.version>
+
   </properties>
 
   <dependencies>
@@ -47,7 +49,7 @@
       <groupId>com.ozonehis</groupId>
       <artifactId>ozone-scripts</artifactId>
       <type>zip</type>
-      <version>${ozone.version}</version>
+      <version>${ozone-scripts.version}</version>
     </dependency>
   </dependencies>
 
