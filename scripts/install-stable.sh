@@ -22,7 +22,7 @@ echo ""
 
 
 # TODO: Upon release, replace this with the latest stable version
-ozoneVersion=${1:-1.0.0-SNAPSHOT}
+ozoneVersion=${1:-1.0.0-alhpa.10}
 
 echo "$INFO Ozone version: $ozoneVersion"
 
