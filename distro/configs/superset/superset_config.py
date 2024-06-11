@@ -122,3 +122,4 @@ class ReverseProxied(object):
 
 ADDITIONAL_MIDDLEWARE = [ReverseProxied, ]
 ENABLE_PROXY_FIX = True
+PREVENT_UNSAFE_DB_CONNECTIONS = False
