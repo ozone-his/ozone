@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-STEP_CNT=5
+STEP_CNT=6
 
 echo_step() {
 cat <<EOF
@@ -42,3 +42,6 @@ fi
 echo_step "5" "Start" "Updating dashboards"
 superset import-directory /dashboards -f -o
 echo_step "5" "Complete" "Updating dashboards"
+echo_step "6" "Start" "Updating datasources"
+superset set_database_uri --database_name $ANALYTICS_DATASOURCE_NAME --uri postgresql://$ANALYTICS_DB_USER:$ANALYTICS_DB_PASSWORD@$ANALYTICS_DB_HOST:5432/$ANALYTICS_DB_NAME
+echo_step "6" "Complete" "Updating datasources"
