@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-STEP_CNT=6
+STEP_CNT=5
 
 echo_step() {
 cat <<EOF
@@ -39,12 +39,6 @@ if [ "$SUPERSET_LOAD_EXAMPLES" = "yes" ]; then
     fi
     echo_step "4" "Complete" "Loading examples"
 fi
-echo_step "5" "Start" "Loading datasources"
-superset import-datasources -p /etc/superset/datasources/datasources.yaml
-echo_step "5" "Complete" "Loading datasources"
-echo_step "6" "Start" "Updating dashboards"
+echo_step "5" "Start" "Updating dashboards"
 superset import-directory /dashboards -f -o
-echo_step "6" "Complete" "Updating dashboards"
-echo_step "7" "Start" "Updating datasources"
-superset set_database_uri -d $ANALYTICS_DATASOURCE_NAME -u postgresql://$ANALYTICS_DB_USER:$ANALYTICS_DB_PASSWORD@$ANALYTICS_DB_HOST:5432/$ANALYTICS_DB_NAME
-echo_step "7" "Complete" "Updating datasources"
+echo_step "5" "Complete" "Updating dashboards"
