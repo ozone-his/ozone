@@ -106,6 +106,13 @@
       <version>${eipERPNextOpenMRSVersion}</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-superset-configs</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -153,12 +160,13 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                    <groupId>com.ozonehis</groupId>
-                    <artifactId>${eipOpenMRSSenaiteArtifactId}</artifactId>
-                    <version>${eipOpenMRSSenaiteVersion}</version>
-                    <type>jar</type>
-                    <overWrite>true</overWrite>
-                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOpenMRSSenaiteArtifactId}</outputDirectory>
+                  <groupId>com.ozonehis</groupId>
+                  <artifactId>${eipOpenMRSSenaiteArtifactId}</artifactId>
+                  <version>${eipOpenMRSSenaiteVersion}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOpenMRSSenaiteArtifactId}</outputDirectory>
                 </artifactItem>
               </artifactItems>
               <useBaseVersion>true</useBaseVersion>
@@ -172,38 +180,40 @@
               <goal>copy</goal>
             </goals>
             <configuration>
-                <artifactItems>
-                  <artifactItem>
-                    <groupId>com.ozonehis</groupId>
-                    <artifactId>${eipOdooOpenMRSArtifactId}</artifactId>
-                    <version>${eipOdooOpenMRSVersion}</version>
-                    <type>jar</type>
-                    <overWrite>true</overWrite>
-                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOdooOpenMRSArtifactId}</outputDirectory>
-                  </artifactItem>
-                </artifactItems>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.ozonehis</groupId>
+                  <artifactId>${eipOdooOpenMRSArtifactId}</artifactId>
+                  <version>${eipOdooOpenMRSVersion}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOdooOpenMRSArtifactId}</outputDirectory>
+                </artifactItem>
+              </artifactItems>
             </configuration>
           </execution>
 
-            <execution>
-                <id>Copy EIP ERPNext OpenMRS JAR</id>
-                <phase>prepare-package</phase>
-                <goals>
-                <goal>copy</goal>
-                </goals>
-                <configuration>
-                    <artifactItems>
-                    <artifactItem>
-                        <groupId>com.ozonehis</groupId>
-                        <artifactId>${eipERPNextOpenMRSArtifactId}</artifactId>
-                        <version>${eipERPNextOpenMRSVersion}</version>
-                        <type>jar</type>
-                        <overWrite>true</overWrite>
-                        <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipERPNextOpenMRSArtifactId}</outputDirectory>
-                    </artifactItem>
-                    </artifactItems>
-                </configuration>
-            </execution>
+          <execution>
+            <id>Copy EIP ERPNext OpenMRS JAR</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.ozonehis</groupId>
+                  <artifactId>${eipERPNextOpenMRSArtifactId}</artifactId>
+                  <version>${eipERPNextOpenMRSVersion}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipERPNextOpenMRSArtifactId}</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
 
           <execution>
             <id>Unpack OpenMRS Ref App in a temporary location</id>
@@ -230,6 +240,20 @@
               <includeArtifactIds>referenceapplication-frontend</includeArtifactIds>
             </configuration>
           </execution>
+
+          <execution>
+            <id>Unpack Superset configs sub-module</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/configs/superset</outputDirectory>
+              <includeArtifactIds>ozone-superset-configs</includeArtifactIds>
+            </configuration>
+          </execution>
+
         </executions>
       </plugin>
 
@@ -270,11 +294,15 @@
               <resources>
                 <resource>
                   <directory>${project.basedir}/configs</directory>
+                  <excludes>
+                    <!-- Exclude Superset config because it is included via artifact dependency -->
+                    <exclude>superset/</exclude>
+                  </excludes>
                 </resource>
               </resources>
             </configuration>
           </execution>
-          
+
           <execution>
             <!-- Copy data/ folder -->
             <id>Copy local data/ resources</id>
@@ -359,7 +387,8 @@
 
           <execution>
             <id>Remove non-OMODs from Modules</id>
-            <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the openmrs_modules folder.
+            <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the
+            openmrs_modules folder.
                  This job, run after "Rename JAR to OMOD" removes the non-OMODs -->
             <phase>process-resources</phase>
             <goals>
@@ -373,19 +402,22 @@
               </target>
             </configuration>
           </execution>
-          
+
           <execution>
             <id>Rename spa-assemble-config.json to reference-application-spa-assemble-config.json</id>
             <phase>generate-resources</phase>
             <configuration>
               <target>
-                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_assembly">
+                <copy
+                  todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_assembly">
                   <fileset dir="${project.build.directory}/openmrs_frontend" />
-                  <mapper from="spa-assemble-config.json" to="reference-application-spa-assemble-config.json" type="regexp" />
+                  <mapper from="spa-assemble-config.json"
+                    to="reference-application-spa-assemble-config.json" type="regexp" />
                 </copy>
                 <move todir="${project.build.directory}/openmrs_frontend">
                   <fileset dir="${project.build.directory}/openmrs_frontend" />
-                  <mapper from="spa-assemble-config.json" to="reference-application-spa-assemble-config.json" type="regexp" />
+                  <mapper from="spa-assemble-config.json"
+                    to="reference-application-spa-assemble-config.json" type="regexp" />
                 </move>
               </target>
             </configuration>
@@ -459,7 +491,8 @@
             <phase>process-resources</phase>
             <configuration>
               <scripts>
-                <script>file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
+                <script>
+                  file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
               </scripts>
             </configuration>
           </execution>
@@ -472,7 +505,8 @@
             <phase>process-resources</phase>
             <configuration>
               <scripts>
-                <script>file://${project.basedir}/../scripts/erpnext/data_import/generate-import-script.groovy</script>
+                <script>
+                  file://${project.basedir}/../scripts/erpnext/data_import/generate-import-script.groovy</script>
               </scripts>
             </configuration>
           </execution>
@@ -558,7 +592,8 @@
                 <configuration>
                   <target>
                     <copy todir="${project.build.directory}/validator/configuration">
-                      <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config"/>
+                      <fileset
+                        dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config" />
                     </copy>
                   </target>
                 </configuration>
