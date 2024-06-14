@@ -45,6 +45,10 @@
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
 
+  <modules>
+    <module>configs/superset</module>
+  </modules>
+
   <dependencies>
     <!-- OpenMRS Ref App -->
     <dependency>
