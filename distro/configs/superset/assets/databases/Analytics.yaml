@@ -1,4 +1,4 @@
-database_name: PostgreSQL
+database_name: Analytics
 sqlalchemy_uri: postgresql://analytics:{ANALYTICS_DB_PASSWORD}@postgresql:5432/analytics
 cache_timeout: null
 expose_in_sqllab: true
