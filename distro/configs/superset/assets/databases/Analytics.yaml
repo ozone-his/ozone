@@ -1,0 +1,16 @@
+database_name: Analytics
+sqlalchemy_uri: postgresql://analytics:{ANALYTICS_DB_PASSWORD}@postgresql:5432/analytics
+cache_timeout: null
+expose_in_sqllab: true
+allow_run_async: false
+allow_ctas: true
+allow_cvas: true
+allow_dml: false
+allow_file_upload: true
+extra:
+  metadata_params: {}
+  engine_params: {}
+  metadata_cache_timeout: {}
+  schemas_allowed_for_file_upload: []
+uuid: 4e5f4045-a62d-4964-b719-58229a60e7fe
+version: 1.0.0
