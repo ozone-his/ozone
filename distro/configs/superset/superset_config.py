@@ -120,9 +120,12 @@ PREVENT_UNSAFE_DB_CONNECTIONS = False
 # Enable the security manager API.
 FAB_ADD_SECURITY_API = True
 
-if os.getenv("ENABLE_OAUTH"):
+if os.getenv("ENABLE_OAUTH") == "true":
     from security  import  OIDCSecurityManager
     from flask_appbuilder.security.manager import AUTH_OID
+    KEYCLOAK_URL = os.getenv('KEYCLOAK_URL')
+    SUPERSET_CLIENT_SECRET = os.getenv('SUPERSET_CLIENT_SECRET')
+    SUPERSET_URL = os.getenv('SUPERSET_URL')
     AUTH_TYPE = AUTH_OID
     OIDC_ID_TOKEN_COOKIE_SECURE = False
     OIDC_REQUIRE_VERIFIED_EMAIL = False
@@ -130,7 +133,3 @@ if os.getenv("ENABLE_OAUTH"):
     AUTH_USER_REGISTRATION_ROLE = 'Gamma'
     CUSTOM_SECURITY_MANAGER = OIDCSecurityManager
     OIDC_CLIENT_SECRETS = '/etc/superset/client_secret.json'
-    
-
-
-    

@@ -5,7 +5,7 @@ default_endpoint: null
 offset: 0
 cache_timeout: null
 schema: public
-sql: 'SELECT * FROM concepts '
+sql: 'SELECT * FROM concepts'
 params: null
 template_params: null
 filter_select_enabled: true
