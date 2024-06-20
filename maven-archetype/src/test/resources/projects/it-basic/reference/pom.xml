@@ -5,12 +5,12 @@
   <parent>
     <groupId>com.ozonehis</groupId>
     <artifactId>maven-parent</artifactId>
-    <version>1.0.0-alpha.11</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <groupId>archetype.it</groupId>
   <artifactId>ozone-basic</artifactId>
-  <version>1.0.0-alpha.11</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
