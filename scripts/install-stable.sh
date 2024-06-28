@@ -57,34 +57,83 @@ else
     tar -xzvf apache-maven-${mavenVersion}-bin.tar.gz
 fi
 
-# Download Ozone
-echo "$INFO Downloading Ozone $ozoneVersion..."
-$mvn dependency:get \
--DgroupId=com.ozonehis \
--DartifactId=ozone \
--Dversion=${ozoneVersion} \
--Dpackaging=zip \
--DremoteRepositories=https://nexus.mekomsolutions.net/repository/maven-public \
--Dtransitive=false
+# Set up local Maven helper project to workaround issues when using the Maven dependency plugin from CLI.
+cat >_temp_install-latest-ozone-pom.xml <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>install-latest-ozone-helper</artifactId>
+    <groupId>com.ozonehis</groupId>
+    <name>Install Latest Ozone Helper</name>
+    <description>Helper project to install the latest Ozone HIS</description>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-# Copy and Unpack
-echo "$INFO Extracting Ozone..."
-$mvn dependency:copy \
--Dartifact=com.ozonehis:ozone:${ozoneVersion}:zip \
--DoutputDirectory=./ \
--DuseBaseVersion=true
+    <organization>
+        <name>Ozone HIS</name>
+        <url>https://www.ozone-his.com</url>
+    </organization>
+    <developers>
+        <developer>
+            <name>Mekom Solutions</name>
+            <url>https://www.mekomsolutions.com</url>
+        </developer>
+    </developers>
 
-# Account for some inconsistencies in some systems where Maven copies the files without a timestamp.
-# Only rename the file if it is time-stamped.
-if [ ! -f "ozone-${ozoneVersion}.zip" ]
-then
-    echo "$INFO Rename to 'ozone-${ozoneVersion}.zip'..."
-    mv ozone-1.0.0-*.zip ozone-${ozoneVersion}.zip
-fi
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-echo "$INFO Unzipping..."
-unzip ozone-${ozoneVersion}.zip -d ${ozoneInstallFolder}
-rm ozone-${ozoneVersion}.zip
+    <dependencies>
+        <dependency>
+            <groupId>com.ozonehis</groupId>
+            <artifactId>ozone</artifactId>
+            <type>zip</type>
+            <version>${ozoneVersion}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>Fetch Ozone</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <excludeTransitive>true</excludeTransitive>
+                            <excludeTypes>pom</excludeTypes>
+                            <outputDirectory>ozone</outputDirectory>
+                            <includeArtifactIds>ozone</includeArtifactIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>mks-nexus-public</id>
+            <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+</project>
+EOF
+
+echo "$INFO Download and extract Ozone $ozoneVersion..."
+$mvn clean package
+rm _temp_install-latest-ozone-pom.xml
+
+# Move to the scripts/ folder
 pushd ozone/run/docker/scripts/
 
 echo ""
