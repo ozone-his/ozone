@@ -130,7 +130,7 @@ cat >_temp_install-latest-ozone-pom.xml <<EOF
 EOF
 
 echo "$INFO Download and extract Ozone $ozoneVersion..."
-$mvn clean package
+$mvn clean package -f _temp_install-latest-ozone-pom.xml
 rm _temp_install-latest-ozone-pom.xml
 
 # Move to the scripts/ folder
