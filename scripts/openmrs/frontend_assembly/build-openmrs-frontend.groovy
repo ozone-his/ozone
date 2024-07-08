@@ -24,7 +24,7 @@ if (!shouldBuildFrontend) {
 
         assembleCommand += " --config ${frontendCustomizationsFile.getAbsolutePath()}"
         shouldBuildFrontend = true
-        // Update the openmrs version to the one specified in the customizations file if it exists.
+        // Update the OpenMRS version to the one specified in the customizations file if it exists.
         openmrsVersion = slurper.parse(frontendCustomizationsFile)["coreVersion"] ?: openmrsVersion
         log.info("Using OpenMRS Frontend Core Version: ${openmrsVersion}")
     }
