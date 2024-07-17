@@ -52,6 +52,9 @@
                       openmrs/frontend_assembly/build-openmrs-frontend.groovy
                     </include>
                     <include>
+                      erpnext/data_import/generate-import-script.groovy
+                    </include>
+                    <include>
                       go-to-scripts-dir.sh
                     </include>
                     <include>
