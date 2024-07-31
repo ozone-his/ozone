@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.0.0-beta.21</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.2.0-SNAPSHOT</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
@@ -52,15 +52,15 @@
   <dependencies>
     <!-- OpenMRS Ref App -->
     <dependency>
-      <groupId>org.openmrs.distro</groupId>
-      <artifactId>referenceapplication-distro</artifactId>
+      <groupId>org.openmrs</groupId>
+      <artifactId>distro-emr-configuration</artifactId>
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.openmrs.distro</groupId>
-      <artifactId>referenceapplication-frontend</artifactId>
+      <groupId>org.openmrs</groupId>
+      <artifactId>distro-emr-frontend</artifactId>
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
@@ -223,8 +223,8 @@
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/referenceapplication-distro</outputDirectory>
-              <includeArtifactIds>referenceapplication-distro</includeArtifactIds>
+              <outputDirectory>${project.build.directory}/distro-emr-configuration</outputDirectory>
+              <includeArtifactIds>distro-emr-configuration</includeArtifactIds>
             </configuration>
           </execution>
 
@@ -237,7 +237,7 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/openmrs_frontend</outputDirectory>
-              <includeArtifactIds>referenceapplication-frontend</includeArtifactIds>
+              <includeArtifactIds>distro-emr-frontend</includeArtifactIds>
             </configuration>
           </execution>
 
@@ -354,7 +354,7 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/referenceapplication-distro/openmrs_config</directory>
+                  <directory>${project.build.directory}/distro-emr-configuration/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
                   </excludes>
@@ -451,7 +451,7 @@
                 <copy
                   todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
                   <fileset
-                    dir="${project.build.directory}/referenceapplication-distro/sdk-distro/web/modules" />
+                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules" />
                 </copy>
               </target>
             </configuration>
