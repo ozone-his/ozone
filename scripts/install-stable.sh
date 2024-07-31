@@ -26,7 +26,8 @@ ozoneVersion=${1:-1.0.0-alpha.11}
 
 echo "$INFO Ozone version: $ozoneVersion"
 
-ozoneInstallFolder="$PWD/ozone"
+ozoneFolderName="ozone"
+ozoneInstallFolder="$PWD/$ozoneFolderName"
 # Check if ozone/ folder is already present
 if [ -d "${ozoneInstallFolder}" ]; then
     echo "$WARN Ozone installation directory (${ozoneInstallFolder}/) already exists."
@@ -38,7 +39,7 @@ if [ -d "${ozoneInstallFolder}" ]; then
     echo "$INFO Creating new installation directory (${newOzoneInstallFolder}/)."
     ozoneInstallFolder="$newOzoneInstallFolder"
     mkdir -p "$ozoneInstallFolder"
-    echo "$INFO If you want to overwrite the existing ozone/ folder, please delete it first."
+    echo "$INFO If you want to overwrite the existing '${ozoneFolderName}/' folder, please delete it first."
 fi
 
 # Download Maven and install locally
