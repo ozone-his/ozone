@@ -28,19 +28,17 @@ echo "$INFO Ozone version: $ozoneVersion"
 
 ozoneInstallFolder="$PWD/ozone"
 # Check if ozone/ folder is already present
-if [ -d "${ozoneInstallFolder}" ]
-then
+if [ -d "${ozoneInstallFolder}" ]; then
     echo "$WARN Ozone installation directory (${ozoneInstallFolder}/) already exists."
-    while true; do
-    read -p "Do you want to overwrite? [y/n]" choice
-    case "$choice" in 
-        y|Y ) rm -r ${ozoneInstallFolder}/;
-            break;;
-        n|N )  echo "$INFO Aborting.";
-            exit 0;;
-        * ) echo "Please enter y, Y, n or N.";;
-    esac
+    suffix=1
+    while [ -d "${ozoneInstallFolder}_${suffix}" ]; do
+        suffix=$((suffix + 1))
     done
+    newOzoneInstallFolder="${ozoneInstallFolder}_${suffix}"
+    echo "$INFO Creating new installation directory (${newOzoneInstallFolder}/)."
+    ozoneInstallFolder="$newOzoneInstallFolder"
+    mkdir -p "$ozoneInstallFolder"
+    echo "$INFO If you want to overwrite the existing ozone/ folder, please delete it first."
 fi
 
 # Download Maven and install locally
@@ -110,7 +108,7 @@ cat >_temp_install-latest-ozone-pom.xml <<EOF
                         <configuration>
                             <excludeTransitive>true</excludeTransitive>
                             <excludeTypes>pom</excludeTypes>
-                            <outputDirectory>ozone</outputDirectory>
+                            <outputDirectory>$ozoneInstallFolder</outputDirectory>
                             <includeArtifactIds>ozone</includeArtifactIds>
                         </configuration>
                     </execution>
