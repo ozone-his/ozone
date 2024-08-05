@@ -24,7 +24,7 @@ static def getCSVFilesRecursively(File dir) {
 }
 
 // Path to the directory containing the CSV files
-def csvDirPath = Paths.get("${project.basedir}/configs/erpnext/initializer_config")
+def csvDirPath = Paths.get("${project.build.directory}/${project.artifactId}-${project.version}/configs/erpnext/initializer_config")
 
 // Get all CSV files in the directory
 def csvFiles = getCSVFilesRecursively(csvDirPath.toFile())
