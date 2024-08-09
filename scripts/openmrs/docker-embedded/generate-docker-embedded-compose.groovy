@@ -1,0 +1,22 @@
+import java.nio.file.Paths
+import java.io.File
+import java.text.SimpleDateFormat
+import groovy.text.* 
+import groovy.json.JsonBuilder
+
+Date now = new Date()
+SimpleDateFormat timestamp = new SimpleDateFormat("yyyyMMdd.HHmmss")
+myver  = "${project.version}"
+log.info("Docker repository name is " + project.properties['docker.repo.name'])
+log.info("Docker image tag is " + myver)
+def dockerComposeTemplate = Paths.get("${project.build.directory}/${project.artifactId}-${project.version}","docker-embedded","docker", "docker-compose-embedded.yaml.template").toFile()
+
+def binding = ['dockertag' : myver, 'dockerreponame' : project.properties['docker.repo.name'] ]
+				  
+def engine = new SimpleTemplateEngine() 
+def template = engine.createTemplate(dockerComposeTemplate) 
+def writable = template.make(binding) 
+
+def dockerComposePath = Paths.get("${project.build.directory}/${project.artifactId}-${project.version}","docker-embedded","docker", "docker-compose-embedded.yaml").toAbsolutePath().toString()
+def myFile = new File(dockerComposePath)
+myFile.write(writable.toString())

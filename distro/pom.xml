@@ -45,6 +45,7 @@
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
 
+
   <modules>
     <module>configs/superset</module>
   </modules>
@@ -64,7 +65,6 @@
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
-
     <!--  Odoo addons-->
     <dependency>
       <groupId>net.mekomsolutions.odoo</groupId>
@@ -111,6 +111,19 @@
       <artifactId>ozone-superset-configs</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-docker-embedded</artifactId>
+      <type>zip</type>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-templates</artifactId>
+      <version>3.0.22</version>
     </dependency>
 
   </dependencies>
@@ -229,6 +242,18 @@
           </execution>
 
           <execution>
+            <id>Unpack Ozone Docker Embedded to a tempoarary location</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${project.build.directory}/docker-embedded</outputDirectory>
+              <includeArtifactIds>ozone-docker-embedded</includeArtifactIds>
+            </configuration>
+          </execution>
+          <execution>
             <id>Unpack OpenMRS Ref App frontend configuration</id>
             <phase>generate-resources</phase>
             <goals>
@@ -249,14 +274,14 @@
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/configs/superset</outputDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/configs/superset</outputDirectory>
               <includeArtifactIds>ozone-superset-configs</includeArtifactIds>
             </configuration>
           </execution>
 
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -507,6 +532,19 @@
               <scripts>
                 <script>
                   file://${project.basedir}/../scripts/erpnext/data_import/generate-import-script.groovy</script>
+              </scripts>
+            </configuration>
+          </execution>
+          <execution>
+            <id>Generate Docker Compose Embedded yaml</id>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <scripts>
+                <script>
+                  file://${project.basedir}/../scripts/openmrs/docker-embedded/generate-docker-embedded-compose.groovy</script>
               </scripts>
             </configuration>
           </execution>
