@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <groupId>com.ozonehis</groupId>
     <artifactId>maven-commons</artifactId>
@@ -35,6 +37,11 @@
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
     <true>true</true>
+
+    <!-- Docker image properties-->
+
+    <docker.repo.name>ozone-embedded</docker.repo.name>
+    <docker.repo>mekomsolutions</docker.repo>
   </properties>
 
   <modules>
@@ -57,6 +64,12 @@
       <artifactId>ozone-docker-compose</artifactId>
       <type>zip</type>
       <version>${ozoneDockerComposeVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-docker-embedded</artifactId>
+      <type>zip</type>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
@@ -94,6 +107,21 @@
               <includeArtifactIds>ozone-distro</includeArtifactIds>
             </configuration>
           </execution>
+          
+          <execution>
+            <id>Copy Ozone Docker Embedded</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded</outputDirectory>
+              <includeArtifactIds>ozone-docker-embedded</includeArtifactIds>
+            </configuration>
+          </execution>
+
         </executions>
       </plugin>
 
@@ -116,6 +144,58 @@
       </plugin>
 
       <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Generate Docker Compose Embedded yaml</id>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <scripts>
+                <script>
+                  file://${project.basedir}/scripts/openmrs/docker-embedded/generate-docker-embedded-compose.groovy</script>
+              </scripts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images>
+            <image>
+              <name>fabric8:dmp-sample-dockerfile</name>
+              <build>
+                <dockerFile>
+                  ${project.basedir}/distro/target/docker-embedded/docker/openmrs/Dockerfile</dockerFile>
+                <contextDir>${project.build.directory}/distro</contextDir>
+              </build>
+            </image>
+          </images>
+          <buildx>
+            <platforms>
+              <platform>linux/amd64</platform>
+              <platform>linux/arm64</platform>
+            </platforms>
+          </buildx>
+        </configuration>
+        <executions>
+          <execution>
+            <id>Build embedded docker images</id>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
@@ -134,7 +214,7 @@
                 <resource>
                   <directory>${project.basedir}/scripts</directory>
                   <filtering>false</filtering>
-                </resource>         
+                </resource>
                 <resource>
                   <directory>${project.basedir}/scripts</directory>
                   <includes>
@@ -211,4 +291,10 @@
       </plugin>
     </plugins>
   </build>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
