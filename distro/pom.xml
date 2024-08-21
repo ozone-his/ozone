@@ -535,19 +535,6 @@
               </scripts>
             </configuration>
           </execution>
-          <execution>
-            <id>Generate Docker Compose Embedded yaml</id>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <phase>process-resources</phase>
-            <configuration>
-              <scripts>
-                <script>
-                  file://${project.basedir}/../scripts/openmrs/docker-embedded/generate-docker-embedded-compose.groovy</script>
-              </scripts>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
 

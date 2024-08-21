@@ -37,11 +37,6 @@
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
     <true>true</true>
-
-    <!-- Docker image properties-->
-
-    <docker.repo.name>ozone-embedded</docker.repo.name>
-    <docker.repo>mekomsolutions</docker.repo>
   </properties>
 
   <modules>
@@ -72,6 +67,164 @@
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <!-- Docker image properties-->
+        <docker.repo.name>ozone-embedded</docker.repo.name>
+        <docker.repo>mekomsolutions</docker.repo>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.gmavenplus</groupId>
+            <artifactId>gmavenplus-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>Generate Docker Compose Embedded yaml</id>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <phase>process-resources</phase>
+                <configuration>
+                  <scripts>
+                    <script>
+                      file://${project.basedir}/scripts/openmrs/docker-embedded/generate-docker-embedded-compose.groovy</script>
+                  </scripts>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <images>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-openmrs-3-backend:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/openmrs/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-openmrs-3-frontend:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/frontend/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-odoo:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/odoo/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-senaite:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/senaite/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-erpnext:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/erpnext/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-eip-erpnext-openmrs:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/eip-erpnext-openmrs/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-eip-odoo-openmrs:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/eip-odoo-openmrs/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-eip-openmrs-senaite:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/eip-openmrs-senaite/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+              </images>
+              <buildx>
+                <platforms>
+                  <platform>linux/amd64</platform>
+                  <platform>linux/arm64</platform>
+                </platforms>
+              </buildx>
+            </configuration>
+            <executions>
+              <execution>
+                <id>Build embedded docker images</id>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Copy Docker Embedded compose file to run directory -->
+                <id>Copy Docker Embedded compose file</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/run/docker</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>
+                        ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker</directory>
+                      <filtering>true</filtering>
+                      <includes>
+                        <include>docker-compose-embedded.yaml</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <build>
     <plugins>
@@ -107,9 +260,9 @@
               <includeArtifactIds>ozone-distro</includeArtifactIds>
             </configuration>
           </execution>
-          
+
           <execution>
-            <id>Copy Ozone Docker Embedded</id>
+            <id>Copy Ozone Docker Embedded Files</id>
             <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
@@ -140,58 +293,6 @@
             </configuration>
           </execution>
 
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>Generate Docker Compose Embedded yaml</id>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <phase>process-resources</phase>
-            <configuration>
-              <scripts>
-                <script>
-                  file://${project.basedir}/scripts/openmrs/docker-embedded/generate-docker-embedded-compose.groovy</script>
-              </scripts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <configuration>
-          <images>
-            <image>
-              <name>fabric8:dmp-sample-dockerfile</name>
-              <build>
-                <dockerFile>
-                  ${project.basedir}/distro/target/docker-embedded/docker/openmrs/Dockerfile</dockerFile>
-                <contextDir>${project.build.directory}/distro</contextDir>
-              </build>
-            </image>
-          </images>
-          <buildx>
-            <platforms>
-              <platform>linux/amd64</platform>
-              <platform>linux/arm64</platform>
-            </platforms>
-          </buildx>
-        </configuration>
-        <executions>
-          <execution>
-            <id>Build embedded docker images</id>
-            <goals>
-              <goal>build</goal>
-            </goals>
-            <phase>package</phase>
-          </execution>
         </executions>
       </plugin>
 
