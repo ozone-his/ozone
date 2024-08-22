@@ -240,19 +240,6 @@
               <includeArtifactIds>referenceapplication-distro</includeArtifactIds>
             </configuration>
           </execution>
-
-          <execution>
-            <id>Unpack Ozone Docker Embedded to a tempoarary location</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/docker-embedded</outputDirectory>
-              <includeArtifactIds>ozone-docker-embedded</includeArtifactIds>
-            </configuration>
-          </execution>
           <execution>
             <id>Unpack OpenMRS Ref App frontend configuration</id>
             <phase>generate-resources</phase>

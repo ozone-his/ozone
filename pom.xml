@@ -60,12 +60,6 @@
       <type>zip</type>
       <version>${ozoneDockerComposeVersion}</version>
     </dependency>
-    <dependency>
-      <groupId>com.ozonehis</groupId>
-      <artifactId>ozone-docker-embedded</artifactId>
-      <type>zip</type>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
   </dependencies>
 
   <profiles>
@@ -78,6 +72,24 @@
       </properties>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>Unpack Ozone Docker Embedded to a tempoarary location</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <configuration>
+                  <excludeTransitive>true</excludeTransitive>
+                  <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded</outputDirectory>
+                  <includeArtifactIds>ozone-docker-embedded</includeArtifactIds>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
           <plugin>
             <groupId>org.codehaus.gmavenplus</groupId>
             <artifactId>gmavenplus-plugin</artifactId>
@@ -106,7 +118,7 @@
                   <name>mekomsolutions/ozone-embedded-openmrs-3-backend:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/openmrs/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/openmrs/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
                   </build>
@@ -115,7 +127,7 @@
                   <name>mekomsolutions/ozone-embedded-openmrs-3-frontend:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/frontend/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/frontend/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/</contextDir>
                   </build>
@@ -124,7 +136,7 @@
                   <name>mekomsolutions/ozone-embedded-odoo:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/odoo/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/odoo/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
                   </build>
@@ -133,7 +145,7 @@
                   <name>mekomsolutions/ozone-embedded-senaite:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/senaite/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/senaite/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
                   </build>
@@ -142,7 +154,7 @@
                   <name>mekomsolutions/ozone-embedded-erpnext:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/erpnext/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/erpnext/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
                   </build>
@@ -151,7 +163,7 @@
                   <name>mekomsolutions/ozone-embedded-eip-erpnext-openmrs:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/eip-erpnext-openmrs/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/eip-erpnext-openmrs/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
                   </build>
@@ -160,7 +172,7 @@
                   <name>mekomsolutions/ozone-embedded-eip-odoo-openmrs:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/eip-odoo-openmrs/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/eip-odoo-openmrs/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
                   </build>
@@ -169,7 +181,25 @@
                   <name>mekomsolutions/ozone-embedded-eip-openmrs-senaite:${project.version}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker/eip-openmrs-senaite/Dockerfile</dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/eip-openmrs-senaite/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-postgresql:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/postgresql/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>mekomsolutions/ozone-embedded-mysql:${project.version}</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/mysql/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/${project.artifactId}-${project.version}/distro</contextDir>
                   </build>
@@ -210,7 +240,7 @@
                   <resources>
                     <resource>
                       <directory>
-                        ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded/docker</directory>
+                        ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded</directory>
                       <filtering>true</filtering>
                       <includes>
                         <include>docker-compose-embedded.yaml</include>
@@ -223,6 +253,14 @@
           </plugin>
         </plugins>
       </build>
+      <dependencies>
+        <dependency>
+          <groupId>com.ozonehis</groupId>
+          <artifactId>ozone-docker-embedded</artifactId>
+          <type>zip</type>
+          <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 
@@ -261,7 +299,7 @@
             </configuration>
           </execution>
 
-          <execution>
+          <!-- <execution>
             <id>Copy Ozone Docker Embedded Files</id>
             <phase>generate-resources</phase>
             <goals>
@@ -273,7 +311,7 @@
                 ${project.build.directory}/${project.artifactId}-${project.version}/docker-embedded</outputDirectory>
               <includeArtifactIds>ozone-docker-embedded</includeArtifactIds>
             </configuration>
-          </execution>
+          </execution> -->
 
         </executions>
       </plugin>

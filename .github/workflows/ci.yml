@@ -23,6 +23,8 @@ jobs:
     if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
+    with:
+      maven-args: "-Pdocker" #  Build embedded docker images
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
