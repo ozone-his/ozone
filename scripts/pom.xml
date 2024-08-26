@@ -49,6 +49,9 @@
                   <directory>${project.basedir}/../scripts</directory>
                   <includes>
                     <include>
+                      openmrs/docker-embedded/generate-docker-embedded-compose.groovy
+                    </include>
+                    <include>
                       openmrs/frontend_assembly/build-openmrs-frontend.groovy
                     </include>
                     <include>
