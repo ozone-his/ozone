@@ -493,7 +493,7 @@
                   </build>
                 </image>
                 <image>
-                  <name>ozone-embedded-openmrs-frontend:${project.version}</name>
+                  <name>ozone-embedded-openmrs-frontend:${docker.tag}</name>
                   <build>
                     <dockerFile>
                       ${project.build.directory}/embedded-build-tmp/docker-embedded/frontend/Dockerfile</dockerFile>
@@ -565,7 +565,7 @@
                   </build>
                 </image>
                 <image>
-                  <name>ozone-embedded-postgresql:${project.version}</name>
+                  <name>ozone-embedded-postgresql:${docker.tag}</name>
                   <build>
                     <dockerFile>
                       ${project.build.directory}/embedded-build-tmp/docker-embedded/postgresql/Dockerfile</dockerFile>
@@ -574,7 +574,7 @@
                   </build>
                 </image>
                 <image>
-                  <name>ozone-embedded-mysql:${project.version}</name>
+                  <name>ozone-embedded-mysql:${docker.tag}</name>
                   <build>
                     <dockerFile>
                       ${project.build.directory}/embedded-build-tmp/docker-embedded/mysql/Dockerfile</dockerFile>
