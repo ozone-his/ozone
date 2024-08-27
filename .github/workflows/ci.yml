@@ -14,7 +14,7 @@ jobs:
     with:
       java-version: "8"
       maven-phase: "install"
-      maven-args: "-P validator" #  OMRS config validation
+      maven-args: "-Pvalidator -Pbundled-docker" #  OMRS config validation
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
@@ -24,7 +24,7 @@ jobs:
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     with:
-      maven-args: "-Pdocker" #  Build embedded docker images
+      maven-args: "-Pbundled-docker" #  Build embedded docker images
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}

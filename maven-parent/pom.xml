@@ -383,7 +383,7 @@
   </build>
   <profiles>
     <profile>
-      <id>docker-embedded</id>
+      <id>bundled-docker</id>
       <properties>
         <!-- Ozone Docker embedded version-->
         <ozoneDockerEmbedded>1.0.0-SNAPSHOT</ozoneDockerEmbedded>
