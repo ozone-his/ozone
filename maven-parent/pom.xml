@@ -385,8 +385,10 @@
     <profile>
       <id>bundled-docker</id>
       <properties>
-        <!-- Ozone Docker embedded version-->
-        <ozoneDockerEmbedded>1.0.0-SNAPSHOT</ozoneDockerEmbedded>
+        <!-- Groovy template version-->
+        <groovyTemplatesVersion>3.0.22</groovyTemplatesVersion>
+        <!-- Ozone Bundled version-->
+        <ozoneBundledDocker>1.0.0-SNAPSHOT</ozoneBundledDocker>
         <!-- Fabric8 Docker Maven Plugin version-->
         <dockerMavenPlugin>0.45.0</dockerMavenPlugin>
         <!-- Docker image properties-->
@@ -399,15 +401,15 @@
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
               <execution>
-                <id>Unpack Ozone Docker Embedded to a tempoarary location</id>
+                <id>Unpack Ozone Bundled Docker to a tempoarary location</id>
                 <phase>generate-resources</phase>
                 <goals>
                   <goal>unpack-dependencies</goal>
                 </goals>
                 <configuration>
                   <excludeTransitive>true</excludeTransitive>
-                  <outputDirectory>${project.build.directory}/embedded-build-tmp/docker-embedded</outputDirectory>
-                  <includeArtifactIds>ozone-docker-embedded</includeArtifactIds>
+                  <outputDirectory>${project.build.directory}/bundled-docker-build-tmp/bundled-docker</outputDirectory>
+                  <includeArtifactIds>bundled-docker</includeArtifactIds>
                 </configuration>
               </execution>
             </executions>
@@ -417,7 +419,7 @@
             <artifactId>gmavenplus-plugin</artifactId>
             <executions>
               <execution>
-                <id>Generate Docker Compose Embedded yaml</id>
+                <id>Generate Docker Compose Bundled yaml</id>
                 <goals>
                   <goal>execute</goal>
                 </goals>
@@ -425,7 +427,7 @@
                 <configuration>
                   <scripts>
                     <script>
-                      file://${project.build.directory}/scripts/openmrs/docker-embedded/generate-docker-embedded-compose.groovy</script>
+                      file://${project.build.directory}/scripts/openmrs/bundled-docker/generate-bundled-docker-compose.groovy</script>
                   </scripts>
                 </configuration>
               </execution>
@@ -436,8 +438,8 @@
             <artifactId>maven-resources-plugin</artifactId>
             <executions>
               <execution>
-                <!-- Copy Docker Embedded compose file to run directory -->
-                <id>Copy Docker Embedded compose file</id>
+                <!-- Copy Docker Bundled compose file to run directory -->
+                <id>Copy Docker compose file</id>
                 <phase>package</phase>
                 <goals>
                   <goal>copy-resources</goal>
@@ -449,25 +451,25 @@
                   <resources>
                     <resource>
                       <directory>
-                        ${project.build.directory}/embedded-build-tmp/docker-embedded</directory>
+                        ${project.build.directory}/bundled-docker-build-tmp/bundled-docker</directory>
                       <filtering>true</filtering>
                       <includes>
-                        <include>docker-compose-embedded.yaml</include>
+                        <include>docker-compose-bundled.yaml</include>
                       </includes>
                     </resource>
                   </resources>
                 </configuration>
               </execution>
               <execution>
-                <!-- Copy Docker Embedded compose file to run directory -->
-                <id>Copy Ozone</id>
+                <!-- Copy Distro to tmp folder-->
+                <id>Copy Distro</id>
                 <phase>package</phase>
                 <goals>
                   <goal>copy-resources</goal>
                 </goals>
                 <configuration>
                   <outputDirectory>
-                    ${project.build.directory}/embedded-build-tmp/distro</outputDirectory>
+                    ${project.build.directory}/bundled-docker-build-tmp/distro</outputDirectory>
                   <overwrite>true</overwrite>
                   <resources>
                     <resource>
@@ -490,99 +492,99 @@
                   <name>openmrs-backend:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/openmrs/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/openmrs/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>openmrs-frontend:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/frontend/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/frontend/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>proxy:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/proxy/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/proxy/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>odoo:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/odoo/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/odoo/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>senaite:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/senaite/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>erpnext:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/erpnext/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/erpnext/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>eip-erpnext-openmrs:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/eip-erpnext-openmrs/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-erpnext-openmrs/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>eip-odoo-openmrs:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/eip-odoo-openmrs/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-odoo-openmrs/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>eip-openmrs-senaite:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/eip-openmrs-senaite/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-openmrs-senaite/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>postgresql:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/postgresql/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/postgresql/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>mysql:${docker.tag}</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/embedded-build-tmp/docker-embedded/mysql/Dockerfile</dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/mysql/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/embedded-build-tmp/distro</contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
                 </image>
               </images>
@@ -595,7 +597,7 @@
             </configuration>
             <executions>
               <execution>
-                <id>Build embedded docker images</id>
+                <id>Build Bundled Docker images</id>
                 <goals>
                   <goal>build</goal>
                 </goals>
@@ -608,9 +610,14 @@
       <dependencies>
         <dependency>
           <groupId>com.ozonehis</groupId>
-          <artifactId>ozone-docker-embedded</artifactId>
+          <artifactId>bundled-docker</artifactId>
           <type>zip</type>
-          <version>${ozoneDockerEmbedded}</version>
+          <version>${ozoneBundledDocker}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-templates</artifactId>
+          <version>${groovyTemplatesVersion}</version>
         </dependency>
       </dependencies>
     </profile>
