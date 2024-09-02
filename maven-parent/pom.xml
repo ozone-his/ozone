@@ -291,6 +291,28 @@
               </resources>
             </configuration>
           </execution>
+
+          <execution>
+            <!-- Copy Ozone Info to Final Distro -->
+            <id>Copy Ozone Info to Final Distro</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/distro</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}</directory>
+                  <includes>
+                    <include>ozone-info.txt</include>
+                  </includes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+              <overwrite>true</overwrite>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -324,6 +346,22 @@
                     </delete>
                   </then>
                 </if>
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Generate Ozone Distro Info -->
+            <id>Generate Ozone Distro Info</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <echo file="${project.build.directory}/ozone-info.txt">
+                  ozone.name=${project.artifactId}
+                </echo>
               </target>
             </configuration>
           </execution>
