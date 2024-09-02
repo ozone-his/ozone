@@ -13,9 +13,6 @@
     <fileSet>
       <outputDirectory>.</outputDirectory>
       <directory>${project.build.directory}/${project.artifactId}-${project.version}</directory>
-      <excludes>
-        <exclude>docker-embedded/**</exclude>
-      </excludes>
     </fileSet>
   </fileSets>
 </assembly>
