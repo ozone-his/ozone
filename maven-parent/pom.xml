@@ -396,8 +396,6 @@
         <ozoneBundledDocker>1.0.0-SNAPSHOT</ozoneBundledDocker>
         <!-- Fabric8 Docker Maven Plugin version-->
         <dockerMavenPlugin>0.45.0</dockerMavenPlugin>
-        <!-- Docker image properties-->
-        <docker.tag>${project.groupId}-${project.artifactId}-${project.version}</docker.tag>
         <!-- Docker push registry-->
         <docker.push.registry>docker.io</docker.push.registry>
         <!-- Docker push registry username-->
