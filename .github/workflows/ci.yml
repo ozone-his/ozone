@@ -9,12 +9,25 @@ on:
     types: [published]
 
 jobs:
+  cleanDisk:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 512
+        swap-size-mb: 1024
+        remove-dotnet: 'true'
+    - name: Build
+      run: |
+          echo "Free space:"
+          df -h
   validate:
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
       java-version: "8"
       maven-phase: "install"
-      maven-args: "-Pvalidator -Pbundled-docker" # Validate OpenMRS configs & build Docker images embedding the distro bins and configs
+      maven-args: "-Pvalidator" # Validate OpenMRS configs & build Docker images embedding the distro bins and configs
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
