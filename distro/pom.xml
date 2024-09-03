@@ -64,7 +64,6 @@
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
-
     <!--  Odoo addons-->
     <dependency>
       <groupId>net.mekomsolutions.odoo</groupId>
@@ -227,7 +226,6 @@
               <includeArtifactIds>distro-emr-configuration</includeArtifactIds>
             </configuration>
           </execution>
-
           <execution>
             <id>Unpack OpenMRS Ref App frontend configuration</id>
             <phase>generate-resources</phase>
@@ -249,14 +247,14 @@
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/configs/superset</outputDirectory>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/configs/superset</outputDirectory>
               <includeArtifactIds>ozone-superset-configs</includeArtifactIds>
             </configuration>
           </execution>
 
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>

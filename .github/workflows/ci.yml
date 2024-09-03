@@ -14,7 +14,7 @@ jobs:
     with:
       java-version: "8"
       maven-phase: "install"
-      maven-args: "-P validator" #  OMRS config validation
+      maven-args: "-Pvalidator -Pbundled-docker" # Validate OpenMRS configs & build Docker images embedding the distro bins and configs
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
@@ -23,6 +23,10 @@ jobs:
     if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
+    with:
+      maven-args: "-Pbundled-docker" # Build Docker images embedding the distro bins and configs
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+      DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}

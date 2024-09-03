@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -87,7 +87,7 @@
               <includeTypes>jar, omod</includeTypes>
             </configuration>
           </execution>
-          
+
           <execution>
             <id>Unpack Ozone Scripts</id>
             <phase>generate-resources</phase>
@@ -107,9 +107,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
-         <execution>
+          <execution>
             <!-- Exclude files from Ozone -->
-            <!-- We exclude nothing here, but distros should override this with any exclusions they need -->
+            <!-- We exclude nothing here, but distros should override this with any exclusions they
+            need -->
             <id>Exclude unneeded Ozone files</id>
             <phase>process-resources</phase>
             <goals>
@@ -139,7 +140,8 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/${ozone.artifactId}/distro/configs/openmrs/frontend_assembly</directory>
+                  <directory>
+                    ${project.build.directory}/${ozone.artifactId}/distro/configs/openmrs/frontend_assembly</directory>
                   <filtering>false</filtering>
                 </resource>
               </resources>
@@ -304,11 +306,13 @@
             </goals>
             <configuration>
               <target>
-                <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath"/>
+                <taskdef resource="net/sf/antcontrib/antcontrib.properties"
+                  classpathref="maven.plugin.classpath" />
                 <mkdir dir="${project.build.directory}/openmrs_modules" />
                 <if>
                   <resourcecount when="greater" count="0">
-                    <fileset dir="${project.build.directory}/openmrs_modules" includes="*-omod-*.jar" />
+                    <fileset dir="${project.build.directory}/openmrs_modules"
+                      includes="*-omod-*.jar" />
                   </resourcecount>
                   <then>
                     <move todir="${project.build.directory}/openmrs_modules">
@@ -351,7 +355,8 @@
             <phase>process-resources</phase>
             <configuration>
               <scripts>
-                <script>file://${project.build.directory}/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
+                <script>
+                  file://${project.build.directory}/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
               </scripts>
             </configuration>
           </execution>
@@ -381,4 +386,259 @@
 
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>bundled-docker</id>
+      <properties>
+        <!-- Groovy template version-->
+        <groovyTemplatesVersion>3.0.22</groovyTemplatesVersion>
+        <!-- Ozone Bundled version-->
+        <ozoneBundledDocker>1.0.0-SNAPSHOT</ozoneBundledDocker>
+        <!-- Fabric8 Docker Maven Plugin version-->
+        <dockerMavenPlugin>0.45.0</dockerMavenPlugin>
+        <!-- Docker push registry-->
+        <docker.push.registry>docker.io</docker.push.registry>
+        <!-- Docker push registry username-->
+        <docker.push.registry.username>mekomsolutions</docker.push.registry.username>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>Unpack Ozone Bundled Docker to a tempoarary location</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <configuration>
+                  <excludeTransitive>true</excludeTransitive>
+                  <outputDirectory>
+                    ${project.build.directory}/bundled-docker-build-tmp/bundled-docker</outputDirectory>
+                  <includeArtifactIds>bundled-docker</includeArtifactIds>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.gmavenplus</groupId>
+            <artifactId>gmavenplus-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>Generate Docker Compose Bundled yaml</id>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <phase>process-resources</phase>
+                <configuration>
+                  <scripts>
+                    <script>
+                      file://${project.build.directory}/scripts/openmrs/bundled-docker/generate-bundled-docker-compose.groovy</script>
+                  </scripts>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Copy Docker Bundled compose file to run directory -->
+                <id>Copy Docker compose file</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/run/docker</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>
+                        ${project.build.directory}/bundled-docker-build-tmp/bundled-docker</directory>
+                      <filtering>true</filtering>
+                      <includes>
+                        <include>docker-compose-bundled.yml</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <!-- Copy Distro to tmp folder-->
+                <id>Copy Distro</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>
+                    ${project.build.directory}/bundled-docker-build-tmp/distro</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>
+                        ${project.build.directory}/${project.artifactId}-${project.version}/distro</directory>
+                      <filtering>false</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>${dockerMavenPlugin}</version>
+            <configuration>
+              <pushRegistry>${docker.push.registry}</pushRegistry>
+              <images>
+                <image>
+                  <name>${docker.push.registry.username}/%a-openmrs-backend</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/openmrs/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-openmrs-frontend</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/frontend/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-proxy</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/proxy/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-odoo</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/odoo/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-senaite</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-erpnext</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/erpnext/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-eip-erpnext-openmrs</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-erpnext-openmrs/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-eip-odoo-openmrs</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-odoo-openmrs/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-eip-openmrs-senaite</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-openmrs-senaite/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-postgresql</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/postgresql/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-mysql</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/mysql/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+              </images>
+              <tags>
+                <tag>%l</tag>
+              </tags>
+              <buildx>
+                <platforms>
+                  <platform>linux/amd64</platform>
+                  <platform>linux/arm64</platform>
+                </platforms>
+              </buildx>
+            </configuration>
+            <executions>
+              <execution>
+                <id>Build Bundled Docker images</id>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+              <execution>
+                <id>Push Bundled Docker images</id>
+                <goals>
+                  <goal>push</goal>
+                </goals>
+                <phase>deploy</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+        <dependency>
+          <groupId>com.ozonehis</groupId>
+          <artifactId>bundled-docker</artifactId>
+          <type>zip</type>
+          <version>${ozoneBundledDocker}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-templates</artifactId>
+          <version>${groovyTemplatesVersion}</version>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 </project>
