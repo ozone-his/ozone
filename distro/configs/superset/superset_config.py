@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from cachelib import RedisCache
 
 from cachelib.file import FileSystemCache
-
 logger = logging.getLogger()
 
 def password_from_env(url):
@@ -70,34 +69,12 @@ CACHE_CONFIG = {
     'CACHE_REDIS_HOST': 'redis',
     'CACHE_REDIS_PORT': 6379,
     'CACHE_REDIS_DB': 1,
-    'CACHE_REDIS_URL': f"redis://{REDIS_HOST}:{REDIS_PORT}/1"
-}
-
-FILTER_STATE_CACHE_CONFIG = {
-    'CACHE_TYPE': 'RedisCache',
-    'CACHE_DEFAULT_TIMEOUT': 300,
-    'CACHE_KEY_PREFIX': 'superset_filter_',
-    'CACHE_REDIS_PORT': 6379,
-    'CACHE_REDIS_DB': 2,
-    'CACHE_REDIS_URL': f"redis://{REDIS_HOST}:{REDIS_PORT}/2"
-}
-
-EXPLORE_FORM_DATA_CACHE_CONFIG = {
-    'CACHE_TYPE': 'RedisCache',
-    'CACHE_DEFAULT_TIMEOUT': 300,
-    'CACHE_KEY_PREFIX': 'superset_form_date_',
-    'CACHE_REDIS_PORT': 6379,
-    'CACHE_REDIS_DB': 3,
-    'CACHE_REDIS_URL': f"redis://{REDIS_HOST}:{REDIS_PORT}/3"
+    'CACHE_REDIS_URL': 'redis://redis:6379/1'
 }
 
 CELERY_CONFIG = CeleryConfig
 SQLLAB_CTAS_NO_LIMIT = True
 PERMANENT_SESSION_LIFETIME = 86400
-FEATURE_FLAGS = {
-    "DASHBOARD_RBAC": True,
-    'ENABLE_TEMPLATE_PROCESSING': True,
-}
 
 class ReverseProxied(object):
 
@@ -120,20 +97,33 @@ class ReverseProxied(object):
 
 ADDITIONAL_MIDDLEWARE = [ReverseProxied, ]
 ENABLE_PROXY_FIX = True
-PREVENT_UNSAFE_DB_CONNECTIONS = False
+
 # Enable the security manager API.
 FAB_ADD_SECURITY_API = True
 
 if os.getenv("ENABLE_OAUTH") == "true":
-    from security  import  OIDCSecurityManager
-    from flask_appbuilder.security.manager import AUTH_OID
-    KEYCLOAK_URL = os.getenv('KEYCLOAK_URL')
-    SUPERSET_CLIENT_SECRET = os.getenv('SUPERSET_CLIENT_SECRET')
-    SUPERSET_URL = os.getenv('SUPERSET_URL')
-    AUTH_TYPE = AUTH_OID
-    OIDC_ID_TOKEN_COOKIE_SECURE = False
-    OIDC_REQUIRE_VERIFIED_EMAIL = False
+    from flask_appbuilder.security.manager import AUTH_OAUTH
+    from security import CustomSecurityManager
+    AUTH_ROLES_SYNC_AT_LOGIN = True
     AUTH_USER_REGISTRATION = True
-    AUTH_USER_REGISTRATION_ROLE = 'Gamma'
-    CUSTOM_SECURITY_MANAGER = OIDCSecurityManager
-    OIDC_CLIENT_SECRETS = '/etc/superset/client_secret.json'
+    AUTH_USER_REGISTRATION_ROLE = "Gamma"
+    CUSTOM_SECURITY_MANAGER = CustomSecurityManager
+    LOGOUT_REDIRECT_URL = os.environ.get("SUPERSET_URL")
+    AUTH_TYPE = AUTH_OAUTH
+    OAUTH_PROVIDERS = [
+        {
+            'name': 'keycloak',
+            'token_key': 'access_token',  # Name of the token in the response of access_token_url
+            'icon': 'fa-key',   # Icon for the provider
+            'remote_app': {
+                'client_id': os.environ.get("SUPERSET_CLIENT_ID","superset"),  # Client Id (Identify Superset application)
+                'client_secret': os.environ.get("SUPERSET_CLIENT_SECRET"),  # Secret for this Client Id (Identify Superset application)
+                'api_base_url': os.environ.get("ISSUER_URL").rstrip('/') + "/protocol/openid-connect/",
+                'client_kwargs': {
+                    'scope': 'openid profile email',
+                },
+                'logout_redirect_uri': os.environ.get("SUPERSET_URL"),
+                'server_metadata_url': os.environ.get("ISSUER_URL").rstrip('/') + '/.well-known/openid-configuration',  # URL to get metadata from
+            }
+        }
+    ]
