@@ -106,7 +106,7 @@ if os.getenv("ENABLE_OAUTH") == "true":
     from security import CustomSecurityManager
     AUTH_ROLES_SYNC_AT_LOGIN = True
     AUTH_USER_REGISTRATION = True
-    AUTH_USER_REGISTRATION_ROLE = "Gamma"
+    AUTH_USER_REGISTRATION_ROLE = "Admin"
     CUSTOM_SECURITY_MANAGER = CustomSecurityManager
     LOGOUT_REDIRECT_URL = os.environ.get("SUPERSET_URL")
     AUTH_TYPE = AUTH_OAUTH
