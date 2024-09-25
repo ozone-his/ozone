@@ -11,6 +11,7 @@ jobs:
     with:
       java-version: "8"
       notify-ocd3: true
+      check-deps-timeout-minutes: 20
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
