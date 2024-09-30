@@ -291,28 +291,6 @@
               </resources>
             </configuration>
           </execution>
-
-          <execution>
-            <!-- Copy Ozone Info to Final Distro -->
-            <id>Copy Ozone Info to Final Distro</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/distro</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${project.build.directory}</directory>
-                  <includes>
-                    <include>ozone-info.txt</include>
-                  </includes>
-                  <filtering>false</filtering>
-                </resource>
-              </resources>
-              <overwrite>true</overwrite>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
 
@@ -351,17 +329,22 @@
           </execution>
 
           <execution>
-            <!-- Generate Ozone Distro Info -->
-            <id>Generate Ozone Distro Info</id>
-            <phase>generate-resources</phase>
+            <id>Update Ozone Info</id>
+            <phase>process-resources</phase>
             <goals>
               <goal>run</goal>
             </goals>
             <configuration>
               <target>
-                <echo file="${project.build.directory}/ozone-info.txt">
-                  ozone.name=${project.artifactId}
-                </echo>
+                <taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy" classpathref="maven.plugin.classpath"/>
+                <groovy>
+                  def ozoneInfoFile = new File("${project.build.directory}/${project.artifactId}-${project.version}/distro/ozone-info.json")
+                  def ozoneInfo = new groovy.json.JsonSlurper().parse(ozoneInfoFile)
+                  ozoneInfo.name = "${project.artifactId}"
+                  ozoneInfo.version = "${project.version}"
+                  ozoneInfo.description = "${project.description}"
+                  ozoneInfoFile.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(ozoneInfo))
+                </groovy>
               </target>
             </configuration>
           </execution>
@@ -377,6 +360,16 @@
                 <artifactId>ant</artifactId>
               </exclusion>
             </exclusions>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy-ant</artifactId>
+            <version>${maven.groovy.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy-json</artifactId>
+            <version>${maven.groovy.version}</version>
           </dependency>
         </dependencies>
       </plugin>

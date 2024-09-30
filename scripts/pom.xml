@@ -58,6 +58,9 @@
                       erpnext/data_import/generate-import-script.groovy
                     </include>
                     <include>
+                      generate-ozone-info.groovy
+                    </include>
+                    <include>
                       go-to-scripts-dir.sh
                     </include>
                     <include>
