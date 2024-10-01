@@ -1,0 +1,2 @@
+"id","name","field_description","model_id","ttype","index","store","readonly","relation","size","related"
+"init.c018bfa6-6925-4166-9f84-eda9f63b7e6b","x_customer_weight","Customer Weight","Sales Order","char","","True","False","","38",""
