@@ -362,8 +362,8 @@
           </execution>
 
           <execution>
-            <!-- Copy the ozone-info.json file to final Distro -->
-            <id>Copy Ozone Info to Final Distro</id>
+            <!-- Copy ozone-info.json file to the final package -->
+            <id>Copy Ozone Info to the final package</id>
             <phase>prepare-package</phase>
             <goals>
               <goal>copy-resources</goal>
@@ -517,7 +517,7 @@
           </execution>
 
           <execution>
-            <id>Generate Ozone Info JSON</id>
+            <id>Generate Ozone Info JSON file</id>
             <phase>process-resources</phase>
             <goals>
               <goal>execute</goal>
