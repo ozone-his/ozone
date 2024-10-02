@@ -361,6 +361,27 @@
             </configuration>
           </execution>
 
+          <execution>
+            <!-- Copy ozone-info.json file to the final package -->
+            <id>Copy Ozone Info to the final package</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}</directory>
+                  <includes>
+                    <include>ozone-info.json</include>
+                  </includes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -491,6 +512,20 @@
               <scripts>
                 <script>
                   file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
+              </scripts>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Generate Ozone Info JSON file</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <scripts>
+                <script>
+                  file://${project.basedir}/../scripts/generate-ozone-info.groovy</script>
               </scripts>
             </configuration>
           </execution>
