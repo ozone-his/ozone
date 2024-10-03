@@ -33,18 +33,19 @@ class CustomSecurityManager(SupersetSecurityManager):
     def oauth_user_info(self, provider, response=None):
         logging.debug("Oauth2 provider: {0}.".format(provider))
         if provider == 'keycloak':
-            # superset_roles: list[str] = ["Admin", "Alpha", "Gamma", "Public", "granter", "sql_lab"]
             me = self.appbuilder.sm.oauth_remotes[provider].get('userinfo').json()
-            roles = ["public", ]
-            if "roles" in me:
-                role_prefix = "superset-"
-                roles = [r[len(role_prefix):].lower() for r in me.get("roles", []) if r.startswith(role_prefix)]
-
             return {
                 "username": me.get("preferred_username", ""),
                 "first_name": me.get("given_name", ""),
                 "last_name": me.get("family_name", ""),
                 "email": me.get("email", ""),
-                "role_keys": roles,
+                'roles': me.get('roles', ['Public']),
             }
         return {}
+    def auth_user_oauth(self, userinfo):
+        user = super(CustomSecurityManager, self).auth_user_oauth(userinfo)
+        roles = [self.find_role(x) for x in userinfo['roles']]
+        roles = [x for x in roles if x is not None]
+        user.roles = roles
+        self.update_user(user)
+        return user
