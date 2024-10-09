@@ -31,6 +31,7 @@
     <referenceapplicationDistroVersion>3.3.0-SNAPSHOT</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
+    <fhirproxyVersion>1.0.0-SNAPSHOT</fhirproxyVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <eipOpenMRSSenaiteVersion>2.1.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
     <eipOdooOpenMRSVersion>2.1.0-SNAPSHOT</eipOdooOpenMRSVersion>
@@ -83,6 +84,12 @@
       <groupId>org.openmrs.module</groupId>
       <artifactId>commonreports-omod</artifactId>
       <version>${commonreportsVersion}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>fhirproxy-omod</artifactId>
+      <version>${fhirproxyVersion}</version>
       <type>jar</type>
     </dependency>
 
