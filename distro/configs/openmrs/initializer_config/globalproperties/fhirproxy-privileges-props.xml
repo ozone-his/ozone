@@ -1,0 +1,14 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>fhirproxy.charge.item.definition.privileges</property>
+            <value>Get ChargeItemDefinition</value>
+            <description>Privileges required to access ChargeItemDefinition resources</description>
+        </globalProperty>
+        <globalProperty>
+            <property>fhirproxy.inventory.item.privileges</property>
+            <value>Get InventoryItem</value>
+            <description>Privileges required to access InventoryItem resources</description>
+        </globalProperty>
+    </globalProperties>
+</config>
