@@ -1,0 +1,3 @@
+Uuid,Privilege name,Description,_order:1000
+8578353f-0dea-4e12-803e-00d75627fab7,Get InventoryItem,Able to get InventoryItems,
+9b8cfdec-1788-4cb5-9a2e-c14852650655,Get ChargeItemDefinition,Able to get ChargeItemDefinitions,
