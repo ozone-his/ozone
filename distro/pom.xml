@@ -30,9 +30,14 @@
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.3.0-SNAPSHOT</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
+
+    <!-- OpenMRS modules versions -->
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
     <fhirproxyVersion>1.0.0-SNAPSHOT</fhirproxyVersion>
+    <oauth2loginVersion>1.4.0</oauth2loginVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
+
+    <!-- EIP Routes artifact versions -->
     <eipOpenMRSSenaiteVersion>2.1.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
     <eipOdooOpenMRSVersion>2.1.0-SNAPSHOT</eipOdooOpenMRSVersion>
     <eipERPNextOpenMRSVersion>1.2.0-SNAPSHOT</eipERPNextOpenMRSVersion>
@@ -90,6 +95,12 @@
       <groupId>org.openmrs.module</groupId>
       <artifactId>fhirproxy-omod</artifactId>
       <version>${fhirproxyVersion}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>oauth2login-omod</artifactId>
+      <version>${oauth2loginVersion}</version>
       <type>jar</type>
     </dependency>
 
@@ -477,7 +488,9 @@
                 <copy
                   todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
                   <fileset
-                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules" />
+                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules">
+                    <exclude name="authentication-*.omod"/>
+                  </fileset>
                 </copy>
               </target>
             </configuration>
