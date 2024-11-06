@@ -1,0 +1,2 @@
+"id","priority","name","type","model","inherit_id","arch_base"
+"init.39f032c3-fe1a-4307-b7e5-befb02e390d3","16","x_customer_weight_view","Form","sale.order","sale.order.form","<?xml version=""1.0""?><data><xpath expr=""//field[@name='partner_id']"" position=""after""><field name=""x_customer_weight"" /></xpath></data>"
