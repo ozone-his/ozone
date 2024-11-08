@@ -23,11 +23,6 @@
     "logo": {
       "src": "configs/ozone_logo_color.svg",
       "alt": "ozone-logo"
-    },
-    "provider": {
-      "type": "oauth2",
-      "loginUrl": "/openmrs/oauth2login",
-      "logoutUrl": "/openmrs/oauth2logout"
     }
   },
   "@openmrs/esm-patient-chart-app": {
