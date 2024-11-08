@@ -1,0 +1,2 @@
+"id","name","field_description","model_id","ttype","index","store","readonly","relation","size","related"
+"init.44b2048c-34b9-4fe7-90bd-f5296f335c48","x_customer_dob","Customer Date of Birth","Sales Order","date","","True","True","","0","partner_id.x_customer_dob"
