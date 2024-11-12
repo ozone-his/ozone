@@ -439,7 +439,7 @@
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
               <execution>
-                <id>Unpack Ozone Bundled Docker to a tempoarary location</id>
+                <id>Unpack Ozone Bundled Docker to a temporary location</id>
                 <phase>generate-resources</phase>
                 <goals>
                   <goal>unpack-dependencies</goal>
@@ -494,6 +494,7 @@
                       <filtering>true</filtering>
                       <includes>
                         <include>docker-compose-bundled.yml</include>
+                        <include>docker-compose-bundled-sso.yml</include>
                       </includes>
                     </resource>
                   </resources>
@@ -538,10 +539,31 @@
                   </build>
                 </image>
                 <image>
+                  <name>${docker.push.registry.username}/%a-openmrs-backend-sso</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/openmrs/Dockerfile-sso</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
                   <name>${docker.push.registry.username}/%a-openmrs-frontend</name>
                   <build>
                     <dockerFile>
                       ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/frontend/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-openmrs-frontend-sso</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/frontend/Dockerfile</dockerFile>
+                    <args>
+                        <ENABLE_SSO>true</ENABLE_SSO>
+                    </args>
                     <contextDir>
                       ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
                   </build>
@@ -569,6 +591,15 @@
                   <build>
                     <dockerFile>
                       ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-senaite-sso</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile-sso</dockerFile>
                     <contextDir>
                       ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
@@ -619,10 +650,31 @@
                   </build>
                 </image>
                 <image>
+                  <name>${docker.push.registry.username}/%a-postgresql-sso</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/postgresql/Dockerfile</dockerFile>
+                    <args>
+                        <ENABLE_SSO>true</ENABLE_SSO>
+                    </args>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
                   <name>${docker.push.registry.username}/%a-mysql</name>
                   <build>
                     <dockerFile>
                       ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/mysql/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-keycloak</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/keycloak/Dockerfile</dockerFile>
                     <contextDir>
                       ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
