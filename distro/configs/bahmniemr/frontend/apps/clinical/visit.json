@@ -1,0 +1,208 @@
+{
+    "general":{
+        "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
+        "displayByDefault": true,
+        "printing": {
+            "title": "Bahmni",
+            "header": "Visit",
+            "logo": "../images/bahmniLogo.png"
+        },
+        "defaultSections": true,
+        "sections": {
+            "pivotTable":{
+                "type": "pivotTable",
+                "displayOrder": 0,
+                "title": "Vitals Flowsheet",
+                "config": {
+                    "groupBy": "encounters",
+                    "obsConcepts": [
+                        "Pulse",
+                        "Diastolic blood pressure",
+                        "Systolic blood pressure",
+                        "Temperature",
+                        "Respiratory rate",
+                        "Arterial blood oxygen saturation (pulse oximeter)",
+                        "Height (cm)",
+                        "Weight (kg)"
+                    ],
+                    "labConcepts": ""
+                }
+            },
+            "pacsOrders":{
+                "type":"pacsOrders",
+                "displayOrder": 4,
+                "translationKey": "RADIOLOGY_ORDERS_KEY",
+                "config":{
+                    "orderType": "Radiology Order"
+                }
+            },
+            "labInvestigations":{
+                "type": "labOrders",
+                "displayOrder": 2,
+                "config": {
+                    "translationKey":"LAB_INVESTIGATION",
+                    "showChart": true,
+                    "showTable": false,
+                    "showNormalLabResults": true,
+                    "showCommentsExpanded": true,
+                    "showAccessionNotes": true,
+                    "numberOfVisits": 10,
+                    "hideResultsColumn": false,
+                    "chartConfig": {
+                        "sortResultColumnsLatestFirst":true,
+                        "groupByPanel":true
+                    } 
+                }
+            },
+            "conditions": {
+                "title": "Conditions",
+                "type": "conditionsList",
+                "displayOrder": 1,
+                "config": { }
+            }
+        },
+        "encounterContext": {
+            "filterEncounterTypes": [
+                "Consultation"
+            ]
+        }
+    },
+    "dischargeSummary":{
+        "translationKey": "DASHBOARD_TAB_DISCHARGE_SUMMARY_KEY",
+        "printing": {
+            "title": "Bahmni",
+            "header": "Discharge Summary",
+            "logo": "../images/bahmniLogo.png"
+        },
+        "sections": {
+            "PatientInformation":{
+                "type": "patientInformation",
+                "displayOrder": 0,
+                "config": {
+                    "title": "PatientInformation",
+                    "patientAttributes": ["caste", "class", "education", "occupation", "debt", "distanceFromCenter", "isUrban", "cluster","RationCard", "familyIncome"],
+                    "addressFields": ["address1", "address2", "cityVillage", "countyDistrict"]
+                }
+            },
+            "admissionDetails":{
+                "type": "admissionDetails",
+                "displayOrder": 1,
+                "config": {
+                    "showDetailsButton": true,
+                    "translationKey": "DISCHARGE_SUMMARY_ADMISSION_DETAILS_KEY"
+
+                }
+            },
+            "weightInitial":{
+                "type": "observation",
+                "displayOrder": 2,
+                "translationKey":"DISCHARGE_SUMMARY_AT_ADMISSION_KEY",
+                "config": {
+                    "conceptNames": ["Weight (kg)"],
+                    "scope": "initial"
+                }
+            },
+            "weightLatest": {
+                "type": "observation",
+                "displayOrder": 3,
+                "translationKey":"DISCHARGE_SUMMARY_AT_DISCHARGE_KEY",
+                "config": {
+                    "conceptNames": ["Weight (kg)"],
+                    "scope": "latest"
+                }
+            },
+            "diagnoses":{
+                "type": "diagnosis",
+                "displayOrder": 4,
+                "title": "Diagnosis",
+                "config": {
+                    "translationKey" : "DISCHARGE_SUMMARY_DIAGNOSIS_KEY",
+                    "showCertainty": false,
+                    "showOrder": false,
+                    "showDetailsButton": true
+                }
+            },
+            "clinicalNotes":{
+                "type": "observation",
+                "displayOrder": 5,
+                "translationKey": "DISCHARGE_SUMMARY_CLINICAL_NOTES_KEY",
+                "config": {
+                    "conceptNames": [
+                        "Consultation Note",
+                        "Lab Order Notes",
+                        "Radiology Notes"
+                    ],
+                    "scope": "latest",
+                    "numberOfVisits": "1"
+                }
+            },
+            "labInvestigations":{
+                "type": "labOrders",
+                "displayOrder": 6,
+                "config": {
+                    "translationKey":"LAB_INVESTIGATION",
+                    "showChart": true,
+                    "showTable": false,
+                    "showNormalLabResults": true,
+                    "showCommentsExpanded": true,
+                    "showAccessionNotes": true,
+                    "numberOfVisits": 10,
+                    "initialAccessionCount": 1,
+                    "latestAccessionCount": 1,
+                    "hideResultsColumn": false,
+                    "chartConfig": {
+                        "sortResultColumnsLatestFirst":true,
+                        "groupByPanel":true
+                    } 
+                }
+            },
+            "Treatments": {
+                "translationKey": "VISIT_TITLE_TREATMENTS_KEY",
+                "type":"prescription",
+                "displayOrder": 6,
+                "config": {
+                    "showFlowSheet": false,
+                    "showListView": true,
+                    "showOtherActive": false,
+                    "showDetailsButton": true,
+                    "showRoute": true,
+                    "showDrugForm": true,
+                    "showProvider":false
+                }
+            },
+            "adviceOnDischarge":{
+                "type": "observation",
+                "displayOrder": 8,
+                "translationKey":"DISCHARGE_SUMMARY_ADVICE_ON_DISCHARGE_KEY",
+                "config": {
+                    "conceptNames": [
+                    ],
+                    "scope": "latest"
+                }
+            }
+        },
+            "encounterContext": {
+                "filterEncounterTypes": [
+                    "Consultation"
+                ]
+            }
+    },
+    "orders":{
+      "translationKey": "DASHBOARD_TAB_ORDERS_KEY",
+      "sections": {
+          "Radiology Orders": {
+              "type": "order",
+              "displayOrder": 0,
+              "translationKey": "Radiology Orders",
+              "config": {
+                  "translationKey": "Radiology Orders",
+                  "name": "ordersControl",
+                  "orderType": "Radiology Order",
+                  "conceptNames": [
+                      "Summary"
+                  ]
+              }
+          }
+      }
+    }
+}

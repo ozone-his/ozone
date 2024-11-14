@@ -1,0 +1,53 @@
+{
+  "bahmniAdtPatientsSearchPatientsToAdmit":{
+    "id": "bahmni.adt.patients.search.patientsToAdmit",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.patientsToAdmit",
+      "translationKey": "MODULE_LABEL_TO_ADMIT_KEY",
+      "forwardUrl":"#/bedManagement/patient/{{patientUuid}}"
+    },
+    "label": "To Admit",
+    "order": 1,
+    "requiredPrivilege": "app:adt"
+  },
+  "bahmniAdtPatientsSearchPatientsAdmitted":{
+    "id": "bahmni.adt.patients.search.patientsAdmitted",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.admittedPatients",
+      "translationKey": "MODULE_LABEL_ADMITTED_KEY",
+      "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}"
+    },
+    "label": "Admitted",
+    "order": 2,
+    "requiredPrivilege": "app:adt"
+  },
+  "bahmniAdtPatientsSearchPatientsToDischarge":{
+    "id": "bahmni.adt.patients.search.patientsToDischarge",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.patientsToDischarge",
+      "translationKey": "MODULE_LABEL_TO_DISCHARGE_KEY",
+      "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}"
+    },
+    "label": "To Discharge",
+    "order": 3,
+    "requiredPrivilege": "app:adt"
+  },
+  "bahmniAdtPatientsSearchAllPatients":{
+    "id": "bahmni.adt.patients.search.allPatients",
+    "extensionPointId": "org.bahmni.patient.search",
+    "type": "config",
+    "extensionParams": {
+      "translationKey": "MODULE_LABEL_ALL_KEY",
+      "forwardUrl" : "#/bedManagement/patient/{{patientUuid}}"
+    },
+    "label": "All",
+    "order": 4,
+    "requiredPrivilege": "app:adt"
+  }
+}

@@ -1,0 +1,9 @@
+Uuid,Void/Retire,Mappings|SAME-AS,Fully specified name:en,Short name:en,Description:en,Data class,Data type,Answers,Members,_version:1,_order:3000
+616af5ad-024b-4e30-8d6f-3459532d7606,,,Herpes simplex type 1,Herpes simplex type 1,,Misc,N/A,,,,
+58643b97-510f-4670-aabc-f9059b2da5fc,,,Herpes simplex type 2,Herpes simplex type 2,,Misc,N/A,,,,
+9b12a467-202d-474d-9960-4bf142738c55,,SNOMED-CT:83821001,Genus Cryptosporidium,Cryptosporidium,,Organism,N/A,,,,
+ac743286-fad4-46f4-be31-71bc75ad1558,,SNOMED-CT:103561005,Cyclospora cayetanensis,Cyclospora cayetanensis,,Organism,N/A,,,,
+606a1315-647d-45b3-a9b2-bde000231c9c,,SNOMED-CT:359762003,Hookworm,Hookworm,,Organism,N/A,,,,
+cdfcd2cf-b761-4b69-86a1-c35cd4b32e2e,,SNOMED-CT:106685002,Flatworm,Flatworm,,Organism,N/A,,,,
+31fa5476-62d2-4c53-bc42-7ea97060b9cf,,SNOMED-CT:79501007,Tapeworm,Tapeworm,,Organism,N/A,,,,
+45269220-51b0-4675-94fd-b270d414c586,,,Roundworm,Roundworm,,Organism,N/A,,,,

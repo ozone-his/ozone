@@ -1,0 +1,61 @@
+uuid,name,class,datatype,shortname,description,reference-term-code,reference-term-relationship,reference-term-source,,synonym.1,answer.1,,,
+,"Coronary Heart Disease, Followup, Symptoms of Angina today",Question,Coded,Symptoms of Angina today,,,,,,,Crushing chest pain,Dyspnea,Chest pain worse on exercise,Fatigue
+,"Coronary Heart Disease, Followup, Measuring Severity of illness",Misc,Text,Measuring Severity of illness,"- Change in physical activity, why? (cp or dyspnea)<br>
+- Change in the frequency, severity, or pattern of angina<br>
+- Modification of risk factors<br>
+- New or worsened comorbid illnesses (diabetes, hypercholesterolemia)<br>",,,,,,,,,
+,"Coronary Heart Disease, Followup, Chief complaint",Misc,Text,Chief Complaint,,,,,,,,,,
+,"Coronary Heart Disease, Followup, New symptom / History of present illness",Misc,Text,New symptom / History of present illness,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Current Medicines",Misc,Text,Current medicines details,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Non compliance",Misc,Boolean,Non-Compliance,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Reason",Misc,Text,Reason,,,,,,,,,,
+,"Coronary Heart Disease, Followup, BP Systolic Data, Systolic",Misc,Numeric,Systolic,,,,,,,,,,
+,"Coronary Heart Disease, Followup, BP Systolic Data, Systolic Abnormal",Abnormal,Boolean,Systolic Abnormal,,,,,,,,,,
+,"Coronary Heart Disease, Followup, BP Diastolic Data, Diastolic",Misc,Numeric,Diastolic,,,,,,,,,,
+,"Coronary Heart Disease, Followup, BP Diastolic Data, Diastolic Abnormal",Abnormal,Boolean,Diastolic Abnormal,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Heart rate data, Pulse",Misc,Numeric,Pulse,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Heart rate data, Pulse Abnormal",Abnormal,Boolean,Pulse Abnormal,,,,,,,,,,
+,"Coronary Heart Disease, Followup, RR data, RR",Misc,Numeric,RR,,,,,,,,,,
+,"Coronary Heart Disease, Followup, RR data, RR Abnormal",Abnormal,Boolean,RR Abnormal,,,,,,,,,,
+,"Coronary Heart Disease, Followup, SAT data, SAT",Misc,Numeric,SAT,,,,,,,,,,
+,"Coronary Heart Disease, Followup, SAT data, SAT Abnormal",Abnormal,Boolean,SAT Abnormal,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Temperature data, Temperature",Misc,Numeric,Temperature,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Temperature data, Temperature Abnormal",Abnormal,Boolean,Temperature Abnormal,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Physical Examination Details",Misc,Text,Physical Examination Details,"GENERAL ?visibly dyspneaic<br>
+NEURO<br>
+NECK ?carotid bruits<br>
+CARDIO ?murmur ?irregular<br>
+LUNGS ?crackles<br>
+ABDOMEN ?renal bruits<br>
+EXTREMITIES ?edema<br>
+SKIN<br>",,,,,,,,,
+,"Coronary Heart Disease, Followup, EKG",Misc,Text,EKG if chest pain or (+) finding – result,,,,,,,,,,
+,"Coronary Heart Disease, Followup, Lipids/A1C if due",Misc,Text,Lipids/A1C if due - Lipid result,,,,,,,,,,
+,"Coronary Heart Disease, Followup, A1c result",Misc,Text,A1c result,,,,,,,,,,
+,"Coronary Heart Disease, Followup, ER and likely IPD admission",Diagnosis,Boolean,ER and likely IPD admission,"IF ill appearing; with diaphoresis, vomiting, chest pain
+treat as Unstable Angina / NSTEMI<br>
+-oxygen<br>
+-give aspirin 75mg X 4 tablets (300mg) po stat <br>
+-atorvastatin 80mg po stat<br>
+-if BP>100 systolic give sublingual nitroglycerin <br>
+- if BP>100 systolic give atenolol 50<br>
+-morphine 2mg IV can repeat 5-15min<br>
+-stat EKG -insert IV and draw troponin -call medical doctor<br>",,,,,,,,,
+,"Coronary Heart Disease, Followup, Refer to outside hospital",Diagnosis,Boolean,Refer to outside hospital,"If patient appears clinically stable, but complaints of angina despite max dose 1st line agents + 2nd line agents-->
+consider referral to Kathmandu for stress+angio",,,,,,,,,
+,"Coronary Heart Disease, Followup, Assessment",Question,Coded,Assessment,"- Stable angina, no change in medicine → 3months<br>
+- Symptoms uncontrolled, uptitrate medicines/ or add second line agent (SEE medication page) → 2 weeks<br>
+- Suspected unstable angina / acute MI → SEND TO ER<br>
+- Other cause of chest pain likely, not cardiac → manage and 3 months follow up unless unstable, then ER<br>",,,,,,3 months,2 week,Send to ER,Manage and 3 months
+,"Coronary Heart Disease, Followup, Management",Misc,N/A,Management,"- B-blocker / atenolol<br>
+- Nitrates<br>
+- CalcChan blocker/verapimil<br>",,,,,,,,,
+,"Coronary Heart Disease, Followup, Checklist",Misc,N/A,Checklist,"- Baseline ECG then q12mo.<br>
+- Screen 6mo. A1C   goal <7<br>
+- Screen lipids q6mo.LDL<100<br>
+- Control htn goal <130/<br>",,,,,,,,,
+,"Coronary Heart Disease, Followup, Preventive therapies",Misc,N/A,Preventive therapies,"- aspirin 100mg po unless contraindications<br>
+- atorvastatin start 20mg po qhs  if past MI, OR to treat LDL goal<br>
+
+<b>COUNSELING<b><br>
+- smoking/diet/exercise<br>",,,,,,,,,

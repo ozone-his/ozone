@@ -1,0 +1,24 @@
+{
+        "id": "bahmni.template.registration",
+        "contextModel": [ 
+            "patientUuid",
+            "activeVisitUuid"
+        ],
+        "configOptions": {
+            "autoCompleteFields":{
+                "name": "autoCompleteFields",
+                "description": "auto complete fields in patient create page. eg. givenName, familyName, caste, primaryContact, secondaryContact, primaryRelative, secondaryIdentifier",
+                "defaultValue": ["givenName", "familyName", "caste", "primaryContact", "secondaryContact", "primaryRelative", "secondaryIdentifier"]
+            },
+            "defaultIdentifierPrefix":{
+                "name": "defaultIdentifierPrefix",
+                "description": "Default identifier prefix used in search, create patient. eg. GAN",
+                "defaultValue": null
+            },
+            "searchByIdForwardUrl":{
+                "name": "searchByIdForwardUrl",
+                "description": "Url to forward when searched by id",
+                "defaultValue": "/patient/{{patientUuid}}"
+            }
+        }
+}

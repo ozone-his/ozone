@@ -1,0 +1,56 @@
+<config>
+  <globalProperties>
+    <globalProperty>
+      <property>emrapi.visitExpireHours</property>
+      <value>0</value>
+    </globalProperty>
+    <globalProperty>
+      <property>emr.personImagesDirectory</property>
+      <value>/home/bahmni/patient_images</value>
+    </globalProperty>
+  	<globalProperty>
+      <property>emrapi.sqlSearch.activePatients</property>
+      <value>select distinct concat(pn.given_name," ", ifnull(pn.family_name,"")) as name,
+	primaryIdentifier.identifier as identifier,
+	IF(extraIdentifier.identifier IS NULL OR extraIdentifier.identifier = '', primaryIdentifier.identifier, extraIdentifier.identifier) as "extraIdentifierVal",
+	concat("",p.uuid) as uuid,
+	concat("",v.uuid) as activeVisitUuid,
+	IF(va.value_reference = "Admitted", "true", "false") as hasBeenAdmitted 
+from visit v
+        join person_name pn on v.patient_id = pn.person_id and pn.voided = 0
+        join person p on p.person_id = v.patient_id
+		JOIN (SELECT pri.patient_id, pri.identifier 
+			FROM patient_identifier pri 
+				join patient_identifier_type pit on pri.identifier_type = pit.patient_identifier_type_id 
+				join global_property gp on gp.property="bahmni.primaryIdentifierType" and gp.property_value=pit.uuid) primaryIdentifier 
+		ON v.patient_id = primaryIdentifier.patient_id 
+		left outer JOIN (SELECT ei.patient_id, ei.identifier 
+			FROM patient_identifier ei 
+				join patient_identifier_type pit on ei.identifier_type = pit.patient_identifier_type_id 
+				join global_property gp on gp.property="bahmni.extraPatientIdentifierTypes" and pit.uuid=left(gp.property_value, 36)) extraIdentifier 
+		ON v.patient_id = extraIdentifier.patient_id 
+        join location l on l.uuid = ${visit_location_uuid} and v.location_id = l.location_id
+        left outer join visit_attribute va on va.visit_id = v.visit_id and va.attribute_type_id = (
+          select visit_attribute_type_id from visit_attribute_type where name="Admission Status") and va.voided = 0 
+where v.date_stopped is null AND v.voided = 0;</value>
+    </globalProperty>
+    <globalProperty>
+      <property>order.durationUnitsConceptUuid</property>
+      <value>1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</value>
+      <description>Global property pointing to duration units concept set</description>
+    </globalProperty>
+    <globalProperty>
+      <property>sms.enableRegistrationSMSAlert</property>
+      <value>false</value>
+    </globalProperty>
+    <globalProperty>
+      <property>clinic.helpDeskNumber</property>
+      <value>+919999999999</value>
+    </globalProperty>
+    <globalProperty>
+      <property>sms.endpoint</property>
+      <value>/sms-service/notification/sms</value>
+      <description>Global property pointing to endpoint for sending sms</description>
+    </globalProperty>
+  </globalProperties>
+</config>

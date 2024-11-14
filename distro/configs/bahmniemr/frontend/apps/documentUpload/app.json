@@ -1,0 +1,10 @@
+{
+        "id": "bahmni.adt.admission",
+        "extensionPoints": [
+            {
+                "id": "org.bahmni.patient.search",
+                "description": "Bahmni patient search, lookup Page"
+            }
+        ],
+        "contextModel": []
+}

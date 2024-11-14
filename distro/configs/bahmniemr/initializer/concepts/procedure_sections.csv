@@ -1,0 +1,7 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Fully specified name:fr,Short name:en,Short name:fr,Description:en,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:1000
+b98d995b-491e-410d-b1a7-8c4c3e3cf31e,,SNOMED-CT:421060004,Spine,,Spine,,,,Anatomy,N/A,,,,,,,,,,,
+bb718d23-92ed-4159-bd34-3f641a17a26b,,SNOMED-CT:86273004,Biopsy,,Biopsy,,,,Procedure,N/A,,,,,,,,,,,
+8207d4b8-c854-4e49-b754-22d1630f9bc3,,SNOMED-CT:423827005,Endoscopy,,Endoscopy,,,,Procedure,N/A,,,,,,,,,,,
+12da7334-41d7-4f93-a60b-a22a9cc3074c,,,Oncology,,Oncology,,,,Procedure,N/A,,,,,,,,,,,
+0d702c5b-ace4-4ff1-ab62-748831bd93d9,,,Other Procedures,,Others,,,,Procedure,N/A,,,,,,,,,,,
+6a8bb973-e61e-4fbb-b7ca-94ebf163874e,,,Procedure Orders,Procedure Orders,,,,,ConvSet,N/A,,,,,,,,,,,

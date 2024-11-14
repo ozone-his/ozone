@@ -1,0 +1,6 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Data class,Data type,Answers,Members,_version:1,_order:3000
+b5a4b35a-bcf7-4245-93b3-b4291d029508,,,Initial Stage,Initial Stage,,Misc,N/A,,,,
+8e8536ed-67fe-488e-8ae3-bdcf8b3a2128,,,Stage 1,Stage 1,,Misc,N/A,,,,
+a54e01cf-6d5a-4c46-8c8f-a7058d4fa22a,,,Stage 2,Stage 2,,Misc,N/A,,,,
+2e574759-be1b-409e-ae0c-d6f7842cdfd7,,,Final Stage,Final Stage,,Misc,N/A,,,,
+ebdf9113-6d27-42a4-8251-642a741a2106,,,Health Stage,Health Stage,,Misc,coded,b5a4b35a-bcf7-4245-93b3-b4291d029508;8e8536ed-67fe-488e-8ae3-bdcf8b3a2128;a54e01cf-6d5a-4c46-8c8f-a7058d4fa22a;2e574759-be1b-409e-ae0c-d6f7842cdfd7,,,

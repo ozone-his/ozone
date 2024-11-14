@@ -1,0 +1,24 @@
+[
+    {
+        "queryGroupname": "Counts",
+        "queries": [
+            {
+                "queryName": "Person Count",
+                "query": "select count(*) from person;"
+            },
+            {
+                "queryName": "All Visits in date range",
+                "query": "select  visit_id, patient_id, visit_id from visit where date_started >= ':startDate:' and date_stopped <= ':endDate:';"
+            }
+        ]
+    },
+    {
+        "queryGroupname": "Admin",
+        "queries": [
+            {
+                "queryName": "Admin",
+                "query": "select system_id, username, date(date_created) as creattion_date   from users limit 10;"
+            }
+        ]
+    }
+]

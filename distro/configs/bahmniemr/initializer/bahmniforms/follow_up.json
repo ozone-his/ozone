@@ -1,0 +1,36 @@
+{
+  "formJson": {
+    "uuid": "7d416b24-2031-4e68-8870-12f4a2659cf5",
+    "name": "Follow Up",
+    "version": "1",
+    "published": true,
+    "resources": [
+      {
+        "value": "{\"name\":\"Follow Up\",\"id\":54,\"uuid\":\"7d416b24-2031-4e68-8870-12f4a2659cf5\",\"defaultLocale\":\"en\",\"controls\":[{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"RETURN_VISIT_DATE_1\",\"id\":\"1\",\"units\":\"\",\"type\":\"label\",\"value\":\"Return visit date\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":0},\"allowFutureDates\":true},\"id\":\"1\",\"concept\":{\"name\":\"Return visit date\",\"uuid\":\"5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"Patient is to return on this date\",\"translationKey\":\"RETURN_VISIT_DATE_1_DESC\"},\"datatype\":\"Date\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"REASON_FOR_VISIT_2\",\"id\":\"2\",\"units\":\"\",\"type\":\"label\",\"value\":\"Reason for visit\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":1}},\"id\":\"2\",\"concept\":{\"name\":\"Reason for visit\",\"uuid\":\"160430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"datatype\":\"Text\",\"conceptClass\":\"Question\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null}],\"events\":{\"onFormSave\":\"function(form) {\\n  let today = Date.now();\\n  let selectedDate = form.get('Return visit date').getValue();\\n  if (selectedDate) {\\n    let newDate = new Date(selectedDate);\\n    if (newDate.getTime() < today) {\\n      throw {\\n        message: 'Please select a future date'\\n      };\\n    }\\n  }\\n}\",\"onFormInit\":\"\"},\"translationsUrl\":\"/openmrs/ws/rest/v1/bahmniie/form/translations\",\"referenceVersion\":\"6\",\"referenceFormUuid\":\"c3bae803-01b4-4fc8-8d3a-685d55345a86\"}",
+        "dataType": "org.bahmni.customdatatype.datatype.FileSystemStorageDatatype",
+        "uuid": "469d89f7-be00-4fc1-8ad9-74638f959344"
+      },
+      {
+        "value": "[{\"display\":\"Follow Up\",\"locale\":\"en\"}]",
+        "dataType": "org.bahmni.customdatatype.datatype.FormNameTranslationDatatype",
+        "uuid": "ce3bba8a-83a3-4021-acc1-c7d3e6313348"
+      }
+    ]
+  },
+  "translations": [
+    {
+      "locale": "en",
+      "labels": {},
+      "concepts": {
+        "REASON_FOR_VISIT_2": "Reason for visit",
+        "RETURN_VISIT_DATE_1_DESC": "Patient is to return on this date",
+        "RETURN_VISIT_DATE_1": "Return visit date"
+      },
+      "formName": "Follow Up",
+      "formUuid": null,
+      "version": "1",
+      "referenceVersion": null,
+      "referenceFormUuid": null
+    }
+  ]
+}

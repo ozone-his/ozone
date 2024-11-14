@@ -1,0 +1,22 @@
+uuid,name,description,class,datatype,shortname
+,Self Reported,,Misc,N/A,Self Reported
+,Active Surveillance,,Misc,N/A,Active Surveillance
+,Slit Skin Positive,,Misc,N/A,Slit Skin Positive
+,Nodular,,Misc,N/A,Nodular
+,Histoid,,Misc,N/A,Histoid
+,Tuberculoid,,Misc,N/A,TT
+,Borderline Tuberculoid,,Misc,N/A,BT
+,Midspectrum Borderline,,Misc,N/A,BB
+,Borderline Lepromatous,,Misc,N/A,BL
+,Lepromatous,,Misc,N/A,LL
+,Pure Neurotic,,Misc,N/A,PAN
+,Multibacillary Leprosy,,Misc,N/A,MB
+,Paucibacillary Leprosy,,Misc,N/A,PB
+,Yes,,Misc,N/A,Yes
+,Nil,,Misc,N/A,Nil
+,Improved,,Misc,N/A,I
+,Deteriorated,,Misc,N/A,D
+,Status Quo,,Misc,N/A,S
+,Never Had Problems,,Misc,N/A,N
+,Lost of Follow Up,,Misc,N/A,L
+,Results Pending,,Misc,N/A,P

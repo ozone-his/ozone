@@ -1,0 +1,311 @@
+{
+    "id": "bahmni.ipd.admission",
+    "extensionPoints": [
+        {
+            "id": "org.bahmni.patient.search",
+            "description": "Bahmni patient search, lookup Page"
+        }
+    ],
+    "contextModel": [
+        "patientUuid",
+        "encounterUuid",
+        "visitUuid"
+    ],
+    "config": {
+        "wardListPrintEnabled": false,
+        "wardListPrintViewTemplateUrl": "/bahmni_config/openmrs/apps/ipd/wardListPrint.html",
+        "wardListPrintAttributes":[],
+        "wardListSqlSearchHandler": "bedManagement.sqlGet.patientListForAdmissionLocation",
+        "diagnosisStatus": "Inactive",
+        "onAdmissionForwardTo": "#",
+        "onTransferForwardTo": "#",
+        "onDischargeForwardTo": "#",
+        "defaultVisitType": "IPD",
+        "enableIPDFeature": true,
+        "expectedDateOfDischarge": "",
+        "ignoredTabularViewHeadings": ["uuid","activeVisitUuid","hasBeenAdmitted","display","image","$$hashKey","birthDate","extraIdentifiers","personId","deathDate","addressFieldValue","dateCreated","customAttribute","patientProgramAttributeValue"],
+        "identifierHeadings": ["identifier"],
+        "conceptSetUI": {
+            "Expected Date of Discharge": {
+                "disableAddNotes": true,
+                "allowFutureDates": true
+            }
+        },
+        "hideStartNewVisitPopUp": false,
+        "patientForwardUrl": "../bedmanagement/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard",
+        "dashboard": {
+            "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
+            "conceptName": "Adt Notes",
+            "sections": {
+                "patientInformation": {
+                    "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+                    "type": "patientInformation",
+                    "displayOrder": 0,
+                    "patientAttributes": [
+                        "caste",
+                        "class",
+                        "education",
+                        "occupation",
+                        "debt",
+                        "distanceFromCenter",
+                        "isUrban",
+                        "cluster",
+                        "RationCard",
+                        "familyIncome"
+                    ],
+                    "addressFields": [
+                        "address1",
+                        "address2",
+                        "cityVillage",
+                        "countryDistrict"
+                    ]
+                },
+                "navigationLinksControl": {
+                    "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+                    "type": "navigationLinksControl",
+                    "displayOrder": 1,
+                    "showLinks": [
+                        "home",
+                        "registration",
+                        "enrolment"
+                    ],
+                    "customLinks": [
+                        {
+                            "name": "bedManagement",
+                            "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KEY",
+                            "url": "../bedmanagement/#/bedManagement/patient/{{patientUuid}}"
+                        }
+                    ]
+                },
+                "Vitalform": {
+                    "translationKey": "DASHBOARD_VITAL_FORM_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 2,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Weight",
+                            "Height",
+                            "BMI Data",
+                            "VS, Blood pressure",
+                            "VS, Blood glucose"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Weight",
+                            "Height",
+                            "BMI Data",
+                            "VS, Blood pressure",
+                            "VS, Blood glucose"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "admissionDetails": {
+                    "translationKey": "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
+                    "type": "admissionDetails",
+                    "displayOrder": 3,
+                    "expandedViewConfig": {
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "disposition": {
+                    "translationKey": "DASHBOARD_TITLE_DISPOSITION_KEY",
+                    "type": "disposition",
+                    "numberOfVisits": 6,
+                    "displayOrder": 4
+                },
+                "nursingnote": {
+                    "translationKey": "DASHBOARD_TITLE_WARD_NURSING_NOTE_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 8,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Ward Nursing Note"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Ward Nursing Note"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "postopmonitoring": {
+                    "translationKey": "DASHBOARD_POST_OPERATIVE_MONITORING_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 9,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Post-Op Ward Monitoring"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Post-Op Ward Monitoring"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "surgicalwardnursingassessment": {
+                    "translationKey": "DASHBOARD_SURGICAL_WARD_ADMISSION_NURSING_ASSESSMENT_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 10,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Surgical Ward Admission Nursing Assessment"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Surgical Ward Admission Nursing Assessment"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "physicianprogress": {
+                    "translationKey": "DASHBOARD_PHYSICIAN_PROGRESS_NOTE_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 11,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Physician Progress Note-Ward"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Physician Progress Note-Ward"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "complications": {
+                    "translationKey": "DASHBOARD_COMPLICATIONS_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 12,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "CC, Complications"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "CC, Complications"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "observationssheet": {
+                    "translationKey": "DASHBOARD_OBSERVATIONS_SHEET_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 14,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Observation Sheet"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Observation Sheet"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "consultationnote": {
+                    "translationKey": "DASHBOARD_CONSULTATION_NOTE_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 13,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "Consultation Note"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "Consultation Note"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
+                "Surgical Procedures": {
+                    "translationKey": "DASHBOARD_SURGICAL_PROCEDURES_KEY",
+                    "type": "vitals",
+                    "isObservation": true,
+                    "displayOrder": 6,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "SAP, Planned Surgical procedures"
+                        ],
+                        "showGroupDateTime": true
+                    },
+                    "expandedViewConfig": {
+                        "conceptNames": [
+                            "SAP, Planned Surgical procedures"
+                        ],
+                        "isEditable": true,
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                }
+            }
+        }
+    }
+}

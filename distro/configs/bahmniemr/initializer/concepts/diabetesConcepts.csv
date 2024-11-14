@@ -1,0 +1,5 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Fully specified name:fr,Short name:en,Short name:fr,Description:en,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:1200
+9bb0795c-4ff0-0305-1990-000000000010,,,"Diabetes, Diabetes Type",Diabetes type,,,,,Diagnosis,Coded,,CIEL:142474;CIEL:142473,,,,,,,,,
+9bb0795c-4ff0-0305-1990-000000000011,,,"Diabetes, Last known A1C Result",Last known A1C Result,,,,,Misc,Text,,,,,,,,,,,
+9bb0795c-4ff0-0305-1990-000000000012,,,"Diabetes, Last HbA1c Date",Last HbA1c Date,,,,,Misc,Date,,,,,,,,,,,
+81838fef-7c3b-43ab-82d5-7f6c7cccd697,,,"Diabetes, Intake",,Diabetes – Intake,,,,Misc,N/A,,,CIEL:164093;Diagnosis Certainty;9bb0795c-4ff0-0305-1990-000000000010;9bb0795c-4ff0-0305-1990-000000000012;9bb0795c-4ff0-0305-1990-000000000011;1728AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;CIEL:162747;CIEL:140228;CIEL:160618;CIEL:161262;CIEL:163201;9bb0795c-4ff0-0305-1990-000000000013;CIEL:165595;CIEL:159449;CIEL:166361;CIEL:159456,,,,,,,,

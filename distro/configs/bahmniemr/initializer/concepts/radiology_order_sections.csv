@@ -1,0 +1,11 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Fully specified name:fr,Short name:en,Short name:fr,Description:en,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:1000
+1c64dbbe-9fad-4d1d-b81a-57065ee67fb5,,,Head and Neck,,Head and Neck,,,,Anatomy,N/A,,,,,,,,,,,
+4e629d3d-819a-4c24-91a2-0bc038d13329,,,Back,,Back,,,,Anatomy,N/A,,,,,,,,,,,
+82cb3652-febf-4394-98c0-4249c3ca5e45,,,Angiography,,Angiography,,,,Procedure,N/A,,,,,,,,,,,
+4f8c4867-c4a8-411e-8983-f694d6a1b66b,,,Nuclear medicine,,Nuclear medicine,,,,Procedure,N/A,,,,,,,,,,,
+5d3e948a-311a-48e5-b45e-fa0dcd158056,,,Magnetic Resonance Imaging,,MRI,,,,Procedure,N/A,,,,,,,,,,,
+4573be0e-1370-4c36-b932-ac320ebd5c00,,,CT Scan,,CT Scan,,,,Procedure,N/A,,,,,,,,,,,
+26b938d8-2cd4-44a3-b667-eb46b6aa0b7b,,,Ultrasound,,Ultrasound,,,,Procedure,N/A,,,,,,,,,,,
+0301d44d-e4e9-4c73-9e54-d59d02a59353,,,Echo,,Echo,,,,Procedure,N/A,,,,,,,,,,,
+e74c896c-8e9a-49b2-bce1-5265064f9450,,,Other Radiology Orders,,Others,,,,Misc,N/A,,,,,,,,,,,
+9bb0795c-4ff0-0305-1990-000000000048,,,Radiology Orders,Radiology Orders,,,,,ConvSet,N/A,,,,,,,,,,,

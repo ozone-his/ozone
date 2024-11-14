@@ -1,0 +1,12 @@
+<config>
+  <globalProperties>
+    <globalProperty>
+      <property>emr.concept.diagnosisSetOfSets</property>
+      <value>066d1f0f-6303-46d8-99fa-c9278b60a072</value>
+    </globalProperty>
+    <globalProperty>
+      <property>emrapi.conceptSourcesForDiagnosisSearch</property>
+      <value></value>
+    </globalProperty>
+  </globalProperties>
+</config>

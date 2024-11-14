@@ -1,0 +1,8 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Data class,Data type,Answers,Members,_version:1,_order:3000
+fa30920e-7d8b-4f10-a123-8ac18fcf64cf,,,Cured of HIV,Cured of HIV,,Misc,N/A,,,,
+8637dcd6-05ac-49b3-9717-39c676d4fb2a,,,HIV Outcome,HIV outcome,,Misc,N/A,,fa30920e-7d8b-4f10-a123-8ac18fcf64cf;160432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,
+1c3363ea-2c60-442f-b9e7-c4ceda50dff2,,,Acute Retroviral Infection,Acute Retroviral Infection,,Misc,N/A,,,,
+8ed76778-da7c-4a35-b2c9-fa74fb59a2e0,,,Clinical Stage 1,Clinical Stage 1,,Misc,N/A,,,,
+54dbcd5d-6553-4f25-b2d9-f01eee6c9fb7,,,Clinical Stage 2,Clinical Stage 2,,Misc,N/A,,,,
+56b02820-10a2-4220-9418-dc9a9ed60d86,,,Clinical Stage 3,Clinical Stage 3,,Misc,N/A,,,,
+852acec3-4b01-4736-9ed8-69272437a6d2,,,HIV Program workflow,workflow for HIV Program,,Misc,coded,5006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;1c3363ea-2c60-442f-b9e7-c4ceda50dff2;8ed76778-da7c-4a35-b2c9-fa74fb59a2e0;54dbcd5d-6553-4f25-b2d9-f01eee6c9fb7;56b02820-10a2-4220-9418-dc9a9ed60d86,,,

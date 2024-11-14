@@ -1,0 +1,124 @@
+@page {
+  margin-left: 0.2cm;
+  margin-right: 0.2cm;
+  margin-top: 0.2cm;
+  margin-bottom: 0.2cm;
+}
+
+/* line 10, print.scss */
+p, h1, h2, h3, table, tr, td, div, span, li {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 14, print.scss */
+h1, h2, h3 {
+  text-align: center;
+}
+
+/* line 17, print.scss */
+.print-center {
+  text-align: center;
+}
+
+/* line 20, print.scss */
+.registrationCard-print-table {
+  width: 150mm;
+  height: 83mm;
+  overflow: scroll;
+  margin: 0 auto;
+  table-layout: fixed;
+}
+
+/* line 24, print.scss */
+.registrationCard-print-table td.registrationCard-photo {
+  padding-top: 2px;
+}
+
+/* line 27, print.scss */
+.print-table-left {
+  width: 77mm;
+}
+
+/* line 30, print.scss */
+.print-table-header {
+  text-align: center;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* line 35, print.scss */
+.print-table-left-body {
+  font-size: 4mm;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 15px;
+}
+
+/* line 41, print.scss */
+.print-table-left-body li {
+  margin: 0px;
+  padding: 0px 0px 5px 0px;
+  line-height: 18px;
+}
+
+/* line 46, print.scss */
+.caution {
+  text-align: center;
+  line-height: 20px;
+}
+
+/* line 50, print.scss */
+.caution h3 {
+  line-height: 25px;
+  margin-bottom: 6px;
+  margin-top: 12px;
+}
+
+/* line 55, print.scss */
+.print-table-right {
+  width: 77mm;
+}
+
+/* line 58, print.scss */
+.print-table-right .logo {
+  text-align: center;
+  width: 12mm;
+  padding: 0px;
+  margin: 0px;
+  height: 12mm;
+}
+
+/* line 65, print.scss */
+.print-table-right-header {
+  text-align: center;
+  width: 42mm;
+  text-align: left;
+  height: 12mm;
+}
+
+/* line 71, print.scss */
+.registrationCard-location {
+  padding: 5px 8px 8px 8px;
+}
+
+/* line 74, print.scss */
+.registrationCard-details {
+  padding: 0mm 5mm 0mm 5mm;
+}
+
+/* line 77, print.scss */
+.registrationCard-details-name {
+  width: 70px;
+}
+
+/* line 80, print.scss */
+.registrationCard-details-seperator {
+  width: 20px;
+  text-align: center;
+}
+
+/* line 84, print.scss */
+.hindi-text {
+  vertical-align: bottom;
+}

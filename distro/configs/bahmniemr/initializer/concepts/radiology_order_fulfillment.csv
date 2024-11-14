@@ -1,0 +1,5 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Fully specified name:fr,Short name:fr,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:1000
+ae6e5490-ade9-486e-8268-9e4efd45b07e,,,Radiology Notes,Radiology Notes,,,,,Misc,Text,,,,,,,,,,,
+4e7ac8d1-38fa-461c-8b3a-aa66049369ba,,,Diagnostic Images,Images,,,,,Image,Complex,ImageUrlHandler,,,,,,,,,,
+cf1844e6-d734-4e24-8a26-1f48f8e54ebb,,,Summary,,,,,,Misc,N/A,,,ae6e5490-ade9-486e-8268-9e4efd45b07e;4e7ac8d1-38fa-461c-8b3a-aa66049369ba,,,,,,,,
+2e820990-e709-4c57-bfa2-ba71b66bd717,,,Radiology order fulfillment form,,,,,,Misc,N/A,,,cf1844e6-d734-4e24-8a26-1f48f8e54ebb,,,,,,,,

@@ -1,0 +1,17 @@
+    {
+    "MODULE_LABEL_REGISTRATION_KEY": "التسجيل",
+    "MODULE_LABEL_CLINICAL_KEY": "الكشوفات",
+    "MODULE_LABEL_INPATIENT_KEY": "القسم الداخلي",
+    "MODULE_LABEL_RADIOLOGY_UPLOAD_KEY": "الأشعات",
+    "MODULE_LABEL_PATIENT_DOCUMENTS_KEY": "مستندات المرضي",
+    "MODULE_LABEL_ADMIN_KEY": "المدير",
+    "MODULE_LABEL_REPORTS_KEY": "التقارير",
+    "MODULE_LABEL_APOOINTMENTS_KEY": "المواعيد",
+    "MODULE_LABEL_ORDERS_KEY": "طلبات الفحوصات",
+    "MODULE_LABEL_PROGRAMS_KEY": "البرامج",
+    "MODULE_LABEL_IMPLEMENTER_INTERFACE_KEY": "واجهة المنفذ",
+    "MODULE_LABEL_ATOMFEED_CONSOLE_KEY": "AtomFeed Console",
+    "MODULE_LABEL_APPOINTMENT_SCHEDULING_KEY": "حجز المواعيد",
+    "MODULE_LABEL_BED_MANAGEMENT_KEY": "ادارة الأسرّة",
+    "MODULE_LABEL_LAB_ENTRY_KEY": "Lab entry"
+}

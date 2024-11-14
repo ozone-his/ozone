@@ -1,0 +1,15 @@
+.row {
+    float: clear;
+}
+.left {
+    width: 50%;
+    float: left;
+}
+.right {
+    width: 50%;
+    float: left;
+}
+
+.label {
+    font-weight: bold;
+}

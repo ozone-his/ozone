@@ -1,0 +1,4 @@
+Name,min_weight,max_weight,min_age,max_age,dosage,rule
+Paracetamol,20,50,10,50,5,mg/kg
+Aspirin,20,50,10,50,5,mg/m2
+Paracetamol,1,10,0,10,2,block

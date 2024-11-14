@@ -1,0 +1,62 @@
+{
+    "csvUpload":{
+        "id": "bahmni.admin.csv",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "CSV Upload",
+        "url": "#/csv",
+        "icon": "fa-upload",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    },
+    "csvExport":{
+        "id": "bahmni.admin.csvExport",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "CSV Export",
+        "url": "#/csvExport",
+        "icon": "fa-download",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    },
+    "auditLog":{
+        "id": "bahmni.admin.auditLog",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "Audit Log",
+        "url": "#/auditLog",
+        "icon": "fa-eye",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    },
+    "orderSet":{
+        "id": "bahmni.admin.orderSet",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "Order Set",
+        "url": "#/ordersetdashboard",
+        "icon": "fa-upload",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    },
+    "beds":{
+        "id": "bahmni.admin.adt",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "Beds",
+        "url": "/openmrs/owa/bedmanagement/admissionLocations.html",
+        "icon": "icon-bahmni-inpatient",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    }
+}

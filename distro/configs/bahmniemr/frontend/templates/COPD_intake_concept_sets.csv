@@ -1,0 +1,7 @@
+uuid,name,shortname,description,class,child.1,child.2,child.3,child.4,child.5,child.6,child.7,child.8
+,"COPD, Intake, Diagnosis details",Diagnosis details,,"COPD, Intake, Last Visit Date","COPD, Intake, Previous followup location","COPD, Intake, Diagnosis Details, Diagnosis Status","COPD, Intake, Date Confirmed","COPD, Intake, Diagnosis Location",,,,
+,"COPD, Intake, Exposures",Exposures,,"COPD, Intake, Smoking history","COPD, Intake, Packs per Day","COPD, Intake, Numbers of years","COPD, Intake, Non Smoker",,,,,
+,"COPD, Intake, Diagnostic clues",Diagnostic clues,,"COPD, Intake, Diagnostic clues","COPD, Intake, Note for All other",,,,,,,
+,"COPD, Intake, Past diagnostics",Past diagnostics,,"COPD, Intake, Chest X-ray","COPD, Intake, Peak expiratory flow","COPD, Intake, FEV1 / FVC","COPD, Intake, CT Scan","COPD, Intake, Family history of COPD",,,,
+,"COPD, Intake, Current home medications",Current home medications,,"COPD, Intake, On Beta blocker","COPD, Intake, On Ipratropium","COPD, Intake, On Oral steroid","COPD, Intake, On Antibiotics","COPD, Intake, All other current medicines",,,,
+,"COPD, Intake",COPD – Intake,,"COPD, Intake, Diagnosis details","COPD, Intake, Exposures","COPD, Intake, Diagnostic clues","COPD, Intake, Past diagnostics","COPD, Intake, Current home medications",,,,

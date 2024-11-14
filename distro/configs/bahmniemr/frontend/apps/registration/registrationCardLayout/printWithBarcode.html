@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="/bahmni_config/openmrs/apps/registration/registrationCardLayout/css/print.css"/>
+<table border="1" cellpadding="0" cellspacing="1" class="registrationCard-print-table">
+    <tbody>
+    <tr>
+        <td class="print-table-left" valign="top">
+            <table>
+                <tr>
+                    <td class="logo">
+                        <p>
+                            <img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/bahmni-icon.png" style="width: 12mm; height: 12mm; "/>
+                        </p>
+                    </td>
+                    <td class="print-table-right-header">
+                        <h3 class="print-center">Bahmni Hospital</h3>
+                    </td>
+                    <td class="registrationCard-photo">
+                        <img ng-src="{{patient.image}}" style="width: 20mm; height: 20mm; "
+                             onerror="this.onerror=null;this.src='../images/blank.jpeg';"/>
+                    </td>
+                </tr>
+            </table>
+            <table class="registrationCard-details">
+                <tbody>
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="hindi-text">Registration Date</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>{{patient.registrationDate | bahmniDate}} </td>
+                </tr>
+            
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="hindi-text">Full Name</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>
+                        <span class="hindi-text">{{patient.fullNameLocal()}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="hindi-text">Age</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>{{patient.age | age}} </td>
+                </tr>
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="hindi-text">Gender</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>{{patient.gender}} </td>
+                </tr>
+            
+                <tr>
+                    <td class="registrationCard-details-name">
+                        <span class="hindi-text">Village</span>
+                    </td>
+                    <td class="registrationCard-details-seperator"> :  </td>
+                    <td>{{patient.address.cityVillage}} </td>
+                </tr>
+            
+                <tr>
+                <td>
+                <img id="barcode"
+                     jsbarcode-value="{{patient.primaryIdentifier.identifier}}"
+                     jsbarcode-width="3"
+                     jsbarcode-height="100"
+                     jsbarcode-margin="0"
+                     jsbarcode-displayValue="false"
+                     jsbarcode-textAlign="left"
+                     jsbarcode-textMargin="0"
+                     jsbarcode-fontSize="10"
+
+                />
+                <div class="title">{{patient.primaryIdentifier.identifier}}</div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+ 
+<script type="text/javascript" src="/bahmni_config/openmrs/apps/JsBarcode.all.min.js"></script>
+<script>
+    (function() {
+        JsBarcode("#barcode").init();
+    })();
+</script>

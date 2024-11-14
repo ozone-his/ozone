@@ -1,0 +1,70 @@
+<section class="app-dashboard-integration">
+    <h2 class="section-title" ng-click="goToListView()"><span style="border-bottom: 1px solid white;">{{ section.title | titleTranslate}}</span></h2>
+
+    <ul style="font-size: 14px;color: #000000">
+        <li style="background-color:#ddd;padding-top:3px;padding-bottom:3px">
+            <span style="padding-left: 10px"> {{::"DASHBOARD_UPCOMING_APPOINTMENTS_KEY" | translate}} </span>
+        </li>
+
+        <ul ng-if="upcomingAppointments.length === 0" class="form-field">
+            <li>{{::"DASHBOARD_NO_UPCOMING_APPOINTMENTS_KEY" | translate}}</li>
+        </ul>
+
+        <ul ng-if="upcomingAppointments.length !== 0">
+            <table class="table-header">
+                <thead>
+                <tr>
+                    <th ng-repeat="heading in upcomingAppointmentsHeadings">
+                        {{heading | translate}}
+                    </th>
+                    <th>
+			            {{::"DASHBOARD_TELECON_KEY" | translate}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="appointment in upcomingAppointments">
+                    <td ng-repeat="detail in appointment">
+                        {{detail}}
+                    </td>
+                    <td>
+                        <button style="background: #669998; color: white;" ng-if="showJoinTeleconsultationOption($index)" ng-click="openJitsiMeet($index)">
+                                 {{::"DASHBOARD_JOIN_TELECON_KEY" | translate}}
+                         </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </ul>
+    </ul>
+
+
+    <ul style="font-size: 14px;color: #000000">
+        <li style="background-color:#ddd;padding-top:3px;padding-bottom:3px">
+            <span style="padding-left: 10px"> {{::"DASHBOARD_PAST_APPOINTMENTS_KEY" | translate}} </span>
+        </li>
+
+        <ul ng-if="pastAppointments.length === 0" class="form-field">
+            <li>{{::"DASHBOARD_NO_PAST_APPOINTMENTS_KEY" | translate}}</li>
+        </ul>
+
+        <ul ng-if="pastAppointments.length !== 0">
+            <table class="table-header">
+                <thead>
+                <tr>
+                    <th ng-repeat="heading in pastAppointmentsHeadings">
+                        {{heading | translate}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="appointment in pastAppointments">
+                    <td ng-repeat="detail in appointment">
+                        {{detail}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </ul>
+    </ul>
+</section>

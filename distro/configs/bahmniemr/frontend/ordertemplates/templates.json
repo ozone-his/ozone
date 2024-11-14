@@ -1,0 +1,54 @@
+{
+  "orderTemplates": [
+    {
+      "name": "2HRZE + 4HR",
+      "drugOrders": [
+        {"drug": {"name": "Isoniazid 100mg", "form": "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Isoniazid 300mg", "form": "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Rifampicin 150mg", "form":  "Capsule"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Rifampicin 450mg", "form":  "Capsule"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 300mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 500mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 750mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 200mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 400mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 600mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null}
+      ]
+    },
+    {
+      "name": "3HRZE + 6HRE",
+      "drugOrders": [
+        {"drug": {"name": "Isoniazid 100mg", "form": "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Isoniazid 300mg", "form": "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Rifampicin 150mg", "form":  "Capsule"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Rifampicin 450mg", "form":  "Capsule"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 300mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 500mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 750mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 200mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 400mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 600mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null}
+      ]
+    },
+    {
+      "name": "12RZFqE",
+      "drugOrders": [
+        {"drug": {"name": "Rifampicin 150mg", "form":  "Capsule"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Rifampicin 450mg", "form":  "Capsule"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 300mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 500mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Pyrazinamide 750mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 200mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 400mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Ethambutal 600mg", "form":  "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null}
+      ]
+    },
+    {
+      "name": "9H",
+      "drugOrders": [
+        {"drug": {"name": "Isoniazid 100mg", "form": "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null},
+        {"drug": {"name": "Isoniazid 300mg", "form": "Tablet"}, "dosingInstructions": {"dose":  null, "doseUnits":  "mg", "route":  "Oral", "frequency":  "Once a day", "quantity":  null, "quantityUnits":  "Unit(s)"}, "duration": 30, "durationUnits":  "Day(s)", "additionalInstructions":  null}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "formJson": {
+    "id": 15,
+    "uuid": "8c3c97fb-66fe-42e8-8ce0-1cc58df75555",
+    "name": "Under Treatment and Fitness Certificate",
+    "version": "1",
+    "published": true,
+    "resources": [
+      {
+        "value": "{\"name\":\"Under Treatment and Fitness Certificate\",\"id\":15,\"uuid\":\"8c3c97fb-66fe-42e8-8ce0-1cc58df75555\",\"defaultLocale\":\"en\",\"controls\":[{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"TREATMENT_PLAN_1\",\"id\":\"1\",\"units\":\"\",\"type\":\"label\",\"value\":\"Treatment plan\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":0}},\"id\":\"1\",\"concept\":{\"name\":\"Treatment plan\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000038\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"REST_DURATION_2\",\"id\":\"2\",\"units\":\"\",\"type\":\"label\",\"value\":\"Rest duration\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":1}},\"id\":\"2\",\"concept\":{\"name\":\"Rest duration\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000039\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"translationKey\":\"LABEL_3\",\"type\":\"label\",\"value\":\"Note : Please navigate to print section in Patient Dashboard to print the certificates.\",\"properties\":{\"location\":{\"column\":0,\"row\":2}},\"id\":\"3\"}],\"events\":{\"onFormSave\":\"\",\"onFormInit\":\"\"},\"translationsUrl\":\"/openmrs/ws/rest/v1/bahmniie/form/translations\",\"referenceVersion\":\"2\",\"referenceFormUuid\":\"0b6a6f8c-83c3-4340-8c18-fa4e539f0d8d\"}",
+        "dataType": "org.bahmni.customdatatype.datatype.FileSystemStorageDatatype",
+        "uuid": "903049a4-77ca-4d25-98dc-1fe0511533cd"
+      }
+    ]
+  },
+  "translations": [
+    {
+      "locale": "en",
+      "labels": {
+        "LABEL_3": "Note : Please navigate to print section in Patient Dashboard to print the certificates."
+      },
+      "concepts": {
+        "REST_DURATION_2": "Rest duration",
+        "TREATMENT_PLAN_1": "Treatment plan"
+      },
+      "formName": "Under Treatment and Fitness Certificate",
+      "formUuid": null,
+      "version": "1",
+      "referenceVersion": null,
+      "referenceFormUuid": null
+    }
+  ]
+}

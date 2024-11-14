@@ -1,0 +1,161 @@
+{
+  "config": {
+    "contactDetails": ["phoneNumber"],
+    "enable24HourTimers": true,
+    "drugChartScheduleFrequencies": [
+      {
+        "name": "Twice a day",
+        "frequencyPerDay": 2,
+        "scheduleTiming": [
+          "6:00",
+          "18:00"
+        ]
+      },
+      {
+        "name": "Thrice a day",
+        "frequencyPerDay": 3,
+        "scheduleTiming": [
+          "6:00",
+          "14:00",
+          "22:00"
+        ]
+      },
+      {
+        "name": "Four times a day",
+        "frequencyPerDay": 4,
+        "scheduleTiming": [
+          "6:00",
+          "12:00",
+          "18:00",
+          "23:45"
+        ]
+      }
+    ],
+    "drugChartStartTimeFrequencies": [
+      "Immediately",
+      "Once a day",
+      "Every Hour",
+      "Every 2 hours",
+      "Every 3 hours",
+      "Every 4 hours",
+      "Every 6 hours",
+      "Every 8 hours",
+      "Every 12 hours",
+      "On alternate days",
+      "Once a week",
+      "Twice a week",
+      "Thrice a week",
+      "Every 2 weeks",
+      "Every 3 weeks",
+      "Once a month",
+      "Five times a day",
+      "Four days a week",
+      "Five days a week",
+      "Six days a week"
+    ]
+  },
+  "sections": [
+    {
+      "title": "Vitals and Nutritional Values",
+      "componentKey": "VT",
+      "displayOrder": 1,
+      "refreshKey": 1
+    },
+    {
+      "title": "Allergies",
+      "componentKey": "AL",
+      "displayOrder": 2,
+      "refreshKey": 2
+    },
+    {
+      "title": "Diagnosis",
+      "componentKey": "DG",
+      "displayOrder": 3,
+      "refreshKey": 3
+    },
+    {
+      "title": "Treatments",
+      "componentKey": "TR",
+      "displayOrder": 4,
+      "refreshKey": 4
+    },
+    {
+      "title": "Nursing Tasks",
+      "componentKey": "NT",
+      "displayOrder": 5,
+      "refreshKey": 5
+    },
+    {
+      "title": "Drug Chart",
+      "componentKey": "DC",
+      "displayOrder": 6,
+      "refreshKey": 6
+    }
+  ],
+  "nonMedicationTaskTypes": ["Measurement procedure", "Medication administration assessment", "Multidisciplinary assessment"],
+  "nursingTasks": {
+    "timeInMinutesFromNowToShowTaskAsRelevant": 30,
+    "timeInMinutesFromNowToShowPastTaskAsLate": 60,
+    "timeInMinutesFromStartTimeToShowAdministeredTaskAsLate": 60
+  },
+  "drugChart": {
+    "timeInMinutesFromNowToShowPastTaskAsLate": 60,
+    "timeInMinutesFromStartTimeToShowAdministeredTaskAsLate": 60
+  },
+  "drugChartSlider": {
+    "timeInMinutesToDisableSlotPostScheduledTime": 60
+  },
+  "enable24HourTime": false,
+  "medicationTags": {
+    "asNeeded": "Rx-PRN",
+    "Immediately": "Rx-STAT",
+    "default": "Rx",
+    "emergency": "EMERG"
+  },
+  "shiftDetails": {
+    "1": { "shiftStartTime": "08:00", "shiftEndTime": "19:00" },
+    "2": { "shiftStartTime": "19:00", "shiftEndTime": "08:00" }
+  },
+  "intakeOutputConfig": {
+    "periodDetails": {
+      "startTime": "08:00",
+      "durationInHours": "24"
+    },
+    "normalHighValue": 10000,
+    "normalLowValue": 0,
+    "timeConceptNames": ["Intake Date & Time", "Output Date & Time"],
+    "intakeRouteConcept": "Intake Route",
+    "intakeQuantityConcept": "Intake Quantity",
+    "outputRouteConcept": "Output Route",
+    "outputQuantityConcept": "Output Quantity",
+    "dashboardConfig": {
+      "numberOfVisits": 10,
+      "conceptNames": ["Intake Section", "Output Section"]
+    }
+  },
+  "vitalsConfig": {
+    "latestVitalsConceptValues": {
+      "spO2": "Arterial Blood Oxygen Saturation (Pulse Oximeter)",
+      "weight": "Weight (kg)",
+      "bmi": "Body mass index",
+      "respiratoryRate": "Respiratory Rate",
+      "systolicPressure": "Systolic blood pressure",
+      "diastolicPressure": "Diastolic blood pressure",
+      "temperature": "Temperature",
+      "pulse": "Pulse",
+      "height": "Height (cm)"
+    },
+    "vitalsHistoryConceptValues": {
+      "spO2": "Arterial Blood Oxygen Saturation (Pulse Oximeter)",
+      "weight": "Weight (kg)",
+      "bmi": "Body mass index",
+      "respiratoryRate": "Respiratory Rate",
+      "systolicPressure": "Systolic blood pressure",
+      "diastolicPressure": "Diastolic blood pressure",
+      "temperature": "Temperature",
+      "pulse": "Pulse",
+      "height": "Height (cm)",
+      "muac": "Mid-upper arm circumference"
+    }
+  }
+}

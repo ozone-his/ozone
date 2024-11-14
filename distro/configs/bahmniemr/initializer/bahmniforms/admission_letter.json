@@ -1,0 +1,34 @@
+{
+  "formJson": {
+    "id": 35,
+    "uuid": "00409d39-6a9f-4981-a92a-cafdb6cbce6d",
+    "name": "Admission Letter",
+    "version": "1",
+    "published": true,
+    "resources": [
+      {
+        "value": "{\"name\":\"Admission Letter\",\"id\":35,\"uuid\":\"00409d39-6a9f-4981-a92a-cafdb6cbce6d\",\"defaultLocale\":\"en\",\"controls\":[{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"REFERRING_TO_HOSPITAL_1\",\"id\":\"1\",\"units\":\"\",\"type\":\"label\",\"value\":\"Referring to Hospital\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":0}},\"id\":\"1\",\"concept\":{\"name\":\"Referring to Hospital\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000041\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"COMMENTS_5\",\"id\":\"5\",\"units\":\"\",\"type\":\"label\",\"value\":\"Comments\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":1}},\"id\":\"5\",\"concept\":{\"name\":\"Comments\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000040\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"REFERRED_TO_DOCTOR_9\",\"id\":\"9\",\"units\":\"\",\"type\":\"label\",\"value\":\"Referred to Doctor\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":2}},\"id\":\"9\",\"concept\":{\"name\":\"Referred to Doctor\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000045\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"translationKey\":\"LABEL_4\",\"type\":\"label\",\"value\":\"Note : Please navigate to print section in Patient Dashboard to print the certificates.\",\"properties\":{\"location\":{\"column\":0,\"row\":3}},\"id\":\"4\"}],\"events\":{\"onFormSave\":\"\",\"onFormInit\":\"\"},\"translationsUrl\":\"/openmrs/ws/rest/v1/bahmniie/form/translations\",\"referenceVersion\":\"6\",\"referenceFormUuid\":\"9d4b33c0-5169-41b7-a9c3-bf985d15f82d\"}",
+        "dataType": "org.bahmni.customdatatype.datatype.FileSystemStorageDatatype",
+        "uuid": "e23a5849-cb68-44e7-b243-c241cbbc89eb"
+      }
+    ]
+  },
+  "translations": [
+    {
+      "locale": "en",
+      "labels": {
+        "LABEL_4": "Note : Please navigate to print section in Patient Dashboard to print the certificates."
+      },
+      "concepts": {
+        "REFERRING_TO_HOSPITAL_1": "Referring to Hospital",
+        "COMMENTS_5": "Comments",
+        "REFERRED_TO_DOCTOR_9": "Referred to Doctor"
+      },
+      "formName": "Admission Letter",
+      "formUuid": null,
+      "version": "1",
+      "referenceVersion": null,
+      "referenceFormUuid": null
+    }
+  ]
+}

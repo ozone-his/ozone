@@ -1,0 +1,6 @@
+Uuid,Void/Retire,Entity name,Name,Description,Min occurs,Max occurs,Datatype classname,Datatype config,Preferred handler classname,Handler config,_order:1000
+,,program,ID_Number,ID Number,0,,org.openmrs.customdatatype.datatype.RegexValidatedTextDatatype,[0-9]*,,,,
+,,program,Treatment Date,Treatment Date,0,,org.openmrs.customdatatype.datatype.DateDatatype,,,,,
+,,program,Co-morbidites,Co-morbidites,0,,org.openmrs.customdatatype.datatype.BooleanDatatype,,,,,
+,,program,Doctor-In-Charge,Doctor In Charge,0,,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,,
+,,program,Patient Stage,Patient Stage,0,,org.openmrs.customdatatype.datatype.ConceptDatatype,ebdf9113-6d27-42a4-8251-642a741a2106,,,,

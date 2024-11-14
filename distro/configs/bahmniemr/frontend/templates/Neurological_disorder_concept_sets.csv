@@ -1,0 +1,4 @@
+uuid,name,shortname,description,class,reference-term-source,reference-term-code,reference-term-relationship,child.1,child.2,child.3,child.4,child.5,child.6,child.7,child.8,child.9,child.10,child.11,child.12,child.13,child.14,child.15,child.16,child.17,child.18,child.19,child.20,child.21,child.22,child.23,child.24,child.25,child.26
+,Neurological Disorder Intake Template,Neurological Disorder – Intake,,Misc,,,,"Neurological Disorder, Symptoms",,,,,,,,,,,,,,,,,,,,,,,,,
+,Neurological Disorder Progress Template,Neurological Disorder – Progress,,Misc,,,,"Neurological Disorder, Addiction","Neurological Disorder, Other Addictions","Neurological Disorder, Last Visit Date","Neurological Disorder, Treatment Details","Neurological Disorder, On Treatment",,,,,,,,,,,,,,,,,,,,,
+,Neurological Disorder Templates,Neurological Disorder,,Misc,,,,Neurological Disorder Intake Template,Neurological Disorder Progress Template,,,,,,,,,,,,,,,,,,,,,,,,

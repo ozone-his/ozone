@@ -1,0 +1,4 @@
+Uuid,Void/Retire,Name,Description,Format,Foreign uuid,Searchable,Edit privilege,_order:1000
+,TRUE,givenNameLocal,,,,,,
+,,phoneNumber,Phone Number,java.lang.String,,yes,,
+,,alternatePhoneNumber,Alternate Phone Number,java.lang.String,,yes,,

@@ -1,0 +1,128 @@
+{
+        "id": "bahmni.registration",
+        "instanceOf":"bahmni.template.registration",
+        "description": "Bahmni Patient Registration App",
+        "extensionPoints": [
+            {
+                "id": "org.bahmni.registration.patient.search.result.action",
+                "description": "Bahmni Patient Search Result Action"
+            },
+            {
+                "id": "org.bahmni.registration.patient.next",
+                "description": "After Bahmni Patient Registration, forward url configuration"
+            },
+            {
+                "id": "org.bahmni.registration.navigation",
+                "description": "Navigation within regsitration first and second page"
+            },
+            {
+                "id": "org.bahmni.registration.conceptSetGroup.observations",
+                "description": "Registration Second Page Forms"
+            }
+        ],
+        "contextModel": [
+            "patientUuid",
+            "activeVisitUuid"
+        ],
+        "config" : {
+            "patientInformation": {
+                "additionalPatientInformation": {
+                    "title": "Additional Patient Information",
+                    "attributes": [
+                        "distanceFromCenter",
+                        "isUrban",
+                        "cluster",
+                        "RationCard",
+                        "familyIncome",
+                        "debt",
+                        "cluster",
+                        "email"
+                    ]
+                },
+                "hidden": {
+                    "attributes": [
+                        "primaryContact"
+                    ]
+                },
+                "defaults":  {
+                    "class": "General",
+                    "landHolding": 2
+                }
+            },
+            "hideFormName": true,
+            "addressHierarchy": {
+                "showAddressFieldsTopDown": false,
+                "strictAutocompleteFromLevel": "stateProvince"
+            },
+            "relationshipTypeMap": {
+                "Doctor":"provider",
+                "Parent":"patient"
+            },
+
+            "autoCompleteFields":["familyName", "caste"],
+            "defaultIdentifierPrefix": "GAN",
+            "defaultVisitType": "OPD",
+            "searchByIdForwardUrl": "/patient/{{patientUuid}}",
+            "showMiddleName": true,
+            "showLastName": true,
+            "isLastNameMandatory": true,
+            "patientNameDisplayOrder": ["firstName", "middleName", "lastName"],
+            "showSaveConfirmDialog": false,
+            "showBirthTime": true,
+            "showCasteSameAsLastNameCheckbox": false,
+            "printOptions": [
+                {
+                    "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
+                    "shortcutKey": "l"
+                },
+                {
+                    "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print.html",
+                    "shortcutKey": "p"
+                },
+                {
+                    "translationKey": "REGISTRATION_PRINT_SUPPLEMENTAL_PAPER",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/supplementalPaperLayout/print.html",
+                    "shortcutKey": "r"
+                },
+                {
+                    "translationKey": "REGISTRATION_PRINT_WITH_BARCODE",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/printWithBarcode.html",
+                    "shortcutKey": "c"
+                }
+            ],
+            "conceptSetUI": {
+                "REGISTRATION FEES": {
+                    "required": true,
+                    "label": "Fee"
+                },
+                "FHS": {
+                    "buttonSelect": true
+                },
+                "defaults":{
+                    "FHS": "Present"
+                }
+            },
+            "fieldValidation" : {
+                "email" : {"pattern" : "^(?=.{1,40}$)(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,4})$", "errorMessage" : "Should be a valid email address"},
+                "familyName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "The last name should contain only alphabets without space."},
+                "givenName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "The first name should contain only alphabets without space."},
+                "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "The Middle name should contain only alphabets without space."},
+                "address1":{"pattern":"^[a-zA-Z0-9\\s'\\-\\/]{1,}", "errorMessage":"Only Alphanumerics and following special characters are allowed. Special characters - [ '-/]"},
+                "address2":{"pattern":"^[a-zA-Z0-9\\s,'\\-.\\/]{1,}", "errorMessage":"Only Alphanumerics and following special characters are allowed. Special characters - [ ,'-./]"},
+                "cityVillage":{"pattern":"^[a-zA-Z0-9\\s,'\\-.\\/]{2,}", "errorMessage":"Only Alphanumerics and following special characters are allowed. Special characters - [ ,'-./]"}
+            },
+            "patientSearch": {
+                "customAttributes": {
+                    "label": "Phone Number",
+                    "placeholder": "Phone Number",
+                    "fields": ["phoneNumber","alternatePhoneNumber"]
+                }
+            },
+            "addressHierarchy": {
+                "showAddressFieldsTopDown": false,
+                "strictAutocompleteFromLevel": "postalCode"
+            }
+        }
+}
