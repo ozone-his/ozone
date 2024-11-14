@@ -1,0 +1,13 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Fully specified name:fr,Short name:en,Short name:fr,Description:en,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:1200
+b4f16508-e28c-4109-91fb-b8856753f8e5,,,Bacteriology Date of Xpert test,,Date of Xpert test done,,,,Misc,Date,,,,,,,,,,,
+682d611a-ff9c-49b3-9fd9-436b32f0940a,,,Bacteriology Xpert test ID number,,Xpert test ID number,,,,Misc,Text,,,,,,,,,,,
+962d046b-3f4d-4254-87aa-7d962b862549,,,Bacteriology Xpert MTB result,,Xpert MTB result,,,,Misc,Coded,,9bb0795c-4ff0-0305-1990-000000000015;9bb0795c-4ff0-0305-1990-000000000016,,,,,,,,,
+0c767bbe-fbfc-4bb5-a9b7-34aa9f07a237,,,Bacteriology Xpert test results,,Xpert test results,,,,Misc,N/A,,,b4f16508-e28c-4109-91fb-b8856753f8e5;682d611a-ff9c-49b3-9fd9-436b32f0940a;962d046b-3f4d-4254-87aa-7d962b862549,,,,,,,,
+3233fae3-0996-4c34-9f48-6d02d77beb7f,,,Scanty 1-3,,,,,,Misc,N/A,,,,,,,,,,,
+01634d6e-64cb-43ae-9389-39d105a282e0,,,Scanty 4-9,,,,,,Misc,N/A,,,,,,,,,,,
+c0f5c294-e37d-49df-82d5-8850976fd0cd,,,Not read,,,,,,Misc,N/A,,,,,,,,,,,
+f055e799-5ac2-4121-a793-aa636e1e008c,,,Bacteriology Smear result,,,,,,Misc,Coded,,3233fae3-0996-4c34-9f48-6d02d77beb7f;01634d6e-64cb-43ae-9389-39d105a282e0;c0f5c294-e37d-49df-82d5-8850976fd0cd;664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,,,,,,,,
+81589741-9648-440f-aa14-21162a3dd561,,,Bacteriology Smear test lab ID number,,Smear test lab ID number,,,,Misc,Numeric,,,,Yes,,,,,,,
+acbda3c6-5bd1-4602-88e3-63db896cdddb,,,Bacteriology Diagnosed with other Symptom,,Diagnosed with other Symptom,,,,Misc,Boolean,,,,,,,,,,,
+aa73a6a3-0375-46c9-903d-037240fbb23c,,,Bacteriology Date of AFB smear,,Date of AFB smear,,,,Misc,Datetime,,,,,,,,,,,
+d18150f7-c730-4d67-80f9-c8d0c42d1f1a,,,Bacteriology Smear microscopy test results,,,,,,Misc,N/A,,,f055e799-5ac2-4121-a793-aa636e1e008c;81589741-9648-440f-aa14-21162a3dd561;acbda3c6-5bd1-4602-88e3-63db896cdddb;aa73a6a3-0375-46c9-903d-037240fbb23c,,,,,,,,

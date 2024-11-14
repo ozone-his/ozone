@@ -1,0 +1,7 @@
+uuid,name,description,class,datatype,shortname,reference-term-source,reference-term-code,reference-term-relationship,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6,answer.7,answer.8,answer.9,answer.10,answer.11,answer.12,answer.13,answer.14,answer.15,answer.16
+,"Neurological Disorder, Symptoms",,Misc,Text,Symptoms,,,,,,,,,,,,,,,,,,,
+,"Neurological Disorder, Addiction",,Misc,Coded,Addiction,,,,Alcohol Abuse,Gudakhu,Tobacco,Ganja,Smoking,Other,,,,,,,,,,
+,"Neurological Disorder, Other Addictions",,Misc,Text,Other Addictions,,,,,,,,,,,,,,,,,,,
+,"Neurological Disorder, Last Visit Date",,Misc,Date,Last Visit Date,,,,,,,,,,,,,,,,,,,
+,"Neurological Disorder, On Treatment",,Misc,Boolean,On Treatment,,,,,,,,,,,,,,,,,,,
+,"Neurological Disorder, Treatment Details",,Misc,Text,Treatment Details,,,,,,,,,,,,,,,,,,,

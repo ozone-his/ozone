@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Lab-Role-20220421" author="Priyanka, Aman">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM role where role = 'Lab'</sqlCheck>
+            <sqlCheck expectedResult="1">SELECT COUNT(*) FROM privilege where privilege = 'app:lab-lite'</sqlCheck>
+        </preConditions>
+        <comment>Lab role with lab-lite privilege</comment>
+        <sql>insert ignore into role values('Lab', 'Will give ability to see lab-lite module', UUID()); 
+        insert ignore into role_privilege values('Lab', 'app:lab-lite');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
+
+

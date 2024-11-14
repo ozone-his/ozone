@@ -1,0 +1,4 @@
+Concept,Member,Member Type,Sort Weight,_version:1,_order:1000
+All Orderables,Lab Samples,CONCEPT-SET,1,,
+All Orderables,Radiology Orders,CONCEPT-SET,2,,
+All Orderables,Procedure Orders,CONCEPT-SET,3,,

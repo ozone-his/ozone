@@ -1,0 +1,23 @@
+{
+  "MODULE_LABEL_ALL_KEY": "Todos",
+  "MODULE_LABEL_TO_DISCHARGE_KEY": "Para Altae",
+  "MODULE_LABEL_ADMITTED_KEY": "Admitido",
+  "MODULE_LABEL_TO_ADMIT_KEY": "Para Admitir",
+
+  "CONSULTATION_PAGE_KEY" :"Consulta",
+  "PROGRAM_MANAGEMENT_PAGE_KEY":"Pág. Gerenciamento Programa",
+  "DISCHARGE_SUMMARY_PAGE_KEY":"Pág. Resumo Alta",
+  "PATIENT_ADT_PAGE_KEY":"Pág. Paciente Internado",
+  "PATIENT_DASHBOARD_KEY":"Painel de Pacient",
+  "PATIENT_VISIT_PAGE_KEY":"Pág. Visita de Paciente",
+  "HOME_DASHBOARD_KEY":"Início Painel",
+
+  "DASHBOARD_TITLE_VITALS_KEY":"Vitais",
+  "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY": "Informações do Paciente",
+  "DISCHARGE_SUMMARY_ADMISSION_DETAILS_KEY": "Detalhes de Admissão",
+  "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY": "Controle Link de Navegação",
+  "DASHBOARD_TITLE_DIAGNOSIS_KEY": "Diagnóstico",
+  "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY": "Detalhes Admissão",
+  "DASHBOARD_TITLE_DISPOSITION_KEY": "Terapêutica",
+  "DASHBOARD_TAB_GENERAL_KEY": "Geral"
+}

@@ -1,0 +1,7 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Data class,Data type,Answers,Members,_version:1,_order:3000
+deb3593a-2aab-413a-9cd4-b6368f615b44,,,Cured,Cured,,Misc,N/A,,,,
+5b86693e-9df0-49af-a58f-c50fc0247ed0,,,Lost to Follow Up,Lost to Follow Up,,Misc,N/A,,,,
+438652e4-aa63-44d3-96b6-4a814aa4b76f,,,TB Outcome,TB Outcome,,Misc,N/A,,deb3593a-2aab-413a-9cd4-b6368f615b44;160033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;160432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;5b86693e-9df0-49af-a58f-c50fc0247ed0,,
+ec4988a4-3ecb-4bdc-a3f8-8968d3fad281,,,Sputum Positive,Sputum Positive,,Misc,N/A,,,,
+aec5b00f-f46d-4165-8d0d-968fba69d1b5,,,Continued Treatment Phase,Continued Treatment Phase,,Misc,N/A,,,,
+6839d38b-8ada-4d3e-8ecd-70fec1f4d3ff,,,TB Program workflow,workflow for TB Program,,Misc,coded,159795AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;ec4988a4-3ecb-4bdc-a3f8-8968d3fad281;aec5b00f-f46d-4165-8d0d-968fba69d1b5;159836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,,

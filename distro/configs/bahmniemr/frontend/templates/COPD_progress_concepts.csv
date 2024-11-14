@@ -1,0 +1,79 @@
+uuid,name,class,datatype,shortname,description,reference-term-code,reference-term-relationship,reference-term-source,synonym.1,answer.1,,,,
+,"COPD, Followup, Diagnosis date",Misc,Date,Diagnosis date,,,,,,,,,,
+,"COPD, Followup, Exacerbation within 12 months",Misc,Boolean,Exacerbation within 12 months,,,,,,,,,,
+,"COPD, Followup, last exacerbation date",Misc,Date,Last exacerbation date,,,,,,,,,,
+,"COPD, Followup, Exacerbation per year",Misc,Coded,Exacerbation per year,,,,,,Zero,One,Two,Greater than or 3,
+,"COPD, Followup, Top differential diagnosis",Misc,Coded,Considered top differential diagnosis,,,,,,Evidence of Pneumonia,Evidence of CHF,Evidence of Tuberculosis,,
+,"COPD, Followup, Assess severity",Diagnosis,Coded,Modified research council scale / MMRC Dyspnea scale,"<b>Grade Description of Breathlessness</b> <br>
+0 - I only get breathless with strenuous exercise. <br>
+1 - short of breath hurrying on flat ground/walking up a slight hill. <br>
+2 - flat ground- I walk slower than people of the same age because of breathlessness, or have to stop for breath when walking at my own pace. <br>
+3 - stop for breath after walking 100m or after a few min flat ground. <br>
+4 - I am too breathless to leave the house /breathless when dressing.",,,,,Zero,One,Two,Three,Four
+,"COPD, Followup, Smoking History",Question,Boolean,Smoking History,,,,,,,,,,
+,"COPD, Followup, Packs per day",Question,Numeric,Packs per day,,,,,,,,,,
+,"COPD, Followup, Number of years",Question,Numeric,Number of years,,,,,,,,,,
+,"COPD, Followup, Current Medications",Misc,Text,Current Medication,,,,,,,,,,
+,"COPD, Followup, Non-compliance",Misc,Boolean,Non-Compliance,,,,,,,,,,
+,"COPD, Followup, Treatment",Misc,Text,Treatment,"Prednisone 60mg oral x 5 days for all exacerbations<br>
+(Methylprednisolone iv for inpatients) <br>
+- Mild exacerbation (1 of 3 cardinal signs) <br>
+- No antibiotics <br>
+- Increase in frequency of b-agonist <br>
+- Add impratropium if they are not already on it <br>
+- Moderate / Severe (exac 2 of 3 cardinal signs) <br>
+a/ Un complicated patient <br>
+age < 65 or < 3 exac / year <br>
+2nd line: Azithromycin 500, the 250 daily x 4 more days <br>
+b/ Complicated <br>
+age > 65 or > 3 exac / year <br>
+Outpatient: Ciprofloxacin 500 bid 5 days <br>
+Inpatient: Ceftriaxone + Azithro 5 days <br>
+If inadequate response after 3 days consider another diagnosis causing symptoms eg. Pneumonia, TB etc <br>",,,,,,,,,
+,"COPD, Followup, First onset Age",Misc,Numeric,First onset Age,,,,,,,,,,
+,"COPD, Followup, Chief complaint",Misc,Text,Chief Complaint,,,,,,,,,,
+,"COPD, Followup, New symptom / History of present illness",Misc,Text,New symptom / History of present illness,,,,,,,,,,
+,"COPD, Followup, Steroid treatment",Misc,Text,Recent PO steroid treatment,,,,,,,,,,
+,"COPD, Followup, Treatment non-compliance",Misc,Boolean,Treatment non-compliance,,,,,,,,,,
+,"COPD, Followup, Non-compliance reason",Misc,Text,Non-compliance reason,,,,,,,,,,
+,"COPD, Followup, Symptoms of exacerbation today",Misc,Text,Signs / Symptoms of exacerbation today,"One or more of the following: <br>
+- Cough increases in frequency and severity <br>
+- Sputum production increases in volume and / or changes character <br>
+- Dyspnea increased <br>",,,,,,,,,
+,"COPD, Followup, BP Systolic Data, Systolic",Misc,Numeric,Systolic,,,,,,,,,,
+,"COPD, Followup, BP Systolic Data, Systolic Abnormal",Abnormal,Boolean,Systolic Abnormal,,,,,,,,,,
+,"COPD, Followup, BP Diastolic Data, Diastolic",Misc,Numeric,Diastolic,,,,,,,,,,
+,"COPD, Followup, BP Diastolic Data, Diastolic Abnormal",Abnormal,Boolean,Diastolic Abnormal,,,,,,,,,,
+,"COPD, Followup, Heart rate data, Pulse",Misc,Numeric,Pulse,,,,,,,,,,
+,"COPD, Followup, Heart rate data, Pulse Abnormal",Abnormal,Boolean,Pulse Abnormal,,,,,,,,,,
+,"COPD, Followup, RR data, RR",Misc,Numeric,RR,,,,,,,,,,
+,"COPD, Followup, RR data, RR Abnormal",Abnormal,Boolean,RR Abnormal,,,,,,,,,,
+,"COPD, Followup, SAT data, SAT",Misc,Numeric,SAT,,,,,,,,,,
+,"COPD, Followup, SAT data, SAT Abnormal",Abnormal,Boolean,SAT Abnormal,,,,,,,,,,
+,"COPD, Followup, Temperature data, Temperature",Misc,Numeric,Temperature,,,,,,,,,,
+,"COPD, Followup, Temperature data, Temperature Abnormal",Abnormal,Boolean,Temperature Abnormal,,,,,,,,,,
+,"COPD, Followup, Physical Examination Details",Misc,Text,Physical Examination Details,"GENERAL ?thin or obese ?visibly dyspneaic<br>
+NEURO  <br>                                                    
+?use of the accessory respiratory musc<br>
+HEENT ?pursed lips<br>
+CARDIO ?murmur ?regular<br>
+LUNGS ?prolonged expiration or wheezes<br>
+ABDOMEN <br>
+EXTREMITIES ?edema (CHF)<br>
+SKIN <br>
+Consider CXR: IF  change in symptoms suggests a   complication of COPD (eg, pneumonia, pneumothorax), hemoptysis, fever > 1 week <br>",,,,,,,,,
+,"COPD, Followup, Followup",Finding,Coded,Follow up,"- stable, no CXR routinely → 4months <br>
+- mild exac, no CXR today –> give po steroid and see in 1 week, return to ER if symptoms worsen<br>
+- moderate exac, get CXR to r/o pneumonia/other process → give po steroid + antibiotic, see in 1 week, return to ER if symptoms worsen<br>
+- severe exac or complicated patient, get CXR → ER / IPD for close monitoring, nebs, and IV abx<br>
+COUNSEL ALL PATIENTS TO STOP SMOKING<br>",,,,,Stable,Mild Exacerbation,Moderate Exacerbation,Severe Exacerbation,
+,"COPD, Followup, Medications",Drug,Coded,Medications,"- salbutamol 100mg inhaled q8-q4h sos <br>
+- ipratropium 20mcg inhaled bid-tid  <br>",,,,,Salbutamol,Ipratropium,,,
+,"COPD, Followup, Referral / IPD admission",Misc,N/A,Consider ER Referral / IPD admission,"- Inadequate response to outpatient management<br>
+- Marked increase in dyspne<br>   
+- Inability to eat or sleep<br>
+- Worsening hypoxemia<br>
+- Changes in mental status<br>
+- Inability to care for oneself<br>
+- Uncertain diagnosis<br>
+- High risk comorbidities including cardiac arrhythmia, heart failure, diabetes mellitus, renal failure, or liver failure<br>",,,,,,,,,

@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="/bahmni_config/openmrs/apps/registration/supplementalPaperLayout/css/print.css"/>
+<div>
+    <style>
+    </style>
+    <div class="row">
+        <div class="left">
+            <span class="label">ओपीडी क्र.:</span>
+            <span></span>
+        </div>
+        <div class="right">
+            <span class="label">दिनांक:</span>
+            <span>{{today | date:'dd/MM/yyyy'}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="left">
+            <span class="label">पंजी. क्र.:</span>
+            <span>{{patient.primaryIdentifier.identifier}}</span>
+        </div>
+        <div class="right">
+            <span class="label">गाँव:</span>
+            <span>{{patient.address.cityVillage}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="left">
+            <span class="label">नाम:</span>
+            <span>{{patient.fullNameLocal() || patient.name}}</span>
+        </div>
+        <div class="right">
+            <span class="label">जिला:</span>
+            <span>{{patient.address.countyDistrict}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="left">
+            <span class="label">पिता/पति का नाम:</span>
+            <span>{{patient.primaryRelative}}</span>
+        </div>  
+        <div class="right">
+            <span class="label">उम्र/लिंग:</span>
+            <span>{{patient.age.years || "0"}}</span>
+            <span ng-show="patient.gender">/ {{patient.gender}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="left">
+            <span class="label">वज़न:</span>
+            <span>{{obs.WEIGHT}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+uuid,name,description,class,datatype,shortname,synonym.1,synonym.2,reference-term-source,reference-term-code,reference-term-relationship,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6
+,Mass location – Right Side,,Misc,N/A,Right Side,,,,,,,,,,,
+,Mass location – Left Side,,Misc,N/A,Left Side,,,,,,,,,,,
+,Mass location – Sigmoid,,Misc,N/A,Sigmoid,,,,,,,,,,,
+,Curative,,Misc,N/A,Curative,,,,,,,,,,,
+,Palliative systemic therapy,,Misc,N/A,Palliative systemic therapy,,,,,,,,,,,
+,Palliation Only,,Misc,N/A,Palliation Only,,,,,,,,,,,
+,"Colon_DST, Overall stage – 0",,Misc,N/A,0,,,,,,,,,,,
+,"Colon_DST, Overall stage – I",,Misc,N/A,I,,,,,,,,,,,
+,"Colon_DST, Overall stage – II",,Misc,N/A,II,,,,,,,,,,,
+,"Colon_DST, Overall stage – III",,Misc,N/A,III,,,,,,,,,,,
+,"Colon_DST, Overall stage – IV",,Misc,N/A,IV,,,,,,,,,,,

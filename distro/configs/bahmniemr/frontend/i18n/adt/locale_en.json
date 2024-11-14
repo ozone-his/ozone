@@ -1,0 +1,23 @@
+{
+  "MODULE_LABEL_ALL_KEY": "All",
+  "MODULE_LABEL_TO_DISCHARGE_KEY": "To Discharge",
+  "MODULE_LABEL_ADMITTED_KEY": "Admitted",
+  "MODULE_LABEL_TO_ADMIT_KEY": "To Admit",
+
+  "CONSULTATION_PAGE_KEY" :"Consultation",
+  "PROGRAM_MANAGEMENT_PAGE_KEY":"Program Management Page",
+  "DISCHARGE_SUMMARY_PAGE_KEY":"Discharge Summary Page",
+  "PATIENT_ADT_PAGE_KEY":"Patient ADT Page",
+  "PATIENT_DASHBOARD_KEY":"Patient Dashboard",
+  "PATIENT_VISIT_PAGE_KEY":"Patient Visit Page",
+  "HOME_DASHBOARD_KEY":"Home Dashboard",
+
+  "DASHBOARD_TITLE_VITALS_KEY":"Vitals",
+  "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY": "Patient Information",
+  "DISCHARGE_SUMMARY_ADMISSION_DETAILS_KEY": "Admission Details",
+  "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY": "Navigation Links Control",
+  "DASHBOARD_TITLE_DIAGNOSIS_KEY": "Diagnoses",
+  "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY": "Admission Details",
+  "DASHBOARD_TITLE_DISPOSITION_KEY": "Disposition",
+  "DASHBOARD_TAB_GENERAL_KEY": "General"
+}

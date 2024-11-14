@@ -1,0 +1,120 @@
+{
+  "commonConfig": {
+  },
+  "tabConfig": {
+    "allMedicationTabConfig": {
+      "orderSet": {
+        "calculateDoseOnlyOnCurrentVisitValues": false
+      },
+      "inputOptionsConfig": {
+        "defaultDurationUnit": "Days",
+        "hideOrderSet" : false,
+        "defaultInstructions": "As directed",
+        "durationUnitsFactors": [
+          {
+            "name": "Days",
+            "factor": 1
+          },
+          {
+            "name": "Weeks",
+            "factor": 7
+          },
+          {
+            "name": "Months",
+            "factor": 30
+          }
+        ],
+        "frequencyDefaultDurationUnitsMap": [
+          {
+            "minFrequency": "1/7",
+            "maxFrequency": 5,
+            "defaultDurationUnit": "Days"
+          },
+          {
+            "minFrequency": "1/30",
+            "maxFrequency": "1/7",
+            "defaultDurationUnit": "Weeks"
+          },
+          {
+            "minFrequency": null,
+            "maxFrequency": "1/30",
+            "defaultDurationUnit": "Months"
+          }
+        ],
+        "drugFormDefaults": {
+          "Ayurvedic": {
+            "doseUnits": "Teaspoon",
+            "route": "Oral"
+          },
+          "Capsule": {
+            "doseUnits": "Capsule",
+            "route": "Oral"
+          },
+          "Cream": {
+            "route": "Topical"
+          },
+          "Drops": {
+            "doseUnits": "Drop",
+            "route": "Topical"
+          },
+          "Food Supplement": {
+            "doseUnits": "Unit",
+            "route": "Oral"
+          },
+          "Gel": {
+            "route": "Topical"
+          },
+          "Granule": {
+            "doseUnits": "Unit",
+            "route": "Oral"
+          },
+          "Inhaler": {
+            "doseUnits": "Puff",
+            "route": "Inhalation"
+          },
+          "Injection": {
+            "doseUnits": "mg",
+            "route": "Intravenous"
+          },
+          "Jelly": {
+            "route": "Topical"
+          },
+          "Liquid": {
+            "doseUnits": "ml",
+            "route": "Oral"
+          },
+          "Lotion": {
+            "route": "Topical"
+          },
+          "Ointment": {
+            "route": "Topical"
+          },
+          "Pessary": {
+            "doseUnits": "Unit",
+            "route": "Per Vaginal"
+          },
+          "Powder": {
+            "doseUnits": "mg",
+            "route": "Topical"
+          },
+          "Solution": {
+            "doseUnits": "ml",
+            "route": "Topical"
+          },
+          "Spray": {
+            "doseUnits": "Puff",
+            "route": "Nasal"
+          },
+          "Syrup": {
+            "doseUnits": "ml",
+            "route": "Oral"
+          },
+          "Tablet": {
+            "doseUnits": "Tablet",
+            "route": "Oral"
+          }
+        }
+      }
+    }
+  }
+}

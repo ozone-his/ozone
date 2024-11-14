@@ -1,0 +1,8 @@
+<config>
+  <globalProperties>
+    <globalProperty>
+      <property>elisatomfeedclient.discontinueCancelledOrders</property>
+      <value>false</value>
+    </globalProperty>
+  </globalProperties>
+</config>
