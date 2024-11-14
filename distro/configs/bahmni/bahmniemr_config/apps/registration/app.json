@@ -1,0 +1,48 @@
+{
+    "id": "bahmni.registration",
+    "instanceOf":"bahmni.template.registration",
+    "description": "Bahmni Patient Registration App",
+    "config" : {
+        "mandatoryPersonAttributes" : [],
+        "patientInformation": {},
+        "defaultIdentifierPrefix": "ABC",
+        "showMiddleName": true,
+        "showLastName": true,
+        "defaultVisitType":"OPD",
+        "isLastNameMandatory": true,
+        "patientNameDisplayOrder": ["firstName", "middleName", "lastName"],
+        "showSaveConfirmDialog": false,
+        "showBirthTime": false,
+        "enableDashboardRedirect": true,
+        "dashboardUrl": "/bahmni/clinical/index.html#/default/patient/{{patientUuid}}/dashboard",
+        "registrationMessage": "REGISTRATION_MESSAGE",
+        "enableWhatsAppButton": true,
+        "printOptions": [
+            {
+                "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",
+                "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print.html",
+                "shortcutKey": "p"
+            }
+        ],
+        "fieldValidation" : {
+            "email" : {"pattern" : "^(?=.{1,40}$)(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,4})$", "errorMessage" : "Should be a valid email address"},
+            "familyName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "The last name should contain only alphabets without space."},
+            "givenName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "The first name should contain only alphabets without space."},
+            "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "The Middle name should contain only alphabets without space."},
+            "address1":{"pattern":"^[a-zA-Z0-9\\s'\\-\\/]{1,}", "errorMessage":"Only Alphanumerics and following special characters are allowed. Special characters - [ '-/]"},
+            "address2":{"pattern":"^[a-zA-Z0-9\\s,'\\-.\\/]{1,}", "errorMessage":"Only Alphanumerics and following special characters are allowed. Special characters - [ ,'-./]"},
+            "cityVillage":{"pattern":"^[a-zA-Z0-9\\s,'\\-.\\/]{2,}", "errorMessage":"Only Alphanumerics and following special characters are allowed. Special characters - [ ,'-./]"}
+        },
+        "patientSearch": { 
+            "customAttributes": {
+                "label": "Phone Number",
+                "placeholder": "Phone Number",
+                "fields": ["phoneNumber","alternatePhoneNumber"]
+            }
+        },
+        "addressHierarchy": {
+            "showAddressFieldsTopDown": false,
+            "strictAutocompleteFromLevel": "postalCode"
+        }
+    }
+}
