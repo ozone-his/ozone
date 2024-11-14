@@ -37,6 +37,10 @@
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
     <true>true</true>
+
+    <!-- OAuth2 Login module -->
+    <oauth2loginVersion>1.5.0-SNAPSHOT</oauth2loginVersion>
+    <oauth2loginArtifactId>oauth2login</oauth2loginArtifactId>
   </properties>
 
   <modules>

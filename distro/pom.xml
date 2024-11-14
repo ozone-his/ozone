@@ -33,6 +33,7 @@
 
     <!-- OpenMRS modules versions -->
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
+    <oauth2loginVersion>1.5.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.0.0-SNAPSHOT</fhirproxyVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
@@ -504,7 +505,7 @@
                 <phase>prepare-package</phase>
                 <configuration>
                 <target>
-                    <move todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs_sso/modules">
+                    <move todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules_sso">
                     <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
                         <include name="oauth2login-*.omod"/>
                     </fileset>
