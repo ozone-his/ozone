@@ -1153,8 +1153,8 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "${SENAITE_CLIENT_SECRET}",
       "redirectUris": [
-        "http://localhost:8069/auth_oauth/signin",
         "http://localhost:8081/senaite/oidc/callback",
+        "${SENAITE_PUBLIC_URL}/senaite/oidc/callback",
         "${SENAITE_PUBLIC_URL}/*"
       ],
       "webOrigins": [],
