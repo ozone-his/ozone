@@ -1255,7 +1255,7 @@
       "id": "${SUPERSET_CLIENT_UUID}",
       "clientId": "superset",
       "surrogateAuthRequired": false,
-      "enabled": true,
+      "enabled": false,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "${SUPERSET_CLIENT_SECRET}",
