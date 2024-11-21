@@ -499,24 +499,6 @@
             </goals>
           </execution>
 
-          <!-- Move oauth2login module to openmrs-sso folder -->
-            <execution>
-                <id>Move oauth2login module to openmrs-sso folder</id>
-                <phase>prepare-package</phase>
-                <configuration>
-                <target>
-                    <move todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules_sso">
-                    <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
-                        <include name="oauth2login-*.omod"/>
-                    </fileset>
-                    </move>
-                </target>
-                </configuration>
-                <goals>
-                <goal>run</goal>
-                </goals>
-            </execution>
-
           <!-- copy over merged/packaged OpenMRS config for validation at the integration-test phase -->
           <execution>
             <id>Copy OpenMRS config for validation</id>

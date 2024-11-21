@@ -877,8 +877,8 @@
     {
       "id": "${ODOO_CLIENT_UUID}",
       "clientId": "odoo",
-      "rootUrl": "http://localhost:8081",
-      "adminUrl": "http://localhost:8081",
+      "rootUrl": "${ODOO_PUBLIC_URL}",
+      "adminUrl": "${ODOO_PUBLIC_URL}",
       "baseUrl": "/realms/ozone/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
@@ -886,13 +886,10 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "${ODOO_CLIENT_SECRET}",
       "redirectUris": [
-        "",
-        "http://localhost:10014/*",
-        "http://localhost:8069/*",
         "${ODOO_PUBLIC_URL}/*"
       ],
       "webOrigins": [
-        "http://localhost:8081"
+        "${ODOO_PUBLIC_URL}"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -1061,20 +1058,18 @@
     {
       "id": "${OPENMRS_CLIENT_UUID}",
       "clientId": "openmrs",
-      "rootUrl": "http://172.17.0.1:8080/openmrs",
-      "adminUrl": "http://172.17.0.1:8080/openmrs",
+      "rootUrl": "${OPENMRS_PUBLIC_URL}/openmrs",
+      "adminUrl": "${OPENMRS_PUBLIC_URL}/openmrs",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "${OPENMRS_CLIENT_SECRET}",
       "redirectUris": [
-        "${OPENMRS_PUBLIC_URL}/openmrs/*",
-        "http://localhost/openmrs/*"
+        "${OPENMRS_PUBLIC_URL}/openmrs/*"
       ],
       "webOrigins": [
-        "http://172.17.0.1:8080",
-        "http://localhost"
+        "${OPENMRS_PUBLIC_URL}"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -1153,7 +1148,6 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "${SENAITE_CLIENT_SECRET}",
       "redirectUris": [
-        "http://localhost:8081/senaite/oidc/callback",
         "${SENAITE_PUBLIC_URL}/senaite/oidc/callback",
         "${SENAITE_PUBLIC_URL}/*"
       ],

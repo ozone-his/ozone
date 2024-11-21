@@ -37,10 +37,6 @@
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
     <true>true</true>
-
-    <!-- OAuth2 Login module -->
-    <oauth2loginVersion>1.5.0-SNAPSHOT</oauth2loginVersion>
-    <oauth2loginArtifactId>oauth2login</oauth2loginArtifactId>
   </properties>
 
   <modules>
@@ -145,28 +141,6 @@
                   <includes>
                     <include>*.sh</include>
                   </includes>
-                  <filtering>true</filtering>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>filter-docker-compose</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/run/docker
-              </outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${project.build.directory}/${project.artifactId}-${project.version}/run/docker</directory>
-                  <includes>
-                    <include>docker-compose-openmrs-sso.yml</include>
-                    </includes>
                   <filtering>true</filtering>
                 </resource>
               </resources>

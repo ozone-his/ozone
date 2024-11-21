@@ -35,10 +35,6 @@
     <ozone.groupId>com.ozonehis</ozone.groupId>
     <ozone.version>1.0.0-SNAPSHOT</ozone.version>
     <ozone-scripts.version>1.0.0-SNAPSHOT</ozone-scripts.version>
-
-    <!-- OAuth2 Login module -->
-    <oauth2loginVersion>1.5.0-SNAPSHOT</oauth2loginVersion>
-    <oauth2loginArtifactId>oauth2login</oauth2loginArtifactId>
   </properties>
 
   <dependencies>
@@ -247,28 +243,6 @@
                   <includes>
                     <include>docker-compose-files.txt</include>
                     <include>start-ozone.sh</include>
-                  </includes>
-                  <filtering>true</filtering>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>filter-docker-compose</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/run/docker
-              </outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${project.build.directory}/${project.artifactId}-${project.version}/run/docker</directory>
-                  <includes>
-                    <include>docker-compose-openmrs-sso.yml</include>
                   </includes>
                   <filtering>true</filtering>
                 </resource>
