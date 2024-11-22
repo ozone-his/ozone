@@ -50,7 +50,12 @@ class AuthOauthProvider(models.Model):
         string="End Session URL",
         help="If set, the user is logged out in the authorization provider upon logout "
         "in the client, should be the value of end_session_endpoint specified by "
-        "the authorization provider",
+        "the authorization provider.",
+    )
+    skip_logout_confirmation = fields.Boolean(
+        default=False,
+        string="Skip Logout Confirmation",
+        help="If set to true, the logout confirmation is skipped in the authorization provider.",
     )
 
     @tools.ormcache("self.jwks_uri", "kid")

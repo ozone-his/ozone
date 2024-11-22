@@ -1261,7 +1261,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "${SUPERSET_CLIENT_SECRET}",
       "redirectUris": [
-        "http://localhost:8088/*"
+        "${SUPERSET_PUBLIC_URL}/*"
       ],
       "webOrigins": [],
       "notBefore": 0,

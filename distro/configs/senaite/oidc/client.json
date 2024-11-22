@@ -9,6 +9,7 @@
         "user_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/userinfo",
         "jwks_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/certs",
         "end_session_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/logout",
+        "skip_logout_confirmation": "true",
         "_auto_provisioning_enabled": "true",
         "properties_mapping": {
             "userid": "preferred_username",
