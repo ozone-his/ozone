@@ -1147,9 +1147,9 @@
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "baseUrl": "${SENAITE_PUBLIC_URL}",
-      "rootUrl": "${SENAITE_PUBLIC_URL}",
-      "adminUrl": "${SENAITE_PUBLIC_URL}",
+      "baseUrl": "${SENAITE_PUBLIC_URL}/senaite",
+      "rootUrl": "${SENAITE_PUBLIC_URL}/senaite",
+      "adminUrl": "${SENAITE_PUBLIC_URL}/senaite",
       "secret": "${SENAITE_CLIENT_SECRET}",
       "redirectUris": [
         "${SENAITE_PUBLIC_URL}/senaite/oidc/callback",
