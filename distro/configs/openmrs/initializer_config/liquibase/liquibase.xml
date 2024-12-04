@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create_service-account-eip_20221004" author="ruhanga" dbms="mysql,mariadb">
+        <preConditions onFail="MARK_RAN" onError="WARN">
+            <and>
+                <sqlCheck expectedResult="0">
+                    select count(1) from person where uuid = "20aef621-6060-4d95-b259-4da3bae5288a"
+                </sqlCheck>
+                <sqlCheck expectedResult="0">
+                    select count(1) from users where uuid = "7fcd946f-472e-40c8-baa1-bdfc792bfb58"
+                </sqlCheck>
+                <sqlCheck expectedResult="0">
+                    select count(1) from person_name where uuid = '45a57c97-dd4a-45b8-b46b-19ef79d97d6b'
+                </sqlCheck>
+                <sqlCheck expectedResult="0">
+                    select count(1) from provider where uuid = '9975e5eb-c31b-4ec1-b67d-69a9987a4033'
+                </sqlCheck>
+            </and>
+        </preConditions>
+        <sql><![CDATA[
+            INSERT INTO person (gender, dead, creator, date_created, voided, uuid) VALUES ("U", 0, 1, NOW(), 0, '20aef621-6060-4d95-b259-4da3bae5288a');
+            select @EIP_PERSON_ID := null;
+            select @EIP_PERSON_ID := person_id from person where uuid = "20aef621-6060-4d95-b259-4da3bae5288a";
+
+            INSERT INTO person_name (preferred, person_id, given_name, family_name, creator, date_created, voided, uuid) VALUES (1, @EIP_PERSON_ID,'eip', 'app', 1, NOW(), 0, '45a57c97-dd4a-45b8-b46b-19ef79d97d6b');
+
+            INSERT INTO users (person_id, system_id, username, creator, date_created, retired, uuid, `password`, salt) VALUES (@EIP_PERSON_ID, 'service-account-eip', 'service-account-eip', 1, NOW(), 0, '7fcd946f-472e-40c8-baa1-bdfc792bfb58', MD5(RAND()), MD5(RAND()));
+            select @EIP_USER_ID := null;
+            select @EIP_USER_ID := user_id from users where uuid = "7fcd946f-472e-40c8-baa1-bdfc792bfb58";
+
+            INSERT INTO provider(person_id, identifier, creator, date_created, uuid) values(@EIP_PERSON_ID, 'service-account-eip', 1, NOW(), '9975e5eb-c31b-4ec1-b67d-69a9987a4033');
+
+            INSERT INTO user_role VALUES (@EIP_USER_ID, "System developer");
+            INSERT INTO user_role VALUES (@EIP_USER_ID, "Provider");
+        ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

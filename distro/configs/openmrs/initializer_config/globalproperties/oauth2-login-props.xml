@@ -1,0 +1,8 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>oauth2login.redirectUriAfterLogin</property>
+            <value>/spa/home</value>
+        </globalProperty>
+    </globalProperties>
+</config>

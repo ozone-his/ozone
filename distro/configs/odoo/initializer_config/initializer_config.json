@@ -1,5 +1,10 @@
 {
-    "models" : [
+    "models": [
+        {
+            "model_name": "auth.oauth.provider",
+            "folder": "auth_providers",
+            "field_rules": {}
+        },
         {
             "model_name": "account.tax",
             "folder": "taxes",

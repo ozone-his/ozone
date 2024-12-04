@@ -1,10 +1,7 @@
 import java.nio.file.Paths
-import java.io.File
-import java.text.SimpleDateFormat
-import groovy.text.* 
-import groovy.json.JsonBuilder
+import groovy.text.SimpleTemplateEngine
 
-def sanitizeName(name) {
+static def sanitizeName(name) {
     StringBuilder ret = new StringBuilder();
     int underscores = 0;
     boolean lastWasADot = false;
@@ -58,13 +55,22 @@ mydockerUserName = getPropertyValue('docker.push.registry.username')
 if (project.version.endsWith("-SNAPSHOT")) {
     myver = "latest"
 }
-
+def engine = new SimpleTemplateEngine()
 def dockerComposeTemplate = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled.yml.template").toFile()
-def binding = ['dockertag' : myver, 'sanitizedGroupId' : sanitizedGroupId, 'sanitizedArtifactId' : sanitizedArtifactId, 'dockerUserName' : mydockerUserName]			  
-def engine = new SimpleTemplateEngine() 
+def binding = ['dockertag' : myver, 'sanitizedGroupId' : sanitizedGroupId, 'sanitizedArtifactId' : sanitizedArtifactId, 'dockerUserName' : mydockerUserName]
 def template = engine.createTemplate(dockerComposeTemplate) 
 def writable = template.make(binding) 
 
 def dockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled.yml").toAbsolutePath().toString()
 def myFile = new File(dockerComposePath)
 myFile.write(writable.toString())
+
+// Bind the SSO template
+def ssoDockerComposeTemplate = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml.template").toFile()
+def ssoBinding = ['dockertag' : myver, 'sanitizedGroupId' : sanitizedGroupId, 'sanitizedArtifactId' : sanitizedArtifactId, 'dockerUserName' : mydockerUserName]
+def ssoTemplate = engine.createTemplate(ssoDockerComposeTemplate)
+def ssoWritable = ssoTemplate.make(ssoBinding)
+
+def ssoDockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml").toAbsolutePath().toString()
+def ssoMyFile = new File(ssoDockerComposePath)
+ssoMyFile.write(ssoWritable.toString())

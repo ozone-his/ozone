@@ -1,0 +1,21 @@
+{
+    "senaite": {
+        "client_id": "senaite",
+        "client_secret": "${SENAITE_CLIENT_SECRET}",
+        "scope": "openid email profile",
+        "sign_algorithm": "RS256",
+        "authentication_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/auth",
+        "token_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/token",
+        "user_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/userinfo",
+        "jwks_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/certs",
+        "end_session_endpoint": "${KEYCLOAK_URL}/realms/ozone/protocol/openid-connect/logout",
+        "skip_logout_confirmation": "true",
+        "_auto_provisioning_enabled": "true",
+        "properties_mapping": {
+            "userid": "preferred_username",
+            "fullname": "name",
+            "email": "email"
+        },
+        "roles": "Manager"
+    }
+}
