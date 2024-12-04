@@ -29,7 +29,7 @@
 
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.3.0-SNAPSHOT</referenceapplicationDistroVersion>
-    <odoo_initializerVersion>2.1.0</odoo_initializerVersion>
+    <odoo_initializerVersion>2.2.0-SNAPSHOT</odoo_initializerVersion>
 
     <!-- OpenMRS modules versions -->
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
