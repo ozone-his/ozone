@@ -1,6 +1,6 @@
-# ${distributionName}
+# basicDistribution
 
-**${distributionName}** is a distribution of [Ozone HIS](https://www.ozone-his.com).
+**basicDistribution** is a distribution of [Ozone HIS](https://www.ozone-his.com).
 
 Available commands to build and run the project:
 https://docs.ozone-his.com/create-distro/#available-commands
