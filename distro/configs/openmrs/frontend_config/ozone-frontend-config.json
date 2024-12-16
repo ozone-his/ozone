@@ -13,22 +13,6 @@
         "title": "Reporting & Analytics",
         "redirect": "${SUPERSET_PUBLIC_URL}"
       }
-    ],
-    "logo": {
-      "src": "configs/ozone_logo_white.svg",
-      "alt": "ozone-logo"
-    }
-  },
-  "@openmrs/esm-login-app": {
-    "logo": {
-      "src": "configs/ozone_logo_color.svg",
-      "alt": "ozone-logo"
-    }
-  },
-  "@openmrs/esm-patient-chart-app": {
-    "logo": {
-      "src": "configs/ozone_logo_white.svg",
-      "alt": "ozone-logo"
-    }
+    ]
   }
 }
