@@ -14,6 +14,7 @@ https://docs.ozone-his.com/create-distro/#available-commands
 <h3 align="center">The Instant HIS</h3>
 
 <p align="center">
+    Welcome to Ozone's open-source repositories!
     <br/>Engage with the Ozone community and access useful resources below:
 </p>
 
