@@ -2,7 +2,7 @@ tasks:
   - name: Run Ozone FOSS
     before: sudo apt-get update && sudo apt-get install -y gettext-base && sudo rm -rf /var/lib/apt/lists/*
     init: scripts/mvnw clean package
-    command: source target/go-to-scripts-dir.sh && ./start-demo.sh
+    command: source target/go-to-scripts-dir.sh && ./start-demo-with-sso.sh
 ports:
   - name: OpenMRS
     description: OpenMRS 3
@@ -11,9 +11,6 @@ ports:
   - name: Odoo
     description: Odoo
     port: 8069
-  - name: Superset
-    description: Superset
-    port: 8088
   - name: SENAITE
     description: SENAITE
     port: 8081
