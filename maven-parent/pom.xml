@@ -574,24 +574,6 @@
                   </build>
                 </image>
                 <image>
-                  <name>${docker.push.registry.username}/%a-erpnext</name>
-                  <build>
-                    <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/erpnext/Dockerfile</dockerFile>
-                    <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
-                  </build>
-                </image>
-                <image>
-                  <name>${docker.push.registry.username}/%a-eip-erpnext-openmrs</name>
-                  <build>
-                    <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-erpnext-openmrs/Dockerfile</dockerFile>
-                    <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
-                  </build>
-                </image>
-                <image>
                   <name>${docker.push.registry.username}/%a-eip-odoo-openmrs</name>
                   <build>
                     <dockerFile>
