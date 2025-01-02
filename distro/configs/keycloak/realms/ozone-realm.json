@@ -1142,7 +1142,7 @@
     {
       "id": "a3d22db9-6cee-45f3-b419-cd93a498077f",
       "clientId": "senaite",
-      "name": "Senaite",
+      "name": "SENAITE",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -1252,8 +1252,9 @@
     {
       "id": "${SUPERSET_CLIENT_UUID}",
       "clientId": "superset",
+      "name": "Superset",
       "surrogateAuthRequired": false,
-      "enabled": false,
+      "enabled": "${SUPERSET_CLIENT_ENABLED}",
       "alwaysDisplayInConsole": false,
       "baseUrl": "${SUPERSET_PUBLIC_URL}",
       "rootUrl": "${SUPERSET_PUBLIC_URL}",
