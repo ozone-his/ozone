@@ -520,8 +520,8 @@
                 </configuration>
               </execution>
               <execution>
-                <!-- Copy start-ozone-bundled.sh, start-ozone-bundled-sso.sh to scripts folder-->
-                <id>Copy Ozone bundled helper scripts</id>
+                <!-- Copy start-bundled.sh, start-bundled-sso.sh to scripts folder-->
+                <id>Copy bundled-docker helper scripts</id>
                 <phase>package</phase>
                 <goals>
                   <goal>copy-resources</goal>
