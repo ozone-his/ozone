@@ -1,7 +1,7 @@
 :root {
-  --brand-01: #005d5d;
-  --brand-02: #004144;
-  --brand-03: #007d79;
+  --brand-01: #3CB393;
+  --brand-02: #3CB393;
+  --brand-03: #3CB393;
 }
 
 * {
@@ -99,7 +99,7 @@ button {
 }
 
 button:hover {
-  background-color: #005d5d;
+  background-color: #3CB393;
 }
 
 .login-container {
@@ -120,7 +120,7 @@ button:hover {
 .login-card {
   width: 23rem;
   padding: 2.5rem;
-  border-radius: 0;
+  border-radius: 1rem;
 }
 
 .login-center {
