@@ -78,7 +78,7 @@ input[type="text"] {
 
 button {
   align-items: center;
-  background-color: rgb(0, 93, 93);
+  background-color: #3CB393;
   border: 1px solid rgba(0, 125, 121, 0.008);
   box-sizing: border-box;
   color: white;
@@ -114,6 +114,7 @@ button:hover {
   background-color: #fff;
   border: 1px solid #dadce0;
   box-sizing: border-box;
+  border-radius: 0.5rem;
 }
 
 .login-card {
