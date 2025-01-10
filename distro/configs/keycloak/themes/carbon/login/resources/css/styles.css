@@ -112,6 +112,7 @@ button:hover {
 
 .card {
   background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   border-radius: 1rem !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 8px 16px rgba(0, 0, 0, 0.08);
