@@ -112,9 +112,9 @@ button:hover {
 
 .card {
   background-color: #fff;
-  border: 1px solid #dadce0;
   box-sizing: border-box;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 .login-card {
