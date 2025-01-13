@@ -78,7 +78,7 @@ input[type="text"] {
 
 button {
   align-items: center;
-  background-color: #3CB393 !important;
+  background-color: #3CB393;
   border: 1px solid rgba(0, 125, 121, 0.008);
   box-sizing: border-box;
   color: white;
@@ -114,7 +114,7 @@ button:hover {
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
-  border-radius: 1rem !important;
+  border-radius: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
