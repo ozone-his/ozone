@@ -1,5 +1,6 @@
 {
   /**
+   * CAUTION: This is an experimental implementation, not for production use.
    * General configuration of Orthanc
    *
    * As a general recommendation, you should always favour absolute
