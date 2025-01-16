@@ -519,6 +519,30 @@
                   </resources>
                 </configuration>
               </execution>
+              <execution>
+                <!-- Copy start-bundled.sh, start-bundled-sso.sh to scripts folder-->
+                <id>Copy bundled-docker helper scripts</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/run/docker/scripts
+                  </outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>${project.build.directory}/bundled-docker-build-tmp/bundled-docker/scripts</directory>
+                      <filtering>true</filtering>
+                      <includes>
+                        <include>start-bundled.sh</include>
+                        <include>start-bundled-sso.sh</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
           <plugin>
@@ -569,6 +593,15 @@
                   <build>
                     <dockerFile>
                       ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                  </build>
+                </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-senaite-sso</name>
+                  <build>
+                    <dockerFile>
+                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile-sso</dockerFile>
                     <contextDir>
                       ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
                   </build>
