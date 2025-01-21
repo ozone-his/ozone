@@ -373,6 +373,7 @@
                   <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
+                    <exclude>**/cohorttypes-core_data*</exclude>
                   </excludes>
                 </resource>
               </resources>
