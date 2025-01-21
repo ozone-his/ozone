@@ -370,9 +370,10 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/distro-emr-configuration/openmrs_config</directory>
+                  <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
+                    <exclude>**/cohorttypes-core_data*</exclude>
                   </excludes>
                 </resource>
               </resources>
@@ -488,7 +489,7 @@
                 <copy
                   todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
                   <fileset
-                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules">
+                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
                   </fileset>
                 </copy>
