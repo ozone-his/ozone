@@ -545,6 +545,23 @@
               <goal>run</goal>
             </goals>
           </execution>
+
+          <execution>
+            <id>Copy OpenMRS frontend config</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_config">
+                  <fileset
+                          dir="${project.build.directory}/openmrs_frontend">
+                  </fileset>
+                </copy>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
         </executions>
       </plugin>
 

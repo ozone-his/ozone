@@ -33,7 +33,6 @@
     <!-- Dependency versions -->
     <ozoneDistroVersion>1.0.0-SNAPSHOT</ozoneDistroVersion>
     <ozoneDockerComposeVersion>1.0.0-SNAPSHOT</ozoneDockerComposeVersion>
-    <referenceapplicationDistroVersion>3.3.0-SNAPSHOT</referenceapplicationDistroVersion>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
@@ -61,12 +60,6 @@
       <type>zip</type>
       <version>${ozoneDockerComposeVersion}</version>
     </dependency>
-    <dependency>
-      <groupId>org.openmrs</groupId>
-      <artifactId>distro-emr-frontend</artifactId>
-      <type>zip</type>
-      <version>${referenceapplicationDistroVersion}</version>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -86,20 +79,6 @@
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/run/docker</outputDirectory>
               <includeArtifactIds>ozone-docker-compose</includeArtifactIds>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>Copy config-core_demo.json in OpenMRS frontend config</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/frontend_config</outputDirectory>
-              <includeArtifactIds>distro-emr-frontend</includeArtifactIds>
             </configuration>
           </execution>
 
