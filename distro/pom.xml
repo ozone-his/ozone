@@ -34,7 +34,7 @@
     <!-- OpenMRS modules versions -->
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
     <oauth2loginVersion>1.5.0-SNAPSHOT</oauth2loginVersion>
-    <fhirproxyVersion>1.0.0-SNAPSHOT</fhirproxyVersion>
+    <fhirproxyVersion>1.0.0</fhirproxyVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- EIP Routes artifact versions -->
