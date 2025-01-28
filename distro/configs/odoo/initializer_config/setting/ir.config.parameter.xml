@@ -1,0 +1,6 @@
+<data noupdate="1">
+   <record id="report_url" model="ir.config_parameter">
+      <field name="key">report.url</field>
+      <field name="value">http://127.0.0.1:8069</field>
+   </record>
+</data>
