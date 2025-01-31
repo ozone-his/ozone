@@ -1,0 +1,287 @@
+{
+  "general": {
+    "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "patientInformation": {
+        "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+        "type": "patientInformation",
+        "displayOrder": 0,
+        "ageLimit": 100,
+        "patientAttributes": [],
+        "additionalPatientIdentifiers": [],
+        "addressFields": [
+          "address1",
+          "address2",
+          "cityVillage",
+          "countyDistrict"
+        ]
+      },
+      "flowsheet": {
+        "type": "flowSheet",
+        "title": "Vitals Flow Sheet",
+        "displayOrder": 10,
+        "dashboardConfig": {
+          "latestCount": "5",
+          "groupBy": "obstime",
+          "obsConcepts": [
+            "Pulse",
+            "Arterial blood oxygen saturation (pulse oximeter)",
+            "Respiratory rate",
+            "Temperature",
+            "Systolic blood pressure",
+            "Diastolic blood pressure",
+            "Body position"
+          ]
+        },
+        "allFlowSheetDetails": {
+          "latestCount": "10",
+          "groupBy": "obstime",
+          "obsConcepts": [
+            "Pulse",
+            "Arterial blood oxygen saturation (pulse oximeter)",
+            "Respiratory rate",
+            "Temperature",
+            "Systolic blood pressure",
+            "Diastolic blood pressure",
+            "Body position"
+          ]
+        }
+      },
+      "navigationLinksControl": {
+        "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+        "type": "navigationLinksControl",
+        "displayOrder": 2,
+        "showLinks": [
+          "home",
+          "visit",
+          "registration",
+          "visitAttribute",
+          "labEntry"
+        ]
+      },
+      "diagnosis": {
+        "translationKey": "DASHBOARD_TITLE_DIAGNOSIS_KEY",
+        "type": "diagnosis",
+        "showCertainty": true,
+        "showOrder": true,
+        "showDetailsButton": true,
+        "displayOrder": 1
+      },
+      "conditions": {
+        "translationKey": "CONDITION_LIST_DISPLAY_CONTROL_TITLE",
+        "type": "conditionsList",
+        "displayOrder": 3
+      },
+      "treatments": {
+        "translationKey": "DASHBOARD_TITLE_TREATMENTS_KEY",
+        "type": "treatment",
+        "displayOrder": 4,
+        "dashboardConfig": {
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 5,
+          "showOtherActive": true,
+          "showDetailsButton": true
+        },
+        "expandedViewConfig": {
+          "translationKey": "DASHBOARD_TITLE_TREATMENTS_KEY",
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 10,
+          "showOtherActive": true,
+          "showDetailsButton": true
+        },
+        "prescriptionPrint": {
+          "title": "Bahmni",
+          "header": "Prescriptions",
+          "logo": "../images/bahmniLogo.png"
+        }
+      },
+      "radiologyOrders": {
+        "orderType": "Radiology Order",
+        "type": "ordersControl",
+        "translationKey": "DASHBOARD_TITLE_RADIOLOGY_ORDERS_KEY",
+        "displayOrder": 13,
+        "dashboardConfig": {
+          "conceptNames": [],
+          "numberOfVisits": 4
+        }
+      },
+      "labResults": {
+        "translationKey": "DASHBOARD_TITLE_LAB_RESULTS_KEY",
+        "type": "labOrders",
+        "displayOrder": 12,
+        "dashboardConfig": {
+          "title": null,
+          "numberOfVisits": 6,
+          "showChart": false,
+          "showTable": true,
+          "showNormalLabResults": true,
+          "showCommentsExpanded": true,
+          "showAccessionNotes": true,
+          "showDetailsButton": false,
+          "chartConfig": {
+            "sortResultColumnsLatestFirst":true,
+            "groupByPanel":true
+          }
+        },
+        "expandedViewConfig": {
+          "numberOfVisits": 10,
+          "showChart":true,
+          "showTable":false,
+          "chartConfig": {
+            "sortResultColumnsLatestFirst":true,
+            "groupByPanel":true
+          }  
+        }
+      },
+      "visits": {
+        "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
+        "type": "visits",
+        "displayOrder": 5,
+        "dashboardConfig": {
+          "title": null,
+          "maximumNoOfVisits": 8,
+          "groupByVisits": true
+        }
+      },
+      "historyAndExaminations": {
+        "translationKey": "DASHBOARD_TITLE_HISTORY_AND_EXAMINATIONS_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 8,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "conceptNames": [
+            "Chief Complaint Record",
+            "Chief Complaint Data",
+            "History of present illness",
+            "Smoking status",
+            "Consultation Images",
+            "Patient Video"
+          ],
+          "numberOfVisits": 2
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Chief Complaint Record",
+            "Chief Complaint Data",
+            "History of present illness",
+            "Smoking status",
+            "Consultation Images",
+            "Patient Video"
+          ],
+          "numberOfVisits": 2,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        },
+        "hideEmptyDisplayControl": true
+      },
+      "patientAppointments": {
+        "type": "custom",
+        "displayOrder": 11,
+        "config": {
+          "title": "DASHBOARD_TITLE_APPOINTMENTS_KEY",
+          "template": "<patient-appointments-dashboard section='config' patient='patient'></patient-appointments-dashboard>"
+        }
+      },
+      "nutritionalValues": {
+        "translationKey": "DASHBOARD_TITLE_NUTRITIONAL_VALUES_KEY",
+        "type": "observation",
+        "isObservation": true,
+        "displayOrder": 6,
+        "dashboardConfig": {
+          "conceptNames": [
+            "Height (cm)",
+            "Weight (kg)",
+            "Body mass index",
+            "BMI Status"
+          ],
+          "showDetailsButton": true,
+          "numberOfVisits": 3,
+          "displayNameType": "FSN"
+        },
+        "hideEmptyDisplayControl": true
+      },
+      "forms-2.0": {
+        "type": "formsV2",
+        "displayOrder": 9,
+        "dashboardConfig": {
+          "title": null,
+          "maximumNoOfVisits": 10
+        },
+        "formGroup": [
+          "Death Note",
+          "Orthopaedic Examination",
+          "Diabetes Intake",
+          "Diabetes Progress",
+          "Malaria",
+          "Vitals",
+          "History and Examination",
+          "Hypertension Intake",
+          "Second Vitals",
+          "Hypertension Progress",
+          "Follow Up",
+          "Obstetrics and Gynaecology",
+          "Under Treatment and Fitness Certificate",
+          "Referral letter",
+          "Admission Letter",
+          "Immunization Incident Record"
+        ],
+        "translationKey": "DASHBOARD_TITLE_FORMS_DISPLAY_CONTROL_KEY"
+      },
+      "patientDocument": {
+        "type": "historyAndExamination",
+        "isObservation": true,
+        "displayType": "Half-Page",
+        "dashboardConfig": {
+          "showGroupDateTime": false,
+          "isObservationForImages": true,
+          "persistOrderOfObsDateTime": true,
+          "conceptNames": [
+            "Prescription",
+            "Discharge Summary",
+            "Radiology Report",
+            "Referral Documents",
+            "Patient File"
+          ]
+        },
+        "expandedViewConfig": {
+          "showGroupDateTime": false,
+          "persistOrderOfObsDateTime": true,
+          "isObservationForImages": true,
+          "conceptNames": [
+            "Prescription",
+            "Discharge Summary",
+            "Radiology Report",
+            "Referral Documents",
+            "Patient File"
+          ],
+          "pivotTable": {}
+        },
+        "displayOrder": 7,
+        "title": "Patient Document"
+      }
+    }
+  },
+  "print": {
+    "translationKey": "DASHBOARD_TAB_PRINT",
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "patientAppointments": {
+        "type": "custom",
+        "displayOrder": 1,
+        "config": {
+          "title": "Certificates Print",
+          "template": "<patient-print-dashboard section='config' patient='patient'></patient-print-dashboard>"
+        }
+      }
+    }
+  }
+}

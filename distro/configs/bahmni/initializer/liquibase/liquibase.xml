@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <!-- This changeset is temporary and to be deleted in production when setting up clinics (onboarding users) -->
+	<changeSet id="bah-1570-20220427-1" author="Deepthi,Soorya">
+    	<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username='registration';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding bahmni-user</comment>
+        <sql>
+            SET @puuid = uuid();
+            INSERT INTO person(gender, birthdate_estimated, dead, creator, date_created, uuid) VALUES('M', 0, 0, 1, now(), @puuid);
+            SELECT person_id INTO @person_id from person where uuid = @puuid;
+            INSERT INTO person_name(person_id, preferred, given_name, family_name, creator, date_created, uuid) VALUES(@person_id, 1, 'registration', 'bahmni-user', 1, now(), @puuid);
+            INSERT INTO users(system_id, creator, date_created, person_id, uuid, username, password, salt) VALUES ('registration', 1, now(),@person_id, uuid(), 'registration', 'e28e3ae84c66bfba6b2c50a406567f3e34fea1d76b17c006931571fe5d940f6c6b81e49cf8ea5e0adfca19fe3beb68d8ad79f7c3812e92b8d502a9afcf2029b2', '1c9d7e94aeeb7a2459ef45ed200b2944582e0e7088d75f9b57a3644861ea766c20a269b3fe2eadaff1bc445ecfbd9bd3c0c550dfd813de48d39423cd3d1a8b10');
+            INSERT INTO provider (person_id, identifier, creator, date_created, uuid, name) VALUES (@person_id, 'registration', 1, now(), uuid(), 'registration');
+        </sql>
+    </changeSet>
+    <!--This is a temporary changeset-->
+    <changeSet id="bah-2530-20221118-1" author="Clinic-config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username='dr_neha';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding bahmni-user</comment>
+        <sql>
+            SET @puuid = uuid();
+            INSERT INTO person(gender, birthdate_estimated, dead, creator, date_created, uuid) VALUES('F', 0, 0, 1, now(), @puuid);
+            SELECT person_id INTO @person_id from person where uuid = @puuid;
+            INSERT INTO person_name(person_id, preferred, given_name, family_name, creator, date_created, uuid) VALUES(@person_id, 1, 'Neha', 'Anand', 1, now(), @puuid);
+            INSERT INTO users(system_id, creator, date_created, person_id, uuid, username, password, salt) VALUES ('doctor', 1, now(),@person_id, uuid(), 'dr_neha', 'e28e3ae84c66bfba6b2c50a406567f3e34fea1d76b17c006931571fe5d940f6c6b81e49cf8ea5e0adfca19fe3beb68d8ad79f7c3812e92b8d502a9afcf2029b2', '1c9d7e94aeeb7a2459ef45ed200b2944582e0e7088d75f9b57a3644861ea766c20a269b3fe2eadaff1bc445ecfbd9bd3c0c550dfd813de48d39423cd3d1a8b10');
+            INSERT INTO provider (person_id, identifier, creator, date_created, uuid, name) VALUES (@person_id, 'doctor', 1, now(), uuid(), 'doctor');
+        </sql>
+    </changeSet>
+    <changeSet id="bahmni-emrapi-202208181344" author="BAHMNI" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Diagnosis Concept Set'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version is null ;
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Diagnosis Concept Set'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version = 'BAHMNI-CORE-1.0' ;
+            </sqlCheck>
+        </preConditions>
+        <comment> Retire non Bahmni Diagnosis concept with reference mapping code 'Diagnosis Concept Set' </comment>
+        <sql>
+            SET @concept_source_id = 0;
+            SET @concept_reference_term_id = 0;
+            SET @concept_id = 0;
+
+            SELECT concept_source_id into @concept_source_id from concept_reference_source where name = 'org.openmrs.module.emrapi';
+            SELECT concept_reference_term_id into @concept_reference_term_id from concept_reference_term where concept_source_id = @concept_source_id and code = 'Diagnosis Concept Set';
+            SELECT concept_id into @concept_id from concept_reference_map where concept_reference_term_id = @concept_reference_term_id order by date_created desc limit 1;
+
+            UPDATE concept set retired = TRUE where version is null and concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="bahmni-emrapi-202208181345" author="BAHMNI" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Coded Diagnosis'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version is null  ;
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Coded Diagnosis'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version = 'BAHMNI-CORE-1.0'  ;
+            </sqlCheck>
+        </preConditions>
+        <comment>Retire non Bahmni Diagnosis concept with reference mapping code 'Coded Diagnosis'</comment>
+        <sql>
+            SET @concept_source_id = 0;
+            SET @concept_reference_term_id = 0;
+            SET @concept_id = 0;
+
+            SELECT concept_source_id into @concept_source_id from concept_reference_source where name =
+            'org.openmrs.module.emrapi';
+            SELECT concept_reference_term_id into @concept_reference_term_id from concept_reference_term where
+            concept_source_id = @concept_source_id and code = 'Coded Diagnosis';
+            SELECT concept_id into @concept_id from concept_reference_map where concept_reference_term_id =
+            @concept_reference_term_id order by date_created desc limit 1;
+
+            UPDATE concept set retired = TRUE where version is null  and concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="bahmni-emrapi-202208181348" author="BAHMNI" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Non-Coded Diagnosis'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version is null ;
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Non-Coded Diagnosis'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version = 'BAHMNI-CORE-1.0';
+            </sqlCheck>
+        </preConditions>
+        <comment>Retire non Bahmni Diagnosis concept with reference mapping code 'Non-Coded Diagnosis'</comment>
+        <sql>
+            SET @concept_source_id = 0;
+            SET @concept_reference_term_id = 0;
+            SET @concept_id = 0;
+
+            SELECT concept_source_id into @concept_source_id from concept_reference_source where name = 'org.openmrs.module.emrapi';
+            SELECT concept_reference_term_id into @concept_reference_term_id from concept_reference_term where concept_source_id = @concept_source_id and code = 'Non-Coded Diagnosis';
+            SELECT concept_id into @concept_id from concept_reference_map where concept_reference_term_id = @concept_reference_term_id order by date_created desc limit 1;
+
+            UPDATE concept set retired = TRUE where version is null  and concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="bahmni-emrapi-202208181349" author="BAHMNI" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Diagnosis Certainty'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version is null ;
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Diagnosis Certainty'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version = 'BAHMNI-CORE-1.0' ;
+            </sqlCheck>
+        </preConditions>
+        <comment>Retire non Bahmni Diagnosis concept with reference mapping code 'Diagnosis Certainty'</comment>
+        <sql>
+            SET @concept_source_id = 0;
+            SET @concept_reference_term_id = 0;
+            SET @concept_id = 0;
+
+            SELECT concept_source_id into @concept_source_id from concept_reference_source where name = 'org.openmrs.module.emrapi';
+            SELECT concept_reference_term_id into @concept_reference_term_id from concept_reference_term where concept_source_id = @concept_source_id and code = 'Diagnosis Certainty';
+            SELECT concept_id into @concept_id from concept_reference_map where concept_reference_term_id = @concept_reference_term_id order by date_created desc limit 1;
+
+            UPDATE concept set retired = TRUE where version is null and concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="bahmni-emrapi-202208181351" author="BAHMNI" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Diagnosis Order'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version is null ;
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(rmap.concept_id) from concept_reference_map rmap
+                join concept_reference_term rterm on rmap.concept_reference_term_id = rterm.concept_reference_term_id
+                and rterm.code='Diagnosis Order'
+                join concept_reference_source rsource on rsource.concept_source_id = rterm.concept_source_id and rsource.name
+                = 'org.openmrs.module.emrapi'
+                join concept c on c.concept_id = rmap.concept_id and c.retired = FALSE and c.version = 'BAHMNI-CORE-1.0' ;
+            </sqlCheck>
+        </preConditions>
+        <comment>Retire non Bahmni Diagnosis concept with reference mapping code 'Diagnosis Order'</comment>
+        <sql>
+            SET @concept_source_id = 0;
+            SET @concept_reference_term_id = 0;
+            SET @concept_id = 0;
+
+            SELECT concept_source_id into @concept_source_id from concept_reference_source where name = 'org.openmrs.module.emrapi';
+            SELECT concept_reference_term_id into @concept_reference_term_id from concept_reference_term where concept_source_id = @concept_source_id and code = 'Diagnosis Order';
+            SELECT concept_id into @concept_id from concept_reference_map where concept_reference_term_id = @concept_reference_term_id order by date_created desc limit 1;
+
+            UPDATE concept set retired = TRUE where version is null and concept_id = @concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="202209011351" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from scheduler_task_config where name = 'OpenElis Patient  Atom Feed Failed Event Task' and schedulable_class = 'org.bahmni.module.elisatomfeedclient.api.task.OpenElisPatientFeedFailedEventsTask' and  start_on_startup = 1 and started = 1;
+            </sqlCheck>
+        </preConditions>
+        <comment> Disable 'OpenElis Patient  Atom Feed Failed Event Task' scheduler task as clinical-config doesn't have openelis module </comment>
+        <sql>
+            UPDATE scheduler_task_config set start_on_startup=FALSE, started=FALSE where name = 'OpenElis Patient  Atom Feed Failed Event Task' and schedulable_class = 'org.bahmni.module.elisatomfeedclient.api.task.OpenElisPatientFeedFailedEventsTask';
+        </sql>
+    </changeSet>
+    <changeSet id="BAH-2231-202209060305-01" author="Clinic-Config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_reference_source where name='SNOMED' ;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update HL7 Code to null for Concept Reference Term SNOMED to fix drug validation error</comment>
+        <update tableName="concept_reference_source">
+            <column name = "hl7_code" value = "NULL" />
+            <column name = "description" value = "Old SNOMED Duration Source from Bahmni" />
+            <column name = "retired" value = "1" />
+            <where> name = 'SNOMED'</where>
+        </update>
+    </changeSet>
+    <changeSet id="BAH-2231-202209060305-02" author="Clinic-Config" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_reference_source where name='SNOMED-CT' ;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update HL7 Code to SCT for Concept Reference Term SNOMED-CT to fix drug validation error</comment>
+        <update tableName="concept_reference_source">
+            <column name = "hl7_code" value = "SCT" />
+            <column name = "description" value = "SNOMED Duration Source" />
+            <where> name = 'SNOMED-CT'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="BAH-1782-202209211000" author="Clinic-Config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from scheduler_task_config where name = "Close Stale Visits Task" and start_time = "2022-09-21 14:30:00";
+
+            </sqlCheck>
+        </preConditions>
+        <comment>Update start time for auto close visit scheduler</comment>
+        <sql>
+            UPDATE scheduler_task_config SET start_time = "2022-09-21 14:30:00" where name = "Close Stale Visits Task";
+            <!-- The start_time should be in UTC format(14:30:00) (so that auto close of visit will be done at 8pm IST )-->
+        </sql>
+    </changeSet>
+    <changeSet id="BAH-2336-202209220305" author="Clinic-Config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from role_privilege where role = 'SuperAdmin' and privilege = 'app:adt' ;
+            </sqlCheck>
+        </preConditions>
+        <comment>Removing app:adt privilege from SuperAdmin role</comment>
+        <sql>
+            delete from role_privilege where role = 'SuperAdmin' and privilege = 'app:adt';
+        </sql>
+    </changeSet>
+    <changeSet id="BAH-2348-202305181800" author="Clinic-Config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from global_property where property = 'locale.allowed.list';
+            </sqlCheck>
+        </preConditions>
+        <comment>Update Allowed Locale</comment>
+        <update tableName = "global_property">
+            <column name = "property_value" value = "en, es, fr, it, pt_BR, zh, hi" />
+            <where> property = 'locale.allowed.list'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="BAH-2534-location-attribute-type-202303201129-2922" author="Clinic-Config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM location_attribute_type where name="Print Header";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding location attribute type print Header</comment>
+        <sql>
+            INSERT INTO location_attribute_type (name, description, datatype, preferred_handler, min_occurs, creator, date_created,
+            retired, uuid)
+            VALUES ("Print Header","Clinical address used on header for any print",
+            "org.openmrs.customdatatype.datatype.LongFreeTextDatatype", "org.openmrs.web.attribute.handler.LongFreeTextTextareaHandler", 0, 1, NOW(), 0, "6cd01df8-4418-4079-95bf-9716413dc8f5");
+        </sql>
+    </changeSet>
+    <changeSet id="Reports-user-1612023-BAH-1911-cc" author="bahmni">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username='reports-user';
+            </sqlCheck>
+        </preConditions>
+        <comment>Creating a openmrs user for reports</comment>
+        <sql>
+            SET @puuid = uuid();
+            INSERT INTO person(birthdate_estimated, dead, creator, date_created, uuid) VALUES(0, 0, 1, now(), @puuid);
+
+            SELECT person_id INTO @person_id from person where uuid = @puuid;
+
+            INSERT INTO person_name(person_id, preferred, given_name, family_name, creator, date_created, uuid) VALUES(@person_id, 1, 'Reports', 'User', 1, now(), @puuid);
+
+            INSERT INTO users(system_id, creator, date_created, person_id, uuid, username,password,salt)
+            VALUES ('Reports User', 1, now(),@person_id, uuid(), 'reports-user','29171af2d2cc6b48ab011c6387daa8516960edd0a7fa4e8bc6eaf1aab1d3d15443a82213fb0d11b3071ca73d45f719d885b2fdabcfef03b54b3102af450cd771','6bc56cf15a664f951134af3451ac806e746215fa3e482b72f08a911e848962bee8b124e672f3cbe8dc7040dc6d8e35960e24a1ffa6150af63d12ba1ce8c07fad');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Reports-App-role-161202352419-BAH-1911-cc" author="cc">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from role where role = 'Reports-App';
+            </sqlCheck>
+            <sqlCheck expectedResult="1">
+                select count(*) from users where username='reports-user';
+            </sqlCheck>
+        </preConditions>
+        <comment>Map 'reports-user' user to new roles</comment>
+        <sql>
+            select user_id  into @id from users where username = 'reports-user';
+            INSERT IGNORE INTO user_role VALUES (@id, 'Reports-App');
+        </sql>
+    </changeSet>
+
+    <changeSet id="BAH-2934-20230412-bahmni-atomfeed-offset-marker" author="bahmni">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM scheduler_task_config where schedulable_class = 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask'
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding scheduler job for bahmni atomfeed offest marker</comment>
+        <sql>
+            INSERT INTO  scheduler_task_config  (name, description, schedulable_class,
+            start_time, start_time_pattern, repeat_interval, start_on_startup, started,
+            created_by, date_created, changed_by, date_changed, last_execution_time, uuid )
+            VALUES ('OpenMRS event offset marker task', NULL, 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask',
+            '2023-04-06 00:00:00','MM/dd/yyyy HH:mm:ss',86400, 1, 1,
+            1, now(), NULL, NULL, NULL, uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>

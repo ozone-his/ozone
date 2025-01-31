@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="CSV-UPLOAD-OCA-CONFIG-201912171620" author="vinisha | rakesh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM global_property where property =
+                "bahmni.admin.csv.upload.obsPath.splitter"
+            </sqlCheck>
+        </preConditions>
+        <comment>Upload new property to global property</comment>
+        <sql>INSERT INTO global_property (property, property_value, description, uuid) VALUES
+            ("bahmni.admin.csv.upload.obsPath.splitter", "$", "Obs path splitter for encounter csv upload,the default is dot(.). For example if we configure $: Repeat.1.Obs.Vitals$BMI$Height", uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>

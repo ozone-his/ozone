@@ -1,0 +1,10 @@
+{
+  "adminPage": {
+    "id": "bahmni.appointments.admin",
+    "extensionPointId": "org.bahmni.appointments",
+    "type": "link",
+    "extensionParams": {
+    },
+    "requiredPrivilege": "app:admin"
+  }
+}

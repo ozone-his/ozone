@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="CSV-UPLOAD-CONFIG-202102101621" author="Siva Reddy">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM global_property where property =
+                "bahmni.admin.csv.upload.obs.addmore.splitter"
+            </sqlCheck>
+        </preConditions>
+        <comment>Upload new property to global property</comment>
+        <sql>INSERT INTO global_property (property, property_value, description, uuid) VALUES
+            ("bahmni.admin.csv.upload.obs.addmore.splitter", "|", "Addmore Obs splitter for form2 encounter(With Validations) csv upload", uuid());
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="202205251232-registrationLocation" author="Clinic-config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location_tag_map where location_tag_id IN (SELECT location_tag_id from location_tag where name="Bahmni Clinic");
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            <!--Add Visit Location Tag and map it to Bahmni Clinic Location -->
+            <!-- INSERT INTO location_tag(name, description, creator, date_created, retired, uuid) VALUES ('Visit Location', 'Visit Location', 1, now(), 0, uuid()); -->
+            SELECT location_tag_id INTO @visit_location_tag_id FROM location_tag WHERE name = "Visit Location" ;
+            SELECT location_id INTO @location_id FROM location WHERE location.name="Bahmni Clinic" and description = "bahmni clinic";
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id, @visit_location_tag_id);
+        </sql>
+    </changeSet>
+    <changeSet id="202205250207-role-frontDesk" author="Clinic-config"> 
+        <sql>
+            <!--Create Registration-App role-->
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Add Encounters');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'app:registration');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Concepts');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Encounters');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Patients');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get People');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Visits');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Visit Types');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'View Patients');
+
+             <!--Create Role privilege to see create new patient button and auto generate Patient Identifiers-->
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Add Patients');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Edit Patient Identifiers');
+             
+            <!--Add privileges required to edit patient-->
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Edit Patients');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Patient Identifiers'); 
+
+            <!--Add privileges required for registration second page-->
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Add Visits');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Edit Observations');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Add Observations');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Edit Encounters');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Observations');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Concept Sources');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Edit Visits');
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Encounter Roles'); 
+            INSERT IGNORE INTO role_privilege VALUES('FrontDesk', 'Get Visit Attribute Types');
+        </sql>           
+    </changeSet>
+    <changeSet id="202205250210-identifier" author="Clinic-config"> 
+        <sql>
+            <!--Add Identifier type ABC to patient_identifier_type and update global property-->
+            INSERT IGNORE into idgen_identifier_source (uuid, name, description, identifier_type, date_created, creator) 
+            VALUES (uuid(), 'ABC', 'ID sequence source for patients in ABC', (select patient_identifier_type_id 
+            from patient_identifier_type where name = 'Patient Identifier'), now(), 1);
+            
+            INSERT IGNORE into idgen_seq_id_gen (id, next_sequence_value, base_character_set, first_identifier_base, prefix, 
+            suffix, min_length, max_length) VALUES ((select id from idgen_identifier_source where name = 'ABC'), 
+            200001, 0123456789, 200000, 'ABC', '', 4, 9);
+        </sql>                     
+    </changeSet>   
+
+    <changeSet id="202205250216-patientAttributes" author="Clinic-config"> 
+        <sql>
+            <!--Register a patient with Phone Number and Alternate Phone Number-->
+            INSERT IGNORE into person_attribute_type (name,description,format,searchable,creator,date_created,retired,uuid) VALUES('phoneNumber','Phone Number','java.lang.String',0,1,now(),0,uuid());
+            INSERT IGNORE into person_attribute_type (name,description,format,searchable,creator,date_created,retired,uuid) VALUES('alternatePhoneNumber','Alternate Phone Number','java.lang.String',0,1,now(),0,uuid());
+            
+            <!--Remove givenNameLocal,middleNameLocal,familyNameLocal and relationship section from register patient page-->
+            UPDATE person_attribute_type SET retired=1 WHERE name in ('givenNameLocal','familyNameLocal','middleNameLocal','caste','class','secondaryContact','primaryRelative','secondaryIdentifier','landHolding','debt','distanceFromCenter','isUrban','cluster','RationCard','familyIncome');
+        </sql> 
+    </changeSet>   
+    <changeSet id="202205260216-globalProperty" author="Clinic-config" runAlways="true"> 
+        <sql>
+            <!--Add undisclosed option for the Gender dropdown-->
+            UPDATE global_property SET property_value = '{"M":"Male", "F":"Female","O":"Other","U":"Undisclosed"}' WHERE property LIKE 'mrs.genders'; 
+            UPDATE global_property SET property_value = 'ReasonForDeath' WHERE property = 'concept.reasonForDeath';
+            <!--Retrieve the patient photo from the correct path after saving or updation of patient-->
+            <!-- INSERT into global_property(property,property_value,uuid) VALUES("emr.personImagesDirectory","/home/bahmni/patient_images",uuid());                   -->
+        </sql>  
+    </changeSet> 
+    <changeSet id="202205250349-relationshipType" author="Clinic-config" runAlways="true"> 
+        <sql>
+            <!--Inorder to test the below query for relationship_type table we need to remove relationship_type from openmrs manually for now.-->
+            UPDATE relationship_type SET retired=1;
+        </sql>  
+    </changeSet>       
+    <changeSet id="202205251830-visit-types" author="Clinic-config">
+        <comment>configure OPD and EMERGENCY visit types</comment>
+        <sql>
+            UPDATE visit_type SET retired = 1 WHERE name in ("LAB VISIT","Special OPD","IPD","PHARMACY VISIT");
+        </sql>
+    </changeSet>
+    <changeSet id="202205251830-delete-forms" author="Clinic-config">
+        <comment>Remove forms</comment>
+        <sql>
+            DELETE FROM concept_set WHERE concept_set = 90 AND concept_id IN (SELECT concept_id FROM concept_name WHERE name IN ("Discharge Summary","Death Note","Delivery note","IMAM Program","ER General Notes","Operative Notes","Procedure Notes") AND concept_name_type = 'FULLY_SPECIFIED');
+        </sql>
+    </changeSet>  
+    <changeSet id="202205251830-update-concept-set" author="Clinic-config">
+        <comment>Update concept set</comment>
+        <sql>
+            UPDATE concept_set SET sort_weight = 1 WHERE concept_id = 130 AND concept_set = 126;
+        </sql>
+    </changeSet>  
+    <changeSet id="202205251830-update-address" author="Clinic-config">
+        <comment>Update concept set</comment>
+        <sql>
+            UPDATE address_hierarchy_level SET name="House number/Flat number" WHERE address_field="ADDRESS_1";
+            UPDATE address_hierarchy_level SET name="Locality/Sector" WHERE address_field="ADDRESS_2";
+            UPDATE address_hierarchy_level SET name="Pin Code" WHERE address_field="ADDRESS_3";
+        </sql>
+    </changeSet>
+</databaseChangeLog>
+
+

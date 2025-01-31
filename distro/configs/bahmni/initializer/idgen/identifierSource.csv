@@ -1,0 +1,2 @@
+Uuid,Void/Retire,Identifier type,Name,Description,Prefix,Suffix,First identifier base,Min length,Max length,Base character set,_version:1
+c5cf4b68-6529-43fc-a644-c775ae73745e,,Patient Identifier,ABC,ID sequence source for patients in ABC,ABC,,200000,4,,0123456789,

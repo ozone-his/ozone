@@ -1,0 +1,36 @@
+{
+  "formJson": {
+    "id": 29,
+    "uuid": "53a049e2-73e1-47bf-a28d-848b789bb476",
+    "name": "Referral letter",
+    "version": "1",
+    "published": true,
+    "resources": [
+      {
+        "value": "{\"name\":\"Referral letter\",\"id\":29,\"uuid\":\"53a049e2-73e1-47bf-a28d-848b789bb476\",\"defaultLocale\":\"en\",\"controls\":[{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"REFERRED_TO_1\",\"id\":\"1\",\"units\":\"\",\"type\":\"label\",\"value\":\"Referred to\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":0}},\"id\":\"1\",\"concept\":{\"name\":\"Referred to\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000042\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"REASON_FOR_REFERRAL_(TEXT)_2\",\"id\":\"2\",\"units\":\"\",\"type\":\"label\",\"value\":\"Reason for referral (text)\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":1}},\"id\":\"2\",\"concept\":{\"name\":\"Reason for referral (text)\",\"uuid\":\"164359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"Non coded / text reason for referral\",\"translationKey\":\"REASON_FOR_REFERRAL_(TEXT)_2_DESC\"},\"datatype\":\"Text\",\"conceptClass\":\"Question\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"RELEVANT_CLINICAL_HISTORY_4\",\"id\":\"4\",\"units\":\"\",\"type\":\"label\",\"value\":\"Relevant clinical history\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":2}},\"id\":\"4\",\"concept\":{\"name\":\"Relevant clinical history\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000043\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"TREATMENT_PROVIDED_5\",\"id\":\"5\",\"units\":\"\",\"type\":\"label\",\"value\":\"Treatment provided\"},\"properties\":{\"mandatory\":true,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":3}},\"id\":\"5\",\"concept\":{\"name\":\"Treatment provided\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000044\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"translationKey\":\"LABEL_6\",\"type\":\"label\",\"value\":\"Note : Please navigate to print section in Patient Dashboard to print the certificates.\",\"properties\":{\"location\":{\"column\":0,\"row\":4}},\"id\":\"6\"}],\"events\":{\"onFormSave\":\"\",\"onFormInit\":\"\"},\"translationsUrl\":\"/openmrs/ws/rest/v1/bahmniie/form/translations\",\"referenceVersion\":\"2\",\"referenceFormUuid\":\"33da3a19-136e-44e7-9545-0b3370a9ad81\"}",
+        "dataType": "org.bahmni.customdatatype.datatype.FileSystemStorageDatatype",
+        "uuid": "fde0dffa-629c-4003-951c-fecddfdde5c8"
+      }
+    ]
+  },
+  "translations": [
+    {
+      "locale": "en",
+      "labels": {
+        "LABEL_6": "Note : Please navigate to print section in Patient Dashboard to print the certificates."
+      },
+      "concepts": {
+        "REASON_FOR_REFERRAL_(TEXT)_2_DESC": "Non coded / text reason for referral",
+        "REFERRED_TO_1": "Referred to",
+        "REASON_FOR_REFERRAL_(TEXT)_2": "Reason for referral (text)",
+        "RELEVANT_CLINICAL_HISTORY_4": "Relevant clinical history",
+        "TREATMENT_PROVIDED_5": "Treatment provided"
+      },
+      "formName": "Referral letter",
+      "formUuid": null,
+      "version": "1",
+      "referenceVersion": null,
+      "referenceFormUuid": null
+    }
+  ]
+}

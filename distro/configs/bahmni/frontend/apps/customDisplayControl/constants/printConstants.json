@@ -1,0 +1,9 @@
+{
+  "formNames": ["Under Treatment and Fitness Certificate","Admission Letter","Referral letter"],
+  "printControls": {"Under Treatment and Fitness Certificate":true,"Admission Letter":true,"Referral letter":true},
+  "doctorRegistrationFieldValue": "MCI Reg Number",
+  "practitionerType": "practitioner_type",
+  "providerIdentifier": "Doctor",
+  "patientAddress": {"line1": ["address1","address2","address3"], "line2": ["cityVillage","countyDistrict","stateProvince","postalCode"]},
+  "addressAndLocationAttributes": "Print Header"
+}
