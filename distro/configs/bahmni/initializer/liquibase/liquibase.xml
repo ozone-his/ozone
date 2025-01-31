@@ -345,4 +345,13 @@
             1, now(), NULL, NULL, NULL, uuid());
         </sql>
     </changeSet>
+    <changeSet id="postbahmni-2025-01-25-16-01" author="ruhanga">
+        <comment>
+            Set order type 'Lab Order' UUID
+        </comment>
+        <update tableName="order_type">
+            <column name="uuid" value="f8ae333e-9d1a-423e-a6a8-c3a0687ebcf2"/>
+            <where>name='Lab Order'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
