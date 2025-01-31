@@ -1,0 +1,15 @@
+{
+      "id": "bahmni.adt.admission",
+      "extensionPoints": [
+          {
+              "id": "org.bahmni.patient.search",
+              "description": "Bahmni patient search, lookup Page"
+          }
+      ],
+      "contextModel": [],
+  "config": {
+    "preferExtraIdInSearchResults": true,
+    "ignoredTabularViewHeadings": ["extraIdentifierVal","uuid","activeVisitUuid","hasBeenAdmitted","display","image","$$hashKey","birthDate","extraIdentifiers","personId","deathDate","addressFieldValue","dateCreated","customAttribute","patientProgramAttributeValue"],
+    "identifierHeadings": ["identifier"]
+  }
+}

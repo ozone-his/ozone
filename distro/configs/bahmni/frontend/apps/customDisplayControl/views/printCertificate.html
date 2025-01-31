@@ -1,0 +1,256 @@
+<link id="print-certificate-styles" rel="stylesheet"
+      href="/bahmni_config/openmrs/apps/customDisplayControl/styles/print.css"/>
+
+<section class="app-dashboard-integration">
+    <h2 class="section-title"><span class="section-border">{{ section.title | titleTranslate}}</span>
+    </h2>
+
+    <ul class="display-title-container">
+        <li class="display-title">
+            <span class="pl-1"> {{::"UNDER_TREATMENT_CERTIFICATE" | translate}} </span>
+            <button ng-click="printCertificate('under-treatment')" class="print-button"
+                    ng-disabled="printControl['Under Treatment and Fitness Certificate']">{{::"PRINT_BUTTON" | translate}}
+            </button>
+        </li>
+        <ul  class="form-field">
+            <li>{{::"NAVIGATE_TO_UNDER_TREATMENT_CERTIFICATE_FORM" | translate}}</li>
+        </ul>
+    </ul>
+    <ul class="display-title-container">
+        <li class="display-title">
+            <span class="pl-1"> {{::"FITNESS_CERTIFICATE" | translate}} </span>
+            <button ng-click="printCertificate('fitness-certificate')" class="print-button"  ng-disabled="printControl['Under Treatment and Fitness Certificate']">{{::"PRINT_BUTTON" | translate}}</button>
+        </li>
+        <ul  class="form-field">
+            <li>{{::"NAVIGATE_TO_UNDER_TREATMENT_CERTIFICATE_FORM" | translate}}</li>
+        </ul>
+    </ul>
+    <hr class="break-line">
+    <ul class="display-title-container">
+        <li class="display-title">
+            <span class="pl-1"> {{::"ADMISSION_LETTER" | translate}} </span>
+            <button ng-click="printCertificate('admission-certificate')" class="print-button" ng-disabled="printControl['Admission Letter']">{{::"PRINT_BUTTON" | translate}}
+            </button>
+        </li>
+        <ul  class="form-field">
+            <li>{{::"NAVIGATE_TO_ADMISSION_LETTER_FORM" | translate}}</li>
+        </ul>
+    </ul>
+    <hr class="break-line">
+    <ul style="font-size: 14px;color: #000000">
+        <li class="display-title">
+            <span style="padding-left: 10px"> {{::"REFERRAL_LETTER" | translate}} </span>
+            <button ng-click="printCertificate('referral-letter')" class="print-button"
+                    ng-disabled="printControl['Referral letter']">{{::"PRINT_BUTTON" | translate}}
+            </button>
+        </li>
+        <ul  class="form-field">
+            <li>{{::"NAVIGATE_TO_REFERRAL_LETTER_FORM" | translate}}</li>
+        </ul>
+    </ul>
+
+</section>
+
+<div id="under-treatment" class="no-print">
+    <div class="row space-centre position-relative ">
+        <div class="left position-absolute">
+            <span><img src="/bahmni_config/openmrs/apps/customDisplayControl/images/bahmniLogo.png"
+                       class="clinic-logo"/></span>
+        </div>
+        <div class="right">
+           <span>
+
+               <h1 class="name text-center" >
+                {{ registeredClinicName  }}
+              </h1>
+             <span>
+              <h5 class="name text-center w-100">
+                <div class = 'w-70'>
+                  {{ registeredClinicAddress}}
+
+                  </div>
+              </h5>
+              </span>
+          </span>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <span class="label"><h3 class="text-center large-font">{{::"UNDER_TREATMENT_CERTIFICATE" | translate}}</h3></span>
+    </div>
+    <div>
+        <div class="text-left">
+            <span class="label">{{::"DATE_LABEL" | translate}}</span>
+            <span>{{today | date:'dd/MM/yyyy'}} </span> </br>
+            <span class="label">{{::"PATIENT_REGISTRATION_NO_LABEL" | translate}}</span>
+            <span>{{patient.identifier}}</span>
+        </div>
+        <div>
+            <font size="3">
+                <h3 class="text-center mb-2" >{{::"CERTIFICATE_SUBJECT_1" | translate}}</h3>
+                <p class="text-justify"  translate="UNDER_TREATMENT_CERTIFICATE_BODY_CONTENT" translate-values="{patient:{{patient}}, treatment: formFieldValues[0]['Treatment plan'], restDuration : formFieldValues[0]['Rest duration']}">
+                </p>
+                <p class="signature mt-2">{{::"REGARDS_LABEL" | translate}}</p>
+                <p class="signature"><b>{{doctorName}},</b></p>
+                <p class="signature">{{::"REG_NO_LABEL" | translate}} {{registrationNumber}}. </p>
+            </font>
+        </div>
+    </div>
+</div>
+
+<div id="fitness-certificate" class="no-print">
+    <div class="row space-centre position-relative ">
+        <div class="left position-absolute">
+            <span><img src="/bahmni_config/openmrs/apps/customDisplayControl/images/bahmniLogo.png"
+                       class="clinic-logo"/></span>
+        </div>
+        <div class="right">
+           <span>
+
+               <h1 class="name text-center" >
+                {{ registeredClinicName  }}
+              </h1>
+             <span>
+              <h5 class="name text-center w-100">
+                <div class = 'w-70'>
+                  {{ registeredClinicAddress}}
+
+                  </div>
+              </h5>
+              </span>
+          </span>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <span class="label"><h3 class="text-center">{{::"FITNESS_CERTIFICATE" | translate}}</h3></span>
+    </div>
+    <div>
+        <div class="text-left">
+            <span class="label">{{::"DATE_LABEL" | translate}}</span>
+            <span>{{today | date:'dd/MM/yyyy'}} </span> </br>
+            <span class="label">{{::"PATIENT_REGISTRATION_NO_LABEL" | translate}}</span>
+            <span>{{patient.identifier}}</span>
+        </div>
+        <div class="content-body">
+            <font size="3">
+                <h3 class="text-center">{{::"CERTIFICATE_SUBJECT_1" | translate}}</h3>
+                <p class="text-justify" translate="FITNESS_CERTIFICATE_BODY_CONTENT" translate-values="{patient:{{patient}}, treatment: formFieldValues[0]['Treatment plan']}"></p>
+                <p class="signature mt-2" >{{::"REGARDS_LABEL" | translate}}</p>
+                <p class="signature"><b>{{doctorName}},</b></p>
+                <p class="signature">{{::"REG_NO_LABEL" | translate}} {{registrationNumber}}. </p>
+            </font>
+        </div>
+    </div>
+    <div id="admission-certificate" class="no-print">
+        <div class="row space-centre position-relative ">
+            <div class="left position-absolute">
+            <span><img src="/bahmni_config/openmrs/apps/customDisplayControl/images/bahmniLogo.png"
+                       class="clinic-logo"/></span>
+            </div>
+            <div class="right">
+           <span>
+
+               <h1 class="name text-center" >
+                {{ registeredClinicName  }}
+              </h1>
+             <span>
+              <h5 class="name text-center w-100">
+                <div class = 'w-70'>
+                  {{ registeredClinicAddress}}
+
+                  </div>
+              </h5>
+              </span>
+          </span>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <span class="label"><h3 class="text-center">{{::"ADMISSION_LETTER" | translate}}</h3></span>
+        </div>
+        <div>
+            <div class="text-right">
+                <span class="label">{{::"DATE_LABEL" | translate}}</span>
+                <span>{{today | date:'dd/MM/yyyy'}} </span> </br>
+                <span class="label">{{::"PATIENT_REGISTRATION_NO_LABEL" | translate}}</span>
+                <span>{{patient.identifier}}</span>
+            </div>
+            <div>
+                <font size="3">
+
+                    <p class="text-justify" translate="ADMISSION_CERTIFICATE_BODY_CONTENT" translate-values="{patient:{{patient}},ReferredtoDoctor: formFieldValues[1]['Referred to Doctor'], referredToHospital: formFieldValues[1]['Referring to Hospital'], comments: formFieldValues[1]['Comments']}"></p>
+
+                    <p class="mt-2">{{::"THANKYOU_LABEL" | translate}}</p>
+                    <p class="signature"><b>{{doctorName}},</b></p>
+                    <p class="signature">{{::"REG_NO_LABEL" | translate}} {{registrationNumber}}. </p>
+                </font>
+            </div>
+        </div>
+    </div>
+    <!----referral letter--->
+    <div id="referral-letter" class="no-print">
+
+        <div class="row space-centre position-relative ">
+            <div class="left position-absolute">
+            <span><img src="/bahmni_config/openmrs/apps/customDisplayControl/images/bahmniLogo.png"
+                       class="clinic-logo"/></span>
+            </div>
+            <div class="right">
+           <span>
+
+               <h1 class="name text-center" >
+                {{ registeredClinicName  }}
+              </h1>
+             <span>
+              <h5 class="name text-center w-100">
+                <div class = 'w-70'>
+                  {{ registeredClinicAddress}}
+
+                  </div>
+              </h5>
+              </span>
+          </span>
+            </div>
+        </div>
+
+        <hr>
+        <div>
+            <span class="label"><h3 class="text-center">{{::"REFERRAL_LETTER" | translate}}</h3></span>
+        </div>
+        <div class="left">
+            <span class="label"><p
+                    class="text-left" >{{::"REFERRAL_LETTER_REFERRAL_TO" | translate}} {{formFieldValues[2]['Referred to']}} </p></span><br>
+
+        </div>
+
+        <p class="text-left">{{::"REFERRAL_LETTER_NAME_OF_PATIENT" | translate}} {{patient.givenName}} {{patient.middleName}} {{patient.familyName}} {{::"REFERRAL_LETTER_AGE" | translate}} {{patient.age || '0'}} {{::"REFERRAL_LETTER_YEARS" | translate}} </p>
+
+        <div class="left">
+            <span class="label"><p class="text-left"><div class='row w-100 container space-between'><div class='row'><div>{{::"REFERRAL_ADDRESS_LABEL" | translate}}&nbsp </div> <div> {{patientAddress.line1}},<br>{{patientAddress.line2}}.</div></div><span
+                    class='align-top'> {{:: "REFERRAL_TEL_NO_LABEL" | translate}} {{patient.phoneNumber.value}}</span></div>
+                </p></span>
+        </div>
+        <div class="left">
+            <span class="label"><p
+                    class="text-left">{{::"REFERRAL_LETTER_REASON_FOR_REFERRAL" | translate}} {{formFieldValues[2]['Reason for referral (text)']}}</p></span><br>
+
+        </div>
+        <div class="left">
+            <p class="text-left">{{::"REFERRAL_LETTER_RELEVANT_CLINICAL_HISTORY" | translate}} <span>{{formFieldValues[2]['Relevant clinical history']}}</span>
+            </p>
+        </div>
+        <div class="left">
+            <p class="text-left">{{::"REFERRAL_LETTER_TREATMENT" | translate}} <span>{{formFieldValues[2]['Treatment provided']}}</span></p>
+        </div>
+        <div class="right">
+            <span class="label"><p class="text-right">{{::"REFERRAL_SIGNATURE" | translate}}<span
+                    class='fill_in_blank'></span></p></span>
+
+        </div>
+        <div class="right">
+            <span class="label">{{::"DATE_LABEL" | translate}}</span>
+            <span>{{today | date:'dd/MM/yyyy'}} </span>
+        </div>
+    </div>
+</div>

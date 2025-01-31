@@ -1,0 +1,39 @@
+{
+    "auditLog":{
+        "id": "bahmni.admin.auditLog",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "Audit Log",
+        "url": "#/auditLog",
+        "icon": "fa-eye",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    },
+    "orderSet":{
+        "id": "bahmni.admin.orderSet",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "Order Set",
+        "url": "#/ordersetdashboard",
+        "icon": "fa-upload",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    },
+    "fhirExport":{
+        "id": "bahmni.admin.fhirExport",
+        "extensionPointId": "org.bahmni.admin.dashboard",
+        "type": "link",
+        "extensionParams": {
+        },
+        "label": "FHIR Export",
+        "url": "#/fhirExport",
+        "icon": "fa-download",
+        "order": 1,
+        "requiredPrivilege": "app:admin"
+    }
+    
+}

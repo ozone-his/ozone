@@ -1,0 +1,43 @@
+{
+    "id": "bahmni.clinical",
+    "extensionPoints": [
+        {
+            "id": "org.bahmni.clinical.conceptSetGroup.*",
+            "description": "Define conceptsets part of a conceptset group"
+        }
+    ],
+    "config": {
+		"preferExtraIdInSearchResults": true,
+        "allowAdhocTeleConsultation": true,
+        "defaultVisitType":"OPD",
+        "teleConsultationDomain": "meet.jit.si",
+        "ignoredTabularViewHeadings": ["extraIdentifierVal","uuid","activeVisitUuid","hasBeenAdmitted","display","image","$$hashKey","birthDate","extraIdentifiers","personId","deathDate","addressFieldValue","dateCreated","customAttribute","patientProgramAttributeValue"],
+        "identifierHeadings": ["identifier"],
+        "conceptSetUI": {
+            "Chief Complaint Data": {
+                "autocomplete":true,
+                "codedConceptName":"Chief Complaint",
+                "nonCodedConceptName":"Non-Coded Chief Complaint",
+                "durationRequired": false,
+                "allowAddMore": true
+            }
+        },
+        "patientContext": {
+            "personAttributes": [
+                "phoneNumber"
+            ]
+        },
+        "obsGroupDisplayFormat": {
+            "Chief Complaint Data": {
+                "displayObsFormat": {
+                    "translationKey": "CHIEF_COMPLAINT_MESSAGE_KEY",
+                    "concepts": ["Chief Complaint Coded", "Chief complaint (text)", "Sign/symptom duration", "Chief Complaint Duration"]}
+            },
+            "Chief Complaint Record": {
+                "displayObsFormat": {
+                    "translationKey": "CHIEF_COMPLAINT_MESSAGE_KEY",
+                    "concepts": ["Chief Complaint Coded", "Chief complaint (text)", "Sign/symptom duration", "Chief Complaint Duration"]}
+            }
+        }
+    }
+}

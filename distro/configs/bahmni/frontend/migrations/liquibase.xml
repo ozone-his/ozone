@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <changeSet id="bahmni-atomfeed-offset-marker" author="tw" context="rel3">
+                <preConditions onFail="MARK_RAN">
+                        <sqlCheck expectedResult="0">
+                                SELECT COUNT(*) FROM scheduler_task_config where schedulable_class = 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask'
+                        </sqlCheck>
+                </preConditions>
+                <comment>rel3</comment>
+                <sql>
+                        INSERT INTO  scheduler_task_config  (name, description, schedulable_class,
+                        start_time, start_time_pattern, repeat_interval, start_on_startup, started,
+                        created_by, date_created, changed_by, date_changed, last_execution_time, uuid )
+                        VALUES ('OpenMRS event offset marker task', NULL, 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask',
+                        '2014-01-14 00:00:00','MM/dd/yyyy HH:mm:ss',86400, 1, 1,
+                        1, now(), NULL, NULL, NULL, uuid());
+                </sql>
+        </changeSet>
+        <changeSet id="default-201604211822" author="Gautam, Angshuman">
+            <preConditions onFail="MARK_RAN">
+                <sqlCheck expectedResult="0">
+                    select count(concept_id) from concept where uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+                </sqlCheck>
+            </preConditions>
+            <comment>update Height concept uuid to standard CEIL concept uuid</comment>
+            <sql>
+                update concept set uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
+                select concept_name.concept_id from concept_name where name="Height" and concept_name_type="FULLY_SPECIFIED"
+                );
+            </sql>
+        </changeSet>
+        <changeSet id="default-201604211823" author="Gautam, Angshuman">
+            <preConditions onFail="MARK_RAN">
+                <sqlCheck expectedResult="0">
+                    select count(concept_id) from concept where uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+                </sqlCheck>
+            </preConditions>
+            <comment>update Weight concept uuid to standard CEIL concept uuid</comment>
+            <sql>
+                update concept set uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
+                select concept_name.concept_id from concept_name where name="Weight" and concept_name_type="FULLY_SPECIFIED"
+                );
+            </sql>
+        </changeSet>
+    <changeSet id="default-201905311115" author="Bindu, Angshuman">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM location where name="OT";
+            </sqlCheck>
+        </preConditions>
+        <comment> Add default location for OT module </comment>
+        <sql>
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('OT', 'Operation Theater', FALSE, uuid(), NOW(), 1);
+        </sql>
+    </changeSet>
+    <changeSet id="default-201907091507" author="Bindu, Angshuman" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from location_tag where name = 'Operation Theater' and description = 'Operation Theater';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add operation theater location tag</comment>
+        <sql>
+            INSERT INTO location_tag(name, description, creator, date_created, retired, uuid) VALUES ('Operation Theater', 'Operation Theater', 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="default-201905311116" author="Bindu, Angshuman">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location_tag_map where location_tag_id IN (SELECT location_tag_id from location_tag where name="Operation Theater");
+            </sqlCheck>
+        </preConditions>
+        <comment> Tag OT location as Operation Theatre </comment>
+        <sql>
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = "Operation Theater" and description = "Operation Theater";
+            SELECT location_id INTO @location_id FROM location WHERE location.name="OT" and description = "Operation Theater";
+
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id, @location_tag_id);
+        </sql>
+    </changeSet>
+    <!-- 
+    <changeSet id="bah-1570-20220427-1" author="Deepthi,Soorya">
+    	<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username='registration';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding bahmni-user</comment>
+        <sql>
+            SET @puuid = uuid();
+            INSERT INTO person(gender, birthdate_estimated, dead, creator, date_created, uuid) VALUES('M', 0, 0, 1, now(), @puuid);
+            SELECT person_id INTO @person_id from person where uuid = @puuid;
+            INSERT INTO person_name(person_id, preferred, given_name, family_name, creator, date_created, uuid) VALUES(@person_id, 1, 'registration', 'bahmni-user', 1, now(), @puuid);
+            INSERT INTO users(system_id, creator, date_created, person_id, uuid, username, password, salt) VALUES ('registration', 1, now(),@person_id, uuid(), 'registration', 'e28e3ae84c66bfba6b2c50a406567f3e34fea1d76b17c006931571fe5d940f6c6b81e49cf8ea5e0adfca19fe3beb68d8ad79f7c3812e92b8d502a9afcf2029b2', '1c9d7e94aeeb7a2459ef45ed200b2944582e0e7088d75f9b57a3644861ea766c20a269b3fe2eadaff1bc445ecfbd9bd3c0c550dfd813de48d39423cd3d1a8b10');
+            INSERT INTO provider (person_id, identifier, creator, date_created, uuid, name) VALUES (@person_id, 'registration', 1, now(), uuid(), 'registration');
+        </sql>
+    </changeSet>
+    <changeSet id="bah-1570-20220427-2" author="Deepthi,Soorya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM location where name="Bahmni Clinic";
+            </sqlCheck>
+        </preConditions>
+        <comment> Add location for bahmni-clinic </comment>
+        <sql>
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('Bahmni Clinic', 'bahmni clinic', FALSE, uuid(), NOW(), 1);
+        </sql>
+    </changeSet>
+    <changeSet id="bah-1570-20220525-3" author="Deepthi,Soorya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location_tag_map where location_tag_id IN (SELECT location_tag_id from location_tag where name="Bahmni Clinic");
+            </sqlCheck>
+        </preConditions>
+        <comment> Tag Bahmni Clinic location to Login Location </comment>
+        <sql>
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = "Login Location" ;
+            SELECT location_id INTO @location_id FROM location WHERE location.name="Bahmni Clinic" and description = "bahmni clinic";
+            DELETE FROM location_tag_map WHERE location_tag_id = @location_tag_id;
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id, @location_tag_id);
+        </sql>
+    </changeSet>
+    <changeSet id="bah-1577-20220517-1" author="Clinic-config">
+    	<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username='dr_neha';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding bahmni-user</comment>
+        <sql>
+            SET @puuid = uuid();
+            INSERT INTO person(gender, birthdate_estimated, dead, creator, date_created, uuid) VALUES('F', 0, 0, 1, now(), @puuid);
+            SELECT person_id INTO @person_id from person where uuid = @puuid;
+            INSERT INTO person_name(person_id, preferred, given_name, family_name, creator, date_created, uuid) VALUES(@person_id, 1, 'neha', 'bahmni-user', 1, now(), @puuid);
+            INSERT INTO users(system_id, creator, date_created, person_id, uuid, username, password, salt) VALUES ('doctor', 1, now(),@person_id, uuid(), 'dr_neha', 'e28e3ae84c66bfba6b2c50a406567f3e34fea1d76b17c006931571fe5d940f6c6b81e49cf8ea5e0adfca19fe3beb68d8ad79f7c3812e92b8d502a9afcf2029b2', '1c9d7e94aeeb7a2459ef45ed200b2944582e0e7088d75f9b57a3644861ea766c20a269b3fe2eadaff1bc445ecfbd9bd3c0c550dfd813de48d39423cd3d1a8b10');
+            INSERT INTO provider (person_id, identifier, creator, date_created, uuid, name) VALUES (@person_id, 'doctor', 1, now(), uuid(), 'doctor');
+        </sql>
+    </changeSet>
+    <changeSet id="202205261830-update-concept-numeric" author="Clinic-config">
+        <comment>Update concept numeric</comment>
+        <sql>
+           UPDATE concept_numeric SET hi_normal = NULL, low_normal = NULL WHERE concept_id IN (
+            (SELECT concept_id FROM concept_name WHERE name IN ("Pulse","Temperature","RR","SPO2","Systolic","Diastolic")
+            AND concept_name_type = 'FULLY_SPECIFIED')); 
+        </sql>
+    </changeSet>
+    <changeSet id="202205260710-update-units" author="Clinic-config">
+        <comment>Add units for height, weight and registration fees</comment>
+        <sql>
+            SELECT concept_id INTO @height_id FROM concept_name WHERE name = "HEIGHT" AND concept_name_type = 'FULLY_SPECIFIED';
+            UPDATE concept_numeric SET units = "cm" WHERE concept_id = @height_id;
+
+            SELECT concept_id INTO @weight_id FROM concept_name WHERE name = "WEIGHT" AND concept_name_type = 'FULLY_SPECIFIED';
+            UPDATE concept_numeric SET units = "kg" WHERE concept_id = @weight_id;
+            
+            SELECT concept_id INTO @reg_fees_id FROM concept_name WHERE name = "REGISTRATION FEES" AND concept_name_type = 'FULLY_SPECIFIED';
+            UPDATE concept_numeric SET units = "INR" WHERE concept_id = @reg_fees_id;
+        </sql>
+    </changeSet> -->
+    <include file ="addLabRoleWithPrivilege.xml"/>
+    <include file ="addObsPathSplitterProperty.xml"/>
+    <include file ="addMoreObsSplitterProperty.xml"/>
+    <include file ="addMultiSelectObsSplitterProperty.xml"/>
+    <!-- <include file ="loginRolesAndPrivileges.xml"/>
+    <include file ="registrationAndSearchPrivileges.xml"/>
+    <include file ="clinicalPrivileges.xml"/> -->
+</databaseChangeLog>

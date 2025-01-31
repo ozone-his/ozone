@@ -1,0 +1,6 @@
+Uuid,Void/Retire,Mappings|SAME-AS|SNOMED,Fully specified name:en,Short name:en,Description:en,Data class,Data type,Members,_version:1,_order:1400
+,,,Download URL,,,Misc,Text,,,
+,,,FHIR Export User Name,User Name,,Misc,N/A,,,
+,,,FHIR Export Start Date,Start Date,,Misc,Date,,,
+,,,FHIR Export End Date,End Date,,Misc,Date,,,
+,,,FHIR Export Anonymise Flag,Anonymise,,Misc,Boolean,,,
