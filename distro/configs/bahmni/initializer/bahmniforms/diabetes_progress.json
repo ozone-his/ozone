@@ -1,0 +1,36 @@
+{
+  "formJson": {
+    "uuid": "85179b02-56bb-4aee-89aa-6bb16a0fdf4a",
+    "name": "Diabetes Progress",
+    "version": "1",
+    "published": true,
+    "resources": [
+      {
+        "value": "{\"name\":\"Diabetes Progress\",\"id\":5,\"uuid\":\"85179b02-56bb-4aee-89aa-6bb16a0fdf4a\",\"defaultLocale\":\"en\",\"controls\":[{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"DATE_OF_LAST_PATIENT_VISIT_1\",\"id\":\"1\",\"units\":\"\",\"type\":\"label\",\"value\":\"Date of last patient visit\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":0},\"allowFutureDates\":false},\"id\":\"1\",\"concept\":{\"name\":\"Date of last patient visit\",\"uuid\":\"164093AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"Question on encounter form. The last visit date.\",\"translationKey\":\"DATE_OF_LAST_PATIENT_VISIT_1_DESC\"},\"datatype\":\"Date\",\"conceptClass\":\"Question\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"DIABETES,_LAST_HBA1C_DATE_2\",\"id\":\"2\",\"units\":\"\",\"type\":\"label\",\"value\":\"Diabetes, Last HbA1c Date\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":1},\"allowFutureDates\":false},\"id\":\"2\",\"concept\":{\"name\":\"Diabetes, Last HbA1c Date\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000012\",\"datatype\":\"Date\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"DIABETES,_LAST_KNOWN_A1C_RESULT_3\",\"id\":\"3\",\"units\":\"\",\"type\":\"label\",\"value\":\"Diabetes, Last known A1C Result\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":2}},\"id\":\"3\",\"concept\":{\"name\":\"Diabetes, Last known A1C Result\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000011\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"FOOT_EXAMINATION_4\",\"id\":\"4\",\"units\":\"\",\"type\":\"label\",\"value\":\"Foot examination\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":3}},\"id\":\"4\",\"concept\":{\"name\":\"Foot examination\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000018\",\"datatype\":\"Text\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"LAST_EYE_EXAM_DATE_5\",\"id\":\"5\",\"units\":\"\",\"type\":\"label\",\"value\":\"Last eye exam date\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":4},\"allowFutureDates\":false},\"id\":\"5\",\"concept\":{\"name\":\"Last eye exam date\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000019\",\"datatype\":\"Date\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"EYE_EXAMINATION_FINDINGS_(TEXT)_7\",\"id\":\"7\",\"units\":\"\",\"type\":\"label\",\"value\":\"Eye examination findings (text)\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":5}},\"id\":\"7\",\"concept\":{\"name\":\"Eye examination findings (text)\",\"uuid\":\"166441AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"Free text entry of eye exam findings. For coded answers use 163309\",\"translationKey\":\"EYE_EXAMINATION_FINDINGS_(TEXT)_7_DESC\"},\"datatype\":\"Text\",\"conceptClass\":\"Question\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null}],\"events\":{\"onFormSave\":\"\",\"onFormInit\":\"\"},\"translationsUrl\":\"/openmrs/ws/rest/v1/bahmniie/form/translations\",\"referenceVersion\":\"2\",\"referenceFormUuid\":\"5aaa923c-9b90-4895-9efb-b13f19b26fdd\"}",
+        "dataType": "org.bahmni.customdatatype.datatype.FileSystemStorageDatatype",
+        "uuid": "997d3dcf-8afb-4b1b-b53b-6b8675490880"
+      }
+    ]
+  },
+  "translations": [
+    {
+      "locale": "en",
+      "labels": {},
+      "concepts": {
+        "DATE_OF_LAST_PATIENT_VISIT_1_DESC": "Question on encounter form. The last visit date.",
+        "DIABETES,_LAST_HBA1C_DATE_2": "Last HbA1c Date",
+        "LAST_EYE_EXAM_DATE_5": "Last eye exam date",
+        "EYE_EXAMINATION_FINDINGS_(TEXT)_7": "Eye examination findings (text)",
+        "FOOT_EXAMINATION_4": "Foot examination",
+        "EYE_EXAMINATION_FINDINGS_(TEXT)_7_DESC": "Free text entry of eye exam findings. For coded answers use 163309",
+        "DIABETES,_LAST_KNOWN_A1C_RESULT_3": "Last known A1C Result",
+        "DATE_OF_LAST_PATIENT_VISIT_1": "Date of last patient visit"
+      },
+      "formName": "Diabetes Progress",
+      "formUuid": null,
+      "version": "1",
+      "referenceVersion": null,
+      "referenceFormUuid": null
+    }
+  ]
+}

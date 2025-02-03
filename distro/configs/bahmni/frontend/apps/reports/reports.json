@@ -1,0 +1,58 @@
+{
+    "ClinicVisitReport": {
+        "name": "Clinic Visit Report",
+        "type": "MRSGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/clinicVisits.sql"
+        }
+    },
+    "OPD/EmergencyVisitCount": {
+        "name": "OPD/Emergency Visit Count",
+        "type": "MRSGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/visitCount.sql"
+        }
+    },
+    "missedAppointmentsReport": {
+        "name": "Missed Appointments Report",
+        "type": "MRSGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/missedAppointments.sql"
+        }
+    },
+    "followUpReport": {
+        "name": "List of Patients to follow up",
+        "type": "MRSGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/followUp.sql"
+        }
+    },
+    "RegisteredPatientReport": {
+        "name": "Registered Patient Report",
+        "type": "MRSGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/registeredPatients.sql"
+        }
+    },
+    "notifiableDiseases": {
+        "name": "Notifiable Diseases",
+        "type": "MRSGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/notifiableDiseases.sql"
+        }
+    },
+    "DiagnosisCountReport": {
+        "name": "Diagnosis Count Report",
+        "type": "MRSGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/diagnosisCount.sql"
+        }
+    }
+}

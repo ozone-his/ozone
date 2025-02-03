@@ -1,0 +1,5 @@
+{
+    "APPOINTMENT_BOOKING_MESSAGE": "Appointment for #patientName, #patientId on #dateTime for #service is booked at #clinicName. For any queries call us on #helpDeskNumber.",
+    "RECURRING_APPOINTMENT_BOOKING_MESSAGE": "A recurring appointment for #patientName, #patientId for #service is booked for every #frequency at #clinicName. Your next appointment is at #dateTime. For any queries call us on #helpDeskNumber.",
+    "TELECONSULTATION_APPOINTMENT_BOOKING_MESSAGE": "A teleconsultation appointment for #patientName, #patientId on #dateTime for #service is booked at #clinicName. Please click on the link #meetingLink on #dateTime to join the consultation. For any queries call us on #helpDeskNumber."
+}

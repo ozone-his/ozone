@@ -1,0 +1,113 @@
+@page {
+    margin: 0.7cm;
+}
+.break-line {
+    margin: 1px;
+}
+.no-print {
+    height: 0;
+    overflow: hidden;
+}
+.print-wrap {
+    max-width: 21cm;
+    padding: 10px 40px 0;
+    margin: 0 auto;
+}
+li.display-title {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ddd;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    align-items: center;
+}
+
+button.print-button {
+    margin-right: 1em;
+}
+.row {
+   display: flex;
+}
+.row.space-between {
+    justify-content: space-between;
+}
+.fill_in_blank {
+display: inline-block;
+border-bottom: 1px solid;
+width: 150px;
+}
+.row.space-centre {
+    justify-content: center;
+}
+.float-left {
+ float: left;
+}
+.float-right {
+    float: right;
+}
+.position-relative {
+    position: relative;
+}
+.position-absolute {
+    position: absolute;
+    left: 0;
+}
+h1.name {
+    margin: 0 ;
+
+}
+h5.name {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+.signature {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+.mt-2 {
+    margin-top: 20px;
+}
+.mb-2 {
+    margin-bottom: 20px;
+}
+.text-justify{
+    text-align: justify;
+}
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.section-border {
+    border-bottom: 1px solid white;
+}
+.display-title-container {
+    font-size: 14px;
+    color: #000000;
+}
+.pl-1 {
+    padding-left: 10px;
+}
+.clinic-logo {
+    width: 24mm;
+}
+.large-font {
+    font-size: xx-large
+}
+.align-top {
+    vertical-align: text-top;
+}
+.w-100{
+    width: 100%;
+}
+.container {
+  align-items: flex-start;
+}
+.w-70 {
+    width: 70%;
+    margin :auto;
+}
