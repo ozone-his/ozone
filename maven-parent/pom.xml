@@ -276,7 +276,7 @@
           <execution>
             <!-- Copy OpenMRS modules -->
             <id>Copy OpenMRS modules</id>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
