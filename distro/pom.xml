@@ -322,7 +322,6 @@
               <includeArtifactIds>distro</includeArtifactIds>
             </configuration>
           </execution>
-
         </executions>
       </plugin>
       <plugin>
