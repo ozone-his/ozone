@@ -354,4 +354,13 @@
             <where>name='Lab Order'</where>
         </update>
     </changeSet>
+    <changeSet id="postbahmni-2025-02-10-16-01" author="ruhanga">
+        <comment>
+            Set encounter type 'LAB_RESULT' UUID
+        </comment>
+        <update tableName="encounter_type">
+            <column name="uuid" value="265f8971-e481-11ef-93fc-0242ac130003"/>
+            <where>name='LAB_RESULT'</where>
+        </update>
+    </changeSet>
 </databaseChangeLog>
