@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.3.0-SNAPSHOT</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.2.1</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.2.0-SNAPSHOT</odoo_initializerVersion>
 
     <!-- OpenMRS modules versions -->
