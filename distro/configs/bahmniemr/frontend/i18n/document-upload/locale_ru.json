@@ -1,0 +1,7 @@
+{
+  "MODULE_LABEL_ALL_PATIENTS_KEY": "Все пациенты",
+  "MODULE_LABEL_ACTIVE_PATIENTS_KEY":"Текущие пациенты",
+
+  "SEARCH_NAME_PLACEHOLDER_KEY": "Поиск по имени или ID",
+  "SEARCH_KEY": "Поиск"
+}

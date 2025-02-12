@@ -1,0 +1,7 @@
+Uuid,Void/Retire,Name,Description,Duration,Start Time,End Time,Max Load,Speciality,Location,Label Colour,_order:1000
+,,General Medicine OPD Consultation,Appointment for General Medicine Consultation,15,,,,General Medicine,,,
+,,General Medicine Follow-up Consultation,Appointment for General Medicine Follow-up,15,,,,General Medicine,,,
+,,General Medicine Procedure,Appointment for General Medicine Procedure,15,,,,General Medicine,,,
+,,ENT OPD Consultation,Appointment for ENT Consultation,15,,,,ENT,,,
+,,ENT Follow-up Consultation,Appointment for ENT Follow-up,15,,,,ENT,,,
+,,ENT Procedure,Appointment for ENT Procedure,15,,,,ENT,,,

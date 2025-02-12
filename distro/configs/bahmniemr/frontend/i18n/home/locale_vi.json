@@ -1,0 +1,17 @@
+    {
+    "MODULE_LABEL_REGISTRATION_KEY": "Đăng ký",
+    "MODULE_LABEL_CLINICAL_KEY": "Lâm sàng",
+    "MODULE_LABEL_INPATIENT_KEY": "Bệnh Nhân",
+    "MODULE_LABEL_RADIOLOGY_UPLOAD_KEY": "Tải hình chụp X quang",
+    "MODULE_LABEL_PATIENT_DOCUMENTS_KEY": "Tài liệu bệnh nhân",
+    "MODULE_LABEL_ADMIN_KEY": "Quản trị",
+    "MODULE_LABEL_REPORTS_KEY": "Báo Cáo",
+    "MODULE_LABEL_APOOINTMENTS_KEY": "Các cuộc hẹn",
+    "MODULE_LABEL_ORDERS_KEY": "Chỉ Định",
+    "MODULE_LABEL_PROGRAMS_KEY": "Chương trình",
+    "MODULE_LABEL_IMPLEMENTER_INTERFACE_KEY": "Giao diện người dùng",
+    "MODULE_LABEL_ATOMFEED_CONSOLE_KEY": "Quản lý AtomFeed ",
+    "MODULE_LABEL_APPOINTMENT_SCHEDULING_KEY": "Lập kế hoạch cuộc hẹn",
+    "MODULE_LABEL_BED_MANAGEMENT_KEY": "Bed Management",
+    "MODULE_LABEL_LAB_ENTRY_KEY": "Lab entry"
+}

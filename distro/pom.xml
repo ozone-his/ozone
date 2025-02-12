@@ -29,6 +29,7 @@
 
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.2.1</referenceapplicationDistroVersion>
+    <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <odoo_initializerVersion>2.2.0-SNAPSHOT</odoo_initializerVersion>
 
     <!-- OpenMRS modules versions -->
@@ -72,6 +73,15 @@
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
+
+    <!-- Bahmni EMR distro -->
+    <dependency>
+      <groupId>org.openmrs.distro</groupId>
+      <artifactId>distro</artifactId>
+      <type>zip</type>
+      <version>${openmrsDistroBahmniemrVersion}</version>
+    </dependency>
+
     <!--  Odoo addons-->
     <dependency>
       <groupId>net.mekomsolutions.odoo</groupId>
@@ -300,6 +310,18 @@
             </configuration>
           </execution>
 
+          <execution>
+            <id>Copy Bahmni EMR binaries to a temporary location</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${project.build.directory}/bahmniemr_binaries/</outputDirectory>
+              <includeArtifactIds>distro</includeArtifactIds>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -520,6 +542,23 @@
                     dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules">
                     <exclude name="authentication-*.omod"/>
                   </fileset>
+                </copy>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+
+          <execution>
+            <id>Copy filtered Bahmni EMR modules</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <copy
+                  todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/bahmniemr/modules" flatten="true">
+                  <!-- Only include .omod files -->
+                  <fileset dir="${project.build.directory}/bahmniemr_binaries" includes="**/*.omod"/>
                 </copy>
               </target>
             </configuration>

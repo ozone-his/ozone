@@ -1,0 +1,17 @@
+    {
+    "MODULE_LABEL_REGISTRATION_KEY": "Registro",
+    "MODULE_LABEL_CLINICAL_KEY": "Clínico",
+    "MODULE_LABEL_INPATIENT_KEY": "Internação",
+    "MODULE_LABEL_RADIOLOGY_UPLOAD_KEY": "Fazer upload de Radiologia",
+    "MODULE_LABEL_PATIENT_DOCUMENTS_KEY": "Documentos do Paciente",
+    "MODULE_LABEL_ADMIN_KEY": "Admin",
+    "MODULE_LABEL_REPORTS_KEY": "Relatórios",
+    "MODULE_LABEL_APOOINTMENTS_KEY": "Agendamentos",
+    "MODULE_LABEL_ORDERS_KEY": "Pedidos",
+    "MODULE_LABEL_PROGRAMS_KEY": "Programas",
+    "MODULE_LABEL_IMPLEMENTER_INTERFACE_KEY": "Interface de implementação",
+    "MODULE_LABEL_ATOMFEED_CONSOLE_KEY": "Console AtomFeed",
+    "MODULE_LABEL_APPOINTMENT_SCHEDULING_KEY": "Agenda de marcações",
+    "MODULE_LABEL_BED_MANAGEMENT_KEY": "Bed Management",
+    "MODULE_LABEL_LAB_ENTRY_KEY": "Lab entry"
+}

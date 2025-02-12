@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+   
+    <changeSet id="202205160207-role-doctor" author="Clinic-config"> 
+        <sql>
+            INSERT IGNORE INTO role_privilege VALUES('Doctor', 'app:clinical');
+            INSERT IGNORE INTO role_role VALUES('FrontDesk','Doctor');
+            INSERT IGNORE INTO role_privilege VALUES('Doctor', 'app:reports');
+            INSERT IGNORE INTO role_role VALUES('Clinical-App','Doctor');
+        </sql>           
+    </changeSet>
+</databaseChangeLog>
+
+

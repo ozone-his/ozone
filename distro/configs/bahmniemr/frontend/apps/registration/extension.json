@@ -1,0 +1,46 @@
+{
+    "search":{
+        "id": "bahmni.registration.navigation.patient.search",
+        "extensionPointId": "org.bahmni.registration.navigation",
+        "type": "link",
+        "translationKey":"REGISTRATION_SEARCH_CONFIG_KEY",
+        "url": "/search",
+        "shortcutKey": "REGISTRATION_SEARCH_CONFIG_ACCESS_KEY",
+        "icon": "fa-search",
+        "order": 1,
+        "requiredPrivilege": "View Patients"
+    },
+    "createNew":{
+        "id": "bahmni.registration.navigation.patient.create",
+        "extensionPointId": "org.bahmni.registration.navigation",
+        "type": "link",
+        "translationKey": "REGISTRATION_CREATE_NEW_CONFIG_KEY",
+        "url": "/patient/new",
+        "icon": "fa-plus",
+        "shortcutKey": "REGISTRATION_CREATE_NEW_CONFIG_ACCESS_KEY",
+        "order": 2,
+        "requiredPrivilege": "Add Patients"
+    },
+    "view":{
+        "id": "bahmni.patient.search.result.action.edit",
+        "extensionPointId": "org.bahmni.registration.patient.search.result.action",
+        "type": "link",
+        "translationKey": "REGISTRATION_VIEW_CONFIG_KEY",
+        "url": "/patient/{{patientUuid}}",
+        "icon": "fa-patient-edit",
+        "order": 1,
+        "requiredPrivilege": "View Patients"
+    },
+    "registrationSecondPage":{
+        "id": "bahmni.registration.conceptSetGroup.registrationSecondPage",
+        "extensionPointId": "org.bahmni.registration.conceptSetGroup.observations",
+        "type": "forms",
+        "extensionParams": {
+            "formName": "Registration Details",
+            "conceptNames": ["Height (cm)","Weight (Kg)","Body mass index","BMI Status"],
+            "showLatest": true
+        },
+        "order": 3,
+        "requiredPrivilege": "Edit Visits"
+    }
+}
