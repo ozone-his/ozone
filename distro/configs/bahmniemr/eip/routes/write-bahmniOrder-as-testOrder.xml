@@ -2,7 +2,7 @@
     <route id="write-bahmniOrder-as-testOrder" errorHandlerRef="watcherErrorHandler">
         <from uri="direct:write-bahmniOrder-as-testOrder"/>
         <setProperty name="bahmniTestOrderTypeUuid">
-            <simple>${properties:bahmni.test.orderType.uuid:'xxxxx'}</simple>
+            <simple>${properties:bahmni.test.orderType.uuid:'uuid-not-existing'}</simple>
         </setProperty>
         <log message="Processing Test Order from Order"/>
         <choice>
