@@ -49,6 +49,10 @@
     <eipERPNextOpenMRSArtifactId>eip-erpnext-openmrs</eipERPNextOpenMRSArtifactId>
     <eipOpenMRSOrthancArtifactId>eip-openmrs-orthanc</eipOpenMRSOrthancArtifactId>
 
+    <!-- Ozone Analytics Queries -->
+    <analyticsQueriesVersion>1.3.0</analyticsQueriesVersion>
+    <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
+
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
@@ -129,6 +133,14 @@
       <groupId>com.ozonehis</groupId>
       <artifactId>${eipERPNextOpenMRSArtifactId}</artifactId>
       <version>${eipERPNextOpenMRSVersion}</version>
+    </dependency>
+
+    <!-- Ozone Analytics Queries -->
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>${analyticsQueriesArtifactId}</artifactId>
+      <version>${analyticsQueriesVersion}</version>
+      <type>zip</type>
     </dependency>
 
     <dependency>
@@ -283,6 +295,21 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/openmrs_frontend</outputDirectory>
               <includeArtifactIds>distro-emr-frontend</includeArtifactIds>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Copy Ozone Analytics Queries</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <useBaseVersion>true</useBaseVersion>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/analytics</outputDirectory>
+              <includeArtifactIds>${analyticsQueriesArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
