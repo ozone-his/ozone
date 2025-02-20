@@ -308,7 +308,7 @@
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
               <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/analytics</outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/configs/analytics</outputDirectory>
               <includeArtifactIds>${analyticsQueriesArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
