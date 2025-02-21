@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.ozonehis</groupId>
     <artifactId>maven-commons</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-alpha.12</version>
     <relativePath>maven-commons</relativePath>
   </parent>
 
@@ -13,7 +13,7 @@
   <artifactId>ozone</artifactId>
   <name>Ozone</name>
   <description>The enterprise-grade health information system built with OpenMRS 3</description>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0-alpha.12</version>
   <packaging>pom</packaging>
 
   <organization>
@@ -31,8 +31,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <ozoneDistroVersion>1.0.0-SNAPSHOT</ozoneDistroVersion>
-    <ozoneDockerComposeVersion>1.0.0-SNAPSHOT</ozoneDockerComposeVersion>
+    <ozoneDistroVersion>1.0.0-alpha.12</ozoneDistroVersion>
+    <ozoneDockerComposeVersion>1.0.0-alpha.12</ozoneDockerComposeVersion>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
