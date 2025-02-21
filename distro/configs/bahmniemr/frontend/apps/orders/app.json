@@ -1,0 +1,30 @@
+{
+        "id": "bahmni.orders",
+        "extensionPoints": [
+            {
+                "id": "org.bahmni.orders.search",
+                "description": "Orders Dashboard"
+            }
+        ],
+    "config" : {
+      "maxConceptSetLevels": 3,
+      "ignoredTabularViewHeadings": ["uuid","activeVisitUuid","hasBeenAdmitted","display","image","$$hashKey"],
+      "identifierHeadings": ["identifier"],
+      "conceptSetUI": {
+        "Grid1": {
+          "grid": true
+        },
+        "Coded3": {
+          "multiSelect": true
+        }
+      },
+      "sections": {
+        "title": "Radiology Order FulFillment Form",
+        "name": "Radiology Results",
+        "isObservation": true,
+        "conceptNames": ["Radiology Notes"],
+        "numberOfVisits": 2,
+        "scope": "latest"
+      }
+    }
+}

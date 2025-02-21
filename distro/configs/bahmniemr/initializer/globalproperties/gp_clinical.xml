@@ -1,0 +1,41 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>emrapi.sqlSearch.emergencyMedicationToAcknowledge</property>
+            <value>
+                SELECT DISTINCT
+                    primaryIdentifier.identifier as identifier,
+                    concat(pn.given_name,' ', pn.family_name) as name,
+                    p.gender as gender,
+                    p.uuid as patient_uuid,
+                    p.birthdate as date_of_birth,
+                    ma.uuid as medication_administration_uuid,
+                    ma.administered_date_time,
+                    dg.name as administered_drug_name,
+                    ma.dose as administered_dose,
+                    cnd.name as administered_dose_units,
+                    cnr.name as administered_route,
+                    map.uuid as medication_administration_performer_uuid,
+                    v.uuid as visit_uuid
+                FROM medication_administration_performer map
+                join provider pr on pr.provider_id = map.actor_id
+                join medication_administration ma on map.medication_administration_id=ma.medication_administration_id
+                join drug dg on dg.drug_id = ma.drug_id
+                join ipd_slot slot on ma.medication_administration_id = slot.medication_administration_id
+                join ipd_schedule schedule on schedule.schedule_id = slot.schedule_id
+                join visit v on v.visit_id = schedule.visit_id
+                JOIN (SELECT pri.patient_id, pri.identifier FROM patient_identifier pri
+                join patient_identifier_type pit on pri.identifier_type = pit.patient_identifier_type_id and pri.preferred = 1
+                join global_property gp on gp.property="bahmni.primaryIdentifierType" and gp.property_value=pit.uuid) primaryIdentifier ON ma.patient_id = primaryIdentifier.patient_id
+                join concept_name cn on cn.concept_id = map.performer_function and cn.concept_name_type = "FULLY_SPECIFIED" and cn.locale='en'
+                join concept_name cnd on cnd.concept_id = ma.dose_units and cnd.concept_name_type = "FULLY_SPECIFIED" and cnd.locale='en'
+                join concept_name cnr on cnr.concept_id = ma.route and cnr.concept_name_type = "FULLY_SPECIFIED" and cnr.locale='en'
+                join person_name pn on ma.patient_id = pn.person_id and pn.voided = 0 and pn.preferred = 1
+                join patient_identifier pi on ma.patient_id = pi.patient_id
+                join person p on p.person_id = ma.patient_id and p.voided = 0
+                WHERE cn.concept_name_type="FULLY_SPECIFIED" and cn.name="Witness" and pr.uuid = ${provider_uuid};
+            </value>
+            <description>SQL query to get the list of emergency medications to be acknowledged</description>
+        </globalProperty>
+    </globalProperties>
+</config>

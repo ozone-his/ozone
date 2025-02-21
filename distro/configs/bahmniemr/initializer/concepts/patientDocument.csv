@@ -1,0 +1,7 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Fully specified name:fr,Short name:fr,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:900
+e53c2ed9-6c23-4683-ad9e-12c2a5d780d8,,LOINC:57828-6,Prescription,Prescription,,,,,Image,N/A,,,,,,,,,,,
+509a4f39-5ce3-4e88-ab71-aa6ac7ced029,,LOINC:57133-1,Referral Documents,Referral Documents,,,,,Image,N/A,,,,,,,,,,,
+94ea9aba-a82c-4e54-9c11-722d97ae54b8,,SNOMED-CT:184216000,Patient File,Patient File,,,,,Image,N/A,,,,,,,,,,,
+e41ef81f-4706-41fd-9589-ad47761221ea,,LOINC:18748-4,Radiology Report,Radiology Report,,,,,Image,N/A,,,,,,,,,,,
+4cf781ad-247a-4691-abc9-e5724d60842a,,LOINC:18842-5,Discharge Summary,Discharge Summary,,,,,Image,N/A,,,,,,,,,,,
+252822fc-9d7d-4e80-8886-d7aa62b02c52,,,Patient Document,Patient Document,,,,,ConvSet,N/A,,,e53c2ed9-6c23-4683-ad9e-12c2a5d780d8;509a4f39-5ce3-4e88-ab71-aa6ac7ced029;94ea9aba-a82c-4e54-9c11-722d97ae54b8;e41ef81f-4706-41fd-9589-ad47761221ea;4cf781ad-247a-4691-abc9-e5724d60842a,,,,,,,,

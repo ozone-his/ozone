@@ -1,0 +1,7 @@
+uuid,name,description,class,datatype,shortname,reference-term-code,reference-term-relationship,reference-term-source,synonym.1,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6,answer.7,answer.8,answer.9,answer.10,answer.11,answer.12,answer.13,answer.14,answer.15,answer.16
+,"Undernutrition, Diagnosed Date",,Misc,Date,Diagnosed Date,,,,,,,,,,,,,,,,,,,,
+,"Undernutrition, Treatment Details",,Misc,Text,Treatment Details,,,,,,,,,,,,,,,,,,,,
+,"Undernutrition, On Treatment",,Misc,Boolean,On Treatment,,,,,,,,,,,,,,,,,,,,
+,"Undernutrition, If Not Why",,Misc,Text,"If Not, Why",,,,,,,,,,,,,,,,,,,,
+,"Undernutrition, Stopped Since When",,Misc,Text,Stopped Since When,,,,,,,,,,,,,,,,,,,,
+,"Undernutrition, Current Status",,Misc,Text,Current Status,,,,,,,,,,,,,,,,,,,,

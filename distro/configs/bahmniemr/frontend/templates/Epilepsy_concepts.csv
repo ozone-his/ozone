@@ -1,0 +1,8 @@
+uuid,name,description,class,datatype,shortname,reference-term-source,reference-term-code,reference-term-relationship,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6,answer.7,answer.8,answer.9,answer.10,answer.11,answer.12,answer.13,answer.14,answer.15,answer.16
+,"Epilepsy, Final Diagnosis",,Misc,Text,Final Diagnosis,,,,,,,,,,,,,,,,,,,
+,"Epilepsy, Last Visit Date",,Misc,Date,Date of Last Visit,,,,,,,,,,,,,,,,,,,
+,"Epilepsy, On Treatment",,Misc,Boolean,On Treatment,,,,,,,,,,,,,,,,,,,
+,"Epilepsy, Treatment Details",,Misc,Text,Treatment Details,,,,,,,,,,,,,,,,,,,
+,"Epilepsy, On Treatment for Last one year",,Misc,Boolean,On Treatment for last one year,,,,,,,,,,,,,,,,,,,
+,"Epilepsy, Seizure Controlled",,Misc,Boolean,Seizure Controlled,,,,,,,,,,,,,,,,,,,
+,"Epilepsy, Current Status",,Misc,Text,Current Status,,,,,,,,,,,,,,,,,,,

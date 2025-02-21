@@ -1,0 +1,117 @@
+<style>
+    h4, p {
+        text-align: center;
+    }
+    table {
+        border: none;
+    }
+    table th, table td {
+        border: 1px solid #444;
+        border-left: none;
+        text-align: center;
+    }
+    table th:first-child {
+        border-left: 1px solid #444;
+    }
+    table td:first-child {
+        border-left: 1px solid #444;
+    }
+    .largeWidth {
+        min-width: 100px;
+    }
+</style>
+<h4> OT Schedule</h4>
+<p ng-if="weekOrDay === 'day'">
+    {{viewDate | date : 'dd MMM yyyy, EEE'}}
+</p>
+
+<p ng-if="weekOrDay === 'week'">
+    {{weekStartDate | date : 'dd MMM yyyy, EEE'}} to {{weekEndDate | date : 'dd MMM yyyy, EEE'}}
+</p>
+    <table cellpadding="2" cellspacing="0">
+        <thead>
+        <tr>
+            <th width="80px">
+                Day
+            </th>
+            <th width="80px">
+                Date
+            </th>
+            <th width="80px">
+                Identifier
+            </th>
+            <th class="largeWidth">
+                Patient Name
+            </th>
+            <th>
+                Patient Age
+            </th>
+            <th>
+                Est Time
+            </th>
+            <th class="largeWidth">
+                Procedure(s)
+            </th>
+            <th class="largeWidth">
+                Notes
+            </th>
+            <th class="largeWidth">
+                Surgeon
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Bed Location
+            </th>
+            <th>
+                Bed ID
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="appointment in surgicalAppointmentList" ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
+            <td width="80px">
+                {{appointment.derivedAttributes.expectedStartDate | date : 'EEEE'}}
+            </td>
+            <td width="80px">
+                {{appointment.derivedAttributes.expectedStartDate | bahmniDate}}
+            </td>
+            <td width="80px">
+                {{appointment.derivedAttributes.patientIdentifier}}
+            </td>
+            <td  class="largeWidth">
+                {{appointment.derivedAttributes.patientName}}
+            </td>
+            <td>
+                {{appointment.derivedAttributes.patientAge}}
+            </td>
+            <td>
+                {{appointment.surgicalAppointmentAttributes.estTimeHours.value}} {{'OT_SURGICAL_APPOINTMENT_HOURS' |
+                translate}} : {{appointment.surgicalAppointmentAttributes.estTimeMinutes.value}}
+                {{'OT_SURGICAL_APPOINTMENT_MINUTES' | translate}}
+                + {{appointment.surgicalAppointmentAttributes.cleaningTime.value}} {{'OT_SURGICAL_APPOINTMENT_MINUTES' |
+                translate}}
+            </td>
+            <td class="largeWidth">
+                {{appointment.surgicalAppointmentAttributes.procedure.value}}
+            </td>
+            <td class="largeWidth">
+                {{appointment.surgicalAppointmentAttributes.notes.value}}
+            </td>
+            <td class="largeWidth">
+                {{appointment.surgicalBlock.provider.person.display}}
+            </td>
+            <td>
+                {{appointment.status}}
+            </td>
+            <td>
+                {{appointment.bedLocation}}
+            </td>
+            <td>
+                {{appointment.bedNumber}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+

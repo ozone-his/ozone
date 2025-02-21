@@ -1,0 +1,4 @@
+uuid,name,shortname,description,class,reference-term-source,reference-term-code,reference-term-relationship,child.1,child.2,child.3,child.4,child.5,child.6,child.7,child.8,child.9,child.10,child.11,child.12,child.13,child.14,child.15,child.16,child.17,child.18,child.19,child.20,child.21,child.22,child.23,child.24,child.25,child.26
+,Sickle Cell Intake Template,Sickle Cell – Intake,,Misc,,,,"Sickle Cell, Diagnosis Date","Sickle Cell, Got Malaria Ever",,,,,,,,,,,,,,,,,,,,,,,,
+,Sickle Cell Progress Template,Sickle Cell – Progress,,Misc,,,,"Sickle Cell, Treatment Details","Sickle Cell, On Treatment","Sickle Cell, Current Status",,,,,,,,,,,,,,,,,,,,,,,
+,Sickle Cell Templates,Sickle Cell,,Misc,,,,Sickle Cell Intake Template,Sickle Cell Progress Template,,,,,,,,,,,,,,,,,,,,,,,,

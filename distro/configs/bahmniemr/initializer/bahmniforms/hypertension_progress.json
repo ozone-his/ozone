@@ -1,0 +1,38 @@
+{
+  "formJson": {
+    "uuid": "e57847bb-19b1-4f9e-9fad-22c2a7340250",
+    "name": "Hypertension Progress",
+    "version": "1",
+    "published": true,
+    "resources": [
+      {
+        "value": "{\"name\":\"Hypertension Progress\",\"id\":11,\"uuid\":\"e57847bb-19b1-4f9e-9fad-22c2a7340250\",\"defaultLocale\":\"en\",\"controls\":[{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"SYSTOLIC_BLOOD_PRESSURE_2\",\"id\":\"2\",\"units\":\"(mmHg)\",\"type\":\"label\",\"value\":\"Systolic blood pressure\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":0},\"abnormal\":true},\"id\":\"2\",\"concept\":{\"name\":\"Systolic blood pressure\",\"uuid\":\"5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"A patient's systolic blood pressure measurement (taken with a manual cuff in either a sitting or standing position)\",\"translationKey\":\"SYSTOLIC_BLOOD_PRESSURE_2_DESC\"},\"datatype\":\"Numeric\",\"conceptClass\":\"Finding\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":false}},\"units\":\"mmHg\",\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":250,\"lowAbsolute\":0},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"DIASTOLIC_BLOOD_PRESSURE_3\",\"id\":\"3\",\"units\":\"(mmHg)\",\"type\":\"label\",\"value\":\"Diastolic blood pressure\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":1},\"abnormal\":true},\"id\":\"3\",\"concept\":{\"name\":\"Diastolic blood pressure\",\"uuid\":\"5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"A patient's diastolic blood pressure measurement (taken with a manual cuff in either a sitting or standing position)\",\"translationKey\":\"DIASTOLIC_BLOOD_PRESSURE_3_DESC\"},\"datatype\":\"Numeric\",\"conceptClass\":\"Finding\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":false}},\"units\":\"mmHg\",\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":150,\"lowAbsolute\":0},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"LAST_SERUM_CREATININE_DATE_4\",\"id\":\"4\",\"units\":\"\",\"type\":\"label\",\"value\":\"Last serum creatinine date\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":2},\"allowFutureDates\":false},\"id\":\"4\",\"concept\":{\"name\":\"Last serum creatinine date\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000026\",\"datatype\":\"Date\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"SERUM_CREATININE_(MG/DL)_5\",\"id\":\"5\",\"units\":\"(mg/dL)\",\"type\":\"label\",\"value\":\"Serum creatinine\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":3},\"abnormal\":true},\"id\":\"5\",\"concept\":{\"name\":\"Serum creatinine\",\"uuid\":\"164364AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"Laboratory test that determines a blood serum creatinine level. Often used with BUN to assess kidney function. Units of mg/dL. If desired units are umol/L, use CIEL:790\",\"translationKey\":\"SERUM_CREATININE_(MG/DL)_5_DESC\"},\"datatype\":\"Numeric\",\"conceptClass\":\"Test\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":true}},\"units\":\"mg/dL\",\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":0},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"LAST_LDL_DATE_6\",\"id\":\"6\",\"units\":\"\",\"type\":\"label\",\"value\":\"Last LDL date\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":4},\"allowFutureDates\":false},\"id\":\"6\",\"concept\":{\"name\":\"Last LDL date\",\"uuid\":\"9bb0795c-4ff0-0305-1990-000000000027\",\"datatype\":\"Date\",\"conceptClass\":\"Misc\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":null}},\"units\":null,\"hiNormal\":null,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":null},{\"type\":\"obsControl\",\"label\":{\"translationKey\":\"LOW-DENSITY_LIPOPROTEIN_CHOLESTEROL_(MMOL/L)_7\",\"id\":\"7\",\"units\":\"(mmol/L)\",\"type\":\"label\",\"value\":\"Low-density lipoprotein cholesterol (mmol/L)\"},\"properties\":{\"mandatory\":false,\"notes\":false,\"addMore\":false,\"hideLabel\":false,\"controlEvent\":false,\"location\":{\"column\":0,\"row\":5},\"abnormal\":true},\"id\":\"7\",\"concept\":{\"name\":\"Low-density lipoprotein cholesterol (mmol/L)\",\"uuid\":\"1008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"description\":{\"value\":\"Test for LDL cholesterol is used along with other lipid tests to determine risk of heart disease.\",\"translationKey\":\"LOW-DENSITY_LIPOPROTEIN_CHOLESTEROL_(MMOL/L)_7_DESC\"},\"datatype\":\"Numeric\",\"conceptClass\":\"Test\",\"conceptHandler\":null,\"answers\":[],\"properties\":{\"allowDecimal\":true}},\"units\":\"mmol/L\",\"hiNormal\":2.59,\"lowNormal\":null,\"hiAbsolute\":null,\"lowAbsolute\":0}],\"events\":{\"onFormSave\":\"\",\"onFormInit\":\"\"},\"translationsUrl\":\"/openmrs/ws/rest/v1/bahmniie/form/translations\",\"referenceVersion\":\"1\",\"referenceFormUuid\":\"95c9ee4c-65ad-4a9e-acca-9e7dfa992cb3\"}",
+        "dataType": "org.bahmni.customdatatype.datatype.FileSystemStorageDatatype",
+        "uuid": "f937e272-dd84-41d1-bc19-2a836fd36b66"
+      }
+    ]
+  },
+  "translations": [
+    {
+      "locale": "en",
+      "labels": {},
+      "concepts": {
+        "SYSTOLIC_BLOOD_PRESSURE_2": "Systolic blood pressure",
+        "SYSTOLIC_BLOOD_PRESSURE_2_DESC": "A patient's systolic blood pressure measurement (taken with a manual cuff in either a sitting or standing position)",
+        "LOW-DENSITY_LIPOPROTEIN_CHOLESTEROL_(MMOL/L)_7": "Low-density lipoprotein cholesterol",
+        "SERUM_CREATININE_(MG/DL)_5_DESC": "Laboratory test that determines a blood serum creatinine level. Often used with BUN to assess kidney function. Units of mg/dL. If desired units are umol/L, use CIEL:790",
+        "LAST_LDL_DATE_6": "Last LDL date",
+        "DIASTOLIC_BLOOD_PRESSURE_3_DESC": "A patient's diastolic blood pressure measurement (taken with a manual cuff in either a sitting or standing position)",
+        "DIASTOLIC_BLOOD_PRESSURE_3": "Diastolic blood pressure",
+        "SERUM_CREATININE_(MG/DL)_5": "Serum creatinine",
+        "LAST_SERUM_CREATININE_DATE_4": "Last serum creatinine date",
+        "LOW-DENSITY_LIPOPROTEIN_CHOLESTEROL_(MMOL/L)_7_DESC": "Test for LDL cholesterol is used along with other lipid tests to determine risk of heart disease."
+      },
+      "formName": "Hypertension Progress",
+      "formUuid": null,
+      "version": "1",
+      "referenceVersion": null,
+      "referenceFormUuid": null
+    }
+  ]
+}

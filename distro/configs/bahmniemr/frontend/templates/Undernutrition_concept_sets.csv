@@ -1,0 +1,4 @@
+uuid,name,shortname,description,class,reference-term-code,reference-term-relationship,reference-term-source,child.1,child.2,child.3,child.4,child.5,child.6,child.7,child.8,child.9,child.10,child.11,child.12,child.13,child.14,child.15,child.16,child.17,child.18,child.19,child.20,child.21,child.22,child.23,child.24,child.25,child.26
+,Undernutrition Intake Template,Undernutrition – Intake,,Misc,,,,"Undernutrition, Diagnosed Date",,,,,,,,,,,,,,,,,,,,,,,,,
+,Undernutrition Progress Template,Undernutrition – Progress,,Misc,,,,"Undernutrition, Treatment Details","Undernutrition, On Treatment","Undernutrition, If Not Why","Undernutrition, Stopped Since When","Undernutrition, Current Status",,,,,,,,,,,,,,,,,,,,,
+,Undernutrition Templates,Undernutrition,,Misc,,,,Undernutrition Intake Template,Undernutrition Progress Template,,,,,,,,,,,,,,,,,,,,,,,,

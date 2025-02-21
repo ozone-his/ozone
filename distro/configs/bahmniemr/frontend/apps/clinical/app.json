@@ -1,0 +1,179 @@
+{
+    "id": "bahmni.clinical",
+    "extensionPoints": [
+        {
+            "id": "org.bahmni.clinical.consultation.board",
+            "description": "Bahmni Clinical Consultation Page"
+        },
+        {
+            "id": "org.bahmni.clinical.conceptSetGroup.*",
+            "description": "Define conceptsets part of a conceptset group"
+        },
+        {
+            "id": "org.bahmni.clinical.orders",
+            "description": "Bahmni Orders Page"
+        },
+        {
+            "id": "org.bahmni.patient.search",
+            "description": "Bahmni Patient search, lookups Page"
+        }
+    ],
+    "contextModel": [
+        "patientUuid",
+        "visitUuid"
+    ],
+    "config": {
+        "hideFormName": true,
+        "hideConditions": false,
+        "enableRadiologyOrderOptions":["Urgent","NeedsPrint"],
+        "enableLabOrderOptions":["Urgent", "NeedsPrint"],
+        "allMedicinesInPrescriptionAvailableForIPD": true,
+        "enableIPDFeature": true,
+        "allergyControlConceptIdMap": {
+            "medicationAllergenUuid": "162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "foodAllergenUuid": "162553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "environmentalAllergenUuid": "162554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "allergyReactionUuid": "162555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "allergySeverityUuid": "160223AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "showTextAsAbnormal": false,
+        "quickPrints":false,
+        "allowAdhocTeleConsultation": false,
+        "teleConsultationDomain": "meet.jit.si",
+        "networkConnectivity" : {
+            "showNetworkStatusMessage": false,
+            "networkStatusCheckInterval": 20000,
+            "locales" : [
+                { "locale" : "fr", "css" : "offline-language-french"},
+                { "locale" : "es", "css": "offline-language-spanish"},
+                { "locale" : "pt", "css": "offline-language-portuguese-brazil"}
+            ]
+        },
+    	"diagnosisStatus": "Inactive",
+            "program": {
+                "patientInformation": {
+                    "ageLimit": 100
+                },
+                "ID_Number": {
+                    "required" : true
+                },
+                "Co-morbidites": {
+                    "excludeFrom": ["HIV Program"]
+                },
+                "Doctor": {
+                    "excludeFrom": ["TB Program"]
+                }
+            },
+            "patientContext": {
+        		"programAttributes": [
+            		"Id_Number",
+            		"Doctor",
+            		"Stage"
+        		],
+        		"personAttributes": [
+            		"class",
+            		"caste"
+        		],
+        		"additionalPatientIdentifiers": [
+           			"National ID"
+       		],
+        		"preferredIdentifier": "Id_Number"
+    	},
+        "obsIgnoreList": [
+            "REGISTRATION FEES",
+            "COMMENTS",
+            "Patient file"
+        ],
+        "orderTypeClassMap" :{
+            "Lab Samples": ["Test","LabSet","LabTest"],
+            "Radiology Orders": ["Radiology","Radiology/Imaging Procedure"],
+            "Procedure Orders": ["Procedure"]
+        },
+        "otherInvestigationsMap": {
+            "Radiology": "Radiology Order",
+            "Endoscopy": "Endoscopy Order"
+        },
+        "allowConsultationWhenNoOpenVisit": false,
+        "defaultVisitType": "OPD",
+        "visitTypeForRetrospectiveEntries": "Special OPD",
+        "maxConceptSetLevels": 3,
+        "allowOnlyCodedDiagnosis": false,
+        "ignoredTabularViewHeadings": ["uuid","activeVisitUuid","hasBeenAdmitted","display","image","$$hashKey","birthDate","extraIdentifiers","personId","deathDate","addressFieldValue","dateCreated","customAttribute","patientProgramAttributeValue"],
+        "identifierHeadings": ["identifier"],
+        "conceptSetUI": {
+            "Chief Complaint Data": {
+                "autocomplete":true,
+                "codedConceptName":"Chief Complaint",
+                "nonCodedConceptName":"Non-Coded Chief Complaint",
+                "durationRequired": false,
+                "allowAddMore": true
+            },
+            "Tuberculosis, Adverse Effects" :{
+                "multiSelect" : true,
+                "autocomplete" : true
+            },
+            "Posture": {
+                "buttonSelect": true
+            },
+            "P/A Presenting Part": {
+                "multiSelect": true
+            },
+            "FHS": {
+                "buttonSelect": true
+            },
+            "P/S (Per Speculum) - Cervix": {
+                "grid": true
+            },
+            "Anaemia, Stopped Since When": {
+                "conciseText": true
+            },
+            "Examination Notes": {
+                "conciseText": true
+            },
+            "Set1": {
+                "allowAddMore": true
+            },
+            "Set2": {
+                "allowAddMore": true
+            },
+            "Coded3": {
+                "multiSelect": true
+            },
+            "Image": {
+                "allowAddMore": true
+            },
+            "Gynaecology, Gravida": {
+                "stepper": true
+            },
+            "Accepted Family Planning methods": {
+                "multiSelect": true
+            },
+            "defaults": {
+                "Number of living children": 1,
+                "Accepted Family Planning methods": [
+                    "Condoms",
+                    "Pills"
+                ],
+                "Pain management given": true,
+                "Safe Abortion, Remarks": "Remarks",
+                "Malaria, Death Date": "2015-12-01"
+            },
+            "Follow up Date" : {
+                "allowFutureDates": true
+            },
+            "Date of Operation" : {
+                "allowFutureDates": true
+            }
+        },
+        "visitPage": {
+            "observationDisplay": {
+                "conceptNames": []
+            }
+        },
+        "patientSearch": {
+            "debounceSearch": false,
+            "fetchDelay": 2000,
+            "serializeSearch": false
+        }
+    }
+}

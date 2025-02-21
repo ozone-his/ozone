@@ -1,0 +1,7 @@
+Uuid,Void/Retire,Name,Description,_version:1
+,,OPD,Visit for Out patient,
+,,IPD,Visit for patients being admitted,
+,,EMERGENCY,Visit for emergency patients,
+,,Special OPD,Visit for retrospective data entry,
+,,Follow Up,Visit for patients coming for a follow up,
+,True,LAB VISIT,Visits for lab visit by patient when the tests are not ordered through OpenMRS,

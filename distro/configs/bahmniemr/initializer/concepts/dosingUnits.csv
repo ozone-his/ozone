@@ -1,0 +1,5 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Fully specified name:fr,Synonym 1:en,Synonym 1:en:Preferred,Short name:fr,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:1200
+161553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,SNOMED-CT:258684004;CIEL:161553;UCUM:mg,Milligram,mg,Unit of measurement of mass,,mg,TRUE,,,Units of Measure,N/A,,,,,,,,,,,
+162263AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,CIEL:162263;UCUM:mL;SNOMED-CT:258773002,Milliliter,mL,Unit of measurement 1/1000 of a liter,,ml,TRUE,,,Units of Measure,N/A,,,,,,,,,,,
+162264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,,UCUM:IU;CIEL:162264;SNOMED-CT:258997004,International units,IU,Unit of measurement,,IU,TRUE,,,Units of Measure,N/A,,,,,,,,,,,
+,,,Dosing Units,dosing units,,,,,,,ConvSet,N/A,,,CIEL:1513;CIEL:1608;CIEL:162263;CIEL:161553;CIEL:162264;CIEL:162356;CIEL:162378;CIEL:162379;CIEL:162381;CIEL:162372,,,,,,,,

@@ -1,0 +1,254 @@
+{
+  "visitReport10": {
+    "name": "Visit Report",
+    "type": "visits",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "forDataAnalysis": true,
+      "patientAttributes": [
+        "phoneNumber"
+      ],
+      "visitAttributes": [
+        "Visit Status",
+        "Admission Status"
+      ],
+      "patientAddresses": [
+        "county_district",
+        "city_village",
+        "state_province"
+      ],
+      "applyDateRangeFor": "visitStopDate",
+      "visitTypesToFilter": [
+        "PHARMACY VISIT",
+        "OPD",
+        "IPD",
+        "EMERGENCY"
+      ]
+    }
+  },
+  "formBuilderReport": {
+    "name": "Form builder form Report",
+    "type": "formBuilder",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "patientAttributes": [
+        "caste",
+        "class",
+        "education",
+        "occupation"
+      ],
+      "patientAddresses": [
+        "address3",
+        "city_village"
+      ],
+      "visitAttributes": [
+        "Visit Status"
+      ],
+      "showVisitInfo": true,
+      "showProvider": true,
+      "formNamesToFilter": [
+        "Second Vitals"
+      ],
+      "conceptNameDisplayFormat": "shortNamePreferred",
+      "locationTagsToFilter": [],
+      "programsToFilter": [],
+      "applyDateRangeFor": "obsDate",
+      "visitTypesToFilter": []
+    }
+  },
+  "DiagnosisCountReport": {
+    "name": "Diagnosis Count Report",
+    "type": "MRSGeneric",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/diagnosisCount.sql"
+    }
+  },
+  "diabetes": {
+    "name": "Diabetes",
+    "type": "obsCount",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "ageGroupName": "All Ages",
+      "conceptNames": [
+        "Diabetes, Intake"
+      ],
+      "visitTypes": [
+        "OPD",
+        "IPD"
+      ],
+      "countOnlyClosedVisits": "false",
+      "countOncePerPatient": "false"
+    }
+  },
+  "OPD/IPDVisitCount": {
+    "name": "OPD/IPD Visit Count",
+    "type": "IpdOpdVisitCount",
+    "requiredPrivilege": "app:reports"
+  },
+  "radiology(X-Ray)Count": {
+    "name": "Radiology(X-Ray) Count",
+    "type": "ObsCountByConceptClass",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "conceptClassNames": [
+        "Radiology",
+        "Radiology/Imaging Procedure"
+      ]
+    }
+  },
+  "IPDPatientsReport": {
+    "name": "IPD Patients Report",
+    "type": "ipdPatients",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "addressAttributes": [
+        "address1",
+        "city_village",
+        "county_district",
+        "state_province"
+      ],
+      "patientAttributes": [
+        "phoneNumber"
+      ],
+      "conceptNames": [
+        "Height (cm)",
+        "Weight (kg)"
+      ],
+      "filterBy": "Date of Discharge"
+    }
+  },
+  "OrderFulfillmentReport": {
+    "name": "Order Fulfillment Report",
+    "type": "OrderFulfillmentReport",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "type": "OrderFulfillmentReport",
+      "orderTypes": [
+        "Order",
+        "Drug Order"
+      ]
+    }
+  },
+  "SampleGenericProgramReport": {
+    "name": "Generic program sample report",
+    "type": "programs",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "patientAttributes": [
+        "education",
+        "primaryContact",
+        "secondaryContact",
+        "class",
+        "cluster"
+      ],
+      "patientAddresses": [
+        "city_village",
+        "address3"
+      ],
+      "programAttributes": [],
+      "forDataAnalysis": true,
+      "showAllStates": true,
+      "programNamesToFilter": [
+        "HIV Program",
+        "TB Program"
+      ]
+    }
+  },
+  "pivotReportOfVisits": {
+    "name": "Aggregation report for visits",
+    "type": "aggregation",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "report": {
+        "type": "visits",
+        "config": {
+          "forDataAnalysis": true,
+          "patientAttributes": [
+            "caste",
+            "class",
+            "education",
+            "occupation",
+            "primaryContact"
+          ],
+          "visitAttributes": [
+            "Visit Status",
+            "Admission Status"
+          ],
+          "patientAddresses": [
+            "address3",
+            "city_village"
+          ],
+          "applyDateRangeFor": "visitStopDate",
+          "visitTypesToFilter": [
+            "PHARMACY VISIT",
+            "OPD"
+          ]
+        }
+      },
+      "rowGroups": [
+        "Gender"
+      ],
+      "columnGroups": [
+        "Visit Status"
+      ],
+      "distinctGroups": [
+        "Patient Identifier"
+      ]
+    }
+  },
+  "pivotReportForPrograms": {
+    "name": "HIV Program Pivot Report",
+    "type": "aggregation",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "report": {
+        "type": "programs",
+        "config": {
+          "patientAttributes": [
+          ],
+          "patientAddresses": [
+            "city_village",
+            "address3"
+          ],
+          "programAttributes": [],
+          "forDataAnalysis": true,
+          "showAllStates": true,
+          "programNamesToFilter": [
+            "TB Program",
+            "HIV Program"
+          ]
+        }
+      },
+      "columnGroups": [
+        "Program name"
+      ],
+      "rowGroups": [
+        "Gender"
+      ],
+      "distinctGroups": [
+        "Patient Identifier"
+      ],
+      "showTotalRow": true,
+      "showTotalColumn": true
+    }
+  },
+  "OpenELISTestCount": {
+    "name": "OpenELIS Test Count",
+    "type": "ElisGeneric",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/testCount.sql"
+    }
+  },
+  "OdooInvoiceSummary": {
+    "name": "Odoo Invoicing Summary",
+    "type": "ERPGeneric",
+    "requiredPrivilege": "app:reports",
+    "config": {
+      "sqlPath": "/etc/bahmni_config/openmrs/apps/reports/sql/odooInvoiceSummary.sql"
+    }
+  }
+}
+
+

@@ -1,0 +1,7 @@
+uuid,name,description,class,datatype,shortname,reference-term-source,reference-term-code,reference-term-relationship,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6,answer.7,answer.8,answer.9,answer.10,answer.11,answer.12,answer.13,answer.14,answer.15,answer.16
+,"Arthritis, Diagnosed Date",,Misc,Date,Diagnosed Date,,,,,,,,,,,,,,,,,,,
+,"Arthritis, Treatment Details",,Misc,Text,Treatment Details,,,,,,,,,,,,,,,,,,,
+,"Arthritis, On Treatment",,Misc,Boolean,On Treatment,,,,,,,,,,,,,,,,,,,
+,"Arthritis, If Not Why",,Misc,Text,"If Not, Why",,,,,,,,,,,,,,,,,,,
+,"Arthritis, Stopped Since When",,Misc,Text,Stopped Since When,,,,,,,,,,,,,,,,,,,
+,"Arthritis, Current Status",,Misc,Text,Current Status,,,,,,,,,,,,,,,,,,,

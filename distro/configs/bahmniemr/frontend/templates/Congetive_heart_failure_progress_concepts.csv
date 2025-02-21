@@ -1,0 +1,45 @@
+uuid,name,class,datatype,shortname,description,reference-term-code,reference-term-relationship,reference-term-source,,synonym.1,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6,answer.7,,,,,,,
+,"Congestive Heart Failure, Follow Up, Symptoms of Heart Failure, Clues",Diagnosis,Coded,,-,,,,,,Dyspnea,On exertion,Orthopnea,Paroxysmal nocturnal dyspnea,Edema,Cough,All other,,,,,,,
+,"Congestive Heart Failure, Follow Up, Symptoms of Heart Failure, Notes of All other",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Rule out other causes of Edema",Misc,Text,,"Redness/warmth/unilateral --> thrombosis
+<br/>Redness/warmth/unilateral/fever --> cellulitis",,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Rule out other causes of Dyspnea",Misc,Text,,Fever/ Productive cough → pneumonia<br/>Chest pain → myocardial infarction<br/>Dyspnea at rest + smoking hx → COPD,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Rule out other causes of Fatigue",Misc,Text,,"Deconditioning, sleep apnea, and depression",,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Current Medicines, Details",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Current Medicines, Non-compliance",Misc,Boolean,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Current Medicines, Reason",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, First Onset Age",Misc,Numeric,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, Chief Complaint Data, Chief Complaint",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, Chief Complaint Data, Chief Complaint Duration",Duration,Numeric,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, New symptom / History of present illness",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, Exacerbation within 12months",Misc,Boolean,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, Hospitalizations within 12 months",Misc,Coded,,,,,,,,"Hospitalizations, 0","Hospitalizations, 1","Hospitalizations, 2","Hospitalizations, >/3",,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, Severity classification NYHA",Misc,Coded,,"<b>Class I</b> - symptoms of HEART FAILURE only at activity levels that would limit normal individuals<br/>
+<b>Class II</b> - symptoms of HEART FAILURE with ordinary exertion<br/>
+<b>Class III</b> - symptoms of HEART FAILURE with less than ordinary exertion<br/>
+<b>Class IV</b> - symptoms of HEART FAILURE at rest",,,,,,Severity classification NYHA - Class I,Severity classification NYHA - Class II,Severity classification NYHA - Class III,Severity classification NYHA - Class VI,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, Evidence of Exacerbation today",Misc,Boolean,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Onset, Symptoms",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Likely Etiology, Others",Diagnosis,N/A,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Likely Etiology",Question,Coded,,,,,,,,Med non adherence,Change in diet,Recent illness,Worsening valvular disease,Pregnancy,Arythmia,Worsening Hypertension,Valvular disease,Viral Cardiomyopathy,Acute Rheumatic fever,Peripartum C'mpathy,Idiopathic,HIV,Hypertension
+,"Congestive Heart Failure, Follow Up, Etiology, Notes for Others",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, BP Systolic Data, Systolic",Misc,Numeric,Systolic,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, BP Systolic Data, Systolic Abnormal",Abnormal,Boolean,Systolic Abnormal,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, BP Diastolic Data, Diastolic",Misc,Numeric,Diastolic,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, BP Diastolic Data, Diastolic Abnormal",Abnormal,Boolean,Diastolic Abnormal,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Heart rate data, Pulse",Misc,Numeric,Pulse,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Heart rate data, Pulse Abnormal",Abnormal,Boolean,Pulse Abnormal,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, RR data, RR",Misc,Numeric,RR,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, RR data, RR Abnormal",Abnormal,Boolean,RR Abnormal,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, SAT data, SAT",Misc,Numeric,SAT,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, SAT data, SAT Abnormal",Abnormal,Boolean,SAT Abnormal,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Temperature data, Temperature",Misc,Numeric,Temperature,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Temperature data, Temperature Abnormal",Abnormal,Boolean,Temperature Abnormal,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Physical Examination Details",Misc,Text,Physical Examination Details,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, ER and likely IPD admission",Diagnosis,Boolean,,"If hypoxic, visibly distressed, or unable to care for self at home → admit to ER for IV diuresis",,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Signs/Symptoms Decompensation",Diagnosis,Boolean,,BP &#60; 80 or &#62; 180<br>Pulse &#60; 40 or &#62; 120<br>Adults RR &#62; 24<br>Low O2 sat,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Checklist",Misc,Text,,"<b>EKG:</b> q12 months if stable, SOS if change in status<br><b> LABS:</b> *Once- patients > age 65 thyroid test <br>*q3months – electrolytes and Cr date / result<br> *q6months: <br> Hyperlipidemia – date / result<br>Diabetes – date / result<br> *Once/year – CBC (anemia can exacerbate CHF) date / result",,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Assessment / Follow up, Assessment",Misc,Coded,,If blood pressure and symptoms stable  --> 4months <br>If hypertension – change medication      --> 1 month<br>If worse dyspnea – increase furosemide --> 2 weeks,,,,,,no change in medicine,uptitrate medicine as below,Acute decompensation,Other acute illness,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Assessment / Follow up, Assessment, Notes for Others",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Assessment / Follow up, Follow up",Misc,Text,,,,,,,,,,,,,,,,,,,,,
+,"Congestive Heart Failure, Follow Up, Assessment / Follow up, Prescriptions",Misc,Text,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <changeSet id="bahmni-atomfeed-offset-marker" author="tw" context="rel3">
+                <preConditions onFail="MARK_RAN">
+                        <sqlCheck expectedResult="0">
+                                SELECT COUNT(*) FROM scheduler_task_config where schedulable_class = 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask'
+                        </sqlCheck>
+                </preConditions>
+                <comment>rel3</comment>
+                <sql>
+                        INSERT INTO  scheduler_task_config  (name, description, schedulable_class,
+                        start_time, start_time_pattern, repeat_interval, start_on_startup, started,
+                        created_by, date_created, changed_by, date_changed, last_execution_time, uuid )
+                        VALUES ('OpenMRS event offset marker task', NULL, 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask',
+                        '2014-01-14 00:00:00','MM/dd/yyyy HH:mm:ss',86400, 1, 1,
+                        1, now(), NULL, NULL, NULL, uuid());
+                </sql>
+        </changeSet>
+        <changeSet id="default-201604211822" author="Gautam, Angshuman">
+            <preConditions onFail="MARK_RAN">
+                <sqlCheck expectedResult="0">
+                    select count(concept_id) from concept where uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+                </sqlCheck>
+            </preConditions>
+            <comment>update Height concept uuid to standard CEIL concept uuid</comment>
+            <sql>
+                update concept set uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
+                select concept_name.concept_id from concept_name where name="Height" and concept_name_type="FULLY_SPECIFIED"
+                );
+            </sql>
+        </changeSet>
+        <changeSet id="default-201604211823" author="Gautam, Angshuman">
+            <preConditions onFail="MARK_RAN">
+                <sqlCheck expectedResult="0">
+                    select count(concept_id) from concept where uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+                </sqlCheck>
+            </preConditions>
+            <comment>update Weight concept uuid to standard CEIL concept uuid</comment>
+            <sql>
+                update concept set uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
+                select concept_name.concept_id from concept_name where name="Weight" and concept_name_type="FULLY_SPECIFIED"
+                );
+            </sql>
+        </changeSet>
+    <changeSet id="default-201905311115" author="Bindu, Angshuman">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM location where name="OT";
+            </sqlCheck>
+        </preConditions>
+        <comment> Add default location for OT module </comment>
+        <sql>
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('OT', 'Operation Theater', FALSE, uuid(), NOW(), 1);
+        </sql>
+    </changeSet>
+    <changeSet id="default-201907091507" author="Bindu, Angshuman" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from location_tag where name = 'Operation Theater' and description = 'Operation Theater';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add operation theater location tag</comment>
+        <sql>
+            INSERT INTO location_tag(name, description, creator, date_created, retired, uuid) VALUES ('Operation Theater', 'Operation Theater', 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="default-201905311116" author="Bindu, Angshuman">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location_tag_map where location_tag_id IN (SELECT location_tag_id from location_tag where name="Operation Theater");
+            </sqlCheck>
+        </preConditions>
+        <comment> Tag OT location as Operation Theatre </comment>
+        <sql>
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = "Operation Theater" and description = "Operation Theater";
+            SELECT location_id INTO @location_id FROM location WHERE location.name="OT" and description = "Operation Theater";
+
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id, @location_tag_id);
+        </sql>
+    </changeSet>
+    <include file ="addObsPathSplitterProperty.xml"/>
+    <include file ="addMoreObsSplitterProperty.xml"/>
+    <include file ="addMultiSelectObsSplitterProperty.xml"/>
+    <include file ="addLabRoleWithPrivilege.xml"/>
+</databaseChangeLog>

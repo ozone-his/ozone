@@ -1,0 +1,6 @@
+uuid,name,description,class,datatype,shortname,reference-term-source,reference-term-code,reference-term-relationship,answer.1,answer.2,answer.3,answer.4,answer.5,answer.6,answer.7,answer.8,answer.9,answer.10,answer.11,answer.12,answer.13,answer.14,answer.15,answer.16
+,"Sickle Cell, Diagnosis Date",,Misc,Date,Diagnosis Date,,,,,,,,,,,,,,,,,,,
+,"Sickle Cell, Treatment Details",,Misc,Text,Treatment Details,,,,,,,,,,,,,,,,,,,
+,"Sickle Cell, On Treatment",,Misc,Boolean,On Treatment,,,,,,,,,,,,,,,,,,,
+,"Sickle Cell, Got Malaria Ever",,Misc,Boolean,Got Malaria Ever,,,,,,,,,,,,,,,,,,,
+,"Sickle Cell, Current Status",,Misc,Coded,Current Status,,,,Death,Good Condition,Not in Good Condition,Numbness of Fingers,Treatment Not Continued,Other,,,,,,,,,,
