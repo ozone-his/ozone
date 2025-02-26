@@ -512,44 +512,6 @@
   },
   "users": [
     {
-      "id": "4b6f84da-040d-45ef-b68a-25c40f91f7e8",
-      "createdTimestamp": 1627046549319,
-      "username": "jdoe",
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "jdoe@example.com",
-      "enabled": true,
-      "totp": false,
-      "emailVerified": false,
-      "credentials": [
-        {
-          "id": "958bbd6b-1182-4143-b8fd-9f9676728440",
-          "type": "password",
-          "createdDate": 1627369923802,
-          "secretData": "{\"value\":\"fXdZjzrJk73lLFVwMzdDyqYwfkl5G3v3CwECneCu2zc=\",\"salt\":\"R203UTlTRmNXOA==\",\"additionalParameters\":{}}",
-          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-        }
-      ],
-      "disableableCredentialTypes": [],
-      "requiredActions": [],
-      "realmRoles": [
-        "default-roles-ozone"
-      ],
-      "clientRoles": {
-        "superset": [
-          "Admin"
-        ],
-        "senaite": [
-          "Manager"
-        ],
-        "openmrs": [
-          "System Developer"
-        ]
-      },
-      "notBefore": 0,
-      "groups": []
-    },
-    {
       "id": "004c8dde-f6da-4979-8045-ec130b5c43f7",
       "createdTimestamp": 1632895017907,
       "username": "service-account-eip",
