@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.2.1</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.3.0-SNAPSHOT</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.3.0-SNAPSHOT</odoo_initializerVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
@@ -456,9 +456,10 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/distro-emr-configuration/openmrs_config</directory>
+                  <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
+                    <exclude>**/cohorttypes-core_data*</exclude>
                   </excludes>
                 </resource>
               </resources>
@@ -574,7 +575,7 @@
                 <copy
                   todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
                   <fileset
-                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules">
+                          dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
                     <exclude name="fhir2-2.2.0.omod"/>
                   </fileset>
