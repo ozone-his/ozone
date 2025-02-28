@@ -1,1 +1,0 @@
-Bahmni.ConceptSet.FormConditions.rules = {};

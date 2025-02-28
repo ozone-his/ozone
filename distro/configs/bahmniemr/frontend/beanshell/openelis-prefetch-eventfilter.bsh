@@ -1,4 +1,0 @@
-if (event.getTitle().equalsIgnoreCase("patient")) {
-	return false;
- } 
- return true;

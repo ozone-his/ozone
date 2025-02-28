@@ -31,6 +31,7 @@
     <referenceapplicationDistroVersion>3.2.1</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.3.0-SNAPSHOT</odoo_initializerVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
+    <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
     <!-- OpenMRS modules versions -->
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
@@ -592,6 +593,50 @@
             <goals>
               <goal>run</goal>
             </goals>
+          </execution>
+
+          <execution>
+            <id>Downloaded Bahmni EMR Standard Config</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target name="download-unzip">
+                <get src="https://github.com/Bahmni/standard-config/archive/${bahmniStandardConfigVersion}.zip" dest="${project.build.directory}/bahmni-standard-config.zip" />
+                <unzip src="${project.build.directory}/bahmni-standard-config.zip" dest="${project.build.directory}/bahmni-standard-config" />
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Copy Downloaded Bahmni EMR Standard Frontend Config</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target name="copy-files">
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/bahmniemr/frontend">
+                  <fileset dir="${project.build.directory}/bahmni-standard-config/standard-config-${bahmniStandardConfigVersion}/openmrs" />
+                </copy>
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Copy Downloaded Bahmni EMR Standard Backend Config</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target name="copy-files">
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/bahmniemr/initializer">
+                  <fileset dir="${project.build.directory}/bahmni-standard-config/standard-config-${bahmniStandardConfigVersion}/masterdata/configuration" />
+                </copy>
+              </target>
+            </configuration>
           </execution>
 
           <!-- copy over merged/packaged OpenMRS config for validation at the integration-test phase -->
