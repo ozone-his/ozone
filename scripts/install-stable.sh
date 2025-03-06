@@ -22,7 +22,7 @@ echo ""
 
 
 # TODO: Upon release, replace this with the latest stable version
-ozoneVersion=${1:-1.0.0-SNAPSHOT}
+ozoneVersion=${1:-1.0.0-alpha.13}
 
 echo "$INFO Ozone version: $ozoneVersion"
 
@@ -67,7 +67,7 @@ cat >_temp_install-latest-ozone-pom.xml <<EOF
     <groupId>com.ozonehis</groupId>
     <name>Install Latest Ozone Helper</name>
     <description>Helper project to install the latest Ozone HIS</description>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-alpha.13</version>
     <packaging>pom</packaging>
 
     <organization>
