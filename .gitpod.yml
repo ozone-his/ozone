@@ -17,3 +17,6 @@ ports:
   - name: SENAITE
     description: SENAITE
     port: 8081
+  - name: Orthanc
+    description: Orthanc
+    port: 8889
