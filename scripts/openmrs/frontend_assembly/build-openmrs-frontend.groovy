@@ -25,7 +25,12 @@ if (!shouldBuildFrontend) {
         assembleCommand += " --config ${frontendCustomizationsFile.getAbsolutePath()}"
         shouldBuildFrontend = true
         // Update the OpenMRS version to the one specified in the customizations file if it exists.
-        openmrsVersion = slurper.parse(frontendCustomizationsFile)["coreVersion"] ?: openmrsVersion
+        def newOpenmrsCoreVersion = slurper.parse(frontendCustomizationsFile)["coreVersion"] ?: openmrsVersion
+        // Update the OpenMRS version in the assemble command if it is different from the current version.
+        if (newOpenmrsCoreVersion != openmrsVersion) {
+            assembleCommand = assembleCommand.replace(openmrsVersion, newOpenmrsCoreVersion)
+            openmrsVersion = newOpenmrsCoreVersion
+        }
         log.info("Using OpenMRS Frontend Core Version: ${openmrsVersion}")
     }
 }
@@ -38,6 +43,7 @@ if (shouldBuildFrontend) {
     }
 
     log.info("Running assemble command...")
+    log.info(assembleCommand)
 
     def assembleProcess = assembleCommand.execute()
     assembleProcess.consumeProcessOutput(System.out, System.err)
