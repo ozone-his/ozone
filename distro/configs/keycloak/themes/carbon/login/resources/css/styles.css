@@ -173,6 +173,18 @@ button:hover {
   color: #525252;
   display: inline-block;
   line-height: 1rem;
+  margin-bottom: 1.0rem;
+  margin-top: 1.0rem;
+  vertical-align: baseline;
+}
+
+.label-error {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  color: #ff0000;
+  display: inline-block;
+  line-height: 1rem;
   margin-bottom: 0.5rem;
   vertical-align: baseline;
 }
@@ -253,6 +265,13 @@ button:hover {
 
 .footer {
   margin-top: 6.75rem;
+}
+
+.form-options {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  margin-top: 1.5rem;
 }
 
 .powered-by-logos {
