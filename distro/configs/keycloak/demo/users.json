@@ -20,7 +20,7 @@
       ],
       "clientRoles": {
         "superset": [
-          "Gamma"
+          "Admin"
         ],
         "senaite": [
           "Manager"
