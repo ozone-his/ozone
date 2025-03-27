@@ -122,6 +122,16 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>repo.mybahmni.org</id>
+      <name>bahmni-artifactory-snapshots</name>
+      <url>https://repo.mybahmni.org/artifactory/snapshot</url>
+    </repository>
+    <repository>
+      <id>repo.mybahmni.org-release</id>
+      <name>bahmni-artifactory-release</name>
+      <url>https://repo.mybahmni.org/artifactory/release</url>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
