@@ -5,5 +5,29 @@
       "loginUrl": "/openmrs/oauth2login",
       "logoutUrl": "/openmrs/oauth2logout"
     }
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "externalRefLinks": [
+      {
+        "title": "Pharmacy, Billing & Inventory",
+        "redirect": "${ODOO_PUBLIC_URL}"
+      },
+      {
+        "title": "Laboratory",
+        "redirect": "${SENAITE_PUBLIC_URL}"
+      },
+      {
+        "title": "PACS",
+        "redirect": "${ORTHANC_PUBLIC_URL}"
+      },
+      {
+        "title": "Reporting & Analytics",
+        "redirect": "${SUPERSET_PUBLIC_URL}"
+      },
+      {
+        "title": "Account Management",
+        "redirect": "${KEYCLOAK_URL}/realms/ozone/account/#/"
+      }
+    ]
   }
 }
