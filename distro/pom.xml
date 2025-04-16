@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.4.1-SNAPSHOT</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.3.1</referenceapplicationDistroVersion>
     <odoo_initializerVersion>2.3.0-SNAPSHOT</odoo_initializerVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
@@ -77,7 +77,7 @@
       <groupId>org.openmrs</groupId>
       <artifactId>distro-emr-frontend</artifactId>
       <type>zip</type>
-      <version>${referenceapplicationDistroVersion}</version>
+      <version>3.3.1-rc.1</version> <!-- TODO: 3.3.1 -->
     </dependency>
 
     <!-- Bahmni EMR distro -->
