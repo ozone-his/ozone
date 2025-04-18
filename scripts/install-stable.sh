@@ -143,7 +143,7 @@ echo ""
 echo " Type in the following command to run Ozone:"
 echo ""
 echo "    ${BOLD}cd ozone/run/docker/scripts/"
-echo "    ./start-demo.sh"$RESET_FORMATTING
+echo "    ./start-demo-with-sso.sh "$RESET_FORMATTING
 echo ""
 echo "(💡 Refer to https://docs.ozone-his.com/ for more information)"
 echo ""
