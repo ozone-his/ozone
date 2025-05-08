@@ -3,7 +3,7 @@
 		<globalProperty>
 			<property>labonfhir.lisUrl</property>
 			<description>The URL for an LIS system like OpenELIS system to communicate with</description>
-			<value>http://host.docker.internal:8081/fhir</value>
+			<value>http://host.docker.internal:8086/fhir</value>
 		</globalProperty>
 		<globalProperty>
 			<property>labonfhir.lisUserUuid</property>
