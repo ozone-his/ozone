@@ -1,0 +1,24 @@
+<config>
+	<globalProperties>
+		<globalProperty>
+			<property>labonfhir.lisUrl</property>
+			<description>The URL for an LIS system like OpenELIS system to communicate with</description>
+			<value>http://host.docker.internal:8081/fhir</value>
+		</globalProperty>
+		<globalProperty>
+			<property>labonfhir.lisUserUuid</property>
+			<description>UUID for the service user that represents a LIS like OpenELIS</description>
+			<value>6191df3b-c817-446d-85c1-a6a0bbd61b91</value>
+		</globalProperty>
+		<globalProperty>
+			<property>labonfhir.labUpdateTriggerObject</property>
+			<description>The OpenMRS object type that should trigger LIS synchronization - either Encounter or Order.</description>
+			<value>Order</value>
+		</globalProperty>
+		<globalProperty>
+			<property>labonfhir.filterOrderBytestUuids</property>
+			<description>Allows filtering Oders by Test Uuuids</description>
+			<value>false</value>
+		</globalProperty>
+	</globalProperties>
+</config>

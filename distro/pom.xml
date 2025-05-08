@@ -98,6 +98,16 @@
 
     <!--  OpenMRS modules -->
     <dependency>
+      <groupId>org.openmrs</groupId>
+      <artifactId>event-omod</artifactId>
+      <version>3.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>labonfhir-omod</artifactId>
+      <version>1.5.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
       <groupId>org.openmrs.module</groupId>
       <artifactId>patientsummary-omod</artifactId>
       <version>${patientsummaryVersion}</version>
