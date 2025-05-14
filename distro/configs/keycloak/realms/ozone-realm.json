@@ -861,7 +861,7 @@
       "directAccessGrantsEnabled": true,
       "serviceAccountsEnabled": false,
       "publicClient": false,
-      "frontchannelLogout": false,
+      "frontchannelLogout": true,
       "protocol": "openid-connect",
       "attributes": {
         "saml.assertion.signature": "false",
@@ -883,7 +883,8 @@
         "tls.client.certificate.bound.access.tokens": "false",
         "saml.authnstatement": "false",
         "display.on.consent.screen": "false",
-        "saml.onetimeuse.condition": "false"
+        "saml.onetimeuse.condition": "false",
+        "frontchannel.logout.url": "${ODOO_PUBLIC_URL}/web/session/logout"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
@@ -1060,7 +1061,7 @@
           }
         }
       ],
-      "frontchannelLogout": false,
+      "frontchannelLogout": true,
       "protocol": "openid-connect",
       "attributes": {
         "saml.assertion.signature": "false",
@@ -1083,7 +1084,8 @@
         "tls.client.certificate.bound.access.tokens": "false",
         "saml.authnstatement": "false",
         "display.on.consent.screen": "false",
-        "saml.onetimeuse.condition": "false"
+        "saml.onetimeuse.condition": "false",
+        "frontchannel.logout.url": "${OPENMRS_PUBLIC_URL}/openmrs/oauth2logout"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
@@ -1126,7 +1128,7 @@
       "directAccessGrantsEnabled": true,
       "serviceAccountsEnabled": false,
       "publicClient": false,
-      "frontchannelLogout": false,
+      "frontchannelLogout": true,
       "protocol": "openid-connect",
       "attributes": {
         "saml.assertion.signature": "false",
@@ -1148,7 +1150,8 @@
         "tls.client.certificate.bound.access.tokens": "false",
         "saml.authnstatement": "false",
         "display.on.consent.screen": "false",
-        "saml.onetimeuse.condition": "false"
+        "saml.onetimeuse.condition": "false",
+        "frontchannel.logout.url": "${SENAITE_PUBLIC_URL}/logout"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
@@ -1235,7 +1238,7 @@
       "directAccessGrantsEnabled": true,
       "serviceAccountsEnabled": false,
       "publicClient": false,
-      "frontchannelLogout": false,
+      "frontchannelLogout": true,
       "protocol": "openid-connect",
       "attributes": {
         "saml.assertion.signature": "false",
@@ -1257,7 +1260,8 @@
         "tls.client.certificate.bound.access.tokens": "false",
         "saml.authnstatement": "false",
         "display.on.consent.screen": "false",
-        "saml.onetimeuse.condition": "false"
+        "saml.onetimeuse.condition": "false",
+        "frontchannel.logout.url": "${SUPERSET_PUBLIC_URL}/logout"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
