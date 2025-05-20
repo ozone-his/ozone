@@ -4,7 +4,7 @@
 
 {
     "name": "Authentication OpenID Connect",
-    "version": "14.0.1.2.0",
+    "version": "17.0.0.0.0",
     "license": "AGPL-3",
     "author": (
         "ICTSTUDIO, André Schenkels, "
