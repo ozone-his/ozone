@@ -365,7 +365,8 @@
         <version>3.1.0</version>
         <executions>
           <execution>
-            <id>rename-openmrs-subfolders</id>
+            <!-- Prefix content packages so that the overwrite order can be determined -->
+            <id>prefix content packages</id>
             <phase>generate-resources</phase>
             <goals>
               <goal>exec</goal>
@@ -373,8 +374,9 @@
             <configuration>
               <executable>bash</executable>
               <arguments>
-                <argument>${project.basedir}/rename-folders.sh</argument>
+                <argument>${project.basedir}/prefix-content-packages.sh</argument>
                 <argument>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</argument>
+                <!-- Order in which content packages configs should be applied -->
                 <argument>referenceapplication</argument>
                 <argument>referenceapplication-demo</argument>
               </arguments>
