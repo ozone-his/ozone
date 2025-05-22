@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.2.1</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.3.1-rc.1</referenceapplicationDistroVersion>
     <odoo_initializerVersion>17.0.0.0.0</odoo_initializerVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
@@ -406,6 +406,28 @@
           </execution>
 
           <execution>
+            <!-- Copy prefix-content-packages.sh file to the final package -->
+            <id>Copy prefix-content-packages.sh file to the final package</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}</directory>
+                  <includes>
+                    <include>prefix-content-packages.sh</include>
+                  </includes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
             <!-- Copy data/ folder -->
             <id>Copy local data/ resources</id>
             <phase>prepare-package</phase>
@@ -456,7 +478,7 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/distro-emr-configuration/openmrs_config</directory>
+                  <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
                   </excludes>
@@ -574,7 +596,7 @@
                 <copy
                   todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
                   <fileset
-                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules">
+                          dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
                     <exclude name="fhir2-2.2.0.omod"/>
                   </fileset>
