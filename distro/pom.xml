@@ -360,31 +360,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>3.1.0</version>
-        <executions>
-          <execution>
-            <!-- Prefix content packages so that the overwrite order can be determined -->
-            <id>prefix content packages</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <configuration>
-              <executable>bash</executable>
-              <arguments>
-                <argument>${project.basedir}/prefix-content-packages.sh</argument>
-                <argument>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</argument>
-                <!-- Order in which content packages configs should be applied -->
-                <argument>referenceapplication</argument>
-                <argument>referenceapplication-demo</argument>
-              </arguments>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
@@ -425,6 +400,28 @@
                     <!-- Exclude Superset config because it is included via artifact dependency -->
                     <exclude>superset/</exclude>
                   </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy prefix-content-packages.sh file to the final package -->
+            <id>Copy prefix-content-packages.sh file to the final package</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}</directory>
+                  <includes>
+                    <include>prefix-content-packages.sh</include>
+                  </includes>
+                  <filtering>false</filtering>
                 </resource>
               </resources>
             </configuration>

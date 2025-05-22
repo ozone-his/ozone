@@ -103,6 +103,36 @@
       </plugin>
 
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <!-- Prefix content packages so that the overwrite order can be determined -->
+            <id>prefix content packages</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <arguments>
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/prefix-content-packages.sh</argument>
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config</argument>
+                <!-- Order in which content packages configs should be applied -->
+                <argument>referenceapplication</argument>
+                <argument>referenceapplication-demo</argument>
+                <argument>ozone</argument>
+                <argument>child_1</argument>
+                <argument>child_2</argument>
+                <argument>child_3</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
