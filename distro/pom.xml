@@ -29,7 +29,7 @@
 
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.2.1</referenceapplicationDistroVersion>
-    <odoo_initializerVersion>17.0.0.0.0</odoo_initializerVersion>
+    <odoo_initializerVersion>2.3.0-SNAPSHOT</odoo_initializerVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
