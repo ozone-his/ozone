@@ -119,13 +119,8 @@
               <arguments>
                 <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/prefix-content-packages.sh</argument>
                 <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config</argument>
-                <!-- Order in which content packages configs should be applied -->
-                <argument>referenceapplication</argument>
-                <argument>referenceapplication-demo</argument>
-                <argument>ozone</argument>
-                <argument>child_1</argument>
-                <argument>child_2</argument>
-                <argument>child_3</argument>
+                <!-- File which contains list of content packages in order in which the configs should be applied -->
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/content-packages.txt</argument>
               </arguments>
             </configuration>
           </execution>
