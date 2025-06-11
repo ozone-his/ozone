@@ -110,7 +110,7 @@
           <execution>
             <!-- Prefix content packages so that the overwrite order can be determined -->
             <id>prefix content packages</id>
-            <phase>package</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>exec</goal>
             </goals>

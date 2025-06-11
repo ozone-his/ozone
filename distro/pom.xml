@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.3.1-rc.1</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.4.0</referenceapplicationDistroVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
@@ -358,6 +358,30 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/bahmniemr_binaries/</outputDirectory>
               <includeArtifactIds>distro</includeArtifactIds>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <!-- Prefix content packages so that the overwrite order can be determined -->
+            <id>prefix content packages</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <arguments>
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/prefix-content-packages.sh</argument>
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config</argument>
+                <!-- File which contains list of content packages in order in which the configs should be applied -->
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/content-packages.txt</argument>
+              </arguments>
             </configuration>
           </execution>
         </executions>
