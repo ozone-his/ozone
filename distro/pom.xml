@@ -29,7 +29,6 @@
 
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.3.1-rc.1</referenceapplicationDistroVersion>
-    <odoo_initializerVersion>17.0.0.0.0</odoo_initializerVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
@@ -39,6 +38,10 @@
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
     <fhir2Version>2.3.0</fhir2Version>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
+
+    <!-- Odoo addons versions -->
+    <odooInitializerVersion>2.3.0-SNAPSHOT</odooInitializerVersion>
+    <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
 
     <!-- EIP Routes artifact versions -->
     <eipOpenMRSSenaiteVersion>2.2.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
@@ -91,8 +94,8 @@
     <!--  Odoo addons-->
     <dependency>
       <groupId>net.mekomsolutions.odoo</groupId>
-      <artifactId>odoo_initializer</artifactId>
-      <version>${odoo_initializerVersion}</version>
+      <artifactId>${odooInitializerArtifactId}</artifactId>
+      <version>${odooInitializerVersion}</version>
       <type>zip</type>
     </dependency>
 
@@ -187,7 +190,7 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons</outputDirectory>
-              <includeArtifactIds>odoo_initializer</includeArtifactIds>
+              <includeArtifactIds>${odooInitializerArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
