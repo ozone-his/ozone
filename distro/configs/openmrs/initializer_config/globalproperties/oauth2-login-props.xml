@@ -2,7 +2,7 @@
     <globalProperties>
         <globalProperty>
             <property>oauth2login.redirectUriAfterLogin</property>
-            <value>/spa/home</value>
+            <value>/spa/login</value>
         </globalProperty>
     </globalProperties>
 </config>
