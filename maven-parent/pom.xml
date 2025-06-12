@@ -292,6 +292,7 @@
                   <directory>${project.basedir}/configs</directory>
                   <excludes>
                     <exclude>.gitkeep</exclude>
+                    <exclude>/openmrs/initializer_config/**</exclude>
                   </excludes>
                 </resource>
               </resources>

@@ -72,8 +72,9 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.1.0</version>
                 <executions>
+                    <!-- Copy Openmrs initializer config and add a new folder to mimic content package structure -->
                     <execution>
-                        <id>copy-initializer-config-with-ozone</id>
+                        <id>copy-openmrs-initializer-config-with-new-dir</id>
                         <phase>process-resources</phase>
                         <configuration>
                             <target>
