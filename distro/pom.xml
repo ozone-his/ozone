@@ -455,29 +455,6 @@
           </execution>
 
           <execution>
-            <!-- Copy content package ordering files to the final package -->
-            <id>Copy prefix-content-packages.sh and content-packages.txt files to the final package</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
-              <overwrite>true</overwrite>
-              <resources>
-                <resource>
-                  <directory>${project.basedir}</directory>
-                  <includes>
-                    <include>prefix-content-packages.sh</include>
-                    <include>content-packages.txt</include>
-                  </includes>
-                  <filtering>false</filtering>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
             <!-- Copy data/ folder -->
             <id>Copy local data/ resources</id>
             <phase>prepare-package</phase>
