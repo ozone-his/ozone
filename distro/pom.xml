@@ -65,6 +65,7 @@
 
   <modules>
     <module>configs/superset</module>
+    <module>configs/openmrs</module>
   </modules>
 
   <dependencies>
@@ -171,6 +172,12 @@
       <type>zip</type>
     </dependency>
 
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-openmrs-configs</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
   </dependencies>
 
   <build>
@@ -349,6 +356,20 @@
           </execution>
 
           <execution>
+            <id>Unpack Openmrs configs sub-module</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs</outputDirectory>
+              <includeArtifactIds>ozone-openmrs-configs</includeArtifactIds>
+            </configuration>
+          </execution>
+
+          <execution>
             <id>Copy Bahmni EMR binaries to a temporary location</id>
             <phase>generate-resources</phase>
             <goals>
@@ -424,8 +445,9 @@
                 <resource>
                   <directory>${project.basedir}/configs</directory>
                   <excludes>
-                    <!-- Exclude Superset config because it is included via artifact dependency -->
+                    <!-- Exclude Superset & Openmrs config because it is included via artifact dependency -->
                     <exclude>superset/</exclude>
+                    <exclude>openmrs/</exclude>
                   </excludes>
                 </resource>
               </resources>
