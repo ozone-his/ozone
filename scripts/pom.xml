@@ -66,6 +66,12 @@
                     <include>
                       set-ozone-dir.sh
                     </include>
+                    <include>
+                      openmrs/content-packages.txt
+                    </include>
+                    <include>
+                      openmrs/prefix-content-packages.sh
+                    </include>
                   </includes>
                 </resource>
               </resources>

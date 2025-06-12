@@ -398,10 +398,10 @@
             <configuration>
               <executable>bash</executable>
               <arguments>
-                <argument>${project.build.directory}/${project.artifactId}-${project.version}/prefix-content-packages.sh</argument>
+                <argument>${project.basedir}/../scripts/openmrs/prefix-content-packages.sh</argument>
                 <argument>${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config</argument>
                 <!-- File which contains list of content packages in order in which the configs should be applied -->
-                <argument>${project.build.directory}/${project.artifactId}-${project.version}/content-packages.txt</argument>
+                <argument>${project.basedir}/../scripts/openmrs/content-packages.txt</argument>
               </arguments>
             </configuration>
           </execution>
