@@ -707,6 +707,25 @@
               </execution>
             </executions>
           </plugin>
+          <!-- Clean up the temporary directory used for building bundled docker images -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>cleanup-bundled-docker-tmp</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <delete dir="${project.build.directory}/bundled-docker-build-tmp"/>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
       <dependencies>
