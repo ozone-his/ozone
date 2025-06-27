@@ -61,6 +61,8 @@
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
+
+    <ozone-distro.name>ozone</ozone-distro.name>
   </properties>
 
   <modules>
@@ -356,15 +358,14 @@
           </execution>
 
           <execution>
-            <id>Unpack Openmrs configs sub-module</id>
+            <id>Unpack Openmrs configs sub-module to temporary folder</id>
             <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>
             <configuration>
               <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs</outputDirectory>
+              <outputDirectory>${project.build.directory}/ozone-openmrs-configs</outputDirectory>
               <includeArtifactIds>ozone-openmrs-configs</includeArtifactIds>
             </configuration>
           </execution>
@@ -550,6 +551,27 @@
                   <fileset dir="${project.build.directory}/openmrs_modules" />
                   <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
                 </move>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+
+          <!-- Copy Openmrs config and modify initializer_config to mimic content package structure -->
+          <execution>
+            <id>copy-openmrs--config-and-modify-initializer-config</id>
+            <phase>process-resources</phase>
+            <configuration>
+              <target>
+                <mkdir dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config"/>
+
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config">
+                  <fileset dir="${project.build.directory}/ozone-openmrs-configs/initializer_config"/>
+                  <mapper type="regexp"
+                          from="^([^/]+)/(.+)$"
+                          to="\1/${ozone-distro.name}/\2"/>
+                </copy>
               </target>
             </configuration>
             <goals>
