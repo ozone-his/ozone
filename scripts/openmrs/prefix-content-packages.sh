@@ -1,5 +1,32 @@
 #!/bin/bash
 
+# Given the below folder structure
+#base_dir/
+#├── module1/
+#│   ├── alpha/
+#│   ├── beta/
+#│   └── gamma/
+#├── module2/
+#│   ├── beta/
+#│   ├── delta/
+#│   └── alpha/
+
+# The script will change the folder structure to
+#base_dir/
+#├── module1/
+#│   ├── 00_alpha/
+#│   ├── 01_beta/
+#│   └── 02_gamma/
+#├── module2/
+#│   ├── 00_alpha/
+#│   ├── 01_beta/
+#│   ├── delta/            ← Not renamed, not in order.txt
+
+# When the below file.txt is passed as an argument
+#alpha
+#beta
+#gamma
+
 base_dir="$1"       # First argument is the base directory
 order_file="$2"     # Second argument is the text file with the ordering
 
