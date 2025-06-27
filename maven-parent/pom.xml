@@ -35,8 +35,6 @@
     <ozone.groupId>com.ozonehis</ozone.groupId>
     <ozone.version>1.0.0-SNAPSHOT</ozone.version>
     <ozone-scripts.version>1.0.0-SNAPSHOT</ozone-scripts.version>
-
-    <ozone-distro.name>ozone</ozone-distro.name>
   </properties>
 
   <dependencies>
@@ -399,7 +397,7 @@
                            erroronmissingdir="false"/>
                   <mapper type="regexp"
                           from="^([^/]+)/(.+)$"
-                          to="\1/${ozone-distro.name}/\2"/>
+                          to="\1/${project.artifactId}/\2"/>
                 </copy>
               </target>
             </configuration>

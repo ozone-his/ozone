@@ -30,7 +30,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ozone-distro.name>ozone</ozone-distro.name>
     </properties>
 
     <build>

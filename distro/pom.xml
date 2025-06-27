@@ -61,8 +61,6 @@
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
-
-    <ozone-distro.name>ozone</ozone-distro.name>
   </properties>
 
   <modules>
@@ -570,7 +568,7 @@
                   <fileset dir="${project.build.directory}/ozone-openmrs-configs/initializer_config"/>
                   <mapper type="regexp"
                           from="^([^/]+)/(.+)$"
-                          to="\1/${ozone-distro.name}/\2"/>
+                          to="\1/${project.artifactId}/\2"/>
                 </copy>
               </target>
             </configuration>
