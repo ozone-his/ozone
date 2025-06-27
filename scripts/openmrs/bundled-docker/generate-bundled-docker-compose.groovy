@@ -82,12 +82,6 @@ String getOverrideFileName() {
     return (overrideFileName != null && !overrideFileName.trim().isEmpty()) ? overrideFileName : "docker-compose-bundled.yml.template"
 }
 
-// Get output filename from properties or use default if not specified
-String getOutputFileName() {
-    def outputFileName = getPropertyValue('bundled.docker.compose.output.filename')
-    return (outputFileName != null && !outputFileName.trim().isEmpty()) ? outputFileName : "docker-compose-bundled.yml"
-}
-
 def overrideFileName = getOverrideFileName()
 
 def dockerComposeTemplate = resolveTemplateFile(overrideFileName,
@@ -103,10 +97,9 @@ def binding = ['dockertag' : dockerTag, 'sanitizedGroupId' : sanitizedGroupId, '
 def template = engine.createTemplate(dockerComposeTemplate) 
 def writable = template.make(binding)
 
-def dockerComposeOutputFileName = getOutputFileName()
-def dockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", dockerComposeOutputFileName).toAbsolutePath().toString()
-def dockerComposeFile = new File(dockerComposePath)
-dockerComposeFile.write(writable.toString())
+def dockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled.yml").toAbsolutePath().toString()
+def myFile = new File(dockerComposePath)
+myFile.write(writable.toString())
 
 // Bind the SSO template
 def ssoDockerComposeTemplate = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml.template").toFile()
