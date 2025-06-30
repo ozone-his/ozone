@@ -70,8 +70,5 @@ for module_dir in */ ; do
       ((index++))
     done
 
-    if [[ "$matched" == false ]]; then
-      echo "No rename rule for $module_dir/$sub_dir"
-    fi
   done
 done
