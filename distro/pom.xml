@@ -492,6 +492,25 @@
           </execution>
 
           <execution>
+            <!-- Copy OpenMRS configs -->
+            <id>Copy OpenMRS configs</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/ozone-openmrs-configs</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
             <!-- Exclude files from O3 Ref App -->
             <id>Exclude some OpenMRS Ref App files</id>
             <phase>process-resources</phase>
