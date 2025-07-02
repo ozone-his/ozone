@@ -505,6 +505,9 @@
               <resources>
                 <resource>
                   <directory>${project.build.directory}/ozone-openmrs-configs</directory>
+                  <excludes>
+                    <exclude>initializer_config/</exclude>
+                  </excludes>
                 </resource>
               </resources>
             </configuration>
