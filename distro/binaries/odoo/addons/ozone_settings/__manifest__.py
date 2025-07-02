@@ -12,7 +12,6 @@
 
     'author': 'enyachoke',
     'website': 'https://mekomsolutions.com',
-    'license': 'MIT',
     'category': 'Technical Settings',
     'version': '17.0.0.0.0',
 
