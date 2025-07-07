@@ -14,14 +14,14 @@ from odoo import http
 from odoo.http import request
 
 from odoo.addons.auth_oauth.controllers.main import OAuthLogin
-from odoo.addons.web.controllers.main import Session
+from odoo.addons.web.controllers.session import Session
 
 _logger = logging.getLogger(__name__)
 
 
 class OpenIDLogin(OAuthLogin):
     def list_providers(self):
-        providers = super(OpenIDLogin, self).list_providers()
+        providers = super().list_providers()
         for provider in providers:
             flow = provider.get("flow")
             if flow in ("id_token", "id_token_code"):
@@ -75,6 +75,8 @@ class OpenIDLogout(Session):
                 if provider.skip_logout_confirmation and user.oauth_id_token:
                     params["id_token_hint"] = user.oauth_id_token
                 logout_url = components._replace(query=url_encode(params)).geturl()
-                return super().logout(redirect=logout_url)
-        # User has no account with any provider or no logout URL is configured for the provider
+                request.session.logout(keep_db=True)
+                return request.redirect(logout_url, local=False)
+        # User has no account with any provider
+        # or no logout URL is configured for the provider
         return super().logout(redirect=redirect)
