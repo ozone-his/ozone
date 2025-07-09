@@ -11,7 +11,14 @@
 #│   ├── delta/
 #│   └── alpha/
 
-# The script will change the folder structure to
+# The script will change the above folder structure when the following `file.txt` is passed to it:
+# -> file.txt:
+#  alpha
+#  beta
+#  gamma
+#
+# into:
+#
 #base_dir/
 #├── module1/
 #│   ├── 00_alpha/
@@ -21,11 +28,6 @@
 #│   ├── 00_alpha/
 #│   ├── 01_beta/
 #│   ├── delta/            ← Not renamed, not in order.txt
-
-# When the below file.txt is passed as an argument
-#alpha
-#beta
-#gamma
 
 base_dir="$1"       # First argument is the base directory
 order_file="$2"     # Second argument is the text file with the ordering
