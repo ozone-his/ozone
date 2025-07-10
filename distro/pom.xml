@@ -36,7 +36,7 @@
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
     <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
-    <fhir2Version>2.3.0</fhir2Version>
+    <fhir2Version>2.6.0-SNAPSHOT</fhir2Version>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- Odoo addons versions -->
