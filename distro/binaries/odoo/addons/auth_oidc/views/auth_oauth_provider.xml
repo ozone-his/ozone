@@ -21,6 +21,9 @@
                 <field name="end_session_endpoint" />
                 <field name="skip_logout_confirmation" />
             </field>
+            <field name="auth_endpoint" position="after">
+                <field name="auth_link_params" />
+            </field>
         </field>
     </record>
 </odoo>
