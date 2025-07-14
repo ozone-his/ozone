@@ -88,32 +88,61 @@ String getOutputFileName() {
     return (outputFileName != null && !outputFileName.trim().isEmpty()) ? outputFileName : "docker-compose-bundled.yml"
 }
 
-def overrideFileName = getOverrideFileName()
-
-def dockerComposeTemplate = resolveTemplateFile(overrideFileName,
-        Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled.yml.template").toFile()
-)
-
-if (!dockerComposeTemplate.exists()) {
-    throw new FileNotFoundException("Docker compose template file not found: ${dockerComposeTemplate.absolutePath}")
+// Check if SSO is enabled from properties
+boolean isSsoEnabled() {
+    def ssoEnabled = getPropertyValue('bundled.docker.compose.sso.enabled')
+    return (ssoEnabled != null && ssoEnabled.trim().toLowerCase() == 'true')
 }
 
-// Bind the template with the required variables
-def binding = ['dockertag' : dockerTag, 'sanitizedGroupId' : sanitizedGroupId, 'sanitizedArtifactId' : sanitizedArtifactId, 'dockerUserName' : dockerUserName]
-def template = engine.createTemplate(dockerComposeTemplate) 
-def writable = template.make(binding)
-
+def overrideFileName = getOverrideFileName()
 def dockerComposeOutputFileName = getOutputFileName()
+def binding = ['dockertag' : dockerTag, 'sanitizedGroupId' : sanitizedGroupId, 'sanitizedArtifactId' : sanitizedArtifactId, 'dockerUserName' : dockerUserName]
 def dockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", dockerComposeOutputFileName).toAbsolutePath().toString()
-def dockerComposeFile = new File(dockerComposePath)
-dockerComposeFile.write(writable.toString())
 
-// Bind the SSO template
-def ssoDockerComposeTemplate = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml.template").toFile()
-def ssoBinding = ['dockertag' : dockerTag, 'sanitizedGroupId' : sanitizedGroupId, 'sanitizedArtifactId' : sanitizedArtifactId, 'dockerUserName' : dockerUserName]
-def ssoTemplate = engine.createTemplate(ssoDockerComposeTemplate)
-def ssoWritable = ssoTemplate.make(ssoBinding)
+// Check if an override file is provided
+def overrideFile = new File("${project.basedir}/scripts", overrideFileName)
+if (overrideFile.exists()) {
+    // If override file exists, use it regardless of SSO setting
+    def targetOverrideFile = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", overrideFileName).toFile()
+    targetOverrideFile.getParentFile().mkdirs()
+    overrideFile.withInputStream { input ->
+        targetOverrideFile.withOutputStream { output ->
+            output << input
+        }
+    }
 
-def ssoDockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml").toAbsolutePath().toString()
-def dockerComposeSsoFile = new File(ssoDockerComposePath)
-dockerComposeSsoFile.write(ssoWritable.toString())
+    // Bind the template with the required variables
+    def template = engine.createTemplate(targetOverrideFile)
+    def writable = template.make(binding)
+
+    // Write to the output file
+    def dockerComposeFile = new File(dockerComposePath)
+    dockerComposeFile.write(writable.toString())
+
+    // Also create the SSO file for backward compatibility
+    def ssoDockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml").toAbsolutePath().toString()
+    def dockerComposeSsoFile = new File(ssoDockerComposePath)
+    dockerComposeSsoFile.write(writable.toString())
+} else {
+    // No override file, use the appropriate template based on SSO setting
+    def templateFile
+    if (isSsoEnabled()) {
+        // Use SSO template
+        templateFile = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml.template").toFile()
+    } else {
+        // Use regular template
+        templateFile = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled.yml.template").toFile()
+    }
+
+    if (!templateFile.exists()) {
+        throw new FileNotFoundException("Docker compose template file not found: ${templateFile.absolutePath}")
+    }
+
+    // Bind the template with the required variables
+    def template = engine.createTemplate(templateFile)
+    def writable = template.make(binding)
+
+    // Write to the output file
+    def dockerComposeFile = new File(dockerComposePath)
+    dockerComposeFile.write(writable.toString())
+}
