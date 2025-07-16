@@ -458,11 +458,11 @@
         <docker.push.registry>docker.io</docker.push.registry>
         <!-- Docker push registry username-->
         <docker.push.registry.username>mekomsolutions</docker.push.registry.username>
-        <!-- Docker Compose override file name -->
+        <!-- Docker Compose bundled override filename -->
         <bundled.docker.compose.override.filename>docker-compose-bundled.yml.template</bundled.docker.compose.override.filename>
-        <!-- Docker Compose output file name -->
+        <!-- Docker Compose bundled output filename -->
         <bundled.docker.compose.output.filename>docker-compose-bundled.yml</bundled.docker.compose.output.filename>
-        <!-- Enable SSO in Docker Compose -->
+        <!-- Enable SSO in Docker Compose bundled -->
         <bundled.docker.compose.sso.enabled>false</bundled.docker.compose.sso.enabled>
       </properties>
       <build>
