@@ -464,6 +464,8 @@
         <bundled.docker.compose.output.filename>docker-compose-bundled.yml</bundled.docker.compose.output.filename>
         <!-- Enable SSO in Docker Compose bundled -->
         <bundled.docker.compose.sso.enabled>false</bundled.docker.compose.sso.enabled>
+        <!-- Ozone Bundled Docker build directory -->
+        <ozone.bundled.docker.build.directory>${project.build.directory}/bundled-docker-build-tmp</ozone.bundled.docker.build.directory>
       </properties>
       <build>
         <plugins>
@@ -480,8 +482,7 @@
                 <configuration>
                   <excludeTransitive>true</excludeTransitive>
                   <filtering>true</filtering>
-                  <outputDirectory>
-                    ${project.build.directory}/bundled-docker-build-tmp/bundled-docker</outputDirectory>
+                  <outputDirectory>${ozone.bundled.docker.build.directory}/bundled-docker</outputDirectory>
                   <includeArtifactIds>bundled-docker</includeArtifactIds>
                 </configuration>
               </execution>
@@ -524,7 +525,7 @@
                   <resources>
                     <resource>
                       <directory>
-                        ${project.build.directory}/bundled-docker-build-tmp/bundled-docker</directory>
+                        ${ozone.bundled.docker.build.directory}/bundled-docker</directory>
                       <filtering>true</filtering>
                       <includes>
                         <include>${bundled.docker.compose.output.filename}</include>
@@ -546,7 +547,7 @@
                 </goals>
                 <configuration>
                   <outputDirectory>
-                    ${project.build.directory}/bundled-docker-build-tmp/distro</outputDirectory>
+                    ${ozone.bundled.docker.build.directory}/distro</outputDirectory>
                   <overwrite>true</overwrite>
                   <resources>
                     <resource>
@@ -571,7 +572,7 @@
                   <overwrite>true</overwrite>
                   <resources>
                     <resource>
-                      <directory>${project.build.directory}/bundled-docker-build-tmp/bundled-docker/scripts</directory>
+                      <directory>${ozone.bundled.docker.build.directory}/bundled-docker/scripts</directory>
                       <filtering>true</filtering>
                       <includes>
                         <include>start-bundled.sh</include>
@@ -580,6 +581,25 @@
                     </resource>
                   </resources>
                 </configuration>
+              </execution>
+              <execution>
+                 <id>copy Docker Compose bundled overrides</id>
+                 <phase>generate-resources</phase>
+                 <goals>
+                     <goal>copy-resources</goal>
+                 </goals>
+                  <configuration>
+                     <outputDirectory>
+                        ${ozone.bundled.docker.build.directory}/bundled-docker
+                     </outputDirectory>
+                      <resources>
+                         <resource>
+                            <directory>${project.basedir}/bundled-docker</directory>
+                            <filtering>false</filtering>
+                         </resource>
+                      </resources>
+                      <overwrite>true</overwrite>
+                 </configuration>
               </execution>
             </executions>
           </plugin>
@@ -594,99 +614,99 @@
                   <name>${docker.push.registry.username}/%a-openmrs-backend</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/openmrs/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/openmrs/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
+                      ${ozone.bundled.docker.build.directory}/</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-openmrs-frontend</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/frontend/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/frontend/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
+                      ${ozone.bundled.docker.build.directory}/</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-proxy</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/proxy/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/proxy/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/</contextDir>
+                      ${ozone.bundled.docker.build.directory}/</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-odoo</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/odoo/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/odoo/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-senaite</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/senaite/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-senaite-sso</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/senaite/Dockerfile-sso</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/senaite/Dockerfile-sso</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-eip-odoo-openmrs</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-odoo-openmrs/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/eip-odoo-openmrs/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-eip-openmrs-senaite</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/eip-openmrs-senaite/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/eip-openmrs-senaite/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-postgresql</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/postgresql/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/postgresql/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-mysql</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/mysql/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/mysql/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
                 <image>
                   <name>${docker.push.registry.username}/%a-keycloak</name>
                   <build>
                     <dockerFile>
-                      ${project.build.directory}/bundled-docker-build-tmp/bundled-docker/keycloak/Dockerfile</dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/keycloak/Dockerfile</dockerFile>
                     <contextDir>
-                      ${project.build.directory}/bundled-docker-build-tmp/distro</contextDir>
+                      ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
               </images>
@@ -730,7 +750,7 @@
                 </goals>
                 <configuration>
                   <target>
-                    <delete dir="${project.build.directory}/bundled-docker-build-tmp"/>
+                    <delete dir="${ozone.bundled.docker.build.directory}/bundled-docker-build-tmp"/>
                   </target>
                 </configuration>
               </execution>
@@ -754,3 +774,4 @@
     </profile>
   </profiles>
 </project>
+
