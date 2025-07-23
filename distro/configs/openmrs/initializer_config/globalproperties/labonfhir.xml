@@ -1,0 +1,73 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>labonfhir.lisUrl</property>
+            <value>https://demo.openelis-global.org:8444/fhir/</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.lisUserUuid</property>
+            <value> </value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.keystorePath</property>
+            <value>/etc/openelis-global/keystore</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.keystorePass</property>
+            <value>e79c39ae3fc5929f5ef188221bd4b86bd8e41b73403b814ed38a58847d45d1d6</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.truststorePath</property>
+            <value>/etc/openelis-global/truststore</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.truststorePass</property>
+            <value>27e3af2b790009d6b8a2fa4eb6c9d8600a92215fa119ff2139e8b29a1bee72a5</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.activateFhirPush</property>
+            <value>true</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.authType</property>
+            <value>SSL</value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.userName</property>
+            <value></value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.password</property>
+            <value></value>
+        </globalProperty>
+        <globalProperty>
+            <property>labonfhir.openmrsPatientIdentifier.uuid</property>
+            <value>05a29f94-c0ed-11e2-94be-8c13b969e334</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>labonfhir.lisIdentifierSystem.url</property>
+            <value>http://openelis-global.org/pat_nationalId</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>labonfhir.orderTestUuids</property>
+            <value>160046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,165254AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>labonfhir.labUpdateTriggerObject</property>
+            <value>Order</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>labonfhir.addObsAsTaskInput</property>
+            <value>false</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>labonfhir.filterOrderBytestUuids</property>
+            <value>false</value>
+        </globalProperty>
+    </globalProperties>
+</config>

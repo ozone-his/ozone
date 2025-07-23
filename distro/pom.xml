@@ -59,6 +59,9 @@
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
 
+    <event.omod.version>3.0.0-SNAPSHOT</event.omod.version>
+    <labonfhir.omod.version>1.5.1-SNAPSHOT</labonfhir.omod.version>
+
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
@@ -81,6 +84,17 @@
       <artifactId>distro-emr-frontend</artifactId>
       <type>zip</type>
       <version>${referenceapplicationDistroVersion}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openmrs</groupId>
+      <artifactId>event-omod</artifactId>
+      <version>${event.omod.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>labonfhir-omod</artifactId>
+      <version>${labonfhir.omod.version}</version>
     </dependency>
 
     <!-- Bahmni EMR distro -->
