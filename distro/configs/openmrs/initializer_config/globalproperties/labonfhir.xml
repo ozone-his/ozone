@@ -2,11 +2,11 @@
     <globalProperties>
         <globalProperty>
             <property>labonfhir.lisUrl</property>
-            <value>https://demo.openelis-global.org:8444/fhir/</value>
+            <value>https://demo.openelis-global.org:8444/fhir</value>
         </globalProperty>
         <globalProperty>
             <property>labonfhir.lisUserUuid</property>
-            <value> </value>
+            <value>	</value>
         </globalProperty>
         <globalProperty>
             <property>labonfhir.keystorePath</property>
@@ -14,7 +14,7 @@
         </globalProperty>
         <globalProperty>
             <property>labonfhir.keystorePass</property>
-            <value>e79c39ae3fc5929f5ef188221bd4b86bd8e41b73403b814ed38a58847d45d1d6</value>
+            <value>27e3af2b790009d6b8a2fa4eb6c9d8600a92215fa119ff2139e8b29a1bee72a5</value>
         </globalProperty>
         <globalProperty>
             <property>labonfhir.truststorePath</property>
@@ -34,11 +34,11 @@
         </globalProperty>
         <globalProperty>
             <property>labonfhir.userName</property>
-            <value></value>
+            <value>OpenMRS</value>
         </globalProperty>
         <globalProperty>
             <property>labonfhir.password</property>
-            <value></value>
+            <value>admin</value>
         </globalProperty>
         <globalProperty>
             <property>labonfhir.openmrsPatientIdentifier.uuid</property>
