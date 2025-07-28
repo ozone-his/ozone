@@ -14,6 +14,7 @@ jobs:
     with:
       java-version: "8"
       maven-phase: "install"
+      free-disk-space: true
       maven-args: "-Pvalidator -Pbundled-docker" # Validate OpenMRS configs & build Docker images embedding the distro bins and configs
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
@@ -24,6 +25,7 @@ jobs:
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     with:
+      free-disk-space: true
       maven-args: "-Pbundled-docker" # Build Docker images embedding the distro bins and configs
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}

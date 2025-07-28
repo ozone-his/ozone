@@ -46,6 +46,10 @@ class AuthOauthProvider(models.Model):
         string="Token URL", help="Required for OpenID Connect authorization code flow."
     )
     jwks_uri = fields.Char(string="JWKS URL", help="Required for OpenID Connect.")
+    auth_link_params = fields.Char(
+        help="Additional parameters for the auth link. "
+        "For example: {'prompt':'select_account'}"
+    )
     end_session_endpoint = fields.Char(
         string="End Session URL",
         help="If set, the user is logged out in the authorization provider upon logout "
@@ -55,12 +59,13 @@ class AuthOauthProvider(models.Model):
     skip_logout_confirmation = fields.Boolean(
         default=False,
         string="Skip Logout Confirmation",
-        help="If set to true, the logout confirmation is skipped in the authorization provider.",
+        help="If set to true, the logout confirmation is skipped in the "
+        "authorization provider.",
     )
 
     @tools.ormcache("self.jwks_uri", "kid")
     def _get_keys(self, kid):
-        r = requests.get(self.jwks_uri)
+        r = requests.get(self.jwks_uri, timeout=10)
         r.raise_for_status()
         response = r.json()
         # the keys returned here should follow
@@ -75,7 +80,7 @@ class AuthOauthProvider(models.Model):
     def _map_token_values(self, res):
         if self.token_map:
             for pair in self.token_map.split(" "):
-                from_key, to_key = [k.strip() for k in pair.split(":", 1)]
+                from_key, to_key = (k.strip() for k in pair.split(":", 1))
                 if to_key not in res:
                     res[to_key] = res.get(from_key, "")
         return res

@@ -506,6 +506,12 @@
         <docker.push.registry>docker.io</docker.push.registry>
         <!-- Docker push registry username-->
         <docker.push.registry.username>mekomsolutions</docker.push.registry.username>
+        <!-- Docker Compose bundled override filename -->
+        <bundled.docker.compose.override.filename>docker-compose-bundled.yml.template</bundled.docker.compose.override.filename>
+        <!-- Docker Compose bundled output filename -->
+        <bundled.docker.compose.output.filename>docker-compose-bundled.yml</bundled.docker.compose.output.filename>
+        <!-- Enable SSO in Docker Compose bundled -->
+        <bundled.docker.compose.sso.enabled>false</bundled.docker.compose.sso.enabled>
       </properties>
       <build>
         <plugins>
@@ -521,6 +527,7 @@
                 </goals>
                 <configuration>
                   <excludeTransitive>true</excludeTransitive>
+                  <filtering>true</filtering>
                   <outputDirectory>
                     ${project.build.directory}/bundled-docker-build-tmp/bundled-docker</outputDirectory>
                   <includeArtifactIds>bundled-docker</includeArtifactIds>
@@ -568,9 +575,12 @@
                         ${project.build.directory}/bundled-docker-build-tmp/bundled-docker</directory>
                       <filtering>true</filtering>
                       <includes>
-                        <include>docker-compose-bundled.yml</include>
+                        <include>${bundled.docker.compose.output.filename}</include>
                         <include>docker-compose-bundled-sso.yml</include>
                       </includes>
+                      <excludes>
+                        <exclude>**/*.template</exclude>
+                      </excludes>
                     </resource>
                   </resources>
                 </configuration>
@@ -752,6 +762,25 @@
                   <goal>push</goal>
                 </goals>
                 <phase>deploy</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Clean up the temporary directory used for building bundled docker images -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>cleanup-bundled-docker-tmp</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <delete dir="${project.build.directory}/bundled-docker-build-tmp"/>
+                  </target>
+                </configuration>
               </execution>
             </executions>
           </plugin>
