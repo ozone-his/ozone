@@ -22,7 +22,7 @@ class OAuthAutoLogin(OAuthLogin):
 
     @http.route("/web/login", type="http", auth="none")
     def web_login(self, *args, **kw):
-        if not request.session.uid:
+        if not request.session.uid and request.httprequest.method.upper() != "POST":
             request_url = request.httprequest.url
             if not self._autologin_disabled(request_url):
                 auth_link = self._autologin_link()
