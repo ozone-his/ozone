@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.2.1</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.4.0</referenceapplicationDistroVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
@@ -36,7 +36,7 @@
     <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
     <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
-    <fhir2Version>2.3.0</fhir2Version>
+    <fhir2Version>2.6.0-SNAPSHOT</fhir2Version>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- Odoo addons versions -->
@@ -65,6 +65,7 @@
 
   <modules>
     <module>configs/superset</module>
+    <module>configs/openmrs</module>
   </modules>
 
   <dependencies>
@@ -171,6 +172,12 @@
       <type>zip</type>
     </dependency>
 
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>ozone-openmrs-configs</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
   </dependencies>
 
   <build>
@@ -349,6 +356,19 @@
           </execution>
 
           <execution>
+            <id>Unpack Openmrs configs sub-module to temporary folder</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${project.build.directory}/ozone-openmrs-configs</outputDirectory>
+              <includeArtifactIds>ozone-openmrs-configs</includeArtifactIds>
+            </configuration>
+          </execution>
+
+          <execution>
             <id>Copy Bahmni EMR binaries to a temporary location</id>
             <phase>generate-resources</phase>
             <goals>
@@ -358,6 +378,29 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/bahmniemr_binaries/</outputDirectory>
               <includeArtifactIds>distro</includeArtifactIds>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <!-- Prefix content packages so that the overwrite order can be determined -->
+            <id>prefix content packages</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <arguments>
+                <argument>${project.basedir}/../scripts/openmrs/prefix-content-packages.sh</argument>
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config</argument>
+                <!-- File which contains list of content packages in order in which the configs should be applied -->
+                <argument>${project.basedir}/../scripts/openmrs/content-packages.txt</argument>
+              </arguments>
             </configuration>
           </execution>
         </executions>
@@ -400,8 +443,9 @@
                 <resource>
                   <directory>${project.basedir}/configs</directory>
                   <excludes>
-                    <!-- Exclude Superset config because it is included via artifact dependency -->
+                    <!-- Exclude Superset & Openmrs config because it is included via artifact dependency -->
                     <exclude>superset/</exclude>
+                    <exclude>openmrs/</exclude>
                   </excludes>
                 </resource>
               </resources>
@@ -447,6 +491,28 @@
           </execution>
 
           <execution>
+            <!-- Copy OpenMRS configs -->
+            <id>Copy OpenMRS configs</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/ozone-openmrs-configs</directory>
+                  <excludes>
+                    <exclude>initializer_config/</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
             <!-- Exclude files from O3 Ref App -->
             <id>Exclude some OpenMRS Ref App files</id>
             <phase>process-resources</phase>
@@ -459,7 +525,7 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/distro-emr-configuration/openmrs_config</directory>
+                  <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
                   </excludes>
@@ -504,6 +570,27 @@
                   <fileset dir="${project.build.directory}/openmrs_modules" />
                   <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
                 </move>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+
+          <!-- Copy Openmrs config and modify initializer_config to mimic content package structure -->
+          <execution>
+            <id>copy-openmrs--config-and-modify-initializer-config</id>
+            <phase>process-resources</phase>
+            <configuration>
+              <target>
+                <mkdir dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config"/>
+
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config">
+                  <fileset dir="${project.build.directory}/ozone-openmrs-configs/initializer_config"/>
+                  <mapper type="regexp"
+                          from="^([^/]+)/(.+)$"
+                          to="\1/${project.artifactId}/\2"/>
+                </copy>
               </target>
             </configuration>
             <goals>
@@ -577,7 +664,7 @@
                 <copy
                   todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
                   <fileset
-                    dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/modules">
+                          dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
                     <exclude name="fhir2-2.2.0.omod"/>
                   </fileset>
