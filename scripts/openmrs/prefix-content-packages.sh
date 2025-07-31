@@ -11,8 +11,8 @@
 #│   ├── delta/
 #│   └── alpha/
 
-# The script will change the above folder structure when the following `file.txt` is passed to it:
-# -> file.txt:
+# The script will change the above folder structure when the following `content-packages.txt` is passed to it:
+# -> content-packages.txt:
 #  alpha
 #  beta
 #  gamma
@@ -27,7 +27,7 @@
 #├── module2/
 #│   ├── 00_alpha/
 #│   ├── 01_beta/
-#│   ├── delta/            ← Not renamed, not in order.txt
+#│   ├── delta/            ← Not renamed, not in content-packages.txt
 
 base_dir="$1"       # First argument is the base directory
 order_file="$2"     # Second argument is the text file with the ordering
