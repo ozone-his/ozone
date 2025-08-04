@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ozonehis</groupId>
+        <artifactId>maven-commons</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../../../maven-commons</relativePath>
+    </parent>
+
+    <artifactId>ozone-openmrs-configs</artifactId>
+    <name>Ozone Openmrs Configs</name>
+    <description>Openmrs configurations</description>
+    <packaging>pom</packaging>
+
+    <organization>
+        <name>Ozone HIS</name>
+        <url>https://www.ozone-his.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Mekom Solutions</name>
+            <url>https://www.mekomsolutions.com</url>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- Copy Openmrs config resources -->
+                        <id>Copy Openmrs configs</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>./</directory>
+                                    <excludes>
+                                        <exclude>pom.xml</exclude>
+                                        <exclude>assembly.xml</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <!-- Packaging the configs as a zip file -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>Package Openmrs configs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

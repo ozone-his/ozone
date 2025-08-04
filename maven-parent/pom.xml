@@ -103,6 +103,31 @@
       </plugin>
 
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <!-- Prefix content packages so that the overwrite order can be determined -->
+            <id>prefix content packages</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <arguments>
+                <argument>${project.build.directory}/scripts/openmrs/prefix-content-packages.sh</argument>
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config</argument>
+                <!-- File which contains list of content packages in order in which the configs should be applied -->
+                <argument>${project.build.directory}/scripts/openmrs/content-packages.txt</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
@@ -267,6 +292,7 @@
                   <directory>${project.basedir}/configs</directory>
                   <excludes>
                     <exclude>.gitkeep</exclude>
+                    <exclude>/openmrs/initializer_config/**</exclude>
                   </excludes>
                 </resource>
               </resources>
@@ -351,6 +377,28 @@
                     </delete>
                   </then>
                 </if>
+              </target>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>copy-openmrs-config-and-modify-initializer-config</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <mkdir dir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config"/>
+                <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config"
+                      failonerror="false"
+                      quiet="true">
+                  <fileset dir="${project.basedir}/configs/openmrs/initializer_config"
+                           erroronmissingdir="false"/>
+                  <mapper type="regexp"
+                          from="^([^/]+)/(.+)$"
+                          to="\1/${project.artifactId}/\2"/>
+                </copy>
               </target>
             </configuration>
           </execution>
