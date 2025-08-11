@@ -28,16 +28,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.4.0</referenceapplicationDistroVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
-
-    <!-- OpenMRS modules versions -->
-    <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
-    <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
-    <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
-    <fhir2Version>2.6.0-SNAPSHOT</fhir2Version>
-    <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- Odoo addons versions -->
     <odooInitializerVersion>2.3.0-SNAPSHOT</odooInitializerVersion>
@@ -69,21 +61,6 @@
   </modules>
 
   <dependencies>
-    <!-- OpenMRS Ref App -->
-    <dependency>
-      <groupId>org.openmrs</groupId>
-      <artifactId>distro-emr-configuration</artifactId>
-      <type>zip</type>
-      <version>${referenceapplicationDistroVersion}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.openmrs</groupId>
-      <artifactId>distro-emr-frontend</artifactId>
-      <type>zip</type>
-      <version>${referenceapplicationDistroVersion}</version>
-    </dependency>
-
     <!-- Bahmni EMR distro -->
     <dependency>
       <groupId>org.openmrs.distro</groupId>
@@ -98,38 +75,6 @@
       <artifactId>${odooInitializerArtifactId}</artifactId>
       <version>${odooInitializerVersion}</version>
       <type>zip</type>
-    </dependency>
-
-    <!--  OpenMRS modules -->
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
-      <artifactId>patientsummary-omod</artifactId>
-      <version>${patientsummaryVersion}</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
-      <artifactId>commonreports-omod</artifactId>
-      <version>${commonreportsVersion}</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
-      <artifactId>fhirproxy-omod</artifactId>
-      <version>${fhirproxyVersion}</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
-      <artifactId>oauth2login-omod</artifactId>
-      <version>${oauth2loginVersion}</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.openmrs.module</groupId>
-      <artifactId>fhir2-omod</artifactId>
-      <version>${fhir2Version}</version>
-      <type>jar</type>
     </dependency>
 
     <!-- EIP services -->
@@ -198,21 +143,6 @@
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons</outputDirectory>
               <includeArtifactIds>${odooInitializerArtifactId}</includeArtifactIds>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>Copy OpenMRS modules to a temporary location</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <excludeTransitive>true</excludeTransitive>
-              <useBaseVersion>true</useBaseVersion>
-              <outputDirectory>${project.build.directory}/openmrs_modules/</outputDirectory>
-              <!-- Copying JARs and OMODs only. -->
-              <includeTypes>jar, omod</includeTypes>
             </configuration>
           </execution>
 
@@ -302,31 +232,6 @@
           </execution>
 
           <execution>
-            <id>Unpack OpenMRS Ref App in a temporary location</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/distro-emr-configuration</outputDirectory>
-              <includeArtifactIds>distro-emr-configuration</includeArtifactIds>
-            </configuration>
-          </execution>
-          <execution>
-            <id>Unpack OpenMRS Ref App frontend configuration</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/openmrs_frontend</outputDirectory>
-              <includeArtifactIds>distro-emr-frontend</includeArtifactIds>
-            </configuration>
-          </execution>
-
-          <execution>
             <id>Copy Ozone Analytics Queries</id>
             <phase>generate-resources</phase>
             <goals>
@@ -356,7 +261,7 @@
           </execution>
 
           <execution>
-            <id>Unpack Openmrs configs sub-module to temporary folder</id>
+            <id>Unpack Ozone OpenMRS configs to temporary folder</id>
             <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
@@ -398,7 +303,7 @@
               <arguments>
                 <argument>${project.basedir}/../scripts/openmrs/prefix-content-packages.sh</argument>
                 <argument>${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config</argument>
-                <!-- File which contains list of content packages in order in which the configs should be applied -->
+                <!-- File which contains a list of content packages in order in which the configs should be applied -->
                 <argument>${project.basedir}/../scripts/openmrs/content-packages.txt</argument>
               </arguments>
             </configuration>
@@ -484,7 +389,7 @@
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/openmrs_modules</directory>
+                  <directory>${project.build.directory}/ozone-openmrs-configs/binaries/openmrs/modules</directory>
                 </resource>
               </resources>
             </configuration>
@@ -506,28 +411,6 @@
                   <directory>${project.build.directory}/ozone-openmrs-configs</directory>
                   <excludes>
                     <exclude>initializer_config/</exclude>
-                  </excludes>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-
-          <execution>
-            <!-- Exclude files from O3 Ref App -->
-            <id>Exclude some OpenMRS Ref App files</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>
-                ${project.build.directory}/openmrs_config</outputDirectory>
-              <overwrite>true</overwrite>
-              <resources>
-                <resource>
-                  <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
-                  <excludes>
-                    <exclude>**/globalproperties-core_demo*</exclude>
                   </excludes>
                 </resource>
               </resources>
@@ -561,21 +444,6 @@
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
-          <execution>
-            <id>Rename JAR to OMOD</id>
-            <phase>process-resources</phase>
-            <configuration>
-              <target>
-                <move todir="${project.build.directory}/openmrs_modules">
-                  <fileset dir="${project.build.directory}/openmrs_modules" />
-                  <mapper from="^(.+)-omod-(.+)\.jar" to="\1-\2.omod" type="regexp" />
-                </move>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
 
           <!-- Copy Openmrs config and modify initializer_config to mimic content package structure -->
           <execution>
@@ -590,84 +458,6 @@
                   <mapper type="regexp"
                           from="^([^/]+)/(.+)$"
                           to="\1/${project.artifactId}/\2"/>
-                </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>Remove non-OMODs from Modules</id>
-            <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the
-            openmrs_modules folder.
-                 This job, run after "Rename JAR to OMOD" removes the non-OMODs -->
-            <phase>process-resources</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target>
-                <delete>
-                  <fileset dir="${project.build.directory}/openmrs_modules" excludes="**/*.omod" />
-                </delete>
-              </target>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>Rename spa-assemble-config.json to reference-application-spa-assemble-config.json</id>
-            <phase>generate-resources</phase>
-            <configuration>
-              <target>
-                <copy
-                  todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_assembly">
-                  <fileset dir="${project.build.directory}/openmrs_frontend" />
-                  <mapper from="spa-assemble-config.json"
-                    to="reference-application-spa-assemble-config.json" type="regexp" />
-                </copy>
-                <move todir="${project.build.directory}/openmrs_frontend">
-                  <fileset dir="${project.build.directory}/openmrs_frontend" />
-                  <mapper from="spa-assemble-config.json"
-                    to="reference-application-spa-assemble-config.json" type="regexp" />
-                </move>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>Copy filtered OpenMRS configuration</id>
-            <phase>prepare-package</phase>
-            <configuration>
-              <target>
-                <copy
-                  todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config">
-                  <fileset
-                    dir="${project.build.directory}/openmrs_config" />
-                </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>Copy filtered OpenMRS modules</id>
-            <phase>prepare-package</phase>
-            <configuration>
-              <target>
-                <copy
-                  todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openmrs/modules">
-                  <fileset
-                          dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
-                    <exclude name="authentication-*.omod"/>
-                    <exclude name="fhir2-2.2.0.omod"/>
-                  </fileset>
                 </copy>
               </target>
             </configuration>
@@ -760,20 +550,6 @@
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
         <executions>
-          <execution>
-            <id>Build OpenMRS Frontend</id>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <phase>process-resources</phase>
-            <configuration>
-              <scripts>
-                <script>
-                  file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
-              </scripts>
-            </configuration>
-          </execution>
-
           <execution>
             <id>Generate Ozone Info JSON file</id>
             <phase>process-resources</phase>
