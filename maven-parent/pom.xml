@@ -876,7 +876,7 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>Copy filtered OpenMRS configuration</id>
+                <id>Copy OpenMRS configuration</id>
                 <phase>process-resources</phase>
                 <configuration>
                   <target>
@@ -891,15 +891,12 @@
               </execution>
 
               <execution>
-                <id>Copy filtered OpenMRS modules</id>
+                <id>Copy OpenMRS modules</id>
                 <phase>process-resources</phase>
                 <configuration>
                   <target>
                     <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/binaries/openmrs/modules">
-                      <fileset dir="${project.build.directory}/sdk-distro/web/openmrs_modules">
-                        <exclude name="authentication-*.omod"/>
-                        <exclude name="fhir2-2.2.0.omod"/>
-                      </fileset>
+                      <fileset dir="${project.build.directory}/sdk-distro/web/openmrs_modules"/>
                     </copy>
                   </target>
                 </configuration>
