@@ -119,7 +119,7 @@
               <arguments>
                 <argument>${project.build.directory}/scripts/openmrs/prefix-content-packages.sh</argument>
                 <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config</argument>
-                <!-- File which contains list of content packages in order in which the configs should be applied -->
+                <!-- File which contains a list of content packages in order in which the configs should be applied -->
                 <argument>${project.build.directory}/scripts/openmrs/content-packages.txt</argument>
               </arguments>
             </configuration>
@@ -141,8 +141,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+              <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
               <overwrite>true</overwrite>
               <resources>
                 <resource>
@@ -809,6 +808,126 @@
           <version>${groovyTemplatesVersion}</version>
         </dependency>
       </dependencies>
+    </profile>
+
+    <profile>
+      <id>build-openmrs-distro</id>
+      <activation>
+        <file>
+          <!-- Activates only if distro.properties is present in the configs/openmrs/distro_assembly directory -->
+          <exists>${project.basedir}/configs/openmrs/distro_assembly/distro.properties</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>populate-distro-properties</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>
+                    ${project.build.directory}/distro_assembly
+                  </outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.basedir}/configs/openmrs/distro_assembly</directory>
+                      <includes>
+                        <include>distro.properties</include>
+                      </includes>
+                      <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>Exclude unneeded Ozone files</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>${project.build.directory}/${ozone.artifactId}</directory>
+                      <excludes>
+                        <exclude>distro/configs/openmrs/frontend_config/**</exclude>
+                        <exclude>distro/configs/openmrs/initializer_config/**</exclude>
+                        <exclude>distro/configs/openmrs/properties/**</exclude>
+                        <exclude>distro/binaries/openmrs/modules/**</exclude>
+                      </excludes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>Copy filtered OpenMRS configuration</id>
+                <phase>process-resources</phase>
+                <configuration>
+                  <target>
+                    <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config">
+                      <fileset dir="${project.build.directory}/sdk-distro/web/openmrs_config" />
+                    </copy>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+
+              <execution>
+                <id>Copy filtered OpenMRS modules</id>
+                <phase>process-resources</phase>
+                <configuration>
+                  <target>
+                    <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/binaries/openmrs/modules">
+                      <fileset dir="${project.build.directory}/sdk-distro/web/openmrs_modules">
+                        <exclude name="authentication-*.omod"/>
+                        <exclude name="fhir2-2.2.0.omod"/>
+                      </fileset>
+                    </copy>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.openmrs.maven.plugins</groupId>
+            <artifactId>openmrs-sdk-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>openmrs-sdk:build-distro</id>
+                <goals>
+                  <goal>build-distro</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <distro>${project.build.directory}/distro_assembly/distro.properties</distro>
+                  <dir>${project.build.directory}/sdk-distro</dir>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 </project>
