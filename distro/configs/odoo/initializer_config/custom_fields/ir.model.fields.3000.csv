@@ -1,0 +1,3 @@
+"id","name","field_description","model_id","ttype","store","readonly"
+"init.6b3cd6a6-7812-11f0-959c-a2d076d3042b","x_concept_source","Concept Source","Product","char","True","False"
+"init.4aa5add7-7813-11f0-959c-a2d076d3042b","x_concept_code","Concept Code","Product","char","True","False"
