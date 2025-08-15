@@ -58,13 +58,18 @@ dockerUserName = getPropertyValue('docker.push.registry.username')
 if (dockerUserName == null || dockerUserName.trim().isEmpty()) {
     throw new IllegalArgumentException("Docker username must be provided via 'docker.push.registry.username' property.")
 }
+// Ensure the bundled docker build directory is provided
+def ozoneBundledDockerBuildDirectory = getPropertyValue('ozone.bundled.docker.build.directory')
+if (ozoneBundledDockerBuildDirectory == null || ozoneBundledDockerBuildDirectory.trim().isEmpty()) {
+    throw new IllegalArgumentException("Ozone bundled docker build directory must be provided via 'ozone.bundled.docker.build.directory' property.")
+}
 
 def engine = new SimpleTemplateEngine()
 // Returns the override file if it exists, else the default template
 File resolveTemplateFile(String overrideFileName, File defaultTemplateFile) {
     def overrideFile = new File("${project.basedir}/scripts", overrideFileName)
     if (overrideFile.exists()) {
-        def targetOverrideFile = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", overrideFileName).toFile()
+        def targetOverrideFile = Paths.get(ozoneBundledDockerBuildDirectory, "bundled-docker", overrideFileName).toFile()
         targetOverrideFile.getParentFile().mkdirs()
         overrideFile.withInputStream { input ->
             targetOverrideFile.withOutputStream { output ->
@@ -97,13 +102,13 @@ boolean isSsoEnabled() {
 def overrideFileName = getOverrideFileName()
 def dockerComposeOutputFileName = getOutputFileName()
 def binding = ['dockertag' : dockerTag, 'sanitizedGroupId' : sanitizedGroupId, 'sanitizedArtifactId' : sanitizedArtifactId, 'dockerUserName' : dockerUserName]
-def dockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", dockerComposeOutputFileName).toAbsolutePath().toString()
+def dockerComposePath = Paths.get(ozoneBundledDockerBuildDirectory, "bundled-docker", dockerComposeOutputFileName).toAbsolutePath().toString()
 
 // Check if an override file is provided
 def overrideFile = new File("${project.basedir}/scripts", overrideFileName)
 if (overrideFile.exists()) {
     // If override file exists, use it regardless of SSO setting
-    def targetOverrideFile = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", overrideFileName).toFile()
+    def targetOverrideFile = Paths.get(ozoneBundledDockerBuildDirectory, "bundled-docker", overrideFileName).toFile()
     targetOverrideFile.getParentFile().mkdirs()
     overrideFile.withInputStream { input ->
         targetOverrideFile.withOutputStream { output ->
@@ -120,7 +125,7 @@ if (overrideFile.exists()) {
     dockerComposeFile.write(writable.toString())
 
     // Also create the SSO file for backward compatibility
-    def ssoDockerComposePath = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml").toAbsolutePath().toString()
+    def ssoDockerComposePath = Paths.get(ozoneBundledDockerBuildDirectory, "bundled-docker", "docker-compose-bundled-sso.yml").toAbsolutePath().toString()
     def dockerComposeSsoFile = new File(ssoDockerComposePath)
     dockerComposeSsoFile.write(writable.toString())
 } else {
@@ -128,10 +133,10 @@ if (overrideFile.exists()) {
     def templateFile
     if (isSsoEnabled()) {
         // Use SSO template
-        templateFile = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled-sso.yml.template").toFile()
+        templateFile = Paths.get(ozoneBundledDockerBuildDirectory, "bundled-docker", "docker-compose-bundled-sso.yml.template").toFile()
     } else {
         // Use regular template
-        templateFile = Paths.get("${project.build.directory}", "/bundled-docker-build-tmp", "bundled-docker", "docker-compose-bundled.yml.template").toFile()
+        templateFile = Paths.get(ozoneBundledDockerBuildDirectory,"bundled-docker", "docker-compose-bundled.yml.template").toFile()
     }
 
     if (!templateFile.exists()) {
