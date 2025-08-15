@@ -14,6 +14,9 @@
           "temporary": false
         }
       ],
+      "attributes": {
+        "gender": "M"
+      },
       "requiredActions": [],
       "realmRoles": [
         "default-roles-ozone"
