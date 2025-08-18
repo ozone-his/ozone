@@ -513,7 +513,7 @@
         <!-- Enable SSO in Docker Compose bundled -->
         <bundled.docker.compose.sso.enabled>false</bundled.docker.compose.sso.enabled>
         <!-- Ozone Bundled Docker build directory -->
-        <ozone.bundled.docker.build.directory>${project.build.directory}/bundled-docker-build-tmp</ozone.bundled.docker.build.directory>
+        <ozone.bundled.docker.build.directory>${project.build.directory}/bundled-docker-tmp</ozone.bundled.docker.build.directory>
       </properties>
       <build>
         <plugins>
@@ -785,25 +785,6 @@
               </execution>
             </executions>
           </plugin>
-          <!-- Clean up the temporary directory used for building bundled docker images -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>cleanup-bundled-docker-tmp</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <delete dir="${ozone.bundled.docker.build.directory}/bundled-docker-build-tmp"/>
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
         </plugins>
       </build>
       <dependencies>
@@ -822,4 +803,3 @@
     </profile>
   </profiles>
 </project>
-
