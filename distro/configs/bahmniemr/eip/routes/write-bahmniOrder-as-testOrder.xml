@@ -1,0 +1,35 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="write-bahmniOrder-as-testOrder" errorHandlerRef="watcherErrorHandler">
+        <from uri="direct:write-bahmniOrder-as-testOrder"/>
+        <setProperty name="bahmniTestOrderTypeUuid">
+            <simple>${properties:bahmni.test.orderType.uuid:'uuid-not-existing'}</simple>
+        </setProperty>
+        <log message="Processing Test Order from Order"/>
+        <choice>
+            <when>
+                <simple>${exchangeProperty.event.tableName} == 'orders' &amp;&amp; ${exchangeProperty.event.operation} == 'c'</simple>
+                <!-- Query database to check if the order already exists in test_order table -->
+                <toD uri="sql:SELECT COUNT(*) total FROM test_order WHERE order_id=${exchangeProperty.event.primaryKeyId}?dataSource=openmrsDataSource"/>
+                <choice>
+                    <when>
+                        <!-- Proceed only if no associated test_order -->
+                        <jsonpath>$.[?(@.total == 0)]</jsonpath>
+                        <toD uri="sql:SELECT ot.uuid as order_type_uuid from order_type ot join orders o on o.order_type_id = ot.order_type_id where o.uuid ='${exchangeProperty.event.identifier}'?dataSource=#openmrsDataSource"/>
+                        <choice>
+                            <when>
+                                <!-- Check if it's the correct order type -->
+                                <jsonpath>$.[?(@.order_type_uuid == '${exchangeProperty.bahmniTestOrderTypeUuid}')] </jsonpath>
+                                <!-- Insert a new record into test_order if it's the correct order type -->
+                                <toD uri="sql:INSERT INTO test_order(order_id) VALUES (${exchangeProperty.event.primaryKeyId})?dataSource=openmrsDataSource"/>
+                            </when>
+                        </choice>
+                    </when>
+                    <otherwise>
+                        <!-- Do nothing if the related test order exists -->
+                        <log message="Related test order exists, no action needed."/>
+                    </otherwise>
+                </choice>
+            </when>
+        </choice>
+    </route>
+</routes>

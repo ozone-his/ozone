@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "username": "jdoe",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "jdoe@example.com",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "gender": "M"
+      },
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-ozone"
+      ],
+      "clientRoles": {
+        "superset": [
+          "Admin"
+        ],
+        "senaite": [
+          "Manager"
+        ],
+        "openmrs": [
+          "System Developer"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    }
+  ]
+}

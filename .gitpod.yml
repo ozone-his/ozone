@@ -17,3 +17,6 @@ ports:
   - name: Keycloak
     description: Keycloak
     port: 8084
+  - name: Orthanc
+    description: Orthanc
+    port: 8889

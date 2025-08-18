@@ -22,7 +22,7 @@ echo ""
 
 
 # TODO: Upon release, replace this with the latest stable version
-ozoneVersion=${1:-1.0.0-alpha.11}
+ozoneVersion=${1:-1.0.0-alpha.13}
 
 echo "$INFO Ozone version: $ozoneVersion"
 
@@ -44,7 +44,7 @@ fi
 
 # Download Maven and install locally
 echo "$INFO Installing Maven $mavenVersion..."
-mavenVersion="3.9.6"
+mavenVersion="3.9.11"
 mvn=apache-maven-${mavenVersion}/bin/mvn
 if [ -f "$mvn" ]
 then
@@ -143,7 +143,7 @@ echo ""
 echo " Type in the following command to run Ozone:"
 echo ""
 echo "    ${BOLD}cd ozone/run/docker/scripts/"
-echo "    ./start-demo.sh"$RESET_FORMATTING
+echo "    ./start-demo-with-sso.sh"$RESET_FORMATTING
 echo ""
 echo "(💡 Refer to https://docs.ozone-his.com/ for more information)"
 echo ""

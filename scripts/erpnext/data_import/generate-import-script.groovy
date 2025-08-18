@@ -30,7 +30,7 @@ def csvDirPath = Paths.get("${project.build.directory}/${project.artifactId}-${p
 def csvFiles = getCSVFilesRecursively(csvDirPath.toFile())
 
 // Define the domain order
-def domainOrder = ['Warehouse', 'UOM', 'Item Group', 'Item', 'Item Price', 'Price List']
+def domainOrder = ['Warehouse', 'Fiscal Year', 'UOM', 'Item Group', 'Item', 'Item Price', 'Price List']
 
 // Define the operation order
 def operationOrder = ['insert', 'update']

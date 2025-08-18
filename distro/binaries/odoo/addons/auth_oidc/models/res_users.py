@@ -39,6 +39,7 @@ class ResUsers(models.Model):
                 redirect_uri=request.httprequest.url_root + "auth_oauth/signin",
             ),
             auth=auth,
+            timeout=10,
         )
         response.raise_for_status()
         response_json = response.json()
@@ -57,7 +58,7 @@ class ResUsers(models.Model):
                 oauth_provider, params
             )
         else:
-            return super(ResUsers, self).auth_oauth(provider, params)
+            return super().auth_oauth(provider, params)
         if not access_token:
             _logger.error("No access_token in response.")
             raise AccessDenied()
