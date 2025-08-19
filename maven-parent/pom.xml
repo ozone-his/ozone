@@ -338,7 +338,7 @@
                   <target>
                     ${project.build.directory}/${project.artifactId}-${project.version}/run/docker/concatenated.env</target>
                   <searchDir>${project.build.directory}/${project.artifactId}-${project.version}/run/docker</searchDir>
-                  <pattern>^(?!ozone-dir\.env$).*\.env</pattern>
+                  <pattern>^(?!ozone-dir\.env$|concatenated\.env$).*\.env</pattern>
                   <override>true</override>
                 </merge>
               </merges>
