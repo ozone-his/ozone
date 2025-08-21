@@ -506,6 +506,7 @@
                   <directory>${project.build.directory}/ozone-openmrs-configs</directory>
                   <excludes>
                     <exclude>initializer_config/</exclude>
+                    <exclude>frontend_config/</exclude>
                   </excludes>
                 </resource>
               </resources>
@@ -641,7 +642,7 @@
 
           <execution>
                 <id>Copy OpenMRS SPA configuration</id>
-                <phase>prepare-package</phase>
+                <phase>process-resources</phase>
                 <configuration>
                     <target>
                         <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_config">
@@ -656,7 +657,7 @@
 
             <execution>
                 <id>Copy and rename frontend configuration</id>
-                <phase>prepare-package</phase>
+                <phase>process-resources</phase>
                 <goals>
                     <goal>run</goal>
                 </goals>
