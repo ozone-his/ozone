@@ -119,7 +119,7 @@
               <arguments>
                 <argument>${project.build.directory}/scripts/openmrs/prefix-content-packages.sh</argument>
                 <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config</argument>
-                <!-- File which contains list of content packages in order in which the configs should be applied -->
+                <!-- File which contains a list of content packages in order in which the configs should be applied -->
                 <argument>${project.build.directory}/scripts/openmrs/content-packages.txt</argument>
               </arguments>
             </configuration>
@@ -401,6 +401,25 @@
                 </copy>
               </target>
             </configuration>
+          </execution>
+
+          <execution>
+             <id>Copy and rename frontend configuration</id>
+              <phase>process-resources</phase>
+              <goals>
+                  <goal>run</goal>
+              </goals>
+              <configuration>
+                  <target>
+                      <mkdir dir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/frontend_config/${project.artifactId}"/>
+                      <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/frontend_config/${project.artifactId}">
+                          <fileset dir="${project.basedir}/configs/openmrs/frontend_config" includes="*.json" erroronmissingdir="false"/>
+                      </copy>
+                      <delete>
+                          <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/frontend_config" includes="*.json"/>
+                      </delete>
+                  </target>
+              </configuration>
           </execution>
 
           <execution>
