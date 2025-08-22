@@ -555,6 +555,28 @@
               </resources>
             </configuration>
           </execution>
+
+            <!-- Copy openmrs_spa config files to final package -->
+            <execution>
+                <id>copy-openmrs-spa-config-files-to-final-package</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_config</outputDirectory>
+                    <overwrite>true</overwrite>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_spa</directory>
+<!--                            <includes>-->
+<!--                                <include>ozone-info.json</include>-->
+<!--                            </includes>-->
+                            <filtering>false</filtering>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
         </executions>
       </plugin>
 
