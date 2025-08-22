@@ -757,6 +757,15 @@
                       ${ozone.bundled.docker.build.directory}/distro</contextDir>
                   </build>
                 </image>
+                <image>
+                  <name>${docker.push.registry.username}/%a-grafana-agent</name>
+                  <build>
+                    <dockerFile>
+                      ${ozone.bundled.docker.build.directory}/bundled-docker/grafana-agent/Dockerfile</dockerFile>
+                    <contextDir>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/run/docker</contextDir>
+                  </build>
+                </image>
               </images>
               <tags>
                 <tag>%l</tag>
