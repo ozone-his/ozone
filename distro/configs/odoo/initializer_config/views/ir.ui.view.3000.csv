@@ -1,0 +1,4 @@
+"id","priority","name","type","model","inherit_id","arch_base"
+"init.f2de438f-8295-11f0-959c-a2d076d3042b","16","x_drug_strength","Form","product.template","product.template.common.form","<?xml version=""1.0""?><data><xpath expr=""//field[@name='detailed_type']"" position=""after""><field name=""x_drug_strength"" /></xpath></data>"
+"init.1a9cf996-7814-11f0-959c-a2d076d3042b","16","x_concept_code","Form","product.template","product.template.common.form","<?xml version=""1.0""?><data><xpath expr=""//field[@name='detailed_type']"" position=""after""><field name=""x_concept_code"" /></xpath></data>"
+"init.99c96216-7813-11f0-959c-a2d076d3042b","16","x_concept_source","Form","product.template","product.template.common.form","<?xml version=""1.0""?><data><xpath expr=""//field[@name='detailed_type']"" position=""after""><field name=""x_concept_source"" /></xpath></data>"
