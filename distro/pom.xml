@@ -33,7 +33,7 @@
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
     <!-- OpenMRS modules versions -->
-    <commonreportsVersion>1.5.0-SNAPSHOT</commonreportsVersion>
+    <commonreportsVersion>1.6.0-SNAPSHOT</commonreportsVersion>
     <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
     <fhir2Version>2.6.0-SNAPSHOT</fhir2Version>
