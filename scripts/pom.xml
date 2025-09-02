@@ -61,9 +61,6 @@
                       generate-ozone-info.groovy
                     </include>
                     <include>
-                     rename-and-copy.groovy
-                    </include>
-                    <include>
                       go-to-scripts-dir.sh
                     </include>
                     <include>
