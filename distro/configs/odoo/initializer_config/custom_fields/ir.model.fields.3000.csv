@@ -1,0 +1,2 @@
+"id","name","field_description","model_id","ttype","index","store","readonly","relation","size","related"
+"init.d49ec066-c5bb-4b3a-a94d-13530a15ca10","x_customer_id","Customer External Id","Sales Order","char","","True","False","","38",""
