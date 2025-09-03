@@ -598,6 +598,28 @@
             </goals>
           </execution>
 
+            <!-- Flatten addresshierarchy folder structure -->
+            <execution>
+                <id>flatten-addresshierarchy</id>
+                <phase>package</phase>
+                <configuration>
+                    <target>
+                        <!-- Copy all files from subfolders into the parent folder -->
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
+                            <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
+                                <!-- Include all subfolder files -->
+                                <include name="*/**"/>
+                            </fileset>
+                            <!-- Flatten removes the subfolder structure -->
+                            <flattenmapper/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
           <execution>
             <id>Remove non-OMODs from Modules</id>
             <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the

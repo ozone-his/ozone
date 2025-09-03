@@ -403,6 +403,28 @@
             </configuration>
           </execution>
 
+            <!-- Flatten addresshierarchy folder structure -->
+            <execution>
+                <id>flatten-addresshierarchy</id>
+                <phase>package</phase>
+                <configuration>
+                    <target>
+                        <!-- Copy all files from subfolders into the parent folder -->
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config/addresshierarchy">
+                            <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config/addresshierarchy">
+                                <!-- Include all subfolder files -->
+                                <include name="*/**"/>
+                            </fileset>
+                            <!-- Flatten removes the subfolder structure -->
+                            <flattenmapper/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
           <execution>
             <id>Update Ozone Info</id>
             <phase>process-resources</phase>
