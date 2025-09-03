@@ -605,7 +605,7 @@
                 <configuration>
                     <target>
                         <!-- Copy all files from subfolders into the parent folder -->
-                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy" overwrite="true">
                             <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
                                 <!-- Include all subfolder files -->
                                 <include name="*/**"/>
