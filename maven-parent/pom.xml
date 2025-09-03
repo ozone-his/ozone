@@ -416,7 +416,7 @@
                                 <!-- Include all subfolder files -->
                                 <include name="*/**"/>
                             </fileset>
-                            <!-- Flatten removes the subfolder structure -->
+                            <!-- flattenmapper removes the subfolder structure -->
                             <flattenmapper/>
                         </copy>
                     </target>
