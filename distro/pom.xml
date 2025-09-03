@@ -598,6 +598,7 @@
             </goals>
           </execution>
 
+            <!-- Temporary workaround because of AH not loading in Ref App 3.4.0 -->
             <!-- Flatten addresshierarchy folder structure -->
             <execution>
                 <id>flatten-addresshierarchy</id>
