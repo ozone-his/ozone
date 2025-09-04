@@ -881,7 +881,7 @@
                 <configuration>
                   <target>
                     <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config">
-                      <fileset dir="${project.build.directory}/sdk-distro/web/openmrs_config" />
+                      <fileset dir="${project.build.directory}/sdk-distro/web/openmrs_config" erroronmissingdir="false"/>
                     </copy>
                   </target>
                 </configuration>
