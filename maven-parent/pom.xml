@@ -553,6 +553,18 @@
                   </scripts>
                 </configuration>
               </execution>
+              <execution>
+                 <id>Add environment defaults to Docker Compose Bundled</id>
+                  <goals>
+                      <goal>execute</goal>
+                  </goals>
+                 <phase>prepare-package</phase>
+                  <configuration>
+                    <scripts>
+                        <script>file://${project.build.directory}/scripts/openmrs/bundled-docker/update-docker-compose-with-env-defaults.groovy</script>
+                     </scripts>
+                  </configuration>
+              </execution>
             </executions>
           </plugin>
           <plugin>

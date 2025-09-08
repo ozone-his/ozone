@@ -52,6 +52,9 @@
                       openmrs/bundled-docker/generate-bundled-docker-compose.groovy
                     </include>
                     <include>
+                       openmrs/bundled-docker/update-docker-compose-with-env-defaults.groovy
+                    </include>
+                    <include>
                       openmrs/frontend_assembly/build-openmrs-frontend.groovy
                     </include>
                     <include>
