@@ -640,6 +640,21 @@
           </execution>
 
           <execution>
+                <id>Copy OpenMRS SPA configuration</id>
+                <phase>process-resources</phase>
+                <configuration>
+                    <target>
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_config">
+                            <fileset dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_spa" includes="**/*.json" erroronmissingdir="false"/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
+            <execution>
             <id>Copy filtered OpenMRS configuration</id>
             <phase>prepare-package</phase>
             <configuration>
