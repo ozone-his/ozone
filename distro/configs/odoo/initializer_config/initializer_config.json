@@ -31,6 +31,11 @@
             "field_rules": {}
         },
         {
+            "model_name": "ir.model.fields.selection",
+            "folder": "field_selection",
+            "field_rules": {}
+        },
+        {
             "model_name": "ir.model",
             "folder": "models",
             "field_rules": {}
