@@ -561,7 +561,7 @@
                  <phase>prepare-package</phase>
                   <configuration>
                     <scripts>
-                        <script>file://${project.build.directory}/scripts/openmrs/bundled-docker/update-docker-compose-with-env-defaults.groovy</script>
+                        <script>file://${project.build.directory}/scripts/openmrs/bundled-docker/update-docker-compose-env-defaults.groovy</script>
                      </scripts>
                   </configuration>
               </execution>
@@ -589,7 +589,6 @@
                       <filtering>true</filtering>
                       <includes>
                         <include>${bundled.docker.compose.output.filename}</include>
-                        <include>docker-compose-bundled-sso.yml</include>
                       </includes>
                       <excludes>
                         <exclude>**/*.template</exclude>
@@ -636,7 +635,6 @@
                       <filtering>true</filtering>
                       <includes>
                         <include>start-bundled.sh</include>
-                        <include>start-bundled-sso.sh</include>
                       </includes>
                     </resource>
                   </resources>
