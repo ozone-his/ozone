@@ -1,0 +1,45 @@
+slice_name: Distribution of visits types
+description: null
+certified_by: null
+certification_details: null
+viz_type: pie
+params:
+  datasource: 7__table
+  viz_type: pie
+  slice_id: 5
+  groupby:
+  - type
+  metric: count
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: date_started
+  row_limit: 100
+  sort_by_metric: true
+  color_scheme: supersetColors
+  show_labels_threshold: 5
+  show_legend: false
+  legendType: scroll
+  legendOrientation: top
+  legendMargin: null
+  label_type: key_value
+  number_format: SMART_NUMBER
+  date_format: smart_date
+  show_labels: true
+  labels_outside: true
+  label_line: false
+  show_total: true
+  outerRadius: 70
+  donut: true
+  innerRadius: 39
+  extra_form_data: {}
+  dashboards:
+  - 1
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 251b27b0-ef06-4846-a870-cf6500e14275
+version: 1.0.0
+dataset_uuid: fefa8b10-bdf1-47b9-b081-89003c5e0583
