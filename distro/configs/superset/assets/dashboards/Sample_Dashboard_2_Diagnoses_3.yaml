@@ -1,0 +1,201 @@
+dashboard_title: 'Sample Dashboard #2: Diagnoses'
+description: null
+css: ''
+slug: null
+certified_by: null
+certification_details: null
+published: true
+uuid: 15bcb970-9bbe-4dd1-95de-6839ca8c6eeb
+position:
+  CHART-explore-10-1:
+    children: []
+    id: CHART-explore-10-1
+    meta:
+      chartId: 7
+      height: 52
+      sliceName: Top 10 diagnoses for Facility visits
+      uuid: 85a265ba-187c-4502-b00b-d02e9f66d754
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-PAE8SFqYmt
+    type: CHART
+  CHART-explore-11-1:
+    children: []
+    id: CHART-explore-11-1
+    meta:
+      chartId: 8
+      height: 52
+      sliceName: Top 10 diagnoses for Group Sessions
+      uuid: 31c133dd-be37-409f-8e35-1c3c1637440e
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-GVx8ja4iI9
+    type: CHART
+  CHART-explore-8-1:
+    children: []
+    id: CHART-explore-8-1
+    meta:
+      chartId: 10
+      height: 54
+      sliceName: Top 10 diagnoses for OPD visits
+      uuid: b08b60c0-b2e3-45f3-95e9-65cdad982d6b
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-PAE8SFqYmt
+    type: CHART
+  CHART-explore-9-1:
+    children: []
+    id: CHART-explore-9-1
+    meta:
+      chartId: 6
+      height: 54
+      sliceName: Top 10 diagnoses for Home visits
+      uuid: 7e432294-c451-4972-b49a-8547d46a5443
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-PAE8SFqYmt
+    type: CHART
+  CHART-fGXUtsrdrG:
+    children: []
+    id: CHART-fGXUtsrdrG
+    meta:
+      chartId: 9
+      height: 46
+      sliceName: Top 10 diagnoses across visit types
+      uuid: b941e232-0945-44e2-ae52-eb069ab10335
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-f9LlUp3a33
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - ROW-f9LlUp3a33
+    - ROW-PAE8SFqYmt
+    - ROW-GVx8ja4iI9
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: '#2'
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-GVx8ja4iI9:
+    children:
+    - CHART-explore-11-1
+    - CHART-explore-10-1
+    id: ROW-GVx8ja4iI9
+    meta:
+      '0': ROOT_ID
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-PAE8SFqYmt:
+    children:
+    - CHART-explore-8-1
+    - CHART-explore-9-1
+    id: ROW-PAE8SFqYmt
+    meta:
+      '0': ROOT_ID
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-f9LlUp3a33:
+    children:
+    - CHART-fGXUtsrdrG
+    id: ROW-f9LlUp3a33
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+metadata:
+  chart_configuration:
+    '7':
+      id: 7
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 8
+        - 9
+        - 10
+        - 11
+    '8':
+      id: 8
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 7
+        - 9
+        - 10
+        - 11
+    '9':
+      id: 9
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 7
+        - 8
+        - 10
+        - 11
+    '10':
+      id: 10
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 7
+        - 8
+        - 9
+        - 11
+    '11':
+      id: 11
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 7
+        - 8
+        - 9
+        - 10
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+  color_scheme: ''
+  refresh_frequency: 0
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  native_filter_configuration: []
+  shared_label_colors: {}
+  color_scheme_domain: []
+version: 1.0.0

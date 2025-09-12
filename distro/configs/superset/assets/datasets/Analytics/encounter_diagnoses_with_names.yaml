@@ -1,0 +1,345 @@
+table_name: encounter_diagnoses_with_names
+main_dttm_col: date_created
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+schema: public
+sql: "SELECT \n  diagnosis_id, \n  certainty, \n  date_created, \n  concepts.name\
+  \ AS name, \n  encounters.encounter_type, \n  visits.type AS visit_type, \n  --\
+  \ Extract ICD-10-WHO code\n  CASE WHEN Strpos(\n    concepts.concept_mappings_source_codes,\
+  \ \n    'ICD-10-WHO: '\n  ) > 0 THEN Substring(\n    concepts.concept_mappings_source_codes\
+  \ \n    FROM \n      Strpos(\n        concepts.concept_mappings_source_codes, \n\
+  \        'ICD-10-WHO: '\n      ) + Length('ICD-10-WHO: ') FOR Greatest(\n      \
+  \  Coalesce(\n          Strpos(\n            Substring(\n              concepts.concept_mappings_source_codes\
+  \ \n              FROM \n                Strpos(\n                  concepts.concept_mappings_source_codes,\
+  \ \n                  'ICD-10-WHO: '\n                ) + Length('ICD-10-WHO: ')\n\
+  \            ), \n            ','\n          ), \n          Length(\n          \
+  \  concepts.concept_mappings_source_codes\n          )\n        ) -1, \n       \
+  \ 0\n      )\n  ) ELSE NULL end AS icd_10_who_code, \n  -- Extract CIEL code\n \
+  \ CASE WHEN Strpos(\n    concepts.concept_mappings_source_codes, \n    'CIEL: '\n\
+  \  ) > 0 THEN Substring(\n    concepts.concept_mappings_source_codes \n    FROM\
+  \ \n      Strpos(\n        concepts.concept_mappings_source_codes, \n        'CIEL:\
+  \ '\n      ) + Length('CIEL: ') FOR Greatest(\n        Coalesce(\n          Strpos(\n\
+  \            Substring(\n              concepts.concept_mappings_source_codes \n\
+  \              FROM \n                Strpos(\n                  concepts.concept_mappings_source_codes,\
+  \ \n                  'CIEL: '\n                ) + Length('CIEL: ')\n         \
+  \   ), \n            ','\n          ), \n          Length(\n            concepts.concept_mappings_source_codes\n\
+  \          )\n        ) -1, \n        0\n      )\n  ) ELSE NULL end AS ciel_code,\
+  \ \n  -- Extract SNOMED CT code\n  CASE WHEN Strpos(\n    concepts.concept_mappings_source_codes,\
+  \ \n    'SNOMED CT: '\n  ) > 0 THEN Substring(\n    concepts.concept_mappings_source_codes\
+  \ \n    FROM \n      Strpos(\n        concepts.concept_mappings_source_codes, \n\
+  \        'SNOMED CT: '\n      ) + Length('SNOMED CT: ') FOR Greatest (\n       \
+  \ Coalesce(\n          Strpos(\n            Substring(\n              concepts.concept_mappings_source_codes\
+  \ \n              FROM \n                Strpos(\n                  concepts.concept_mappings_source_codes,\
+  \ \n                  'SNOMED CT: '\n                ) + Length('SNOMED CT: ')\n\
+  \            ), \n            ','\n          ), \n          Length(\n          \
+  \  concepts.concept_mappings_source_codes\n          )\n        ) -1, \n       \
+  \ 0\n      )\n  ) ELSE NULL end AS snomed_ct_code, \n  concepts.concept_mappings_source_codes\
+  \ AS mappings, \n  concepts.locale AS name_locale, \n  concepts.locale_preferred\
+  \ AS locale_preferred, \n  diagnosis_coded, \n  diagnosis_non_coded, \n  diagnosis_coded_name,\
+  \ \n  encounter_diagnoses.encounter_id, \n  patient_id, \n  encounter_diagnoses.voided,\
+  \ \n  encounter_diagnoses.voided_by, \n  encounter_diagnoses.date_voided, \n  encounter_diagnoses.void_reason,\
+  \ \n  encounter_diagnoses.uuid, \n  encounter_diagnoses.creator \nFROM \n  encounter_diagnoses\
+  \ \n  JOIN concepts ON encounter_diagnoses.diagnosis_coded = concepts.concept_id\
+  \ \n  JOIN encounters ON encounter_diagnoses.encounter_id = encounters.encounter_id\
+  \ \n  JOIN visits ON encounters.visit_uuid = visits.visit_uuid\nWHERE concepts.locale_preferred\
+  \ = true;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 6e29d073-fdb0-4848-8351-3b5cdb017a2c
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: icd_10_who_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: locale_preferred
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: voided
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: date_created
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: date_voided
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATETIME
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: diagnosis_coded_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: diagnosis_coded
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: diagnosis_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: patient_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: voided_by
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: encounter_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: creator
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: LONGINTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: diagnosis_non_coded
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: name_locale
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: void_reason
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: encounter_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: visit_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: certainty
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: mappings
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: uuid
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: snomed_ct_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: ciel_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 4e5f4045-a62d-4964-b719-58229a60e7fe

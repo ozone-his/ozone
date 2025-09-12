@@ -1,0 +1,62 @@
+slice_name: Top 10 diagnoses for Group Sessions
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 13__table
+  viz_type: table
+  slice_id: 8
+  query_mode: aggregate
+  groupby:
+  - name
+  - ciel_code
+  - icd_10_who_code
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    date_created: true
+    date_voided: true
+  metrics:
+  - count
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_5bld0elrkcc_6vpq4yvfgq4
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: date_created
+  - clause: WHERE
+    comparator: Group Session
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_0jxmbe5eye99_rnigjfmhb6d
+    isExtra: false
+    isNew: false
+    operator: ==
+    operatorId: EQUALS
+    sqlExpression: null
+    subject: visit_type
+  order_by_cols: []
+  row_limit: 10
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":13,"type":"table"},"force":false,"queries":[{"filters":[{"col":"date_created","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"visit_type","op":"==","val":"Group Session"}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":["name","ciel_code","icd_10_who_code"],"metrics":["count"],"orderby":[["count",false]],"annotation_layers":[],"row_limit":10,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[]}],"form_data":{"datasource":"13__table","viz_type":"table","slice_id":8,"query_mode":"aggregate","groupby":["name","ciel_code","icd_10_who_code"],"time_grain_sqla":"P1D","temporal_columns_lookup":{"date_created":true,"date_voided":true},"metrics":["count"],"all_columns":[],"percent_metrics":[],"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_5bld0elrkcc_6vpq4yvfgq4","isExtra":false,"isNew":false,"operator":"TEMPORAL_RANGE","sqlExpression":null,"subject":"date_created"},{"clause":"WHERE","comparator":"Group
+  Session","datasourceWarning":false,"expressionType":"SIMPLE","filterOptionName":"filter_0jxmbe5eye99_rnigjfmhb6d","isExtra":false,"isNew":false,"operator":"==","operatorId":"EQUALS","sqlExpression":null,"subject":"visit_type"}],"order_by_cols":[],"row_limit":10,"server_page_length":10,"order_desc":true,"table_timestamp_format":"smart_date","show_cell_bars":true,"color_pn":true,"extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 31c133dd-be37-409f-8e35-1c3c1637440e
+version: 1.0.0
+dataset_uuid: 6e29d073-fdb0-4848-8351-3b5cdb017a2c
