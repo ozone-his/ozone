@@ -681,7 +681,7 @@
                   <fileset
                           dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
-                    <exclude name="fhir2-2.2.0.omod"/>
+                    <exclude name="fhir2-2.5.0.omod"/>
                   </fileset>
                 </copy>
               </target>
