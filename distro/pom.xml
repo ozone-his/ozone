@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.4.0</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.5.0</referenceapplicationDistroVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
@@ -311,6 +311,7 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/distro-emr-configuration</outputDirectory>
               <includeArtifactIds>distro-emr-configuration</includeArtifactIds>
+              <excludes>**/referenceapplication-demo/openmrs_BasicDrugs_v4_autoexpand*</excludes>
             </configuration>
           </execution>
           <execution>
