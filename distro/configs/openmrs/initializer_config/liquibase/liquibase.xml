@@ -40,11 +40,4 @@
         ]]>
         </sql>
     </changeSet>
-    <changeSet author="siddharth" id="17092025">
-        <insert tableName="privilege">
-            <column name="privilege" value="View OrderTemplates"/>
-            <column name="description" value="Able to view OrderTemplates"/>
-            <column name="uuid" value="53b2f66a-8158-4e10-8bfa-11547cc59f26"/>
-        </insert>
-    </changeSet>
 </databaseChangeLog>
