@@ -195,27 +195,28 @@ static def processEnvVarLine(String line, Map<String, String> envDefaults) {
     def varName = varMatch[0][1]
     def currentValue = varMatch[0][2]
 
-    if (needsDefault(currentValue) && envDefaults.containsKey(varName)) {
-        def defaultValue = envDefaults[varName]
-        def newValue = "\${${varName}:-${escapeValue(defaultValue)}}"
-        def newLine = "${indent}${varName}: ${newValue}"
-
-        //log("Setting default for ${varName}")
-        return [line: newLine, changed: true]
+    def changed = false
+    def newValue = currentValue.replaceAll(/\$\{([A-Za-z_][A-Za-z0-9_]*)\}/) { full, v ->
+        if (envDefaults.containsKey(v) && !full.contains(':-')) {
+            changed = true
+            "\${${v}:-${escapeValue(envDefaults[v])}}"
+        } else {
+            full
+        }
     }
 
-    return [line: line, changed: false]
-}
-
-static def needsDefault(String value) {
-    if (!value) return true
-
-    def trimmed = value.trim()
-    if (trimmed.startsWith(':')) {
-        trimmed = trimmed.substring(1).trim()
+    // Also handle single $VAR (not in braces)
+    newValue = newValue.replaceAll(/\$([A-Za-z_][A-Za-z0-9_]*)/) { full, v ->
+        if (envDefaults.containsKey(v)) {
+            changed = true
+            "\${${v}:-${escapeValue(envDefaults[v])}}"
+        } else {
+            full
+        }
     }
 
-    return trimmed.isEmpty() || trimmed in ['""', "''"] || trimmed.matches(/^\$[A-Za-z_][A-Za-z0-9_]*$/) || (trimmed.matches(/^\$\{[A-Za-z_][A-Za-z0-9_]*\}$/) && !trimmed.contains(':-'))
+    def newLine = "${indent}${varName}: ${newValue}"
+    return [line: newLine, changed: changed]
 }
 
 static def needsDefaultForArrayFormat(String value) {
@@ -236,19 +237,6 @@ static def getIndentSpaces(String line) {
 
 static def escapeValue(String value) {
     if (!value) return ''
-
-    def escaped = value.replace('\\', '\\\\')
-            .replace('}', '\\}')
-            .replace('$', '\\$')
-
-    if (needsQuoting(escaped)) {
-        escaped = escaped.replace("'", "\\'")
-        return "'${escaped}'"
-    }
-
-    return escaped
-}
-
-static def needsQuoting(String value) {
-    value.isEmpty() || value.contains(' ') || value.contains('\t') || value.contains(':') || value.contains('#') || value.contains('"') || value.contains('\n') || value.trim() != value
+    // Only escape backslashes
+    return value.replace('\\', '\\\\')
 }
