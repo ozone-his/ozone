@@ -599,6 +599,29 @@
             </goals>
           </execution>
 
+            <!-- Temporary workaround because of AH not loading in Ref App 3.4.0 -->
+            <!-- Flatten addresshierarchy folder structure -->
+            <execution>
+                <id>Flatten OpenMRS Address Hierarchy files</id>
+                <phase>package</phase>
+                <configuration>
+                    <target>
+                        <!-- Copy all files from subfolders into the parent folder -->
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy" overwrite="true">
+                            <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
+                                <!-- Include all subfolder files -->
+                                <include name="*/**"/>
+                            </fileset>
+                            <!-- flattenmapper removes the subfolder structure -->
+                            <flattenmapper/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
           <execution>
             <id>Remove non-OMODs from Modules</id>
             <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the
