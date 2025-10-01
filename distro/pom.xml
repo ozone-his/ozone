@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.4.0</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.5.0</referenceapplicationDistroVersion>
     <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
@@ -311,6 +311,7 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/distro-emr-configuration</outputDirectory>
               <includeArtifactIds>distro-emr-configuration</includeArtifactIds>
+              <excludes>**/referenceapplication-demo/openmrs_BasicDrugs_v4_autoexpand*</excludes>
             </configuration>
           </execution>
           <execution>
@@ -598,6 +599,29 @@
             </goals>
           </execution>
 
+            <!-- Temporary workaround because of AH not loading in Ref App 3.4.0 -->
+            <!-- Flatten addresshierarchy folder structure -->
+            <execution>
+                <id>Flatten OpenMRS Address Hierarchy files</id>
+                <phase>package</phase>
+                <configuration>
+                    <target>
+                        <!-- Copy all files from subfolders into the parent folder -->
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy" overwrite="true">
+                            <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
+                                <!-- Include all subfolder files -->
+                                <include name="*/**"/>
+                            </fileset>
+                            <!-- flattenmapper removes the subfolder structure -->
+                            <flattenmapper/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
           <execution>
             <id>Remove non-OMODs from Modules</id>
             <!-- Because we copy all dependencies, it's possible to get non-OMOD Jars in the
@@ -640,6 +664,21 @@
           </execution>
 
           <execution>
+                <id>Copy OpenMRS SPA configuration</id>
+                <phase>process-resources</phase>
+                <configuration>
+                    <target>
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/frontend_config">
+                            <fileset dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_spa" includes="**/*.json" erroronmissingdir="false"/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
+            <execution>
             <id>Copy filtered OpenMRS configuration</id>
             <phase>prepare-package</phase>
             <configuration>
@@ -666,7 +705,7 @@
                   <fileset
                           dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
-                    <exclude name="fhir2-2.2.0.omod"/>
+                    <exclude name="fhir2-2.5.0.omod"/>
                   </fileset>
                 </copy>
               </target>

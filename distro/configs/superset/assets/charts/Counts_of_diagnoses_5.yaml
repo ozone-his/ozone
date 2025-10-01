@@ -1,0 +1,61 @@
+slice_name: Counts of diagnoses
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 13__table
+  viz_type: table
+  slice_id: 13
+  query_mode: aggregate
+  groupby:
+  - name
+  - icd_10_who_code
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    date_created: true
+    date_voided: true
+  metrics:
+  - count
+  all_columns:
+  - date_created
+  - name
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_o2sfk3onqdg_jgucrww47d8
+    isExtra: false
+    isNew: false
+    operator: TEMPORAL_RANGE
+    sqlExpression: null
+    subject: date_created
+  - clause: WHERE
+    comparator: true
+    datasourceWarning: false
+    expressionType: SIMPLE
+    filterOptionName: filter_ru7nwi5puva_uwi6udj3vo
+    isExtra: false
+    isNew: false
+    operator: ==
+    operatorId: IS_TRUE
+    sqlExpression: null
+    subject: locale_preferred
+  order_by_cols: []
+  row_limit: 100
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  extra_form_data: {}
+  dashboards:
+  - 1
+  annotation_layers: []
+query_context: null
+cache_timeout: null
+uuid: 1bc716f9-0f96-4e0b-aa13-6ff2297d265a
+version: 1.0.0
+dataset_uuid: 6e29d073-fdb0-4848-8351-3b5cdb017a2c
