@@ -1,0 +1,3 @@
+"id","name","field_description","model_id","ttype","index","store","readonly","relation","size","related"
+"init.fb0ba0e0-3db1-43c5-b593-611ecf037f19","x_external_identifier","Customer External ID","Contact","char","","True","","",""
+"init.6cd59142-1af4-4bf6-9ab8-3c05f26819ce","x_external_identifier","Customer External ID","Sales Order","char","","True","True","","0","partner_id.x_external_identifier"
