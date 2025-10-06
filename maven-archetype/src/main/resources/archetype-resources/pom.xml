@@ -32,13 +32,6 @@
   <profiles>
     <profile>
       <id>validator</id>
-      <activation>
-        <jdk>1.8</jdk>
-        <property>
-          <name>env.CI</name>
-          <value>true</value>
-        </property>
-      </activation>
       <build>
         <plugins>
           <!-- hooking the OpenMRS config validation to the integration-test phase -->
