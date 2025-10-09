@@ -1786,6 +1786,21 @@
           }
         },
         {
+          "id": "dc7314c6-2dc6-40a1-82f5-97c2335526b0",
+          "name": "provider",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "user.attribute": "provider",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "provider",
+            "jsonType.label": "String"
+          }
+        },
+        {
           "id": "694ace3e-d2ec-410c-9e93-1f627eb14f68",
           "name": "picture",
           "protocol": "openid-connect",
