@@ -15,7 +15,8 @@
         }
       ],
       "attributes": {
-        "gender": "M"
+        "gender": "M",
+        "provider": "true"
       },
       "requiredActions": [],
       "realmRoles": [
