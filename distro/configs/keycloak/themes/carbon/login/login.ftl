@@ -117,13 +117,13 @@
   </div>
   <div class="need-help">
     <div class="need-help-item">
-      <a href="http://ozone-his.com/" class="support-link">${msg("website")}</a>
+      <a href="http://ozone-his.com/" class="support-link" target="_blank">${msg("website")}</a>
     </div>
     <div class="need-help-item">
-      <a href="https://talk.openmrs.org/c/software/ozone-his" class="support-link">${msg("forum")}</a>
+      <a href="https://talk.openmrs.org/c/software/ozone-his" class="support-link" target="_blank">${msg("forum")}</a>
     </div>
     <div class="need-help-item">
-      <a href="https://openmrs.slack.com/archives/C02PYQD5D0A" class="support-link">${msg("slack")}</a>
+      <a href="https://openmrs.slack.com/archives/C02PYQD5D0A" class="support-link" target="_blank">${msg("slack")}</a>
     </div>
   </div>
 
