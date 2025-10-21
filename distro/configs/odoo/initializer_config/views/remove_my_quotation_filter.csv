@@ -1,0 +1,2 @@
+"id","priority","name","type","model","inherit_id","arch_base"
+"init.36f932f4-c725-4eeb-8e46-0a562d382c6d","10","remove_my_quotation_filter","Search","sale.order","sale.order.search.inherit.quotation","<?xml version=""1.0""?><data><xpath expr=""//filter[@name='my_quotation']"" position=""replace""/></data>"
