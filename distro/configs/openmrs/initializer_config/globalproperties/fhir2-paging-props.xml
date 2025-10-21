@@ -10,5 +10,9 @@
             <value>1000</value>
             <description>Set maximum page size</description>
         </globalProperty>
+        <globalProperty>
+            <property>fhir2.upsert.supported.resources</property>
+            <value>Medication</value>
+        </globalProperty>
     </globalProperties>
 </config>
