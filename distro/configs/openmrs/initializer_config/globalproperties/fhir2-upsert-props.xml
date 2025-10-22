@@ -1,0 +1,9 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>fhir2.upsert.supported.resources</property>
+            <value>Medication</value>
+            <description>Comma-separated list of FHIR resource types that support upsert operations</description>
+        </globalProperty>
+    </globalProperties>
+</config>
