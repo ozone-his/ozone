@@ -309,7 +309,7 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/distro-emr-configuration</outputDirectory>
               <includeArtifactIds>distro-emr-configuration</includeArtifactIds>
-              <excludes>**/referenceapplication-demo/openmrs_BasicDrugs_v4_autoexpand*</excludes>
+<!--              <excludes>**/referenceapplication-demo/openmrs_BasicDrugs_v4_autoexpand*</excludes>-->
             </configuration>
           </execution>
           <execution>
