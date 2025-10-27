@@ -1,0 +1,8 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>reporting.serializer.whitelist.types</property>
+            <value>org.openmrs.module.reporting.**,org.openmrs.module.commonreports.**</value>
+        </globalProperty>
+    </globalProperties>
+</config>
