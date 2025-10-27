@@ -36,7 +36,7 @@
     <commonreportsVersion>1.6.0-SNAPSHOT</commonreportsVersion>
     <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
-    <fhir2Version>2.6.0-SNAPSHOT</fhir2Version>
+    <fhir2Version>2.8.0-SNAPSHOT</fhir2Version>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- Odoo addons versions -->
@@ -707,7 +707,7 @@
                   <fileset
                           dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
-                    <exclude name="fhir2-2.5.0.omod"/>
+                    <exclude name="fhir2-2.7.0.omod"/>
                   </fileset>
                 </copy>
               </target>
