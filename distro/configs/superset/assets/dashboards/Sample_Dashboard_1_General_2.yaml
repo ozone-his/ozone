@@ -2,16 +2,31 @@ dashboard_title: 'Sample Dashboard #1: General'
 description: null
 css: ''
 slug: null
-certified_by: null
-certification_details: null
+certified_by: ''
+certification_details: ''
 published: true
 uuid: 51e89d88-c0e3-461a-b4ca-d4fcfdb851d6
 position:
+  CHART-6zeL2CwA1l:
+    children: []
+    id: CHART-6zeL2CwA1l
+    meta:
+      chartId: 14
+      height: 50
+      sliceName: Returning visits distribution (patients returning within the last
+        12 months)
+      uuid: 713b44eb-bb3b-4e91-a28d-207910be4cd5
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-QOvomDLl4W
+    type: CHART
   CHART-ULYfpMlU_G:
     children: []
     id: CHART-ULYfpMlU_G
     meta:
-      chartId: 11
+      chartId: 9
       height: 50
       sliceName: Total sales today
       uuid: 24361f4d-b7d6-4577-9e50-7afa8be82e6c
@@ -21,11 +36,25 @@ position:
     - GRID_ID
     - ROW-YsIrpegU0W
     type: CHART
+  CHART-bH5IacMwll:
+    children: []
+    id: CHART-bH5IacMwll
+    meta:
+      chartId: 12
+      height: 50
+      sliceName: Total number of patients
+      uuid: c1f6709b-7f79-4496-bcb1-94c907cfaf5c
+      width: 5
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-KwV6AiyYdn
+    type: CHART
   CHART-explore-14-1:
     children: []
     id: CHART-explore-14-1
     meta:
-      chartId: 5
+      chartId: 7
       height: 50
       sliceName: Counts of diagnoses
       uuid: 1bc716f9-0f96-4e0b-aa13-6ff2297d265a
@@ -39,7 +68,7 @@ position:
     children: []
     id: CHART-explore-2-1
     meta:
-      chartId: 2
+      chartId: 3
       height: 50
       sliceName: Average age at visit per month
       uuid: bd23b1a5-02a9-419d-9b7b-121b1ec8f9a9
@@ -53,7 +82,7 @@ position:
     children: []
     id: CHART-explore-3-1
     meta:
-      chartId: 3
+      chartId: 10
       height: 50
       sliceName: Distribution of genders
       uuid: a74a595b-3f1c-449a-8535-a5c24cb1d464
@@ -77,11 +106,25 @@ position:
     - GRID_ID
     - ROW-lP2U9eie8
     type: CHART
+  CHART-pbRTrNOnEO:
+    children: []
+    id: CHART-pbRTrNOnEO
+    meta:
+      chartId: 13
+      height: 50
+      sliceName: Number of new patients
+      uuid: 454fd63b-6ccf-4d98-a49f-05bdfbdb2770
+      width: 7
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-KwV6AiyYdn
+    type: CHART
   CHART-zTE1NMnnqB:
     children: []
     id: CHART-zTE1NMnnqB
     meta:
-      chartId: 1
+      chartId: 6
       height: 43
       sliceName: Number of visits per month
       uuid: 8dda46e1-9f9c-437d-98c2-685b17b740b8
@@ -98,6 +141,8 @@ position:
     - ROW-lP2U9eie8
     - ROW-hikwSD8B8i
     - ROW-9XDEf1XVWs
+    - ROW-KwV6AiyYdn
+    - ROW-QOvomDLl4W
     id: GRID_ID
     parents:
     - ROOT_ID
@@ -105,7 +150,7 @@ position:
   HEADER_ID:
     id: HEADER_ID
     meta:
-      text: '#1'
+      text: 'Sample Dashboard #1: General'
     type: HEADER
   ROOT_ID:
     children:
@@ -118,6 +163,27 @@ position:
     id: ROW-9XDEf1XVWs
     meta:
       '0': ROOT_ID
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-KwV6AiyYdn:
+    children:
+    - CHART-pbRTrNOnEO
+    - CHART-bH5IacMwll
+    id: ROW-KwV6AiyYdn
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-QOvomDLl4W:
+    children:
+    - CHART-6zeL2CwA1l
+    id: ROW-QOvomDLl4W
+    meta:
       background: BACKGROUND_TRANSPARENT
     parents:
     - ROOT_ID
@@ -157,68 +223,112 @@ position:
     type: ROW
 metadata:
   chart_configuration:
-    '1':
-      id: 1
-      crossFilters:
-        scope: global
-        chartsInScope:
-        - 2
-        - 3
-        - 4
-        - 5
-        - 11
-    '2':
-      id: 2
-      crossFilters:
-        scope: global
-        chartsInScope:
-        - 1
-        - 3
-        - 4
-        - 5
-        - 11
     '3':
       id: 3
       crossFilters:
         scope: global
         chartsInScope:
-        - 1
-        - 2
         - 4
-        - 5
-        - 11
+        - 6
+        - 7
+        - 9
+        - 10
+        - 12
+        - 13
+        - 14
     '4':
       id: 4
       crossFilters:
         scope: global
         chartsInScope:
-        - 1
-        - 2
         - 3
-        - 5
-        - 11
-    '5':
-      id: 5
+        - 6
+        - 7
+        - 9
+        - 10
+        - 12
+        - 13
+        - 14
+    '6':
+      id: 6
       crossFilters:
         scope: global
         chartsInScope:
-        - 1
-        - 2
         - 3
         - 4
-        - 11
+        - 7
+        - 9
+        - 10
+        - 12
+        - 13
+        - 14
+    '7':
+      id: 7
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 9
+        - 10
+        - 12
+        - 13
+        - 14
+    '10':
+      id: 10
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 9
+        - 12
+        - 13
+        - 14
+    '13':
+      id: 13
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 9
+        - 10
+        - 12
+        - 14
+    '14':
+      id: 14
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 3
+        - 4
+        - 6
+        - 7
+        - 9
+        - 10
+        - 12
+        - 13
   global_chart_configuration:
     scope:
       rootPath:
       - ROOT_ID
       excluded: []
     chartsInScope:
-    - 1
-    - 2
     - 3
     - 4
-    - 5
-    - 11
+    - 6
+    - 7
+    - 9
+    - 10
+    - 12
+    - 13
+    - 14
   color_scheme: ''
   refresh_frequency: 0
   expanded_slices: {}
@@ -249,6 +359,22 @@ metadata:
     - 2
     tabsInScope: []
   default_filters: '{}'
-  shared_label_colors: {}
+  shared_label_colors:
+    '0': '#9FC0C1'
+    '1': '#B5E9D9'
+    '2': '#C9BBAB'
+    '3': '#FF874E'
+    '4': '#EE5960'
+    '5': '#408184'
+    '6': '#6BD3B3'
+    M: '#454E7C'
+    F: '#E04355'
+    Facility Visit: '#1FA8C9'
+    Home Visit: '#5AC189'
+    <NULL>: '#666666'
+    OPD Visit: '#FCC700'
+    Group Session: '#3CCCCB'
+    count: '#FF7F44'
+    AVG(patient_age_at_visit): '#1f77b4'
   color_scheme_domain: []
 version: 1.0.0

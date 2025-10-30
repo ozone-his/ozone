@@ -1,0 +1,98 @@
+slice_name: Returning visits distribution (patients returning within the last 12 months)
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 14__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 14
+  x_axis: date_started
+  time_grain_sqla: P1M
+  xAxisForceCategorical: false
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - aggregate: COUNT
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: trailing_12mo_patient_return_count
+      description: null
+      expression: ''
+      filterable: true
+      groupby: true
+      id: 370
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: LONGINTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: COUNT(trailing_12mo_patient_return_count)
+    optionName: metric_zuoc10fz55_vccvy3qu02f
+    sqlExpression: null
+  groupby:
+  - trailing_12mo_patient_return_count
+  contributionMode: null
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: date_started
+  order_desc: true
+  row_limit: 1000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title: ''
+  x_axis_title_margin: 15
+  y_axis_title: ''
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: name
+  sort_series_ascending: false
+  color_scheme: presetColors
+  show_value: true
+  stack: Stack
+  only_total: true
+  percentage_threshold: 0
+  minorTicks: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  legendMargin: null
+  x_axis_time_format: smart_date
+  xAxisLabelRotation: 0
+  y_axis_format: SMART_NUMBER
+  logAxis: false
+  minorSplitLine: false
+  truncateXAxis: false
+  truncateYAxis: false
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipSortByMetric: false
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 2
+query_context: '{"datasource":{"id":14,"type":"table"},"force":false,"queries":[{"filters":[{"col":"date_started","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1M","having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1M","columnType":"BASE_AXIS","sqlExpression":"date_started","label":"date_started","expressionType":"SQL"},"trailing_12mo_patient_return_count"],"metrics":[{"aggregate":"COUNT","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"trailing_12mo_patient_return_count","description":null,"expression":"","filterable":true,"groupby":true,"id":370,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"LONGINTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"COUNT(trailing_12mo_patient_return_count)","optionName":"metric_zuoc10fz55_vccvy3qu02f","sqlExpression":null}],"orderby":[[{"aggregate":"COUNT","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"trailing_12mo_patient_return_count","description":null,"expression":"","filterable":true,"groupby":true,"id":370,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"LONGINTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"COUNT(trailing_12mo_patient_return_count)","optionName":"metric_zuoc10fz55_vccvy3qu02f","sqlExpression":null},false]],"annotation_layers":[],"row_limit":1000,"series_columns":["trailing_12mo_patient_return_count"],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["date_started"],"columns":["trailing_12mo_patient_return_count"],"aggregates":{"COUNT(trailing_12mo_patient_return_count)":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"COUNT(trailing_12mo_patient_return_count)":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"14__table","viz_type":"echarts_timeseries_bar","slice_id":14,"x_axis":"date_started","time_grain_sqla":"P1M","xAxisForceCategorical":false,"x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":[{"aggregate":"COUNT","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"trailing_12mo_patient_return_count","description":null,"expression":"","filterable":true,"groupby":true,"id":370,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"LONGINTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"COUNT(trailing_12mo_patient_return_count)","optionName":"metric_zuoc10fz55_vccvy3qu02f","sqlExpression":null}],"groupby":["trailing_12mo_patient_return_count"],"contributionMode":null,"adhoc_filters":[{"clause":"WHERE","comparator":"No
+  filter","expressionType":"SIMPLE","operator":"TEMPORAL_RANGE","subject":"date_started"}],"order_desc":true,"row_limit":1000,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","x_axis_title":"","x_axis_title_margin":15,"y_axis_title":"","y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"name","sort_series_ascending":false,"color_scheme":"presetColors","show_value":true,"stack":"Stack","only_total":true,"percentage_threshold":0,"minorTicks":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","legendMargin":null,"x_axis_time_format":"smart_date","xAxisLabelRotation":0,"y_axis_format":"SMART_NUMBER","logAxis":false,"minorSplitLine":false,"truncateXAxis":false,"truncateYAxis":false,"y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipSortByMetric":false,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[2],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 713b44eb-bb3b-4e91-a28d-207910be4cd5
+version: 1.0.0
+dataset_uuid: bc02df79-a603-401a-bb0a-79218844ea78
