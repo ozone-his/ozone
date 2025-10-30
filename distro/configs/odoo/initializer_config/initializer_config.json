@@ -44,6 +44,21 @@
             "model_name": "ir.ui.view",
             "folder": "views",
             "field_rules": {}
-        }
+        },
+        {
+          "model_name": "product.category",
+          "folder": "product_category",
+          "field_rules": {}
+        },
+      {
+        "model_name": "product.product",
+        "folder": "product_variant",
+        "field_rules": {}
+      },
+      {
+        "model_name": "product.template",
+        "folder": "product",
+        "field_rules": {}
+      }
     ]
 }
