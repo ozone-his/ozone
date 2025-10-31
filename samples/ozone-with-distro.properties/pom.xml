@@ -62,16 +62,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>bundled-docker</id>
-            <activation>
-                <property>
-                    <name>never.activate.this.profile</name>
-                </property>
-            </activation>
-        </profile>
-    </profiles>
-
 </project>

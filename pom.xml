@@ -43,7 +43,7 @@
     <module>scripts</module>
     <module>distro</module>
     <module>maven-archetype</module>
-      <module>samples</module>
+    <module>samples</module>
   </modules>
 
   <dependencies>
