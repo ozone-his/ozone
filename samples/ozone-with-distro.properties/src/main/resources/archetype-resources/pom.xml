@@ -28,4 +28,11 @@
             <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
         </repository>
     </repositories>
+
+    <profiles>
+        <profile>
+            <!--Deactivates bundled-docker profile -->
+            <id>bundled-docker</id>
+        </profile>
+    </profiles>
 </project>
