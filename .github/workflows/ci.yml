@@ -15,7 +15,7 @@ jobs:
       java-version: "8"
       maven-phase: "install"
       free-disk-space: true
-      maven-args: "-Pbundled-docker -pl !samples" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed)
+      maven-args: "-Pbundled-docker -pl '!maven-archetype,!samples'" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed)
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
@@ -27,6 +27,9 @@ jobs:
       java-version: "8"
       maven-phase: "install"
       maven-args: "-pl maven-archetype"
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
   build-samples:
     needs: build-archetype
@@ -35,6 +38,9 @@ jobs:
       java-version: "8"
       maven-phase: "install"
       maven-args: "-pl samples"
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
   release:
     if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
