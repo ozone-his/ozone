@@ -15,14 +15,30 @@ jobs:
       java-version: "8"
       maven-phase: "install"
       free-disk-space: true
-      maven-args: "-Pbundled-docker" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed)
+      maven-args: "-Pbundled-docker -pl !samples" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed)
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
+  build-archetype:
+    needs: validate
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
+    with:
+      java-version: "8"
+      maven-phase: "install"
+      maven-args: "-pl maven-archetype"
+
+  build-samples:
+    needs: build-archetype
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
+    with:
+      java-version: "8"
+      maven-phase: "install"
+      maven-args: "-pl samples"
+
   release:
     if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
-    needs: validate
+    needs: build-samples
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     with:
       free-disk-space: true
