@@ -15,12 +15,12 @@ jobs:
       java-version: "8"
       maven-phase: "install"
       free-disk-space: true
-      maven-args: "-Pbundled-docker -pl '!maven-archetype,!samples'" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed)
+      maven-args: "-Pbundled-docker -pl '!maven-archetype,!samples/ozone-with-distro-properties'" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed)
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  build-archetype:
+  build-maven-archetype:
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
@@ -31,20 +31,20 @@ jobs:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  build-samples:
-    needs: build-archetype
+  build-ozone-with-distro-properties:
+    needs: build-maven-archetype
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
       java-version: "8"
       maven-phase: "install"
-      maven-args: "-pl samples"
+      maven-args: "-pl samples/ozone-with-distro-properties"
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
   release:
     if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
-    needs: build-samples
+    needs: build-ozone-with-distro-properties
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     with:
       free-disk-space: true
