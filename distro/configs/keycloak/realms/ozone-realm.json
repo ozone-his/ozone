@@ -360,7 +360,7 @@
           "name": "Administration / Access Rights",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "970a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         },
         {
@@ -368,7 +368,7 @@
           "name": "Administration / Settings",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         },
         {
@@ -376,7 +376,7 @@
           "name": "Dashboard / Admin",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         },
         {
@@ -384,7 +384,7 @@
           "name": "Inventory / Administrator",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         },
                 {
@@ -392,7 +392,7 @@
           "name": "Invoicing / Billing Administrator",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         },
                 {
@@ -400,7 +400,7 @@
           "name": "Manufacturing / Administrator",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         },
                 {
@@ -408,7 +408,7 @@
           "name": "Purchase / Administrator",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         },
         {
@@ -416,7 +416,7 @@
           "name": "Sales / Administrator",
           "composite": false,
           "clientRole": true,
-          "containerId": "92f84cf0-9e57-4526-b385-bcb83865ee0b",
+          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         }
       ],
