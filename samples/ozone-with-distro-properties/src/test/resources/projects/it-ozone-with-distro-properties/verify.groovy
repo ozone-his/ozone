@@ -163,7 +163,7 @@ static def verifyOpenmrsBackendModules(Properties properties, Path binariesDir, 
     return results
 }
 
-def buildDir = Paths.get("${basedir}/project/ozone-with-distro.properties/target/ozone-with-distro.properties-1.0.0-SNAPSHOT");
+def buildDir = Paths.get("${basedir}/project/ozone-with-distro-properties/target/ozone-with-distro-properties-1.0.0-SNAPSHOT");
 
 // Verify that configs & binaries specified in distro.properties exists
 // distro.properties file should exist

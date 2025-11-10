@@ -16,7 +16,7 @@
     <description>Sample applications demonstrating Ozone features</description>
 
     <modules>
-        <module>ozone-with-distro.properties</module>
+        <module>ozone-with-distro-properties</module>
     </modules>
 
 </project>

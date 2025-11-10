@@ -9,7 +9,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ozone-with-distro.properties</artifactId>
+    <artifactId>ozone-with-distro-properties</artifactId>
     <packaging>maven-archetype</packaging>
 
     <name>Ozone with distro.properties Archetype</name>
