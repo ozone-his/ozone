@@ -1,0 +1,8 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>addresshierarchy.initializeAddressHierarchyCacheOnStartup</property>
+            <value>true</value>
+        </globalProperty>
+    </globalProperties>
+</config>
