@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.ozonehis</groupId>
     <artifactId>maven-commons</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-dev-SNAPSHOT</version>
     <relativePath>../maven-commons</relativePath>
   </parent>
 
@@ -33,8 +33,8 @@
 
     <ozone.artifactId>ozone</ozone.artifactId>
     <ozone.groupId>com.ozonehis</ozone.groupId>
-    <ozone.version>1.0.0-SNAPSHOT</ozone.version>
-    <ozone-scripts.version>1.0.0-SNAPSHOT</ozone-scripts.version>
+    <ozone.version>1.0.0-dev-SNAPSHOT</ozone.version>
+    <ozone-scripts.version>1.0.0-dev-SNAPSHOT</ozone-scripts.version>
   </properties>
 
   <dependencies>
@@ -521,7 +521,7 @@
         <!-- Groovy template version-->
         <groovyTemplatesVersion>3.0.22</groovyTemplatesVersion>
         <!-- Ozone Bundled version-->
-        <ozoneBundledDocker>1.0.0-SNAPSHOT</ozoneBundledDocker>
+        <ozoneBundledDocker>1.0.0-dev-SNAPSHOT</ozoneBundledDocker>
         <!-- Fabric8 Docker Maven Plugin version-->
         <dockerMavenPlugin>0.45.0</dockerMavenPlugin>
         <!-- Docker push registry-->
