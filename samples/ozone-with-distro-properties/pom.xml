@@ -13,7 +13,7 @@
     <packaging>maven-archetype</packaging>
 
     <name>Ozone with distro.properties Archetype</name>
-    <description>Maven Archetype for Ozone implementations using a distro.properties file</description>
+    <description>Maven Archetype for Ozone implementations using a distro.properties file to describe the OpenMRS distribution</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

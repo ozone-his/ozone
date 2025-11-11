@@ -15,7 +15,7 @@ jobs:
       java-version: "8"
       maven-phase: "install"
       free-disk-space: true
-      maven-args: "-Pbundled-docker -pl '!maven-archetype,!samples/ozone-with-distro-properties'" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed)
+      maven-args: "-Pbundled-docker -pl '!maven-archetype,!samples/ozone-with-distro-properties'" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed). Also, do not build certain modules to save time. They will be build later in the workflow file.
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
