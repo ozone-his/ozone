@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main, dev ]
   release:
     types: [published]
 
@@ -54,7 +54,7 @@ jobs:
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
   publish:
-    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
+    if: ${{ (github.event_name == 'push' && ( github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' )) || github.event_name == 'release' }}
     needs: [ maven-archetype, ozone-with-distro-properties, bundled-docker]
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     secrets:
