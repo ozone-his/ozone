@@ -14,41 +14,49 @@ jobs:
     with:
       java-version: "8"
       maven-phase: "install"
-      free-disk-space: true
-      maven-args: "-Pbundled-docker -pl '!maven-archetype,!samples/ozone-with-distro-properties'" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed). Also, do not build certain modules to save time. They will be build later in the workflow file.
+      maven-args: "-pl '!maven-archetype,!samples/ozone-with-distro-properties'" # Build Docker images embedding the distro bins and configs (TODO: Add back -Pvalidator when it is fixed). Also, do not build certain modules to save time. They will be build later in the workflow file.
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  build-maven-archetype:
+  maven-archetype:
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
       java-version: "8"
       maven-phase: "install"
-      maven-args: "-pl maven-archetype"
+      maven-args: "-pl maven-archetype -am"
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  build-ozone-with-distro-properties:
-    needs: build-maven-archetype
+  ozone-with-distro-properties:
+    needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
       java-version: "8"
       maven-phase: "install"
-      maven-args: "-pl samples/ozone-with-distro-properties"
+      maven-args: "-pl samples/ozone-with-distro-properties -am"
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  release:
-    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
-    needs: build-ozone-with-distro-properties
-    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
+  bundled-docker:
+    needs: validate
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
+      java-version: "8"
+      maven-phase: "install"
+      maven-args: "-Pbundled-docker -pl maven-parent -am"
       free-disk-space: true
-      maven-args: "-Pbundled-docker" # Build Docker images embedding the distro bins and configs
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+
+  publish:
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
+    needs: [ maven-archetype, ozone-with-distro-properties, bundled-docker]
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
