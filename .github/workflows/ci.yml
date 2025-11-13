@@ -20,7 +20,7 @@ jobs:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  build-maven-archetype:
+  maven-archetype:
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
@@ -31,8 +31,8 @@ jobs:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  build-ozone-with-distro-properties:
-    needs: build-maven-archetype
+  ozone-with-distro-properties:
+    needs: maven-archetype
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
       java-version: "8"
@@ -42,8 +42,8 @@ jobs:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  build-bundled-docker:
-    needs: build-ozone-with-distro-properties
+  bundled-docker:
+    needs: ozone-with-distro-properties
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     with:
       java-version: "8"
@@ -55,7 +55,7 @@ jobs:
 
   publish:
     if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
-    needs: build-bundled-docker
+    needs: bundled-docker
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     with:
       free-disk-space: true
