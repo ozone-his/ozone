@@ -37,10 +37,10 @@
       "groups": []
     },
     {
-      "username": "admin",
+      "username": "hisadmin",
       "firstName": "Admin",
       "lastName": "Admin",
-      "email": "admin@example.com",
+      "email": "hisadmin@example.com",
       "enabled": true,
       "emailVerified": true,
       "credentials": [
@@ -69,8 +69,8 @@
           "System Developer"
         ],
         "odoo": [
-          "Administration / Access Rights",
           "Administration / Settings",
+          "Administration / Access Rights",
           "Dashboard / Admin",
           "Inventory / Administrator",
           "Invoicing / Billing Administrator",
