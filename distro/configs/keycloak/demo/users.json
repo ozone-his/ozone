@@ -69,14 +69,7 @@
           "System Developer"
         ],
         "odoo": [
-          "Administration / Settings",
-          "Administration / Access Rights",
-          "Dashboard / Admin",
-          "Inventory / Administrator",
-          "Invoicing / Billing Administrator",
-          "Manufacturing / Administrator",
-          "Purchase / Administrator",
-          "Sales / Administrator"
+          "base.group_system"
         ]
       },
       "notBefore": 0,

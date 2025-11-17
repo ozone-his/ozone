@@ -356,67 +356,11 @@
       ],
       "odoo": [
         {
-          "id": "873d1fc5-add2-47ac-aa30-05e0f50c3da7",
-          "name": "Administration / Access Rights",
+          "id": "cce6a059-b8a9-4c8c-9431-3ad84e4142f0",
+          "name": "base.group_system",
           "composite": false,
           "clientRole": true,
           "containerId": "970a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
-          "attributes": {}
-        },
-        {
-          "id": "238e77b4-1f30-4122-9a20-f4610e1442b3",
-          "name": "Administration / Settings",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
-          "attributes": {}
-        },
-        {
-          "id": "c2a2b21f-59a7-48f4-a3e6-8f89a1ad752a",
-          "name": "Dashboard / Admin",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
-          "attributes": {}
-        },
-        {
-          "id": "56b8b9b5-5380-42b2-94fe-1d4da694caf4",
-          "name": "Inventory / Administrator",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
-          "attributes": {}
-        },
-                {
-          "id": "8ae33aa5-9b89-4467-84f5-27714c71f487",
-          "name": "Invoicing / Billing Administrator",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
-          "attributes": {}
-        },
-                {
-          "id": "6e1d1baa-ae18-4efa-a1a7-14b37af01990",
-          "name": "Manufacturing / Administrator",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
-          "attributes": {}
-        },
-                {
-          "id": "68755993-a101-4d50-993c-8e143b4abe4d",
-          "name": "Purchase / Administrator",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
-          "attributes": {}
-        },
-        {
-          "id": "9d94bfaa-fbba-46de-b411-24d0a2b3ec6f",
-          "name": "Sales / Administrator",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "70a0e2fd-2bb2-4417-9fc6-22cdca1bb5be",
           "attributes": {}
         }
       ],
