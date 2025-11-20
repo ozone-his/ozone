@@ -22,9 +22,6 @@
     <div class="login-center">
       <img src="${url.resourcesPath}/img/ozone-logo.png" class="center-logo" />
     </div>
-    <#if realm.password && social.providers??>class="${properties.kcFormSocialAccountContentClass!}
-      ${properties.kcFormSocialAccountClass!}"
-    </#if>
     <#if realm.password>
       <form id="kc-form-login" action="${url.loginAction}" method="post">
         <div class="input-group" id="username-tab">
