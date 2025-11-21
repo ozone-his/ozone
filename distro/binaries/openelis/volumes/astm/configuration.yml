@@ -1,0 +1,16 @@
+org:
+  itech:
+    ahb:
+      # forward-astm-server:
+      #   hostName: astm-http-bridge2
+      #   port: 12001
+      forward-http-server:
+        uri: https://oe.openelis.org:8443/api/OpenELIS-Global/analyzer/astm
+        username: admin
+        password: adminADMIN!
+        healthUri: https://oe.openelis.org:8443/api/OpenELIS-Global/health
+        healthMethod: GET
+management:
+  health:
+    httpforward:
+      enabled: true

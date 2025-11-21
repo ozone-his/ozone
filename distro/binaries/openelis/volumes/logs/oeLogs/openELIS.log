@@ -1,0 +1,252 @@
+21 Nov 2025 05:20:06 -- INFO -- Root WebApplicationContext: initialization started
+21 Nov 2025 05:20:07 -- INFO -- Properties location [file:/run/secrets/extra.properties] not resolvable: /run/secrets/extra.properties (No such file or directory)
+21 Nov 2025 05:20:07 -- INFO -- Properties location [file:/var/lib/openelis-global/properties/TotalSystemConfiguration.properties] not resolvable: /var/lib/openelis-global/properties/TotalSystemConfiguration.properties (No such file or directory)
+21 Nov 2025 05:20:12 -- INFO -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21 Nov 2025 05:20:12 -- INFO -- Finished Spring Data repository scanning in 482 ms. Found 3 JPA repository interfaces.
+21 Nov 2025 05:20:29 -- INFO -- persistence.xml should be located inside META-INF directory; cannot determine persistence unit root URL for class path resource [persistence/persistence.xml]
+21 Nov 2025 05:20:29 -- INFO -- HHH000204: Processing PersistenceUnitInfo [name: OpenELIS-Global-persistence-unit]
+21 Nov 2025 05:20:30 -- INFO -- HHH000412: Hibernate ORM core version 5.6.15.Final
+21 Nov 2025 05:20:32 -- INFO -- HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+21 Nov 2025 05:20:37 -- INFO -- HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+21 Nov 2025 05:20:39 -- INFO -- HSEARCH000034: Hibernate Search version 6.1.8.Final
+21 Nov 2025 05:20:40 -- INFO -- HV000001: Hibernate Validator 8.0.2.Final
+21 Nov 2025 05:20:48 -- WARN -- HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+21 Nov 2025 05:20:49 -- INFO -- HSEARCH000041: Index directory does not exist, creating: '/var/lib/lucene_index/Patient'
+21 Nov 2025 05:20:49 -- INFO -- Initialized JPA EntityManagerFactory for persistence unit 'OpenELIS-Global-persistence-unit'
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching datasource
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching released
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching printed
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching section
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching dictionaryType
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching defaultPageSize
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching type
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching canceled
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching assigned
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching completed
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching month
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching day
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching value
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching agent
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching holder
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching idSeparator
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching human
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching revision
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching day
+21 Nov 2025 05:20:51 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching released
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching patientSearchPassword
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching reflex_rules
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageAggregationUserName
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageAggregationPassword
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageSendStatus
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching condenseNSF
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching headerRightImage
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching programs
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching headerLeftImage
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching new born
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching infant
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching young child
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching child
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching adult
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching firstNameCharset
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching lastNameCharset
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching userNameCharset
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching patientIdCharset
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching reportsDirectory
+21 Nov 2025 05:20:52 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching labDirectorSignature
+21 Nov 2025 05:20:52 -- ERROR -- Class: sun.nio.fs.UnixException, Method: translateToIOException, Line: -1, Message: /var/lib/openelis-global/properties/SystemConfiguration.properties -&gt; /var/lib/openelis-global/properties/ChangedSystemConfiguration.properties: Device or resource busy
+21 Nov 2025 05:20:54 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_ADDRESS&#39;
+21 Nov 2025 05:20:54 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_USERNAME&#39;
+21 Nov 2025 05:20:54 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_PASSWORD&#39;
+21 Nov 2025 05:20:54 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_ADDRESS&#39;
+21 Nov 2025 05:20:54 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_USERNAME&#39;
+21 Nov 2025 05:20:54 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_PASSWORD&#39;
+21 Nov 2025 05:21:05 -- INFO -- HAPI FHIR version 6.6.2 - Rev 8d55781507
+21 Nov 2025 05:21:05 -- INFO -- Creating new FHIR context for FHIR version [R4]
+21 Nov 2025 05:21:08 -- INFO -- Unable to determine StAX implementation: java.xml/META-INF/MANIFEST.MF not found
+21 Nov 2025 05:21:11 -- INFO -- Hibernate is in classpath; If applicable, HQL parser will be used.
+21 Nov 2025 05:21:14 -- INFO -- Class: TestProductMapping, Method: loadCsvFromFixedPath, Info: Loaded CSV mapping from fixed path: /var/lib/openelis-global/odoo/odoo-test-product-mapping.csv, rows=25
+21 Nov 2025 05:21:14 -- INFO -- Class: TestProductMapping, Method: init, Info: Loaded CSV mapping. Total mappings loaded: 25
+21 Nov 2025 05:21:14 -- INFO -- Class: TestProductMapping, Method: init, Info: Available mapping keys: Basophiles (%), Neutrophiles (%), Medium corpuscular volum, Hematocrit, Bioline, Lymphocytes (%), CMCH, Eosinophiles, ARV resistance, Hemoglobin, Viral load, Lymphocytes (Abs), Basophiles, CD4 Absolute count (mm3), Neutrophiles, Eosinophiles (%), Red Blood Cells Count (RBC), Monocytes (%), HIV rapid test HIV, TMCH, Platelets, Vironostika, CD4 percent  (%), White Blood Cells Count (WBC), Monocytes (Abs)
+21 Nov 2025 05:21:14 -- INFO -- Odoo integration is DISABLED (org.openelisglobal.odoo.enabled=false or not set)
+21 Nov 2025 05:21:14 -- INFO -- Class: org.openelisglobal.plugin.PluginLoader, Method: load, Info: Plugins loaded
+21 Nov 2025 05:21:14 -- INFO -- Class: ProgramAutocreateService, Method: getAllProgramResources, Info: Program directory does not exist: /var/lib/openelis-global/programs
+21 Nov 2025 05:21:29 -- INFO -- AjaxFilter init
+21 Nov 2025 05:21:29 -- INFO -- org.itech.fhir.dataexport.api.service.impl.DataExportTaskCheckerServiceImpl has started
+21 Nov 2025 05:21:30 -- INFO -- Will secure Or [Mvc [pattern='/pluginServlet/**'], Mvc [pattern='/ChangePasswordLogin'], Mvc [pattern='/UpdateLoginChangePassword'], Mvc [pattern='/health/**'], Mvc [pattern='/rest/open-configuration-properties'], Mvc [pattern='/docs/UserManual']] with [org.springframework.security.web.session.DisableEncodeUrlFilter@2edc42af, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@29e288e2, org.springframework.security.web.context.SecurityContextHolderFilter@6752eb70, org.springframework.security.web.header.HeaderWriterFilter@1db9f643, org.springframework.web.filter.CharacterEncodingFilter@8dd8af7, org.springframework.web.multipart.support.MultipartFilter@5d11f5bf, org.springframework.security.web.authentication.logout.LogoutFilter@389b03da, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@23a37493, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7518395c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11940d88, org.springframework.security.web.access.ExceptionTranslationFilter@70140055, org.springframework.security.web.access.intercept.AuthorizationFilter@708ee6f0]
+21 Nov 2025 05:21:30 -- INFO -- Will secure org.openelisglobal.security.SecurityConfig$BasicAuthRequestedMatcher@2b30f5ca with [org.springframework.security.web.session.DisableEncodeUrlFilter@7f10f99e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c9de573, org.springframework.security.web.context.SecurityContextPersistenceFilter@23cee495, org.springframework.security.web.header.HeaderWriterFilter@63f620ec, org.springframework.web.filter.CharacterEncodingFilter@6f9729d6, org.springframework.web.multipart.support.MultipartFilter@43251f4b, org.springframework.security.web.authentication.logout.LogoutFilter@4de68cb9, org.openelisglobal.security.login.BasicAuthFilter@4f52983d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@52ca286e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@188369a0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c84fa03, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b01c2b8, org.springframework.security.web.session.SessionManagementFilter@440a0330, org.springframework.security.web.access.ExceptionTranslationFilter@65f7d760, org.springframework.security.web.access.intercept.AuthorizationFilter@23f61d02]
+21 Nov 2025 05:21:30 -- INFO -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4a6c87a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6593854f, org.springframework.security.web.context.SecurityContextHolderFilter@1bbd0ea8, org.springframework.security.web.header.HeaderWriterFilter@5296a3c, org.springframework.web.filter.CharacterEncodingFilter@6a319de3, org.springframework.web.multipart.support.MultipartFilter@2af2c76, org.springframework.security.web.csrf.CsrfFilter@6d3d8fd3, org.springframework.security.web.authentication.logout.LogoutFilter@52f1dda2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@58660219, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@faac3ff, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@419c30bc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3078c141, org.springframework.security.web.session.SessionManagementFilter@1aff4933, org.springframework.security.web.access.ExceptionTranslationFilter@5128b57d, org.springframework.security.web.access.intercept.AuthorizationFilter@2ba49137]
+21 Nov 2025 05:21:30 -- INFO -- Using default implementation for ThreadExecutor
+21 Nov 2025 05:21:30 -- INFO -- Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+21 Nov 2025 05:21:30 -- INFO -- Quartz Scheduler v.2.3.2 created.
+21 Nov 2025 05:21:30 -- INFO -- RAMJobStore initialized.
+21 Nov 2025 05:21:30 -- INFO -- Scheduler meta-data: Quartz Scheduler (v2.3.2) 'MyScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 3 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+21 Nov 2025 05:21:30 -- INFO -- Quartz scheduler 'MyScheduler' initialized from default resource file in Quartz package: 'quartz.properties'
+21 Nov 2025 05:21:30 -- INFO -- Quartz scheduler version: 2.3.2
+21 Nov 2025 05:21:30 -- INFO -- Class: ConfigurationInitializationService, Method: onApplicationEvent, Info: Starting configuration initialization from /var/lib/openelis-global/configuration/backend...
+21 Nov 2025 05:21:30 -- INFO -- OCL Import: Auto-import is disabled. Skipping OCL import.
+21 Nov 2025 05:21:30 -- INFO -- Root WebApplicationContext initialized in 84042 ms
+21 Nov 2025 05:21:30 -- INFO -- AjaxFilter init
+21 Nov 2025 05:21:30 -- INFO -- Initializing Servlet 'dispatcher'
+21 Nov 2025 05:21:30 -- INFO -- Completed initialization in 6 ms
+21 Nov 2025 05:21:30 -- INFO -- hapi.home is set to /usr/local/tomcat/.
+21 Nov 2025 05:21:30 -- INFO -- HAPI version is: 2.5.1
+21 Nov 2025 05:21:30 -- INFO -- Default Structure libraries found for HL7 versions 2.5.1, 
+21 Nov 2025 05:21:43 -- INFO -- Root WebApplicationContext: initialization started
+21 Nov 2025 05:21:43 -- INFO -- Properties location [file:/run/secrets/extra.properties] not resolvable: /run/secrets/extra.properties (No such file or directory)
+21 Nov 2025 05:21:44 -- INFO -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21 Nov 2025 05:21:44 -- INFO -- Finished Spring Data repository scanning in 128 ms. Found 3 JPA repository interfaces.
+21 Nov 2025 05:21:51 -- INFO -- persistence.xml should be located inside META-INF directory; cannot determine persistence unit root URL for class path resource [persistence/persistence.xml]
+21 Nov 2025 05:21:51 -- INFO -- HHH000204: Processing PersistenceUnitInfo [name: OpenELIS-Global-persistence-unit]
+21 Nov 2025 05:21:51 -- INFO -- HHH000412: Hibernate ORM core version 5.6.15.Final
+21 Nov 2025 05:21:52 -- INFO -- HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+21 Nov 2025 05:21:54 -- INFO -- HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+21 Nov 2025 05:21:55 -- INFO -- HSEARCH000034: Hibernate Search version 6.1.8.Final
+21 Nov 2025 05:21:55 -- INFO -- HV000001: Hibernate Validator 8.0.2.Final
+21 Nov 2025 05:22:01 -- WARN -- HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+21 Nov 2025 05:22:02 -- INFO -- Initialized JPA EntityManagerFactory for persistence unit 'OpenELIS-Global-persistence-unit'
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching datasource
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching released
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching printed
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching section
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching dictionaryType
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching defaultPageSize
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching type
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching canceled
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching assigned
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching completed
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching month
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching day
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching value
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching agent
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching holder
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching idSeparator
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching human
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching revision
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching day
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching released
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching patientSearchPassword
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching reflex_rules
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageAggregationUserName
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageAggregationPassword
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageSendStatus
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching condenseNSF
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching headerRightImage
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching programs
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching headerLeftImage
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching new born
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching infant
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching young child
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching child
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching adult
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching firstNameCharset
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching lastNameCharset
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching userNameCharset
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching patientIdCharset
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching reportsDirectory
+21 Nov 2025 05:22:04 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching labDirectorSignature
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageAggregationUserName
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching released
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching infant
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching userNameCharset
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching released
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching dictionaryType
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching canceled
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching headerLeftImage
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching completed
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching labDirectorSignature
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching month
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching programs
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching adult
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching reportsDirectory
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching type
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching assigned
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching new born
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching agent
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageAggregationPassword
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching reflex_rules
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching day
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching patientSearchPassword
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching lastNameCharset
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching firstNameCharset
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching condenseNSF
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching testUsageSendStatus
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching section
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching complete
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching defaultPageSize
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching idSeparator
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching day
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching patientIdCharset
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching child
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching printed
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching young child
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching headerRightImage
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching revision
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching datasource
+21 Nov 2025 05:22:05 -- INFO -- Class: OEProperties, Method: setProperty, Info: no enum property could be found matching human
+21 Nov 2025 05:22:05 -- ERROR -- Class: sun.nio.fs.UnixException, Method: translateToIOException, Line: -1, Message: /var/lib/openelis-global/properties/SystemConfiguration.properties -&gt; /var/lib/openelis-global/properties/ChangedSystemConfiguration.properties: Device or resource busy
+21 Nov 2025 05:22:06 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_ADDRESS&#39;
+21 Nov 2025 05:22:06 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_USERNAME&#39;
+21 Nov 2025 05:22:06 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_PASSWORD&#39;
+21 Nov 2025 05:22:06 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_ADDRESS&#39;
+21 Nov 2025 05:22:06 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_USERNAME&#39;
+21 Nov 2025 05:22:06 -- WARN -- Class: OEProperties, Method: getProperty, Warning:getting property that doesn&#39;t exist yet &#39;PATIENT_RESULTS_SMTP_PASSWORD&#39;
+21 Nov 2025 05:22:12 -- INFO -- HAPI FHIR version 6.6.2 - Rev 8d55781507
+21 Nov 2025 05:22:12 -- INFO -- Creating new FHIR context for FHIR version [R4]
+21 Nov 2025 05:22:14 -- INFO -- Unable to determine StAX implementation: java.xml/META-INF/MANIFEST.MF not found
+21 Nov 2025 05:22:15 -- INFO -- Hibernate is in classpath; If applicable, HQL parser will be used.
+21 Nov 2025 05:22:17 -- INFO -- Class: TestProductMapping, Method: loadCsvFromFixedPath, Info: Loaded CSV mapping from fixed path: /var/lib/openelis-global/odoo/odoo-test-product-mapping.csv, rows=25
+21 Nov 2025 05:22:17 -- INFO -- Class: TestProductMapping, Method: init, Info: Loaded CSV mapping. Total mappings loaded: 25
+21 Nov 2025 05:22:17 -- INFO -- Class: TestProductMapping, Method: init, Info: Available mapping keys: Basophiles (%), Neutrophiles (%), Medium corpuscular volum, Hematocrit, Bioline, Lymphocytes (%), CMCH, Eosinophiles, ARV resistance, Hemoglobin, Viral load, Lymphocytes (Abs), Basophiles, CD4 Absolute count (mm3), Neutrophiles, Eosinophiles (%), Red Blood Cells Count (RBC), Monocytes (%), HIV rapid test HIV, TMCH, Platelets, Vironostika, CD4 percent  (%), White Blood Cells Count (WBC), Monocytes (Abs)
+21 Nov 2025 05:22:17 -- INFO -- Odoo integration is DISABLED (org.openelisglobal.odoo.enabled=false or not set)
+21 Nov 2025 05:22:17 -- INFO -- Class: org.openelisglobal.plugin.PluginLoader, Method: load, Info: Plugins loaded
+21 Nov 2025 05:22:18 -- INFO -- Class: ProgramAutocreateService, Method: getAllProgramResources, Info: Program directory does not exist: /var/lib/openelis-global/programs
+21 Nov 2025 05:22:25 -- INFO -- AjaxFilter init
+21 Nov 2025 05:22:25 -- INFO -- org.itech.fhir.dataexport.api.service.impl.DataExportTaskCheckerServiceImpl has started
+21 Nov 2025 05:22:26 -- INFO -- Will secure Or [Mvc [pattern='/pluginServlet/**'], Mvc [pattern='/ChangePasswordLogin'], Mvc [pattern='/UpdateLoginChangePassword'], Mvc [pattern='/health/**'], Mvc [pattern='/rest/open-configuration-properties'], Mvc [pattern='/docs/UserManual']] with [org.springframework.security.web.session.DisableEncodeUrlFilter@567e417c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5ae8226e, org.springframework.security.web.context.SecurityContextHolderFilter@6179a2a2, org.springframework.security.web.header.HeaderWriterFilter@733b802d, org.springframework.web.filter.CharacterEncodingFilter@2be19941, org.springframework.web.multipart.support.MultipartFilter@6598b0a6, org.springframework.security.web.authentication.logout.LogoutFilter@1e863f79, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1436177b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5990ce1e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@414978c8, org.springframework.security.web.access.ExceptionTranslationFilter@392e2d24, org.springframework.security.web.access.intercept.AuthorizationFilter@1083832e]
+21 Nov 2025 05:22:26 -- INFO -- Will secure org.openelisglobal.security.SecurityConfig$BasicAuthRequestedMatcher@7038f253 with [org.springframework.security.web.session.DisableEncodeUrlFilter@65e512df, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3eb416cd, org.springframework.security.web.context.SecurityContextPersistenceFilter@5bf87db4, org.springframework.security.web.header.HeaderWriterFilter@92c211c, org.springframework.web.filter.CharacterEncodingFilter@7f6f4440, org.springframework.web.multipart.support.MultipartFilter@48728b94, org.springframework.security.web.authentication.logout.LogoutFilter@15a2efd4, org.openelisglobal.security.login.BasicAuthFilter@6b761a7c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@72e66f94, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7555903b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@356a2f2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54c0baf, org.springframework.security.web.session.SessionManagementFilter@323899aa, org.springframework.security.web.access.ExceptionTranslationFilter@4a6fc202, org.springframework.security.web.access.intercept.AuthorizationFilter@201f62ac]
+21 Nov 2025 05:22:26 -- INFO -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@51ae5b17, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2421f6ce, org.springframework.security.web.context.SecurityContextHolderFilter@5434515e, org.springframework.security.web.header.HeaderWriterFilter@612b063e, org.springframework.web.filter.CharacterEncodingFilter@47eb10c, org.springframework.web.multipart.support.MultipartFilter@5bb97b73, org.springframework.security.web.csrf.CsrfFilter@5ca9cf26, org.springframework.security.web.authentication.logout.LogoutFilter@41002cf8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1109c222, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7bdab4f5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@42795746, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@78ecf5f0, org.springframework.security.web.session.SessionManagementFilter@46f66659, org.springframework.security.web.access.ExceptionTranslationFilter@6752693, org.springframework.security.web.access.intercept.AuthorizationFilter@6718fcea]
+21 Nov 2025 05:22:27 -- INFO -- Using default implementation for ThreadExecutor
+21 Nov 2025 05:22:27 -- INFO -- Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+21 Nov 2025 05:22:27 -- INFO -- Quartz Scheduler v.2.3.2 created.
+21 Nov 2025 05:22:27 -- INFO -- RAMJobStore initialized.
+21 Nov 2025 05:22:27 -- INFO -- Scheduler meta-data: Quartz Scheduler (v2.3.2) 'MyScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 3 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+21 Nov 2025 05:22:27 -- INFO -- Quartz scheduler 'MyScheduler' initialized from default resource file in Quartz package: 'quartz.properties'
+21 Nov 2025 05:22:27 -- INFO -- Quartz scheduler version: 2.3.2
+21 Nov 2025 05:22:27 -- INFO -- Class: ConfigurationInitializationService, Method: onApplicationEvent, Info: Starting configuration initialization from /var/lib/openelis-global/configuration/backend...
+21 Nov 2025 05:22:27 -- INFO -- OCL Import: Auto-import is disabled. Skipping OCL import.
+21 Nov 2025 05:22:27 -- INFO -- Root WebApplicationContext initialized in 43926 ms
+21 Nov 2025 05:22:27 -- INFO -- AjaxFilter init
+21 Nov 2025 05:22:27 -- INFO -- Initializing Servlet 'dispatcher'
+21 Nov 2025 05:22:27 -- INFO -- Completed initialization in 7 ms
+21 Nov 2025 05:22:27 -- INFO -- hapi.home is set to /usr/local/tomcat/.
+21 Nov 2025 05:22:27 -- INFO -- HAPI version is: 2.5.1
+21 Nov 2025 05:22:27 -- INFO -- Default Structure libraries found for HL7 versions 2.5.1, 
+21 Nov 2025 05:24:45 -- WARN -- Cache miss for REQUEST dispatch to '/api/OpenELIS-Global/session' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+21 Nov 2025 05:24:50 -- INFO -- Class: AuthenticationListener, Method: onFailure, Info: Unsuccessful login attempt for 
+21 Nov 2025 05:24:50 -- INFO -- Class: CustomAuthenticationFailureHandler, Method: onFailure, Info: Unsuccessful login attempt from 192.168.65.1
+21 Nov 2025 05:24:56 -- INFO -- Class: AuthenticationListener, Method: onSuccess, Info: Successful login attempt for admin
+21 Nov 2025 05:24:56 -- INFO -- Class: CustomFormAuthenticationSuccessHandler, Method: onSuccess, Info: Successful login attempt for admin from 192.168.65.1
+21 Nov 2025 05:24:56 -- INFO -- Class: AuthenticationListener, Method: onSuccess, Info: Successful login attempt for admin
+21 Nov 2025 05:24:56 -- INFO -- Class: CustomFormAuthenticationSuccessHandler, Method: onSuccess, Info: Successful login attempt for admin from 192.168.65.1
