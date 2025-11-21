@@ -69,7 +69,7 @@
           "System Developer"
         ],
         "odoo": [
-          "base.group_system"
+          "Administration / Settings"
         ]
       },
       "notBefore": 0,
