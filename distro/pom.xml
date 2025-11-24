@@ -48,12 +48,14 @@
     <eipOdooOpenMRSVersion>2.2.0-SNAPSHOT</eipOdooOpenMRSVersion>
     <eipERPNextOpenMRSVersion>1.3.0-SNAPSHOT</eipERPNextOpenMRSVersion>
     <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
+    <eipOpenMRSHcwAtHomeVersion>1.0.0-SNAPSHOT</eipOpenMRSHcwAtHomeVersion>
 
     <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
     <eipOdooOpenMRSArtifactId>eip-odoo-openmrs</eipOdooOpenMRSArtifactId>
     <eipERPNextOpenMRSArtifactId>eip-erpnext-openmrs</eipERPNextOpenMRSArtifactId>
     <eipOpenMRSOrthancArtifactId>eip-openmrs-orthanc</eipOpenMRSOrthancArtifactId>
+      <eipOpenMRSHcwAtHomeArtifactId>eip-hcwathome-openmrs</eipOpenMRSHcwAtHomeArtifactId>
 
     <!-- Ozone Analytics Queries -->
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
@@ -154,6 +156,12 @@
       <artifactId>${eipERPNextOpenMRSArtifactId}</artifactId>
       <version>${eipERPNextOpenMRSVersion}</version>
     </dependency>
+      <dependency>
+          <groupId>com.ozonehis</groupId>
+          <artifactId>${eipOpenMRSHcwAtHomeArtifactId}</artifactId>
+          <version>${eipOpenMRSHcwAtHomeVersion}</version>
+          <type>jar</type>
+      </dependency>
 
     <!-- Ozone Analytics Queries -->
     <dependency>
@@ -298,6 +306,27 @@
               </artifactItems>
             </configuration>
           </execution>
+
+            <execution>
+                <id>Copy EIP OpenMRS HcwAtHome JAR</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>copy</goal>
+                </goals>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>com.ozonehis</groupId>
+                            <artifactId>${eipOpenMRSHcwAtHomeArtifactId}</artifactId>
+                            <version>${eipOpenMRSHcwAtHomeVersion}</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>
+                                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOpenMRSHcwAtHomeArtifactId}</outputDirectory>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
 
           <execution>
             <id>Unpack OpenMRS Ref App in a temporary location</id>
