@@ -27,7 +27,7 @@
     </#if>
     <#if realm.password>
       <form id="kc-form-login" action="${url.loginAction}" method="post">
-        <div class="input-group">
+        <div class="input-group" id="username-tab">
           <div class="form-item">
             <label for="username" class="label">
               <#if !realm.loginWithEmailAllowed>
@@ -40,55 +40,68 @@
             </label>
             <div class="text-input-field-outer-wrapper">
               <div class="text-input-field-wrapper">
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  class="${properties.kcInputClass!}"
-                  value="${(login.username!'')}"
-                  placeholder="<#if !realm.loginWithEmailAllowed>${msg('username')}<#elseif !realm.registrationEmailAsUsername>${msg('usernameOrEmail')}<#else>${msg('email')}</#if>"
-                  autocomplete="username"
-                  autofocus
-                />
+                <#if usernameEditDisabled??>
+                  <input
+                    autofocus
+                    id="username"
+                    class="${properties.kcInputClass!}"
+                    name="username"
+                    value="${(login.username!'')}"
+                    type="text"
+                    disabled
+                    placeholder="<#if
+                    !realm.loginWithEmailAllowed>${msg(" username")}<#elseif
+                    !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else
+                    >${msg("email")}</#if>"
+                  />
+                <#else>
+                  <input
+                    autofocus
+                    id="username"
+                    class="${properties.kcInputClass!}"
+                    name="username"
+                    value="${(login.username!'')}"
+                    type="text"
+                    placeholder="<#if
+                    !realm.loginWithEmailAllowed>${msg(" username")}<#elseif
+                    !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else
+                    >${msg("email")}</#if>"
+                    autocomplete="off"
+                  />
+                </#if>
               </div>
             </div>
           </div>
+        </div>
 
+        <div class="input-group" id="password-tab">
           <div class="form-item">
             <label for="password" class="label">${msg("password")}</label>
             <div class="text-input-field-outer-wrapper">
               <div class="text-input-field-wrapper">
                 <input
                   id="password"
-                  name="password"
                   type="password"
+                  name="password"
                   class="login-input-style text-input password-input"
-                  data-toggle-password-visibility="true"
-                  autocomplete="current-password"
+                  data-toggle-password-visibility="true" 
+                  autofocus
                 />
                 <button id="password-toggle" type="button" class="password-visibility-toggle">
-                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
-                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="16" height="16"
-                    viewBox="0 0 16 16" aria-hidden="true" class="icon-visibility-on">
-                    <path d="M15.5,7.8C14.3,4.7,11.3,2.6,8,2.5C4.7,2.6,1.7,4.7,0.5,7.8c0,0.1,0,0.2,0,0.3
-                    c1.2,3.1,4.1,5.2,7.5,5.3c3.3-0.1,6.3-2.2,7.5-5.3C15.5,8.1,15.5,7.9,15.5,7.8z
-                    M8,12.5c-2.7,0-5.4-2-6.5-4.5c1-2.5,3.8-4.5,6.5-4.5s5.4,2,6.5,4.5
-                    C13.4,10.5,10.6,12.5,8,12.5z"></path>
-                    <path d="M8,5C6.3,5,5,6.3,5,8s1.3,3,3,3s3-1.3,3-3S9.7,5,8,5z
-                    M8,10c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S9.1,10,8,10z"></path>
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" class="icon-visibility-on">
+                    <path d="M15.5,7.8C14.3,4.7,11.3,2.6,8,2.5C4.7,2.6,1.7,4.7,0.5,7.8c0,0.1,0,0.2,0,0.3c1.2,3.1,4.1,5.2,7.5,5.3 c3.3-0.1,6.3-2.2,7.5-5.3C15.5,8.1,15.5,7.9,15.5,7.8z M8,12.5c-2.7,0-5.4-2-6.5-4.5c1-2.5,3.8-4.5,6.5-4.5s5.4,2,6.5,4.5 C13.4,10.5,10.6,12.5,8,12.5z"></path>
+                    <path d="M8,5C6.3,5,5,6.3,5,8s1.3,3,3,3s3-1.3,3-3S9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S9.1,10,8,10z"></path>
                   </svg>
                 </button>
-              </div>
+              </div> 
             </div>
           </div>
           <button type="submit" class="continue-button btn-primary">
             ${msg("doLogIn")}
-            <svg focusable="false" preserveAspectRatio="xMidYMid meet"
-              xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              aria-label="Next" aria-hidden="true" width="24" height="24"
-              viewBox="0 0 24 24" role="img" class="btn-icon">
-              <path d="M14 4L12.9 5.1 18.9 11.2 2 11.2 2 12.8 18.9 12.8
-              12.9 18.9 14 20 22 12z"></path>
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" aria-label="Next" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" role="img"
+              class="btn-icon">
+              <path d="M14 4L12.9 5.1 18.9 11.2 2 11.2 2 12.8 18.9 12.8 12.9 18.9 14 20 22 12z"></path>
             </svg>
           </button>
         </div>
