@@ -637,6 +637,22 @@
             </goals>
           </execution>
 
+            <!-- Overwrite OpenELIS common.properties -->
+            <execution>
+                <id>override-config-in-volumes</id>
+                <phase>process-resources</phase>
+                <configuration>
+                    <target>
+                        <copy file="${project.basedir}/configs/openelis/common.properties"
+                              tofile="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/volumes/properties/common.properties"
+                              overwrite="true"/>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
           <!-- Copy Openmrs config and modify initializer_config to mimic content package structure -->
           <execution>
             <id>copy-openmrs--config-and-modify-initializer-config</id>
