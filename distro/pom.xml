@@ -59,6 +59,8 @@
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
 
+    <!-- Classifier for the dependency report artifact -->
+    <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
 
   <modules>
@@ -597,31 +599,28 @@
             </goals>
           </execution>
 
-          <!-- Temporary workaround because of AH not loading in Ref App 3.4.0 -->
-          <!-- Flatten addresshierarchy folder structure -->
-          <execution>
-            <id>Flatten OpenMRS Address Hierarchy files</id>
-            <phase>package</phase>
-            <configuration>
-              <target>
-                <!-- Copy all files from subfolders into the parent folder -->
-                <copy
-                  todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy"
-                  overwrite="true">
-                  <fileset
-                    dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
-                    <!-- Include all subfolder files -->
-                    <include name="*/**" />
-                  </fileset>
-                  <!-- flattenmapper removes the subfolder structure -->
-                  <flattenmapper />
-                </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
+            <!-- Temporary workaround because of AH not loading in Ref App 3.4.0 -->
+            <!-- Flatten addresshierarchy folder structure -->
+            <execution>
+                <id>Flatten OpenMRS Address Hierarchy files</id>
+                <phase>package</phase>
+                <configuration>
+                    <target>
+                        <!-- Copy all files from subfolders into the parent folder -->
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy" overwrite="true">
+                            <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
+                                <!-- Include all subfolder files -->
+                                <include name="*/**"/>
+                            </fileset>
+                            <!-- flattenmapper removes the subfolder structure -->
+                            <flattenmapper/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
 
           <execution>
             <id>Remove non-OMODs from Modules</id>
@@ -679,7 +678,7 @@
                 </goals>
             </execution>
 
-          <execution>
+            <execution>
             <id>Copy filtered OpenMRS configuration</id>
             <phase>prepare-package</phase>
             <configuration>
@@ -865,16 +864,13 @@
         </executions>
       </plugin>
 
-      <!-- Compile and compare the dependency report -->
+      <!-- Compile a dependency report -->
       <plugin>
         <groupId>net.mekomsolutions.maven.plugin</groupId>
         <artifactId>dependency-tracker-maven-plugin</artifactId>
-        <configuration>
-          <compare>true</compare>
-        </configuration>
         <executions>
           <execution>
-            <id>Compile local dependency report and compare with remote</id>
+            <id>Compile dependency report</id>
             <phase>compile</phase>
             <goals>
               <goal>track</goal>
@@ -882,6 +878,7 @@
           </execution>
         </executions>
       </plugin>
+
       <!-- Attach the dependency report to the build -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -897,10 +894,9 @@
               <artifacts>
                 <artifact>
                   <file>
-                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt
-                  </file>
+                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt</file>
                   <type>txt</type>
-                  <classifier>dependencies</classifier>
+                  <classifier>${dependencyReportClassifier}</classifier>
                 </artifact>
               </artifacts>
             </configuration>

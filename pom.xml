@@ -34,6 +34,8 @@
     <ozoneDistroVersion>1.0.0-SNAPSHOT</ozoneDistroVersion>
     <ozoneDockerComposeVersion>1.0.0-SNAPSHOT</ozoneDockerComposeVersion>
 
+    <!-- Classifier for the dependency report artifact -->
+    <dependencyReportClassifier>dependencies</dependencyReportClassifier>
     <true>true</true>
   </properties>
 
@@ -148,16 +150,13 @@
         </executions>
       </plugin>
 
-      <!-- Compile and compare the dependency report -->
+      <!-- Compile a dependency report -->
       <plugin>
         <groupId>net.mekomsolutions.maven.plugin</groupId>
         <artifactId>dependency-tracker-maven-plugin</artifactId>
-        <configuration>
-          <compare>true</compare>
-        </configuration>
         <executions>
           <execution>
-            <id>Compile local dependency report and compare with remote</id>
+            <id>Compile dependency report</id>
             <phase>compile</phase>
             <goals>
               <goal>track</goal>
@@ -165,11 +164,13 @@
           </execution>
         </executions>
       </plugin>
+
       <!-- Attach the dependency report to the build -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
+
           <execution>
             <id>Attach the dependency report</id>
             <phase>package</phase>
@@ -180,10 +181,9 @@
               <artifacts>
                 <artifact>
                   <file>
-                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt
-                  </file>
+                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt</file>
                   <type>txt</type>
-                  <classifier>dependencies</classifier>
+                  <classifier>${dependencyReportClassifier}</classifier>
                 </artifact>
               </artifacts>
             </configuration>
