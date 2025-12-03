@@ -44,10 +44,10 @@
     <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
 
     <!-- EIP Routes artifact versions -->
-    <eipOpenMRSSenaiteVersion>2.2.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
-    <eipOdooOpenMRSVersion>2.2.0-SNAPSHOT</eipOdooOpenMRSVersion>
-    <eipERPNextOpenMRSVersion>1.3.0-SNAPSHOT</eipERPNextOpenMRSVersion>
-    <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
+      <eipOpenMRSSenaiteVersion>2.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
+      <eipOdooOpenMRSVersion>2.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
+      <eipERPNextOpenMRSVersion>1.4.0-SNAPSHOT</eipERPNextOpenMRSVersion>
+      <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
 
     <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
