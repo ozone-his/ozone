@@ -44,10 +44,10 @@
     <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
 
     <!-- EIP Routes artifact versions -->
-    <eipOpenMRSSenaiteVersion>2.2.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
-    <eipOdooOpenMRSVersion>2.2.0-SNAPSHOT</eipOdooOpenMRSVersion>
-    <eipERPNextOpenMRSVersion>1.3.0-SNAPSHOT</eipERPNextOpenMRSVersion>
-    <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
+      <eipOpenMRSSenaiteVersion>2.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
+      <eipOdooOpenMRSVersion>2.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
+      <eipERPNextOpenMRSVersion>1.4.0-SNAPSHOT</eipERPNextOpenMRSVersion>
+      <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
 
     <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
@@ -58,6 +58,8 @@
     <!-- Ozone Analytics Queries -->
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
+
+    <openelis.version>main</openelis.version>
 
   </properties>
 
@@ -385,6 +387,42 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
+            <!-- Download openelis-docker -->
+            <execution>
+                <id>download openelis-docker</id>
+                <phase>generate-resources</phase>
+                <goals>
+                    <goal>exec</goal>
+                </goals>
+                <configuration>
+                    <executable>curl</executable>
+                    <arguments>
+                        <argument>-L</argument>
+                        <argument>-o</argument>
+                        <argument>${project.build.directory}/openelis-docker-${openelis.version}.zip</argument>
+<!--                        <argument>https://github.com/DIGI-UW/openelis-docker/archive/refs/tags/${openelis.version}.zip</argument>-->
+                        <argument>https://github.com/DIGI-UW/openelis-docker/archive/refs/heads/main.zip</argument>
+                    </arguments>
+                </configuration>
+            </execution>
+
+            <!-- Extract openelis-docker -->
+            <execution>
+                <id>extract openelis-docker zip</id>
+                <phase>generate-resources</phase>
+                <goals>
+                    <goal>exec</goal>
+                </goals>
+                <configuration>
+                    <executable>sh</executable>
+                    <arguments>
+                        <argument>-c</argument>
+                        <argument>
+                            unzip -o ${project.build.directory}/openelis-docker-${openelis.version}.zip -d ${project.build.directory}
+                        </argument>
+                    </arguments>
+                </configuration>
+            </execution>
           <execution>
             <!-- Prefix content packages so that the overwrite order can be determined -->
             <id>prefix content packages</id>
@@ -511,6 +549,29 @@
             </configuration>
           </execution>
 
+            <execution>
+                <!-- Copy over the OpenELIS volume directory -->
+                <id>Copy OpenELIS files and directories</id>
+                <phase>process-resources</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>
+                        ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/
+                    </outputDirectory>
+                    <overwrite>true</overwrite>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}/openelis-docker-${openelis.version}</directory>
+                            <includes>
+                                <include>volumes/**</include>
+                            </includes>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
+
           <execution>
             <!-- Exclude files from O3 Ref App -->
             <id>Exclude some OpenMRS Ref App files</id>
@@ -575,6 +636,22 @@
               <goal>run</goal>
             </goals>
           </execution>
+
+            <!-- Overwrite OpenELIS common.properties -->
+            <execution>
+                <id>override-config-in-volumes</id>
+                <phase>process-resources</phase>
+                <configuration>
+                    <target>
+                        <copy file="${project.basedir}/configs/openelis/common.properties"
+                              tofile="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/volumes/properties/common.properties"
+                              overwrite="true"/>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
 
           <!-- Copy Openmrs config and modify initializer_config to mimic content package structure -->
           <execution>

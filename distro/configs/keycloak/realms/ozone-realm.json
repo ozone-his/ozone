@@ -98,6 +98,98 @@
           "attributes": {}
         }
       ],
+      "OpenELIS-Global_saml": [
+        {
+          "id": "abacee5f-3a5e-41d4-9d7e-9ba7004ea3cf",
+          "name": "oeg-Global Administrator",
+          "description": "Global Administrator",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "27675f70-b2a2-4156-bbb2-29b306e32bf0",
+          "name": "oeg-Pathologist",
+          "description": "Access to Pathology Page",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "cfa1f26e-8d1f-4d64-9fd1-4e7f8b2f9d1a",
+          "name": "oeg-User Account Administrator",
+          "description": "Add/remove users and assign roles.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "6de8e56f-1c62-4985-b627-9d891d55ab40",
+          "name": "oeg-Audit Trail",
+          "description": "Able to view the audit trail",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "3b4d09d5-6d57-4a4e-8c79-cc4f36497f36",
+          "name": "oeg-Analyser Import",
+          "description": "Acces to Analyser Results Page",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "7987e3ea-88ed-4c36-bd9a-1aeea1fdd30d",
+          "name": "oeg-Cytopathologist",
+          "description": "Access to Cytology Page",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "ebadfa35-8239-4f44-baf4-6b4d7706ac92",
+          "name": "oeg-Results-AllLabUnits",
+          "description": "Enter and review results.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "e9f22d49-22b0-49b5-9489-55930cbf59d8",
+          "name": "oeg-Validation-AllLabUnits",
+          "description": "A person who can validate results",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "a7a8a248-1b67-44f8-8c69-44745a83c3a0",
+          "name": "oeg-Reports-AllLabUnits",
+          "description": "Generate reports.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        },
+        {
+          "id": "f5d6db55-2d97-4ad3-9c49-1f967230b0df",
+          "name": "oeg-Reception-AllLabUnits",
+          "description": "Sample entry and patient management.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "openelis-role",
+          "attributes": {}
+        }
+      ],
       "realm-management": [
         {
           "id": "5f6de476-4bfe-4f9d-9849-77bded6c354b",
@@ -1396,6 +1488,64 @@
         "configure": true,
         "manage": true
       }
+    },
+    {
+      "id": "6d29e693-7feb-46e2-998b-19a2ad3d231f",
+      "clientId": "OpenELIS-Global_saml",
+      "name": "OpenELIS-Global Saml",
+      "description": "OpenELIS-Global Saml",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [
+        "${OPENELIS_PUBLIC_URL}/*"
+      ],
+      "webOrigins": [
+        "${OPENELIS_PUBLIC_URL}/*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "saml",
+      "attributes": {
+        "saml.assertion.signature": "false",
+        "saml.force.post.binding": "true",
+        "saml.encrypt": "false",
+        "saml.server.signature": "true",
+        "saml.server.signature.keyinfo.ext": "false",
+        "saml.signing.certificate": "MIICtzCCAZ8CBgGZoEABADANBgkqhkiG9w0BAQsFADAfMR0wGwYDVQQDDBRPcGVuRUxJUy1HbG9iYWxfc2FtbDAeFw0yNTEwMDExNDQ3NTNaFw0zNTEwMDExNDQ5MzNaMB8xHTAbBgNVBAMMFE9wZW5FTElTLUdsb2JhbF9zYW1sMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxxPe77o7ZzSnQ9piRZ0uGHdq2yyhmsS136Akmf6TvYAPxlCuQgHmWoK1TaZ2lYFOuWx0I8ePu/g7lIp6lmpCEne99jzQFtzXwpBl5Ua2ZL31BjYuy3WPMtpcsV4PXoqZC2AHnybAvUM0v4rGYgSyRJdK791sFp58eQEn/k2hK0JUzAJeXUDDuhPqr8wrcctrLc1dlhHzs4GFSPtpcstD7vzE9XTVnyCIoXKaO6ECS68l0Wt+4HN4GoJY4R7QeDrlOb88ay+RsgczSxH8AA23KAH855vuIz0fAtiygeh5UQMnd2kZdB6j5BNjB/eOx9xb0M4D8MsoMoPLrjAVjVO4aQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQC4jOQaVfDxJ+21TsRtBDqvxkJ8a+eG4xTb2PdYQdcJpAVsCPMxYM08VcRTRha2okNx6IyARxTPu77NwT6y2lghFvH3Rw2S7jydhh/zCJkXq4O2NBOVkzNX3iirWb2DZPOPvWAKqNmf87Nesfgo8uGxU1ggRU6zhdXfXkCHIIIrCEmtiQy7RBlQZJA5QWxZCdublJXrt1T9wvpCKaairv6wa8c6f9Prg8nnKQuYfBbLCDzpEuHNVji9BUu7mR2/g6F5eJR88B1IPFb8Bg0QeCd3LWA7CpxU7gZuBUwNlBT8kdPS8JBdNNBUqd3vfh/7042yOE01hsQXip843Ty0k8OP",
+        "saml.artifact.binding.identifier": "p+uy5jRINfNLONQETephsAznwv4=",
+        "saml.artifact.binding": "false",
+        "saml.signature.algorithm": "RSA_SHA256",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "saml.authnstatement": "true",
+        "display.on.consent.screen": "false",
+        "saml_name_id_format": "username",
+        "saml.signing.private.key": "MIIEpAIBAAKCAQEAxxPe77o7ZzSnQ9piRZ0uGHdq2yyhmsS136Akmf6TvYAPxlCuQgHmWoK1TaZ2lYFOuWx0I8ePu/g7lIp6lmpCEne99jzQFtzXwpBl5Ua2ZL31BjYuy3WPMtpcsV4PXoqZC2AHnybAvUM0v4rGYgSyRJdK791sFp58eQEn/k2hK0JUzAJeXUDDuhPqr8wrcctrLc1dlhHzs4GFSPtpcstD7vzE9XTVnyCIoXKaO6ECS68l0Wt+4HN4GoJY4R7QeDrlOb88ay+RsgczSxH8AA23KAH855vuIz0fAtiygeh5UQMnd2kZdB6j5BNjB/eOx9xb0M4D8MsoMoPLrjAVjVO4aQIDAQABAoIBADkpiYAIV3pA8i5XjJQ0l8HKuFIKtLR9+0Mk9p2JLd7h4KWvEPo/FWez1F9hhvdS08oGTCrh6HGuy1zRjnWWOTaYT2FfANkvvHxPfhKhhUnUCYEpGbKuJNoTPT5opb0dyugrQMUAGaO+omzFakVG1/E+B/Rr/ddY1qDgJh2tKLQEq1LxZildJ1oTv+jvAmb9zorjcRUQRvMSYi8iR9GHp40DyV8TdqbvlHXd10XWWvlWwVrFvblI01ekrN9Qx4Pc109U0A+d/w7HEIdDLk0oj8UTaPYf61fO5hvKzS8c520YgC2xzkW+AIsWwXXElzSVH1GcDsxFFNnrwAENLO6rpokCgYEA/ZYa6uVW26U+T3RGx2juXImzGViMce84tacmMyi3B6UFAbidtTZOuQCN7+5JDsyoIzGoNb6T0qXpO6s7M9Wca6apQl3sMb/KWNYFZ4D75OJnweB6TLN536E3UsRBiVC0SYVE1R+1MmaApQi5L1NHyKQa5gqkvbWtjL/HHm870gMCgYEAyPjyyCEaMOaC6+UYkVz154ifbEGjfWwcxX16Bm7fFWZM5CXIp9hscTlqyP9C/W5oMBFeVldpVmH12/BLub0yR6w5b+I/HwR3JG5qEpnNpxkFDHRAKkvmNgMt1egDhNsrj5WNlumCCRQf48glkrn7xrJTnHdVY5AscReITyMzViMCgYEAlC1dBzsBmREiqtzf6u/GsK4JyFq0nnLRqVvFd4loAgCMP2g4R0Y3k+TeC4AqkopGCWKfzt/Qkvs9oQ86ZdyBLWpSZyRout0+CNDukX+OMT2WsXRRInaRVXpn0GY7gVh2MKu9/+cqQwwgSc8iHqREQtqZmShJAU2i3qbFXGRVCS8CgYATsxNZOqVulanPpa060nnoMCQwYF6+NJK9aQdFCikj19tBodKBYV1/27jz6tGONfxQeeNdY0QYC5Il9O/3TOxYyjD3Hp5BVBa5o3kSSbE25+Tuy5ZejwIJ2VXs2ck+hJ1IfchbOphce3SEx2GneEONvn0joS7li4RPsZbS6whlMQKBgQDAfAHZD3j+S+zjrnmKYPeA905fTp/0uvvG0aqe7CHtGGJLM9twOfzKgTEJqQilU1+nYbFyfpr/BEYuu+YhwojjXf1qjpMZrie3jFiQ6Plhi4k5IhtACsPgqHAL3RHt4zRhblIJf61ZOPsMo3asW1LVQ65B5CNaVK2ffaqP3GVufQ==",
+        "saml.allow.ecp.flow": "false",
+        "saml.onetimeuse.condition": "false",
+        "saml.server.signature.keyinfo.xmlSigKeyInfoKeyNameTransformer": "NONE",
+        "saml_signature_canonicalization_method": "http://www.w3.org/2001/10/xml-exc-c14n#",
+        "frontchannel.logout.url": "https://localhost/api/OpenELIS-Global/Logout"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "role_list"
+      ],
+      "optionalClientScopes": []
     }
   ],
   "clientScopes": [
