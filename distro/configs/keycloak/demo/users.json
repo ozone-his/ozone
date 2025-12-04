@@ -32,6 +32,18 @@
         "openmrs": [
           "System Developer"
         ],
+        "OpenELIS-Global_saml": [
+          "oeg-Global Administrator",
+          "oeg-Pathologist",
+          "oeg-User Account Administrator",
+          "oeg-Audit Trail",
+          "oeg-Analyser Import",
+          "oeg-Cytopathologist",
+          "oeg-Results-AllLabUnits",
+          "oeg-Validation-AllLabUnits",
+          "oeg-Reports-AllLabUnits",
+          "oeg-Reception-AllLabUnits"
+        ],
         "odoo": [
           "Administration / Settings",
           "Sales / Administrator",
