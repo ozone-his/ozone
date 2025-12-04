@@ -41,6 +41,8 @@
     <!-- Odoo addons versions -->
     <odooInitializerVersion>2.3.0-SNAPSHOT</odooInitializerVersion>
     <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
+    <odooAuthRolesVersion>1.0.0-SNAPSHOT</odooAuthRolesVersion>
+    <odooAuthRolesArtifactId>ozone-auth-roles</odooAuthRolesArtifactId>
 
     <!-- EIP Routes artifact versions -->
     <eipOpenMRSSenaiteVersion>2.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
@@ -89,6 +91,12 @@
       <artifactId>${odooInitializerArtifactId}</artifactId>
       <version>${odooInitializerVersion}</version>
       <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>com.ozonehis.odoo</groupId>
+      <artifactId>${odooAuthRolesArtifactId}</artifactId>
+      <type>zip</type>
+      <version>${odooAuthRolesVersion}</version>
     </dependency>
 
     <!--  OpenMRS modules -->
@@ -189,6 +197,20 @@
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons</outputDirectory>
               <includeArtifactIds>${odooInitializerArtifactId}</includeArtifactIds>
+            </configuration>
+          </execution>
+          <execution>
+            <id>Copy Odoo Ozone Auth Roles add-on</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons/ozone_auth_roles
+              </outputDirectory>
+              <includeArtifactIds>${odooAuthRolesArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
