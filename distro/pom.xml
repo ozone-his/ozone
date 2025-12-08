@@ -42,7 +42,7 @@
     <odooInitializerVersion>2.3.0-SNAPSHOT</odooInitializerVersion>
     <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
     <odooAuthRolesVersion>1.0.0-SNAPSHOT</odooAuthRolesVersion>
-    <odooAuthRolesArtifactId>ozone-auth-roles</odooAuthRolesArtifactId>
+    <odooSsoUserRolesArtifactId>odoo-sso-user-roles</odooSsoUserRolesArtifactId>
 
     <!-- EIP Routes artifact versions -->
     <eipOpenMRSSenaiteVersion>2.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
@@ -94,7 +94,7 @@
     </dependency>
     <dependency>
       <groupId>com.ozonehis.odoo</groupId>
-      <artifactId>${odooAuthRolesArtifactId}</artifactId>
+      <artifactId>${odooSsoUserRolesArtifactId}</artifactId>
       <type>zip</type>
       <version>${odooAuthRolesVersion}</version>
     </dependency>
@@ -208,9 +208,9 @@
             <configuration>
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons/ozone_auth_roles
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons/sso_user_roles
               </outputDirectory>
-              <includeArtifactIds>${odooAuthRolesArtifactId}</includeArtifactIds>
+              <includeArtifactIds>${odooSsoUserRolesArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
