@@ -565,7 +565,7 @@
                         <resource>
                             <directory>${project.build.directory}/openelis-docker-${openelis.version}</directory>
                             <includes>
-                                <include>volumes/**</include>
+                                <include>configs/**</include>
                             </includes>
                         </resource>
                     </resources>
@@ -644,7 +644,7 @@
                 <configuration>
                     <target>
                         <copy file="${project.basedir}/configs/openelis/common.properties"
-                              tofile="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/volumes/properties/common.properties"
+                              tofile="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/configs/properties/common.properties"
                               overwrite="true"/>
                     </target>
                 </configuration>
