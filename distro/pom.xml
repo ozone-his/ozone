@@ -35,13 +35,13 @@
     <commonreportsVersion>1.6.0-SNAPSHOT</commonreportsVersion>
     <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
-    <fhir2Version>2.8.0-SNAPSHOT</fhir2Version>
+    <fhir2Version>3.0.0-SNAPSHOT</fhir2Version>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- Odoo addons versions -->
-    <odooInitializerVersion>2.3.0-SNAPSHOT</odooInitializerVersion>
+    <odooInitializerVersion>2.4.0-SNAPSHOT</odooInitializerVersion>
     <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
-    <odooAuthRolesVersion>1.0.0-SNAPSHOT</odooAuthRolesVersion>
+    <odooAuthRolesVersion>1.1.0-SNAPSHOT</odooAuthRolesVersion>
     <odooSsoUserRolesArtifactId>odoo-sso-user-roles</odooSsoUserRolesArtifactId>
 
     <!-- EIP Routes artifact versions -->
