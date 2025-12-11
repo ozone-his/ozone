@@ -35,6 +35,45 @@
       },
       "notBefore": 0,
       "groups": []
+    },
+    {
+      "username": "hisadmin",
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "email": "hisadmin@example.com",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "attributes": {
+        "gender": "M",
+        "provider": "true"
+      },
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-ozone"
+      ],
+      "clientRoles": {
+        "superset": [
+          "Admin"
+        ],
+        "senaite": [
+          "Manager"
+        ],
+        "openmrs": [
+          "System Developer"
+        ],
+        "odoo": [
+          "Administration / Settings"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
     }
   ]
 }
