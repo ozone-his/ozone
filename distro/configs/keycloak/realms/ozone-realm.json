@@ -98,7 +98,7 @@
           "attributes": {}
         }
       ],
-      "OpenELIS-Global_saml": [
+      "openelis": [
         {
           "id": "abacee5f-3a5e-41d4-9d7e-9ba7004ea3cf",
           "name": "oeg-Global Administrator",
@@ -1524,12 +1524,12 @@
     },
     {
       "id": "6d29e693-7feb-46e2-998b-19a2ad3d231f",
-      "clientId": "OpenELIS-Global_saml",
-      "name": "OpenELIS-Global Saml",
-      "description": "OpenELIS-Global Saml",
-      "rootUrl": "",
-      "adminUrl": "",
-      "baseUrl": "",
+      "clientId": "openelis",
+      "name": "OpenELIS Global",
+      "description": "OpenELIS Global",
+      "rootUrl": "${OPENELIS_PUBLIC_URL}",
+      "adminUrl": "${OPENELIS_PUBLIC_URL}",
+      "baseUrl": "${OPENELIS_PUBLIC_URL}",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
