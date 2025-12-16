@@ -1502,7 +1502,8 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "${OPENELIS_PUBLIC_URL}/*"
+        "${OPENELIS_PUBLIC_URL}/*",
+        "https://${OPENELIS_HOSTNAME}/*"
       ],
       "webOrigins": [
         "${OPENELIS_PUBLIC_URL}/*"
