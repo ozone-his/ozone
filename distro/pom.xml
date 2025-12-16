@@ -59,7 +59,7 @@
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
 
-    <openelis.version>main</openelis.version>
+    <openelis.version>3.2.1.1</openelis.version>
 
   </properties>
 
@@ -399,9 +399,8 @@
                     <arguments>
                         <argument>-L</argument>
                         <argument>-o</argument>
-                        <argument>${project.build.directory}/openelis-docker-${openelis.version}.zip</argument>
-<!--                        <argument>https://github.com/DIGI-UW/openelis-docker/archive/refs/tags/${openelis.version}.zip</argument>-->
-                        <argument>https://github.com/DIGI-UW/openelis-docker/archive/refs/heads/main.zip</argument>
+                        <argument>${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip</argument>
+                        <argument>https://github.com/DIGI-UW/openelis-magadascar-distro/archive/refs/tags/3.2.1.1.zip</argument>
                     </arguments>
                 </configuration>
             </execution>
@@ -418,7 +417,7 @@
                     <arguments>
                         <argument>-c</argument>
                         <argument>
-                            unzip -o ${project.build.directory}/openelis-docker-${openelis.version}.zip -d ${project.build.directory}
+                            unzip -o ${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip -d ${project.build.directory}
                         </argument>
                     </arguments>
                 </configuration>
@@ -563,7 +562,7 @@
                     <overwrite>true</overwrite>
                     <resources>
                         <resource>
-                            <directory>${project.build.directory}/openelis-docker-${openelis.version}</directory>
+                            <directory>${project.build.directory}/openelis-magadascar-distro-${openelis.version}</directory>
                             <includes>
                                 <include>configs/**</include>
                             </includes>
@@ -643,7 +642,7 @@
                 <phase>process-resources</phase>
                 <configuration>
                     <target>
-                        <copy file="${project.basedir}/configs/openelis/common.properties"
+                        <copy file="${project.basedir}/configs/openelis/properties/common.properties"
                               tofile="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/configs/properties/common.properties"
                               overwrite="true"/>
                     </target>
