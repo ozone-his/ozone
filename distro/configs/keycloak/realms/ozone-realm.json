@@ -354,7 +354,16 @@
           "attributes": {}
         }
       ],
-      "odoo": [],
+      "odoo": [
+        {
+          "id": "adac6edf-23b9-4ad5-b3c4-bd47d35a23bf",
+          "name": "Administration/Settings",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "${ODOO_CLIENT_UUID}",
+          "attributes": {}
+        }
+      ],
       "security-admin-console": [],
       "admin-cli": [],
       "account-console": [],

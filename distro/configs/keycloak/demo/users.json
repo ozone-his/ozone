@@ -31,6 +31,9 @@
         ],
         "openmrs": [
           "System Developer"
+        ],
+        "odoo": [
+          "Administration/Settings"
         ]
       },
       "notBefore": 0,
