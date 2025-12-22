@@ -31,6 +31,12 @@
         ],
         "openmrs": [
           "System Developer"
+        ],
+        "odoo": [
+          "Administration/Settings",
+          "Sales/Administrator",
+          "Inventory/Administrator",
+          "Purchase/Administrator"
         ]
       },
       "notBefore": 0,
