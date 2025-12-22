@@ -362,6 +362,30 @@
           "clientRole": true,
           "containerId": "${ODOO_CLIENT_UUID}",
           "attributes": {}
+        },
+        {
+          "id": "84088d84-7447-4d1b-9982-75559309f324",
+          "name": "Sales/Administrator",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "${ODOO_CLIENT_UUID}",
+          "attributes": {}
+        },
+        {
+          "id": "d8d18b5a-d30e-4216-829d-805bf36a7301",
+          "name": "Inventory/Administrator",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "${ODOO_CLIENT_UUID}",
+          "attributes": {}
+        },
+        {
+          "id": "1d21220d-c6a7-4158-8f13-11eb081f3fe3",
+          "name": "Purchase/Administrator",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "${ODOO_CLIENT_UUID}",
+          "attributes": {}
         }
       ],
       "security-admin-console": [],
