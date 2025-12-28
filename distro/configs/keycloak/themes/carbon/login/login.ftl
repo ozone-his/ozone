@@ -69,16 +69,9 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="continue-button btn-primary">
-            ${msg("doContinue")}
-            <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-              aria-label="Next" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" role="img" class="btn-icon">
-              <path d="M14 4L12.9 5.1 18.9 11.2 2 11.2 2 12.8 18.9 12.8 12.9 18.9 14 20 22 12z"></path>
-            </svg>
-          </button>
         </div>
 
-        <div class="input-group hidden" id="password-tab">
+        <div class="input-group" id="password-tab">
           <div class="form-item">
             <label for="password" class="label">${msg("password")}</label>
             <div class="text-input-field-outer-wrapper">

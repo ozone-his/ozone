@@ -10,23 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
       )
     );
 
-  const usernameTab = document.getElementById("username-tab");
-  const passwordTab = document.getElementById("password-tab");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
   const loginForm = document.getElementById("kc-form-login");
   const passwordToggleButton = document.getElementById("password-toggle");
 
-  const Tabs = {
-    username: "username",
-    password: "password",
-  };
-
-  let username = "";
-  let password = "";
-  let isUsernameInvalid = false;
-  let isPasswordInvalid = false;
-  let currentTab = Tabs.username;
   let showPassword = false;
 
   passwordToggleButton.addEventListener("click", () => {
@@ -42,63 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /** Updates the login UI to reflect the internal state. */
-  function syncUiWithState() {
-    usernameInput.value = username;
-    passwordInput.value = password;
-    usernameInput.classList.toggle("invalid", isUsernameInvalid);
-    passwordInput.classList.toggle("invalid", isPasswordInvalid);
-    usernameTab.classList.toggle("hidden", currentTab !== Tabs.username);
-    passwordTab.classList.toggle("hidden", currentTab !== Tabs.password);
-  }
-
-  /**
-   * Called when the form is submitted.
-   * This returns whether the form submission should be prevented
-   * or not (i.e. whether the form data should be sent to the server).
-   *
-   * The latter should only happen when both the username and password are
-   * valid for submission (i.e. non-empty).
-   */
-  function handleFormSubmit() {
-    if (currentTab === Tabs.username) {
-      username = usernameInput.value;
-      isUsernameInvalid = !username;
-
-      if (!isUsernameInvalid) {
-        currentTab = Tabs.password;
-      }
-
-      // In the username step, we always want to prevent the form
-      // from being submitted because the user still has to enter
-      // the password.
-      syncUiWithState();
-      passwordInput.focus();
-      return true;
-    } else if (currentTab === Tabs.password) {
-      password = passwordInput.value;
-      isPasswordInvalid = !password;
-
-      // In the password step we only want to prevent the form
-      // from being submitted while the password is invalid.
-      syncUiWithState();
-      return isPasswordInvalid;
-    } else {
-      console.error(
-        `Arrived at an invalid tab: "${currentTab}". ` +
-          `This is most likely an error in the code and should be fixed. ` +
-          `Resetting to the initial tab.`
-      );
-
-      currentTab = Tabs.username;
-      syncUiWithState();
-      return true;
-    }
-  }
-
   loginForm.onsubmit = (e) => {
-    const shouldPreventFormSubmit = handleFormSubmit();
-    if (shouldPreventFormSubmit) {
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!username || !password) {
       e.preventDefault();
       return false;
     } else {
