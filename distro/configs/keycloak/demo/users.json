@@ -33,10 +33,10 @@
           "System Developer"
         ],
         "odoo": [
-          "Administration/Settings",
-          "Sales/Administrator",
-          "Inventory/Administrator",
-          "Purchase/Administrator"
+          "Administration / Settings",
+          "Sales / Administrator",
+          "Inventory / Administrator",
+          "Purchase / Administrator"
         ]
       },
       "notBefore": 0,
