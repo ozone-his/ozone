@@ -67,7 +67,7 @@ cat >_temp_install-latest-ozone-pom.xml <<EOF
     <groupId>com.ozonehis</groupId>
     <name>Install Latest Ozone Helper</name>
     <description>Helper project to install the latest Ozone HIS</description>
-    <version>1.0.0-alpha.15</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <organization>
