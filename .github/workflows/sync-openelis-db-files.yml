@@ -54,7 +54,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: |
-            Sync OpenELIS database files from DIGI-UW/OpenELIS-Global-2@${{ steps.copy-files. outputs.commit_short_sha }}
+            Sync OpenELIS database files from DIGI-UW/OpenELIS-Global-2@${{ steps.copy-files.outputs.commit_short_sha }}
             
             Source commit: ${{ steps.copy-files.outputs.commit_msg }}
           branch: sync-openelis-db-files
@@ -68,7 +68,7 @@ jobs:
             - `db/dbInit/siteInfo.sql`
             
             **Source Repository**:  [DIGI-UW/OpenELIS-Global-2](https://github.com/DIGI-UW/OpenELIS-Global-2)
-            **Source Commit**: [`${{ steps.copy-files. outputs.commit_short_sha }}`](https://github.com/DIGI-UW/OpenELIS-Global-2/commit/${{ steps.copy-files.outputs.commit_sha }})
+            **Source Commit**: [`${{ steps.copy-files.outputs.commit_short_sha }}`](https://github.com/DIGI-UW/OpenELIS-Global-2/commit/${{ steps.copy-files.outputs.commit_sha }})
             **Destination**:  `distro/data/postgresql/openelis/`
             
             ### Source Commit Message
