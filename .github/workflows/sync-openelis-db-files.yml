@@ -1,0 +1,84 @@
+name: Sync OpenELIS Database Files
+
+on: 
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  sync-db-files:
+    runs-on:  ubuntu-latest
+    
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth:  0
+      
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with: 
+          repository:  DIGI-UW/OpenELIS-Global-2
+          path: source-repo
+          fetch-depth: 1
+      
+      - name: Copy files and check for changes
+        id: copy-files
+        run: |
+          # Create destination directory if it doesn't exist
+          mkdir -p distro/data/postgresql/openelis
+          
+          # Copy the SQL files
+          cp source-repo/db/dbInit/OpenELIS-Global.sql distro/data/postgresql/openelis/
+          cp source-repo/db/dbInit/siteInfo.sql distro/data/postgresql/openelis/
+          
+          # Check if there are any changes
+          git diff --exit-code distro/data/postgresql/openelis/ || echo "changes=true" >> $GITHUB_OUTPUT
+          
+          # Get the latest commit hash from source repo for reference
+          cd source-repo
+          COMMIT_SHA=$(git rev-parse HEAD)
+          COMMIT_SHORT_SHA=$(git rev-parse --short HEAD)
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "commit_sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
+          echo "commit_short_sha=$COMMIT_SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "commit_msg<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      
+      - name: Create Pull Request
+        if: steps.copy-files.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            Sync OpenELIS database files from DIGI-UW/OpenELIS-Global-2@${{ steps.copy-files.outputs.commit_short_sha }}
+            
+            Source commit: ${{ steps.copy-files.outputs.commit_msg }}
+          branch: sync-openelis-db-files
+          delete-branch: true
+          title: "Update OpenELIS database files"
+          body: |
+            ## Automated Sync from OpenELIS-Global-2
+            
+            This PR syncs the following files from `DIGI-UW/OpenELIS-Global-2`:
+            - `db/dbInit/OpenELIS-Global.sql`
+            - `db/dbInit/siteInfo.sql`
+            
+            **Source Repository**:  [DIGI-UW/OpenELIS-Global-2](https://github.com/DIGI-UW/OpenELIS-Global-2)
+            **Source Commit**: [`${{ steps.copy-files.outputs.commit_short_sha }}`](https://github.com/DIGI-UW/OpenELIS-Global-2/commit/${{ steps.copy-files.outputs.commit_sha }})
+            **Destination**:  `distro/data/postgresql/openelis/`
+            
+            ### Source Commit Message
+            ```
+            ${{ steps.copy-files.outputs.commit_msg }}
+            ```
+            
+            ---
+            *This PR was automatically created by the sync-openelis-db-files workflow.*
+          labels: |
+            automated
+            database
+            sync
