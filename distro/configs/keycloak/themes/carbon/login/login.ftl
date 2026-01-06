@@ -68,6 +68,15 @@
                 </#if>
               </div>
             </div>
+            <#-- Forgot password link -->
+            <if realm.password && realm.resetPasswordAllowed>
+                <div class="form-options">
+                <a class="forgot-password-link"
+                    href="${url.loginResetCredentialsUrl}">
+                    ${msg("doForgotPassword")}
+                </a>
+                </div>
+            </if>
           </div>
           <button type="submit" class="continue-button btn-primary">
             ${msg("doContinue")}
