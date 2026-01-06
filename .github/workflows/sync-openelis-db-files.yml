@@ -55,12 +55,11 @@ jobs:
           echo "$COMMIT_MSG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
       
-      - name: Exclude source-repo from PR
+      - name: Remove source-repo directory
         if: steps.copy-files.outputs.changes == 'true'
         run: |
-          # Remove source-repo from staging if it was accidentally added
-          git restore --staged source-repo/ 2>/dev/null || true
-          git restore source-repo/ 2>/dev/null || true
+          # Remove the source-repo directory entirely to prevent it from being included in the PR
+          rm -rf source-repo
       
       - name: Create Pull Request
         if: steps.copy-files.outputs.changes == 'true'
