@@ -23,7 +23,7 @@
                 </#if>
             </div>
             <div class="login-center">
-                <img src="${url.resourcesPath}/img/logo.png" class="center-logo" />
+                <img src="${url.resourcesPath}/img/ozone-logo.png" class="center-logo" />
             </div>
             <form id="kc-reset-password-form" action="${url.loginAction}" method="post">
                 <div class="input-group">
