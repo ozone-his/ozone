@@ -34,8 +34,15 @@ jobs:
           cp source-repo/db/dbInit/OpenELIS-Global.sql distro/data/postgresql/openelis/
           cp source-repo/db/dbInit/siteInfo.sql distro/data/postgresql/openelis/
           
-          # Check if there are any changes
-          git diff --exit-code distro/data/postgresql/openelis/ || echo "changes=true" >> $GITHUB_OUTPUT
+          # Configure git user for the workflow
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Stage the files to detect both new and modified files
+          git add distro/data/postgresql/openelis/
+          
+          # Check if there are any changes (including new files)
+          git diff --cached --exit-code distro/data/postgresql/openelis/ || echo "changes=true" >> $GITHUB_OUTPUT
           
           # Get the latest commit hash from source repo for reference
           cd source-repo
