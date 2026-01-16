@@ -46,33 +46,25 @@ if [[ ! -f "${SITEINFO_SQL}" ]]; then
   exit 1
 fi
 
-if [[ -f "${OPENELIS_SQL}" ]]; then
+# Function to filter out plain `CREATE SCHEMA clinlims;` (not commented and without IF NOT EXISTS)
+filter_openelis_sql() {
   awk '{
     orig=$0
     lo=tolower($0)
     if (lo ~ /^[[:space:]]*create[[:space:]]+schema[[:space:]]+clinlims[[:space:]]*;[[:space:]]*$/ && lo !~ /if[[:space:]]+not[[:space:]]+exists/) {
       if (orig !~ /^[[:space:]]*--/) {
+        # Comment out the line instead of executing it
         print "-- " orig
         next
       }
     }
     print
-  }' "${OPENELIS_SQL}" > "${OPENELIS_SQL}.tmp"
-
-  if ! cmp -s "${OPENELIS_SQL}" "${OPENELIS_SQL}.tmp"; then
-    echo "Backing up ${OPENELIS_SQL} to ${OPENELIS_SQL}.bak"
-    cp "${OPENELIS_SQL}" "${OPENELIS_SQL}.bak"
-    mv "${OPENELIS_SQL}.tmp" "${OPENELIS_SQL}"
-    echo "Commented out plain CREATE SCHEMA clinlims; in ${OPENELIS_SQL}"
-  else
-    rm "${OPENELIS_SQL}.tmp"
-    echo "No plain 'CREATE SCHEMA clinlims;' found or already commented/has IF NOT EXISTS; no change."
-  fi
-fi
+  }' "${OPENELIS_SQL}"
+}
 
 # Load schema/data into the newly created database
-echo "Loading ${OPENELIS_SQL} into ${db_name}..."
-psql -v ON_ERROR_STOP=1 --username admin --dbname "$db_name" -f "${OPENELIS_SQL}"
+echo "Loading ${OPENELIS_SQL} into ${db_name} (filtered in-memory, no temp file)..."
+filter_openelis_sql | psql -v ON_ERROR_STOP=1 --username admin --dbname "$db_name"
 
 echo "Loading ${SITEINFO_SQL} into ${db_name}..."
 psql -v ON_ERROR_STOP=1 --username admin --dbname "$db_name" -f "${SITEINFO_SQL}"
