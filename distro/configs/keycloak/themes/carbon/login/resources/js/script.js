@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       // This has been moved out of the KC ftl template.
       // It is, by default, present in the following form:
-      //   <form onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post" ...>
+      //  <form onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post" ...>
       // It is moved here, because we require special submission
       // handling due to the form having 2 steps.
       login.disabled = true;
