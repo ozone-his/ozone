@@ -60,7 +60,7 @@
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
 
-    <openelis.version>3.2.1.1</openelis.version>
+    <openelis.version>3.2.1.2</openelis.version>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
@@ -402,7 +402,7 @@
                         <argument>-L</argument>
                         <argument>-o</argument>
                         <argument>${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip</argument>
-                        <argument>https://github.com/DIGI-UW/openelis-magadascar-distro/archive/refs/tags/3.2.1.1.zip</argument>
+                        <argument>https://github.com/DIGI-UW/openelis-magadascar-distro/archive/refs/tags/3.2.1.2.zip</argument>
                     </arguments>
                 </configuration>
             </execution>
