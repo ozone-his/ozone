@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_insurance_claim_tree" model="ir.ui.view">
+        <field name="name">Insurance Claim Tree View</field>
+        <field name="model">insurance.claim</field>
+        <field name="arch" type="xml">
+            <tree string="Insurance Claims">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="insuree_id"/>
+                <field name="band"/>
+                <field name="status"/>
+                <field name="total_amount"/>
+                <field name="imis_claim_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_insurance_claim_form" model="ir.ui.view">
+        <field name="name">Insurance Claim Form View</field>
+        <field name="model">insurance.claim</field>
+        <field name="arch" type="xml">
+            <form string="Insurance Claim">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="insuree_id"/>
+                        <field name="band"/>
+                        <field name="facility_uuid"/>
+                        <field name="status"/>
+                        <field name="imis_claim_id"/>
+                        <field name="total_amount" readonly="1"/>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Claim Items">
+                            <field name="claim_items">
+                                <tree editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="service_code"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="amount" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_insurance_claim_search" model="ir.ui.view">
+        <field name="name">Insurance Claim Search View</field>
+        <field name="model">insurance.claim</field>
+        <field name="arch" type="xml">
+            <search string="Search Claims">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="insuree_id"/>
+                <field name="band"/>
+                <field name="status"/>
+                <filter name="draft" string="Draft" domain="[('status', '=', 'draft')]"/>
+                <filter name="submitted" string="Submitted" domain="[('status', '=', 'submitted')]"/>
+                <filter name="processed" string="Processed" domain="[('status', '=', 'processed')]"/>
+                <filter name="approved" string="Approved" domain="[('status', '=', 'approved')]"/>
+                <filter name="rejected" string="Rejected" domain="[('status', '=', 'rejected')]"/>
+                <group expand="1" string="Group By">
+                    <filter name="group_by_status" string="Status" domain="[]" context="{'group_by': 'status'}"/>
+                    <filter name="group_by_band" string="Band" domain="[]" context="{'group_by': 'band'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_insurance_claim" model="ir.actions.act_window">
+        <field name="name">Insurance Claims</field>
+        <field name="res_model">insurance.claim</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="view_id" ref="view_insurance_claim_tree"/>
+    </record>
+
+    <act_window name="Insurance Claim Items"
+                res_model="insurance.claim.item"
+                view_mode="tree,form"
+                id="action_insurance_claim_item"
+                />
+</odoo>

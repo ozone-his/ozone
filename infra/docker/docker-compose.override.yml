@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+    environment:
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: >
+        -rabbitmq_management load_definitions "/etc/rabbitmq/definitions.json"
+
+  imis-connect:
+    build:
+      context: ../../
+      dockerfile: infra/docker/imis-connect.Dockerfile
+    environment:
+      OPENIMIS_BASE_URL: http://openimis:8000
+      OPENIMIS_AUTH: "basic"
+      RABBITMQ_URI: amqp://guest:guest@rabbitmq:5672
+      FHIR_STRATEGY: "R4"
+    depends_on: [rabbitmq]
+    ports:
+      - "8085:8080"

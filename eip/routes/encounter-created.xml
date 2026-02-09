@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="openmrs.encounter.created">
+        <from uri="openmrs-fhir:{{openmrs.baseUrl}}/ws/fhir2/R4/Encounter?username={{openmrs.username}}&password={{openmrs.password}}&eventTypes=CREATED"/>
+        
+        <log message="Encounter created event received: ${body}"/>
+        
+        <to uri="rabbitmq:o3.events?connectionFactory=rabbitConnectionFactory&routingKey=openmrs.encounter.created&exchangeType=topic"/>
+    </route>
+</routes>

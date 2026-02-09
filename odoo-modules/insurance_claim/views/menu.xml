@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem name="Insurance" id="insurance.menu_root" sequence="10"/>
+    
+    <menuitem name="Claims" id="insurance.menu_claims" parent="insurance.menu_root" sequence="1"/>
+    <menuitem name="Insurance Claims" id="insurance.menu_insurance_claims" parent="insurance.menu_claims" sequence="1"
+              action="insurance.action_insurance_claim"/>
+    
+    <menuitem name="Tariffs" id="insurance.menu_tariffs" parent="insurance.menu_root" sequence="2"/>
+    <menuitem name="Band D Tariff" id="insurance.menu_tariff_band_d" parent="insurance.menu_tariffs" sequence="1"
+              action="insurance.action_insurance_tariff_band_d"/>
+    <menuitem name="A/B/C Facility Tariff" id="insurance.menu_tariff_abc_facility" parent="insurance.menu_tariffs" sequence="2"
+              action="insurance.action_insurance_tariff_abc_facility"/>
+    
+    <record id="seq_insurance_claim" model="ir.sequence">
+        <field name="name">Insurance Claim Sequence</field>
+        <field name="code">insurance.claim</field>
+        <field name="prefix">CLM/%(y)s/</field>
+        <field name="padding">6</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

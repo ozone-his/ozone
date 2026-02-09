@@ -1,0 +1,28 @@
+{
+  "datafiltermappings": [
+    {
+      "entity": "org.openmrs.Role",
+      "attribute": "name",
+      "basis": "Patient Attribute",
+      "attributeName": "band",
+      "mappings": [
+        {
+          "role": "Band D User",
+          "visibility": ["D"]
+        },
+        {
+          "role": "Band C User",
+          "visibility": ["C", "D"]
+        },
+        {
+          "role": "Band B User",
+          "visibility": ["B", "C", "D"]
+        },
+        {
+          "role": "Band A User",
+          "visibility": ["A", "B", "C", "D"]
+        }
+      ]
+    }
+  ]
+}

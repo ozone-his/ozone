@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_insurance_tariff_band_d_tree" model="ir.ui.view">
+        <field name="name">Tariff Band D Tree View</field>
+        <field name="model">insurance.tariff.band.d</field>
+        <field name="arch" type="xml">
+            <tree string="Band D Tariff">
+                <field name="service_code"/>
+                <field name="price_ngn"/>
+                <field name="effective_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_insurance_tariff_band_d_form" model="ir.ui.view">
+        <field name="name">Tariff Band D Form View</field>
+        <field name="model">insurance.tariff.band.d</field>
+        <field name="arch" type="xml">
+            <form string="Band D Tariff">
+                <sheet>
+                    <group>
+                        <field name="service_code"/>
+                        <field name="price_ngn"/>
+                        <field name="effective_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_insurance_tariff_band_d" model="ir.actions.act_window">
+        <field name="name">Band D Tariff</field>
+        <field name="res_model">insurance.tariff.band.d</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_insurance_tariff_abc_facility_tree" model="ir.ui.view">
+        <field name="name">Tariff A/B/C Facility Tree View</field>
+        <field name="model">insurance.tariff.abc.facility</field>
+        <field name="arch" type="xml">
+            <tree string="A/B/C Facility Tariff">
+                <field name="service_code"/>
+                <field name="band"/>
+                <field name="facility_uuid"/>
+                <field name="price_ngn"/>
+                <field name="effective_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_insurance_tariff_abc_facility_form" model="ir.ui.view">
+        <field name="name">Tariff A/B/C Facility Form View</field>
+        <field name="model">insurance.tariff.abc.facility</field>
+        <field name="arch" type="xml">
+            <form string="A/B/C Facility Tariff">
+                <sheet>
+                    <group>
+                        <field name="service_code"/>
+                        <field name="band"/>
+                        <field name="facility_uuid"/>
+                        <field name="price_ngn"/>
+                        <field name="effective_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_insurance_tariff_abc_facility" model="ir.actions.act_window">
+        <field name="name">A/B/C Facility Tariff</field>
+        <field name="res_model">insurance.tariff.abc.facility</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

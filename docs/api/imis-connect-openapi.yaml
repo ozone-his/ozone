@@ -1,0 +1,302 @@
+openapi: 3.0.1
+info:
+  title: IMIS-Connect API
+  description: OpenAPI 3.0 specification for the IMIS-Connect gateway
+  version: 1.0.0
+servers:
+  - url: http://localhost:8085/api/v1
+paths:
+  /eligibility:
+    post:
+      tags:
+        - Insurance
+      summary: Check patient insurance eligibility
+      description: Verifies patient insurance eligibility using insuree ID and facility UUID
+      operationId: checkEligibility
+      requestBody:
+        description: Eligibility request details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EligibilityRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EligibilityResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Insuree not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /claims:
+    post:
+      tags:
+        - Insurance
+      summary: Submit insurance claim
+      description: Submits a FHIR Claim to openIMIS for adjudication
+      operationId: submitClaim
+      requestBody:
+        description: FHIR Claim resource
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Claim'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimResponse'
+        '400':
+          description: Invalid claim data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /claims/{claimId}:
+    get:
+      tags:
+        - Insurance
+      summary: Get claim status
+      description: Retrieves the status of a submitted claim
+      operationId: getClaimStatus
+      parameters:
+        - name: claimId
+          in: path
+          description: Claim identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimResponse'
+        '404':
+          description: Claim not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EligibilityRequest:
+      type: object
+      required:
+        - insureeId
+        - facilityUuid
+      properties:
+        insureeId:
+          type: string
+          description: Insuree identifier
+        facilityUuid:
+          type: string
+          description: Facility UUID
+    EligibilityResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Eligibility status
+        plan:
+          type: string
+          description: Insurance plan
+        band:
+          type: string
+          description: Patient band classification
+        allowedBands:
+          type: array
+          items:
+            type: string
+          description: List of allowed bands for the patient
+        expiryDate:
+          type: string
+          format: date
+          description: Coverage expiry date
+    Claim:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          description: FHIR resource type
+        status:
+          type: string
+          description: Claim status
+        use:
+          type: string
+          description: Claim use
+        type:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+                  display:
+                    type: string
+        patient:
+          type: object
+          properties:
+            reference:
+              type: string
+        created:
+          type: string
+          format: date
+        provider:
+          type: object
+          properties:
+            reference:
+              type: string
+        priority:
+          type: object
+          properties:
+            coding:
+              type: array
+              items:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  code:
+                    type: string
+                  display:
+                    type: string
+        insurance:
+          type: array
+          items:
+            type: object
+            properties:
+              sequence:
+                type: integer
+              focal:
+                type: boolean
+              coverage:
+                type: object
+                properties:
+                  reference:
+                    type: string
+        item:
+          type: array
+          items:
+            type: object
+            properties:
+              sequence:
+                type: integer
+              productOrService:
+                type: object
+                properties:
+                  coding:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        system:
+                          type: string
+                        code:
+                          type: string
+                        display:
+                          type: string
+              unitPrice:
+                type: object
+                properties:
+                  value:
+                    type: number
+                  currency:
+                    type: string
+              quantity:
+                type: object
+                properties:
+                  value:
+                    type: number
+              net:
+                type: object
+                properties:
+                  value:
+                    type: number
+                  currency:
+                    type: string
+        total:
+          type: object
+          properties:
+            value:
+              type: number
+            currency:
+              type: string
+    ClaimResponse:
+      type: object
+      properties:
+        claimId:
+          type: string
+          description: Claim identifier
+        status:
+          type: string
+          description: Claim status
+        message:
+          type: string
+          description: Response message
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Key
+      in: header
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://authorization-server.com/oauth/authorize
+          scopes: {}
+security:
+  - OAuth2: []
+  - ApiKeyAuth: []

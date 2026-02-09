@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: imis-connect
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+openimis:
+  baseUrl: http://localhost:8000
+  auth:
+    type: basic
+    username: admin
+    password: admin123
+
+fhir:
+  strategy: R4
+
+logging:
+  level:
+    com.ozonehis: DEBUG
+    org.springframework: INFO
+    ca.uhn.fhir: DEBUG

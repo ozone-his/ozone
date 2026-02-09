@@ -1,0 +1,14 @@
+{
+  "uuid": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "band",
+  "description": "Patient band classification for insurance coverage",
+  "format": "java.lang.String",
+  "searchable": true,
+  "unique": false,
+  "required": false,
+  "concept": null,
+  "foreign_key": null,
+  "value_reference": null,
+  "min_occurs": 0,
+  "max_occurs": 1
+}

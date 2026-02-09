@@ -1,0 +1,88 @@
+{
+  "rabbit_version": "3.13.0",
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "mgHqPz5LbJf5mWqk+V5zJf5mWqk+V5zJf5mWqk+V5z",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "policies": [],
+  "queues": [
+    {
+      "name": "openmrs.patient.registered",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "openmrs.encounter.created",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "openmrs.claim.status.updated",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "o3.events",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "o3.events",
+      "vhost": "/",
+      "destination": "openmrs.patient.registered",
+      "destination_type": "queue",
+      "routing_key": "openmrs.patient.registered",
+      "arguments": {}
+    },
+    {
+      "source": "o3.events",
+      "vhost": "/",
+      "destination": "openmrs.encounter.created",
+      "destination_type": "queue",
+      "routing_key": "openmrs.encounter.created",
+      "arguments": {}
+    },
+    {
+      "source": "o3.events",
+      "vhost": "/",
+      "destination": "openmrs.claim.status.updated",
+      "destination_type": "queue",
+      "routing_key": "openmrs.claim.status.updated",
+      "arguments": {}
+    }
+  ]
+}
