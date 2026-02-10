@@ -1,0 +1,28 @@
+<odoo>
+  <record id="tariff_a_facA_cons_opd" model="tariff.abc.facility">
+    <field name="service_code">CONS-OPD</field>
+    <field name="band">A</field>
+    <field name="facility_uuid">fac-a-uuid</field>
+    <field name="description">OPD Consult (Band A @ Facility-A)</field>
+    <field name="price_ngn">6000</field>
+    <field name="effective_date">2026-01-01</field>
+  </record>
+
+  <record id="tariff_b_facA_cons_opd" model="tariff.abc.facility">
+    <field name="service_code">CONS-OPD</field>
+    <field name="band">B</field>
+    <field name="facility_uuid">fac-a-uuid</field>
+    <field name="description">OPD Consult (Band B @ Facility-A)</field>
+    <field name="price_ngn">4500</field>
+    <field name="effective_date">2026-01-01</field>
+  </record>
+
+  <record id="tariff_c_facC_lab_fbc" model="tariff.abc.facility">
+    <field name="service_code">LAB-FBC</field>
+    <field name="band">C</field>
+    <field name="facility_uuid">fac-c-uuid</field>
+    <field name="description">FBC (Band C @ Facility-C)</field>
+    <field name="price_ngn">2500</field>
+    <field name="effective_date">2026-01-01</field>
+  </record>
+</odoo>

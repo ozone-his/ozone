@@ -1,0 +1,65 @@
+<odoo>
+  <record id="view_tariff_band_d_tree" model="ir.ui.view">
+    <field name="name">tariff.band.d.tree</field>
+    <field name="model">tariff.band.d</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="service_code"/>
+        <field name="description"/>
+        <field name="price_ngn"/>
+        <field name="effective_date"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_tariff_band_d_form" model="ir.ui.view">
+    <field name="name">tariff.band.d.form</field>
+    <field name="model">tariff.band.d</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="service_code"/>
+            <field name="description"/>
+            <field name="price_ngn"/>
+            <field name="effective_date"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_tariff_abc_facility_tree" model="ir.ui.view">
+    <field name="name">tariff.abc.facility.tree</field>
+    <field name="model">tariff.abc.facility</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="service_code"/>
+        <field name="band"/>
+        <field name="facility_uuid"/>
+        <field name="description"/>
+        <field name="price_ngn"/>
+        <field name="effective_date"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_tariff_abc_facility_form" model="ir.ui.view">
+    <field name="name">tariff.abc.facility.form</field>
+    <field name="model">tariff.abc.facility</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="service_code"/>
+            <field name="band"/>
+            <field name="facility_uuid"/>
+            <field name="description"/>
+            <field name="price_ngn"/>
+            <field name="effective_date"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

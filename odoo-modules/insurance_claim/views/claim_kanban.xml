@@ -1,0 +1,26 @@
+<odoo>
+  <record id="view_claim_kanban" model="ir.ui.view">
+    <field name="name">insurance.claim.kanban</field>
+    <field name="model">account.move</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="claim_status" class="o_kanban_mobile" create="false">
+        <field name="claim_id"/>
+        <field name="claim_status"/>
+        <field name="partner_id"/>
+        <field name="insurance_band"/>
+        <templates>
+          <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+              <div class="o_kanban_record_title">
+                <strong><t t-esc="record.claim_id.value or 'Pending'"/></strong>
+              </div>
+              <div>Patient: <t t-esc="record.partner_id.value"/></div>
+              <div>Band: <t t-esc="record.insurance_band.value"/></div>
+              <div>Status: <t t-esc="record.claim_status.value"/></div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+</odoo>

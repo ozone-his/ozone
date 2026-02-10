@@ -1,6 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_insurance_tariff_band_d,insurance.tariff.band.d,model_insurance_tariff_band_d,base.group_user,1,1,1,1
-access_insurance_tariff_abc_facility,insurance.tariff.abc.facility,model_insurance_tariff_abc_facility,base.group_user,1,1,1,1
-access_insurance_claim,insurance.claim,model_insurance_claim,base.group_user,1,1,1,1
-access_insurance_claim_item,insurance.claim.item,model_insurance_claim_item,base.group_user,1,1,1,1
-access_insurance_tariff_manager,insurance.tariff.manager,model_insurance_tariff_manager,base.group_user,1,1,1,1
+access_tariff_band_d,access_tariff_band_d,model_tariff_band_d,base.group_user,1,1,1,0
+access_tariff_abc_facility,access_tariff_abc_facility,model_tariff_abc_facility,base.group_user,1,1,1,0

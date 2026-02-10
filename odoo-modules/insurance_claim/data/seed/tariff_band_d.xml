@@ -1,0 +1,14 @@
+<odoo>
+  <record id="tariff_d_cons_opd" model="tariff.band.d">
+    <field name="service_code">CONS-OPD</field>
+    <field name="description">Outpatient Consultation</field>
+    <field name="price_ngn">3000</field>
+    <field name="effective_date">2026-01-01</field>
+  </record>
+  <record id="tariff_d_lab_fbc" model="tariff.band.d">
+    <field name="service_code">LAB-FBC</field>
+    <field name="description">Full Blood Count</field>
+    <field name="price_ngn">2000</field>
+    <field name="effective_date">2026-01-01</field>
+  </record>
+</odoo>
