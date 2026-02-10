@@ -1,0 +1,5 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+openimis:
+  baseUrl: http://localhost:8000

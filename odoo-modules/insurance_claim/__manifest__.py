@@ -15,6 +15,7 @@
     'website': 'https://ozone-his.com',
     'depends': ['base', 'account', 'sale', 'purchase'],
     'data': [
+        'security/ir.model.access.csv',
         'views/tariff_views.xml',
         'views/claim_views.xml',
         'views/menu.xml',
