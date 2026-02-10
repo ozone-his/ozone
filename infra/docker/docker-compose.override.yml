@@ -1,26 +1,114 @@
-version: '3.8'
+version: "3.9"
+
+x-healthcheck-rmq: &healthcheck_rmq
+  test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+  interval: 10s
+  timeout: 5s
+  retries: 10
+  start_period: 10s
+
+x-healthcheck-http: &healthcheck_http
+  test: ["CMD-SHELL", "curl -fsS http://localhost:${SERVICE_PORT:-8080}/actuator/health || exit 1"]
+  interval: 10s
+  timeout: 5s
+  retries: 15
+  start_period: 20s
 
 services:
+  # ---------------------------------------------------------------------------
+  # RabbitMQ (management UI on 15672; broker on 5672)
+  # ---------------------------------------------------------------------------
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:3.12-management
+    container_name: oznhmo-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+      # Load exchanges/queues/bindings from the mounted JSON file (optional but recommended)
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: >-
+        -rabbitmq_management load_definitions "/etc/rabbitmq/definitions.json"
     ports:
       - "5672:5672"
       - "15672:15672"
     volumes:
-      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
-    environment:
-      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: >
-        -rabbitmq_management load_definitions "/etc/rabbitmq/definitions.json"
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck: *healthcheck_rmq
+    networks:
+      - oznhmo
 
+  # ---------------------------------------------------------------------------
+  # openIMIS (placeholder local stack)
+  # For real deployments, replace with your organization’s openIMIS images/compose.
+  # ---------------------------------------------------------------------------
+  openimis-db:
+    image: postgres:14
+    container_name: oznhmo-openimis-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${OPENIMIS_DB_NAME:-openimis}
+      POSTGRES_USER: ${OPENIMIS_DB_USER:-openimis}
+      POSTGRES_PASSWORD: ${OPENIMIS_DB_PASSWORD:-openimis}
+    volumes:
+      - openimis-db:/var/lib/postgresql/data
+    networks:
+      - oznhmo
+
+  openimis:
+    image: openimis/openimis:latest
+    container_name: oznhmo-openimis
+    restart: unless-stopped
+    environment:
+      # Adjust these per your chosen openIMIS image/distribution
+      DATABASE_URL: postgres://${OPENIMIS_DB_USER:-openimis}:${OPENIMIS_DB_PASSWORD:-openimis}@openimis-db:5432/${OPENIMIS_DB_NAME:-openimis}
+      # Example: DJANGO_SETTINGS_MODULE, SECRET_KEY, etc., if your image requires them
+      # DJANGO_SETTINGS_MODULE: openIMIS.settings
+    ports:
+      - "8000:8000"                # host → container
+    depends_on:
+      - openimis-db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    networks:
+      - oznhmo
+
+  # ---------------------------------------------------------------------------
+  # IMIS-Connect (gateway: eligibility, claim submission, status tracking)
+  # ---------------------------------------------------------------------------
   imis-connect:
     build:
-      context: ../../
+      context: ../..                           # repo root (relative to this .yml)
       dockerfile: infra/docker/imis-connect.Dockerfile
+    container_name: oznhmo-imis-connect
+    restart: unless-stopped
     environment:
-      OPENIMIS_BASE_URL: http://openimis:8000
-      OPENIMIS_AUTH: "basic"
-      RABBITMQ_URI: amqp://guest:guest@rabbitmq:5672
-      FHIR_STRATEGY: "R4"
-    depends_on: [rabbitmq]
+      # openIMIS endpoint inside the compose network:
+      OPENIMIS_BASE_URL: ${OPENIMIS_BASE_URL:-http://openimis:8000}
+      # AMQP broker URI for RabbitMQ:
+      RABBITMQ_URI: ${RABBITMQ_URI:-amqp://${RABBITMQ_DEFAULT_USER:-guest}:${RABBITMQ_DEFAULT_PASS:-guest}@rabbitmq:5672}
+      # Service port (Spring Boot server.port)
+      SERVICE_PORT: ${SERVICE_PORT:-8080}
+      # Optional: auth strategy for openIMIS (basic|token), timeouts, etc.
+      OPENIMIS_AUTH: ${OPENIMIS_AUTH:-basic}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
-      - "8085:8080"
+      - "8085:8080"                            # host → container
+    depends_on:
+      - rabbitmq
+      - openimis
+    healthcheck: *healthcheck_http
+    networks:
+      - oznhmo
+
+networks:
+  oznhmo:
+    driver: bridge
+
+volumes:
+  rabbitmq-data:
+  openimis-db:

@@ -1,0 +1,50 @@
+{
+  "name": "@oznhmo/esm-insurance-app",
+  "version": "0.1.0",
+  "private": true,
+  "module": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "openmrs:serve",
+    "build": "openmrs:build"
+  },
+  "dependencies": {
+    "@openmrs/esm-framework": "^5.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "openmrs": {
+    "packageManager": "npm",
+    "translations": [],
+    "extensions": {
+      "patient-chart-extensions": [
+        {
+          "name": "oznhmo-patient-band-chip",
+          "slot": "patient-header-badges-slot",
+          "component": "PatientBandChip"
+        },
+        {
+          "name": "oznhmo-insurance-tab",
+          "slot": "patient-chart-dashboard-slot",
+          "component": "InsuranceTab",
+          "title": "Insurance",
+          "onlineOnly": true
+        }
+      ],
+      "registration-extensions": [
+        {
+          "name": "oznhmo-eligibility-panel",
+          "slot": "check-in-right-panel-slot",
+          "component": "EligibilityPanel"
+        }
+      ],
+      "order-entry-extensions": [
+        {
+          "name": "oznhmo-orders-price-hint",
+          "slot": "order-entry-item-info-slot",
+          "component": "OrdersPriceHint"
+        }
+      ]
+    }
+  }
+}

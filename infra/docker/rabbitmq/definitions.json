@@ -46,6 +46,13 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {}
+    },
+    {
+      "name": "imis-connect.insurance",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
     }
   ],
   "exchanges": [
@@ -82,6 +89,14 @@
       "destination": "openmrs.claim.status.updated",
       "destination_type": "queue",
       "routing_key": "openmrs.claim.status.updated",
+      "arguments": {}
+    },
+    {
+      "source": "o3.events",
+      "vhost": "/",
+      "destination": "imis-connect.insurance",
+      "destination_type": "queue",
+      "routing_key": "openmrs.*.*",
       "arguments": {}
     }
   ]
