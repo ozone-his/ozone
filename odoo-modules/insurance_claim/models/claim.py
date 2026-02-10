@@ -54,9 +54,9 @@ class InsuranceClaim(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code('insurance.claim') or 'New'
         return super(InsuranceClaim, self).create(vals)
     
-    @api.multi
     def submit_claim(self):
-        url = 'http://localhost:8085/api/v1/claims'
+        config_url = self.env['ir.config_parameter'].sudo().get_param('imis_connect.url', 'http://imis-connect:8080')
+        url = f"{config_url}/api/v1/claims"
         headers = {'Content-Type': 'application/json'}
         
         for claim in self:
@@ -69,14 +69,41 @@ class InsuranceClaim(models.Model):
                 claim.imis_claim_id = result.get('claimId')
                 claim.status = 'submitted'
                 
-                self.env.cr.commit()
-                
             except requests.exceptions.RequestException as e:
                 raise Warning(f"Error submitting claim: {str(e)}")
     
-    @api.multi
+    def check_eligibility(self):
+        config_url = self.env['ir.config_parameter'].sudo().get_param('imis_connect.url', 'http://imis-connect:8080')
+        url = f"{config_url}/api/v1/eligibility"
+        headers = {'Content-Type': 'application/json'}
+
+        for claim in self:
+            if not claim.insuree_id or not claim.facility_uuid:
+                raise Warning("Insuree ID and Facility UUID are required for eligibility check")
+
+            data = {
+                "insureeId": claim.insuree_id,
+                "facilityUuid": claim.facility_uuid
+            }
+
+            try:
+                response = requests.post(url, json=data, headers=headers)
+                response.raise_for_status()
+
+                result = response.json()
+                if result.get('valid'):
+                    claim.band = result.get('band')
+                    # Log eligibility check in chatter
+                    claim.message_post(body=f"Eligibility check: VALID. Band: {claim.band}. Plan: {result.get('plan')}")
+                else:
+                    claim.message_post(body="Eligibility check: INVALID")
+
+            except requests.exceptions.RequestException as e:
+                raise Warning(f"Error checking eligibility: {str(e)}")
+
     def get_claim_status(self):
-        url = 'http://localhost:8085/api/v1/claims/{claim_id}'
+        config_url = self.env['ir.config_parameter'].sudo().get_param('imis_connect.url', 'http://imis-connect:8080')
+        url = f"{config_url}/api/v1/claims/{{claim_id}}"
         headers = {'Content-Type': 'application/json'}
         
         for claim in self:
@@ -90,12 +117,9 @@ class InsuranceClaim(models.Model):
                 result = response.json()
                 claim.status = result.get('status', 'unknown')
                 
-                self.env.cr.commit()
-                
             except requests.exceptions.RequestException as e:
                 raise Warning(f"Error getting claim status: {str(e)}")
     
-    @api.multi
     def _prepare_claim_data(self):
         self.ensure_one()
         
@@ -189,3 +213,15 @@ class InsuranceClaimItem(models.Model):
     def _compute_amount(self):
         for item in self:
             item.amount = item.quantity * item.unit_price
+
+    @api.onchange('service_code')
+    def _onchange_service_code(self):
+        if self.service_code and self.claim_id:
+            tariff_manager = self.env['insurance.tariff.manager']
+            price = tariff_manager.get_price(
+                self.service_code,
+                self.claim_id.band,
+                self.claim_id.facility_uuid
+            )
+            if price:
+                self.unit_price = price

@@ -65,7 +65,6 @@ class InsuranceTariffManager(models.Model):
     _name = 'insurance.tariff.manager'
     _description = 'Insurance Tariff Manager'
     
-    @api.model
     def get_price(self, service_code, band, facility_uuid=None):
         if band == 'D':
             return self._get_band_d_price(service_code)
@@ -74,7 +73,6 @@ class InsuranceTariffManager(models.Model):
                 raise ValueError('Facility UUID is required for Bands A/B/C')
             return self._get_abc_facility_price(service_code, band, facility_uuid)
     
-    @api.model
     def _get_band_d_price(self, service_code):
         tariff = self.env['insurance.tariff.band.d'].search([
             ('service_code', '=', service_code),
@@ -83,7 +81,6 @@ class InsuranceTariffManager(models.Model):
         
         return tariff.price_ngn if tariff else 0.0
     
-    @api.model
     def _get_abc_facility_price(self, service_code, band, facility_uuid):
         tariff = self.env['insurance.tariff.abc.facility'].search([
             ('service_code', '=', service_code),

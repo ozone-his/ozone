@@ -21,6 +21,12 @@
         <field name="model">insurance.claim</field>
         <field name="arch" type="xml">
             <form string="Insurance Claim">
+                <header>
+                    <button name="check_eligibility" string="Check Eligibility" type="object" attrs="{'invisible': [('status', '!=', 'draft')]}"/>
+                    <button name="submit_claim" string="Submit Claim" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'draft')]}"/>
+                    <button name="get_claim_status" string="Get Status" type="object" attrs="{'invisible': [('status', '=', 'draft')]}"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,submitted,processed,approved,rejected"/>
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
@@ -29,13 +35,16 @@
                     </div>
                     
                     <group>
-                        <field name="patient_id"/>
-                        <field name="insuree_id"/>
-                        <field name="band"/>
-                        <field name="facility_uuid"/>
-                        <field name="status"/>
-                        <field name="imis_claim_id"/>
-                        <field name="total_amount" readonly="1"/>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="insuree_id"/>
+                            <field name="band"/>
+                            <field name="facility_uuid"/>
+                        </group>
+                        <group>
+                            <field name="imis_claim_id" readonly="1"/>
+                            <field name="total_amount" readonly="1"/>
+                        </group>
                     </group>
                     
                     <notebook>
