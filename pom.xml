@@ -46,6 +46,7 @@
     <module>distro</module>
     <module>maven-archetype</module>
     <module>samples</module>
+    <module>services/eip-hcwathome-openmrs-rabbitmq</module>
   </modules>
 
   <dependencies>

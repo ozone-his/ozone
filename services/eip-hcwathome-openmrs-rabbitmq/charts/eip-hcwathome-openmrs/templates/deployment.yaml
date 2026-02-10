@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "eip-hcwathome-openmrs.fullname" . }}
+  labels:
+    {{- include "eip-hcwathome-openmrs.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "eip-hcwathome-openmrs.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "eip-hcwathome-openmrs.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: RABBIT_HOST
+              value: "{{ .Values.rabbitmq.host }}"
+            - name: RABBIT_USER
+              value: "{{ .Values.rabbitmq.user }}"
+            - name: RABBIT_PASS
+              value: "{{ .Values.rabbitmq.pass }}"
+            - name: EIP_EXCHANGE_HCWATHOME
+              value: "{{ .Values.rabbitmq.exchange }}"
+            - name: EIP_QUEUE_HCWATHOME_IN
+              value: "{{ .Values.rabbitmq.queueIn }}"
+            - name: OPENMRS_DB_HOST
+              value: "{{ .Values.openmrs.dbHost }}"
+            - name: OPENMRS_DB_USER
+              value: "{{ .Values.openmrs.dbUser }}"
+            - name: OPENMRS_DB_PASS
+              value: "{{ .Values.openmrs.dbPass }}"
+            - name: OPENMRS_API_URL
+              value: "{{ .Values.openmrs.apiUrl }}"
+            - name: MGMT_DB_URL
+              value: "{{ .Values.mgmtDb.url }}"
+            - name: MGMT_DB_USER
+              value: "{{ .Values.mgmtDb.user }}"
+            - name: MGMT_DB_PASS
+              value: "{{ .Values.mgmtDb.pass }}"
+            - name: HCW_API_URL
+              value: "{{ .Values.hcwApi.url }}"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

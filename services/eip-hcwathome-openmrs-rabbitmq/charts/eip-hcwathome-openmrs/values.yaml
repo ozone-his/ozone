@@ -1,0 +1,37 @@
+image:
+  repository: ozone-his/eip-hcwathome-openmrs-rabbit
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+rabbitmq:
+  host: rabbitmq
+  user: ozone
+  pass: ozone
+  exchange: oz.eip.hcwathome.openmrs
+  queueIn: oz.eip.hcwathome.openmrs.in
+
+openmrs:
+  dbHost: openmrs-db
+  dbUser: openmrs
+  dbPass: Admin123
+  apiUrl: http://openmrs:8080/openmrs/ws/rest/v1
+
+mgmtDb:
+  url: jdbc:postgresql://eip-hcw-mgmt-db:5432/eip
+  user: eip
+  pass: eip
+
+hcwApi:
+  url: http://hcwathome:8080/api
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
