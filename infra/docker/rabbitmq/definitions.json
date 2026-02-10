@@ -53,11 +53,50 @@
       "durable": true,
       "auto_delete": false,
       "arguments": {}
+    },
+    {
+      "name": "oz.eip.hcwathome.openmrs.in",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "oz.eip.hcwathome.openmrs.out",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "oz.eip.hcwathome.openmrs.retry",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
     }
   ],
   "exchanges": [
     {
       "name": "o3.events",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "oz.eip.hcwathome.openmrs",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "oz.eip.hcwathome.openmrs.dlx",
       "vhost": "/",
       "type": "topic",
       "durable": true,
@@ -97,6 +136,22 @@
       "destination": "imis-connect.insurance",
       "destination_type": "queue",
       "routing_key": "openmrs.*.*",
+      "arguments": {}
+    },
+    {
+      "source": "oz.eip.hcwathome.openmrs",
+      "vhost": "/",
+      "destination": "oz.eip.hcwathome.openmrs.in",
+      "destination_type": "queue",
+      "routing_key": "hcwathome.events",
+      "arguments": {}
+    },
+    {
+      "source": "oz.eip.hcwathome.openmrs",
+      "vhost": "/",
+      "destination": "oz.eip.hcwathome.openmrs.out",
+      "destination_type": "queue",
+      "routing_key": "openmrs.events",
       "arguments": {}
     }
   ]
