@@ -165,6 +165,43 @@ services:
     networks:
       - oznhmo
 
+  # ---------------------------------------------------------------------------
+  # Business Intelligence: Apache Superset (Analytics & Dashboards)
+  # ---------------------------------------------------------------------------
+  superset-db:
+    image: postgres:15
+    container_name: oznhmo-superset-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${SUPERSET_DB_NAME:-superset}
+      POSTGRES_USER: ${SUPERSET_DB_USER:-superset}
+      POSTGRES_PASSWORD: ${SUPERSET_DB_PASSWORD:-superset}
+    volumes:
+      - superset-db:/var/lib/postgresql/data
+    networks:
+      - oznhmo
+
+  superset:
+    image: apache/superset:latest
+    container_name: oznhmo-superset
+    restart: unless-stopped
+    environment:
+      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY:-this_is_a_secret_key_change_in_production}
+      - SUPERSET_DATABASE_URI=postgresql://${SUPERSET_DB_USER:-superset}:${SUPERSET_DB_PASSWORD:-superset}@superset-db:5432/${SUPERSET_DB_NAME:-superset}
+      - SUPERSET_LOAD_EXAMPLES=${SUPERSET_LOAD_EXAMPLES:-no}
+    ports:
+      - "8088:8088"
+    depends_on:
+      - superset-db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8088/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    networks:
+      - oznhmo
+
 networks:
   oznhmo:
     driver: bridge
@@ -174,3 +211,4 @@ volumes:
   openimis-db:
   eip-hcw-mgmt-data:
   eip-hcw-data:
+  superset-db:
