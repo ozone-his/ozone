@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="openmrs-procedure-to-odoo-invoice">
+        <!-- 1. Listen for Procedure Orders from OpenMRS -->
+        <from uri="openmrs-eip:obs?table=orders&amp;order_type=52a447d3-a64a-11e3-9a5a-0800200c9a66"/>
+
+        <log message="Processing Procedure Order for Patient: ${body.patientUuid}"/>
+
+        <!-- 2. Enrich: Get Odoo Partner ID and Product Mapping -->
+        <enrich uri="direct:get-odoo-partner-id"/>
+        <enrich uri="direct:get-odoo-product-by-concept"/>
+
+        <!-- 3. Prepare Odoo Invoice JSON -->
+        <setProperty name="odoo-invoice">
+            <language>simple</language>
+            {
+                "partner_id": "${header.odooPartnerId}",
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    [0, 0, {
+                        "product_id": "${header.odooProductId}",
+                        "name": "${body.conceptName}",
+                        "quantity": 1
+                    }]
+                ],
+                "company_id": "${header.hospitalCompanyId}"
+            }
+        </setProperty>
+
+        <setBody>
+            <simple>${exchangeProperty.odoo-invoice}</simple>
+        </setBody>
+
+        <!-- 4. Post to Odoo -->
+        <to uri="odoo:account.move?method=create"/>
+        <log message="Draft Invoice created in Odoo for Procedure: ${body.conceptName}"/>
+    </route>
+</routes>

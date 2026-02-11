@@ -1,0 +1,2 @@
+Name,Description,Java class name,Parent,Uuid
+Procedure Order,Order type for procedures,org.openmrs.Order,,52a447d3-a64a-11e3-9a5a-0800200c9a66

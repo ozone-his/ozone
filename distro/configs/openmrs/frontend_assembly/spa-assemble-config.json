@@ -1,0 +1,7 @@
+{
+  "frontendModules": {
+    "@openmrs/esm-patient-chart-app": "latest",
+    "@kenyaemr/esm-procedure-orders-app": "latest",
+    "@kenyaemr/esm-procedure-app": "latest"
+  }
+}
