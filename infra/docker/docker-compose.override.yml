@@ -106,6 +106,50 @@ services:
       - oznhmo
 
   # ---------------------------------------------------------------------------
+  # HCW@Home (Healthcare Workers at Home platform)
+  # ---------------------------------------------------------------------------
+  hcwathome:
+    image: ozone-his/hcwathome:latest
+    container_name: oznhmo-hcwathome
+    restart: unless-stopped
+    ports:
+      - "8089:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_HOST: hcwathome-db
+      DB_NAME: hcwathome
+      DB_USER: hcwathome
+      DB_PASS: hcwathome
+      RABBIT_HOST: rabbitmq
+      RABBIT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBIT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+      OPENMRS_API_URL: http://openmrs:8080/openmrs/ws/rest/v1
+    depends_on:
+      - hcwathome-db
+      - rabbitmq
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    networks:
+      - oznhmo
+
+  hcwathome-db:
+    image: postgres:15
+    container_name: oznhmo-hcwathome-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hcwathome
+      POSTGRES_USER: hcwathome
+      POSTGRES_PASSWORD: hcwathome
+    volumes:
+      - hcwathome-db:/var/lib/postgresql/data
+    networks:
+      - oznhmo
+
+  # ---------------------------------------------------------------------------
   # EIP-hcwathome-openmrs (Camel integration: OpenMRS ↔ RabbitMQ ↔ HCW@Home)
   # ---------------------------------------------------------------------------
   eip-hcwathome-openmrs:
@@ -129,6 +173,7 @@ services:
       MGMT_DB_PASS: eip
     depends_on:
       - rabbitmq
+      - hcwathome
     volumes:
       - eip-hcw-data:/var/lib/eip
     networks:
@@ -212,3 +257,4 @@ volumes:
   eip-hcw-mgmt-data:
   eip-hcw-data:
   superset-db:
+  hcwathome-db:
