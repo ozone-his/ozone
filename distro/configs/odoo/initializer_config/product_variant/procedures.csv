@@ -1,0 +1,2 @@
+id,name,categ_id/id,type,invoice_policy,lst_price,standard_price,default_code
+init.3b46864d-7f4c-4740-9856-4c7403487f4c,Minor Surgery,init.categ_services_procedure_orders,service,Ordered quantities,100.0,80.0,3b46864d-7f4c-4740-9856-4c7403487f4c

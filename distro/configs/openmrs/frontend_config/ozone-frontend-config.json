@@ -18,5 +18,27 @@
         "redirect": "${SUPERSET_PUBLIC_URL}"
       }
     ]
+  },
+  "@openmrs/esm-patient-chart-app": {
+    "extensions": [
+      {
+        "id": "procedure-orders-tab",
+        "slot": "patient-chart-dashboard-slot",
+        "component": "ProcedureOrdersTab",
+        "online": true,
+        "config": {
+          "title": "Procedures"
+        }
+      },
+      {
+        "id": "procedure-app-tab",
+        "slot": "patient-chart-dashboard-slot",
+        "component": "ProcedureApp",
+        "online": true,
+        "config": {
+          "title": "Procedure Form"
+        }
+      }
+    ]
   }
 }
