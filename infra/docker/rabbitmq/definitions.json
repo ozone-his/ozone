@@ -31,7 +31,9 @@
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
-      "arguments": {}
+      "arguments": {
+        "x-dead-letter-exchange": "oz.eip.hcwathome.openmrs.dlx"
+      }
     },
     {
       "name": "openmrs.encounter.created",
@@ -73,7 +75,10 @@
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
-      "arguments": {}
+      "arguments": {
+        "x-dead-letter-exchange": "oz.eip.hcwathome.openmrs",
+        "x-message-ttl": 30000
+      }
     }
   ],
   "exchanges": [
@@ -152,6 +157,14 @@
       "destination": "oz.eip.hcwathome.openmrs.out",
       "destination_type": "queue",
       "routing_key": "openmrs.events",
+      "arguments": {}
+    },
+    {
+      "source": "oz.eip.hcwathome.openmrs.dlx",
+      "vhost": "/",
+      "destination": "oz.eip.hcwathome.openmrs.retry",
+      "destination_type": "queue",
+      "routing_key": "hcwathome.events",
       "arguments": {}
     }
   ]

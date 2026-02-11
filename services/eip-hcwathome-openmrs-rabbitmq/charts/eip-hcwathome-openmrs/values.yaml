@@ -15,6 +15,8 @@ openmrs:
   dbUser: openmrs
   dbPass: Admin123
   apiUrl: http://openmrs:8080/openmrs/ws/rest/v1
+  apiUsername: admin
+  apiPassword: Admin123
 
 mgmtDb:
   url: jdbc:postgresql://eip-hcw-mgmt-db:5432/eip

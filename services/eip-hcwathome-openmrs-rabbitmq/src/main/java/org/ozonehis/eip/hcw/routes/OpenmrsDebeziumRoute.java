@@ -8,6 +8,10 @@ public class OpenmrsDebeziumRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+        errorHandler(defaultErrorHandler()
+                .maximumRedeliveries(5)
+                .redeliveryDelay(10000));
+
         from("debezium-mysql:{{openmrs.db.host}}?" +
                 "databaseHostname={{openmrs.db.host}}&" +
                 "databasePort={{openmrs.db.port}}&" +

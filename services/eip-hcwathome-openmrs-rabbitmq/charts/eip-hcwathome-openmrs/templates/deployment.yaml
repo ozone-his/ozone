@@ -37,6 +37,10 @@ spec:
               value: "{{ .Values.openmrs.dbPass }}"
             - name: OPENMRS_API_URL
               value: "{{ .Values.openmrs.apiUrl }}"
+            - name: OPENMRS_API_USERNAME
+              value: "{{ .Values.openmrs.apiUsername }}"
+            - name: OPENMRS_API_PASSWORD
+              value: "{{ .Values.openmrs.apiPassword }}"
             - name: MGMT_DB_URL
               value: "{{ .Values.mgmtDb.url }}"
             - name: MGMT_DB_USER

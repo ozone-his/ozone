@@ -12,9 +12,14 @@ public class OpenmrsToHCWTransformer implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
         // Basic mapping: OpenMRS Debezium event to HCW@Home format
-        // In a real scenario, this would involve mapping Debezium's complex JSON to HCW@Home's API format
         log.info("Transforming OpenMRS event to HCW@Home format");
+
+        // Example: Extracting patient info from Debezium payload
+        // In Ozone, we might look for specific encounter types (e.g., Teleconsultation)
+        // String ENCOUNTER_TYPE_TELECONSULTATION = "d7151dce-416b-4395-9762-817a783788a8";
+
         Object body = exchange.getIn().getBody();
+        // Transformation logic goes here
         exchange.getIn().setBody(body);
     }
 }

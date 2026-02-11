@@ -123,6 +123,8 @@ services:
       OPENMRS_DB_USER: openmrs
       OPENMRS_DB_PASS: Admin123
       OPENMRS_API_URL: http://openmrs:8080/openmrs/ws/rest/v1
+      OPENMRS_API_USERNAME: ${OPENMRS_API_USERNAME:-admin}
+      OPENMRS_API_PASSWORD: ${OPENMRS_API_PASSWORD:-Admin123}
       HCW_API_URL: http://hcwathome:8080/api
       MGMT_DB_URL: jdbc:postgresql://eip-hcwathome-mgmt-db:5432/eip
       MGMT_DB_USER: eip
