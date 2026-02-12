@@ -355,7 +355,6 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>${project.build.directory}/distro-emr-configuration</outputDirectory>
               <includeArtifactIds>distro-emr-configuration</includeArtifactIds>
-              <excludes>**/referenceapplication-demo/openmrs_BasicDrugs_v4_autoexpand*</excludes>
             </configuration>
           </execution>
           <execution>
@@ -618,6 +617,8 @@
                   <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
+                    <exclude>**/drugs-core_demo*</exclude>
+                    <excludes>**/referenceapplication-demo/drugs_concepts-core_demo.csv</excludes>
                   </excludes>
                 </resource>
               </resources>
