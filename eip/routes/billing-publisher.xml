@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="billing-visit-publisher">
+        <from uri="openmrs-eip:obs?table=visit"/>
+        <log message="Publishing Visit to RabbitMQ: ${body.uuid}"/>
+        <marshal><json/></marshal>
+        <to uri="spring-rabbitmq:{{eip.exchange.billing}}?routingKey=visit.created"/>
+    </route>
+
+    <route id="billing-order-publisher">
+        <from uri="openmrs-eip:obs?table=orders&amp;order_type=52a447d3-a64a-11e3-9a5a-0800200c9a66"/>
+        <log message="Publishing Procedure Order to RabbitMQ: ${body.uuid}"/>
+        <marshal><json/></marshal>
+        <to uri="spring-rabbitmq:{{eip.exchange.billing}}?routingKey=order.created"/>
+    </route>
+</routes>

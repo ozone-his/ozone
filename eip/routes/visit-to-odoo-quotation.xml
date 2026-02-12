@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://camel.apache.org/schema/spring">
     <route id="openmrs-visit-to-odoo-quotation">
-        <!-- 1. Listen for New Visits in OpenMRS -->
-        <from uri="openmrs-eip:obs?table=visit"/>
+        <!-- 1. Listen for New Visits from RabbitMQ -->
+        <from uri="spring-rabbitmq:{{eip.exchange.billing}}?queues=billing.visit.queue&amp;routingKey=visit.created"/>
+        <unmarshal><json/></unmarshal>
 
-        <log message="New Visit started: ${body.visitType} for Patient: ${body.patientUuid}"/>
+        <log message="New Visit event received from RabbitMQ: ${body.visitType} for Patient: ${body.patientUuid}"/>
 
-        <!-- Store Visit UUID -->
+        <!-- Store Visit UUID and Location for mapping -->
         <setProperty name="visitUuid">
             <simple>${body.uuid}</simple>
         </setProperty>
         <setProperty name="visitType">
             <simple>${body.visitType}</simple>
         </setProperty>
+        <setHeader name="locationUuid">
+            <simple>${body.locationUuid}</simple>
+        </setHeader>
 
         <!-- 2. Fetch Odoo Partner and Hospital Company Context -->
         <enrich uri="direct:get-odoo-partner-id"/>

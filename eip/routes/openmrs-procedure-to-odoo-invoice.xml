@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes xmlns="http://camel.apache.org/schema/spring">
     <route id="openmrs-procedure-to-odoo-invoice">
-        <!-- 1. Listen for Procedure Orders from OpenMRS -->
-        <from uri="openmrs-eip:obs?table=orders&amp;order_type=52a447d3-a64a-11e3-9a5a-0800200c9a66"/>
+        <!-- 1. Listen for Procedure Orders from RabbitMQ -->
+        <from uri="spring-rabbitmq:{{eip.exchange.billing}}?queues=billing.order.queue&amp;routingKey=order.created"/>
+        <unmarshal><json/></unmarshal>
 
-        <log message="Processing Procedure Order: ${body.uuid}"/>
+        <log message="Processing Procedure Order from RabbitMQ: ${body.uuid}"/>
 
         <!-- Save original body properties -->
         <setProperty name="orderUuid"><simple>${body.uuid}</simple></setProperty>
@@ -12,8 +13,6 @@
         <setProperty name="conceptName"><simple>${body.conceptName}</simple></setProperty>
 
         <!-- 2. Get the Odoo Quotation ID from Visit Attribute -->
-        <!-- In many EIP configurations, the body already contains visitUuid if it's a visit-aware event -->
-        <!-- If not, we fetch it via REST -->
         <choice>
             <when>
                 <simple>${body.visitUuid} != null</simple>
