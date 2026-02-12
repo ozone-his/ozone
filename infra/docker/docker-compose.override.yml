@@ -171,9 +171,15 @@ services:
       MGMT_DB_URL: jdbc:postgresql://eip-hcwathome-mgmt-db:5432/eip
       MGMT_DB_USER: eip
       MGMT_DB_PASS: eip
+      KEYCLOAK_URL: http://keycloak:8080
+      KEYCLOAK_INTERNAL_HOST_URL: http://keycloak:8080
+      KEYCLOAK_REALM: ozone
+      KEYCLOAK_CLIENT_ID: eip
+      KEYCLOAK_CLIENT_SECRET: ${KEYCLOAK_CLIENT_SECRET:-}
     depends_on:
       - rabbitmq
       - hcwathome
+      - keycloak
     volumes:
       - eip-hcw-data:/var/lib/eip
     networks:
