@@ -74,4 +74,28 @@
             <jsonpath>$.[0]</jsonpath>
         </setHeader>
     </route>
+
+    <!-- Resolve Hospital Company ID via Java Service -->
+    <route id="direct-resolve-hospital-company">
+        <from uri="direct:resolve-hospital-company"/>
+        <bean ref="odooMappingService" method="resolveHospitalCompany"/>
+        <setHeader name="hospitalCompanyId">
+            <simple>${body}</simple>
+        </setHeader>
+    </route>
+
+    <!-- Resolve Consultation Product ID via Java Service -->
+    <route id="direct-get-consultation-product">
+        <from uri="direct:get-consultation-product"/>
+        <bean ref="odooMappingService" method="getConsultationProduct"/>
+        <setHeader name="consultationProductId">
+            <simple>${body}</simple>
+        </setHeader>
+
+        <!-- Search for Odoo Integer ID -->
+        <toD uri="odoo:product.product?method=search&amp;domain=[('default_code','=','${header.consultationProductId}')]"/>
+        <setHeader name="consultationProductId">
+            <jsonpath>$.[0]</jsonpath>
+        </setHeader>
+    </route>
 </routes>

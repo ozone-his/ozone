@@ -4,35 +4,71 @@
         <!-- 1. Listen for Procedure Orders from OpenMRS -->
         <from uri="openmrs-eip:obs?table=orders&amp;order_type=52a447d3-a64a-11e3-9a5a-0800200c9a66"/>
 
-        <log message="Processing Procedure Order for Patient: ${body.patientUuid}"/>
+        <log message="Processing Procedure Order: ${body.uuid}"/>
 
-        <!-- 2. Enrich: Get Odoo Partner ID and Product Mapping -->
-        <enrich uri="direct:get-odoo-partner-id"/>
-        <enrich uri="direct:get-odoo-product-by-concept"/>
+        <!-- Save original body properties -->
+        <setProperty name="orderUuid"><simple>${body.uuid}</simple></setProperty>
+        <setProperty name="conceptUuid"><simple>${body.conceptUuid}</simple></setProperty>
+        <setProperty name="conceptName"><simple>${body.conceptName}</simple></setProperty>
 
-        <!-- 3. Prepare Odoo Invoice JSON -->
-        <setProperty name="odoo-invoice">
-            <language>simple</language>
-            {
-                "partner_id": "${header.odooPartnerId}",
-                "move_type": "out_invoice",
-                "invoice_line_ids": [
-                    [0, 0, {
-                        "product_id": "${header.odooProductId}",
-                        "name": "${body.conceptName}",
-                        "quantity": 1
-                    }]
-                ],
-                "company_id": "${header.hospitalCompanyId}"
-            }
-        </setProperty>
+        <!-- 2. Get the Odoo Quotation ID from Visit Attribute -->
+        <!-- In many EIP configurations, the body already contains visitUuid if it's a visit-aware event -->
+        <!-- If not, we fetch it via REST -->
+        <choice>
+            <when>
+                <simple>${body.visitUuid} != null</simple>
+                <setProperty name="visitUuid"><simple>${body.visitUuid}</simple></setProperty>
+            </when>
+            <otherwise>
+                <toD uri="{{openmrs.baseUrl}}/order/${exchangeProperty.orderUuid}?authMethod=Basic&amp;authUsername={{openmrs.username}}&amp;authPassword={{openmrs.password}}"/>
+                <setProperty name="encounterUuid"><jsonpath>$.encounter.uuid</jsonpath></setProperty>
+                <toD uri="{{openmrs.baseUrl}}/encounter/${exchangeProperty.encounterUuid}?authMethod=Basic&amp;authUsername={{openmrs.username}}&amp;authPassword={{openmrs.password}}"/>
+                <setProperty name="visitUuid"><jsonpath>$.visit.uuid</jsonpath></setProperty>
+            </otherwise>
+        </choice>
 
-        <setBody>
-            <simple>${exchangeProperty.odoo-invoice}</simple>
-        </setBody>
+        <toD uri="{{openmrs.baseUrl}}/visit/${exchangeProperty.visitUuid}?authMethod=Basic&amp;authUsername={{openmrs.username}}&amp;authPassword={{openmrs.password}}"/>
 
-        <!-- 4. Post to Odoo -->
-        <to uri="odoo:account.move?method=create"/>
-        <log message="Draft Invoice created in Odoo for Procedure: ${body.conceptName}"/>
+        <!-- Filter attributes to find Odoo Quotation ID -->
+        <setHeader name="odooOrderId">
+            <jsonpath>$.attributes[?(@.attributeType.uuid == '8d34346a-728b-4b1f-9975-d1421257199c')].value</jsonpath>
+        </setHeader>
+
+        <!-- Use the first match if it's an array -->
+        <choice>
+            <when>
+                <simple>${header.odooOrderId} != null</simple>
+
+                <!-- 3. Resolve Odoo Product ID -->
+                <setBody>
+                    <simple>{"conceptUuid": "${exchangeProperty.conceptUuid}"}</simple>
+                </setBody>
+                <enrich uri="direct:get-odoo-product-by-concept"/>
+
+                <!-- 4. Update Odoo Sale Order -->
+                <setProperty name="odoo-order-update">
+                    <language>simple</language>
+                    {
+                        "order_line": [
+                            [0, 0, {
+                                "product_id": ${header.odooProductId},
+                                "name": "${exchangeProperty.conceptName}",
+                                "product_uom_qty": 1
+                            }]
+                        ]
+                    }
+                </setProperty>
+
+                <setBody>
+                    <simple>${exchangeProperty.odoo-order-update}</simple>
+                </setBody>
+
+                <toD uri="odoo:sale.order?method=write&amp;ids=${header.odooOrderId}"/>
+                <log message="Procedure ${exchangeProperty.conceptName} appended to Odoo Quotation ${header.odooOrderId} for Visit ${exchangeProperty.visitUuid}"/>
+            </when>
+            <otherwise>
+                <log message="No Odoo Quotation found for Visit ${exchangeProperty.visitUuid}. Procedure order ${exchangeProperty.orderUuid} not billed."/>
+            </otherwise>
+        </choice>
     </route>
 </routes>
