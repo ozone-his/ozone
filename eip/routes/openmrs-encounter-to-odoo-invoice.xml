@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="openmrs-encounter-to-odoo-invoice">
+        <!-- 1. Listen for New Encounters (Visits) from OpenMRS EIP -->
+        <from uri="openmrs-eip:obs?table=encounter"/>
+
+        <log message="Encounter event detected: ${body.uuid} Type: ${body.encounterType}"/>
+
+        <!-- 2. Check for existing invoice to ensure idempotency -->
+        <setProperty name="openmrsEncounterUuid">
+            <simple>${body.uuid}</simple>
+        </setProperty>
+
+        <!-- Search for existing invoice in Odoo -->
+        <toD uri="odoo:account.move?method=search&amp;domain=[('x_openmrs_encounter_uuid','=','${exchangeProperty.openmrsEncounterUuid}')]"/>
+        <setHeader name="odooInvoiceId">
+            <jsonpath>$.[0]</jsonpath>
+        </setHeader>
+
+        <choice>
+            <when>
+                <simple>${header.odooInvoiceId} == null</simple>
+
+                <!-- 3. Logic: Get Odoo Partner and Map Encounter Type to Product -->
+                <enrich uri="direct:get-odoo-partner-id"/>
+                <enrich uri="direct:map-encounter-type-to-product"/>
+
+                <!-- 4. Create Odoo Invoice JSON -->
+                <setProperty name="odooInvoiceJson">
+                    <language>simple</language>
+                    {
+                        "partner_id": ${header.odooPartnerId},
+                        "move_type": "out_invoice",
+                        "invoice_line_ids": [
+                            [0, 0, {
+                                "product_id": ${header.odooProductId},
+                                "name": "Consultation Fee - ${body.encounterType}",
+                                "quantity": 1
+                            }]
+                        ],
+                        "company_id": ${header.hospitalCompanyId},
+                        "x_openmrs_encounter_uuid": "${exchangeProperty.openmrsEncounterUuid}"
+                    }
+                </setProperty>
+
+                <setBody>
+                    <simple>${exchangeProperty.odooInvoiceJson}</simple>
+                </setBody>
+
+                <to uri="odoo:account.move?method=create"/>
+                <log message="Draft Invoice created in Odoo for Encounter: ${exchangeProperty.openmrsEncounterUuid}"/>
+            </when>
+            <otherwise>
+                <log message="Invoice already exists (ID: ${header.odooInvoiceId}) for Encounter: ${exchangeProperty.openmrsEncounterUuid}. Skipping creation."/>
+            </otherwise>
+        </choice>
+    </route>
+</routes>

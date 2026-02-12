@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <!-- Map OpenMRS Patient to Odoo Partner -->
+    <route id="get-odoo-partner-id">
+        <from uri="direct:get-odoo-partner-id"/>
+        <log message="Looking up Odoo Partner for Patient: ${body.patientUuid}"/>
+
+        <!-- Search for partner by 'ref' which stores the OpenMRS Patient UUID -->
+        <toD uri="odoo:res.partner?method=search&amp;domain=[('ref','=','${body.patientUuid}')]"/>
+
+        <setHeader name="odooPartnerId">
+            <jsonpath>$.[0]</jsonpath>
+        </setHeader>
+
+        <choice>
+            <when>
+                <simple>${header.odooPartnerId} == null</simple>
+                <log message="Partner not found for Patient: ${body.patientUuid}. Using fallback Partner ID 1."/>
+                <setHeader name="odooPartnerId">
+                    <constant>1</constant>
+                </setHeader>
+            </when>
+        </choice>
+
+        <setHeader name="hospitalCompanyId">
+            <constant>1</constant>
+        </setHeader>
+    </route>
+
+    <!-- Map Encounter Type to Odoo Product -->
+    <route id="map-encounter-type-to-product">
+        <from uri="direct:map-encounter-type-to-product"/>
+        <choice>
+            <when>
+                <simple>${body.encounterType} =~ '.*Consultation.*'</simple>
+                <setHeader name="productCode">
+                    <constant>CONS-OPD</constant>
+                </setHeader>
+            </when>
+            <when>
+                <simple>${body.encounterType} =~ '.*Admission.*'</simple>
+                <setHeader name="productCode">
+                    <constant>CONS-IPD</constant>
+                </setHeader>
+            </when>
+            <otherwise>
+                <setHeader name="productCode">
+                    <constant>CONS-OPD</constant>
+                </setHeader>
+            </otherwise>
+        </choice>
+
+        <!-- Resolve product code to Odoo integer ID -->
+        <toD uri="odoo:product.product?method=search&amp;domain=[('default_code','=','${header.productCode}')]"/>
+        <setHeader name="odooProductId">
+            <jsonpath>$.[0]</jsonpath>
+        </setHeader>
+
+        <choice>
+            <when>
+                <simple>${header.odooProductId} == null</simple>
+                <log message="Product not found for code: ${header.productCode}. Using fallback product lookup."/>
+                <!-- Try to search by name as a last resort or use a known ID -->
+            </when>
+        </choice>
+    </route>
+
+    <!-- Map Concept to Odoo Product (used by procedure route) -->
+    <route id="get-odoo-product-by-concept">
+        <from uri="direct:get-odoo-product-by-concept"/>
+        <!-- Lookup Odoo Product ID by its default_code (Concept UUID) -->
+        <toD uri="odoo:product.product?method=search&amp;domain=[('default_code','=','${body.conceptUuid}')]"/>
+        <setHeader name="odooProductId">
+            <jsonpath>$.[0]</jsonpath>
+        </setHeader>
+    </route>
+</routes>
