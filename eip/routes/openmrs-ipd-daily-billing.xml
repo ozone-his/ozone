@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="openmrs-ipd-daily-billing">
+        <!-- Run at midnight every day -->
+        <from uri="quartz://ipdDailyBilling?cron=0+0+0+*+*+?"/>
+
+        <log message="Starting Daily IPD Billing Job"/>
+
+        <!-- Query for active IPD encounters (Admitted but not yet discharged) -->
+        <toD uri="sql:SELECT uuid FROM encounter WHERE encounter_type = (SELECT encounter_type_id FROM encounter_type WHERE name = 'Admission') AND voided = 0 AND date_stopped IS NULL?dataSource=#openmrsDataSource"/>
+
+        <split>
+            <simple>${body}</simple>
+            <setProperty name="openmrsEncounterUuid">
+                <simple>${body['uuid']}</simple>
+            </setProperty>
+
+            <log message="Checking Daily Bed Charge for Encounter: ${exchangeProperty.openmrsEncounterUuid}"/>
+
+            <!-- Search for corresponding Odoo Invoice -->
+            <toD uri="odoo:account.move?method=search&amp;domain=[('x_openmrs_encounter_uuid','=','${exchangeProperty.openmrsEncounterUuid}')]"/>
+            <setHeader name="odooInvoiceId">
+                <jsonpath>$.[0]</jsonpath>
+            </setHeader>
+
+            <choice>
+                <when>
+                    <simple>${header.odooInvoiceId} != null</simple>
+
+                    <!-- Check for existing bed charge for today to ensure idempotency -->
+                    <setProperty name="todayDate">
+                        <simple>${date:now:yyyy-MM-dd}</simple>
+                    </setProperty>
+                    <toD uri="odoo:account.move.line?method=search&amp;domain=[('move_id','=',${header.odooInvoiceId}),('product_id.default_code','=','BED-DAILY'),('name','like','%${exchangeProperty.todayDate}%')]"/>
+                    <setHeader name="existingChargeId">
+                        <jsonpath>$.[0]</jsonpath>
+                    </setHeader>
+
+                    <choice>
+                        <when>
+                            <simple>${header.existingChargeId} == null</simple>
+                            <setProperty name="odooInvoiceLine">
+                                <language>simple</language>
+                                {
+                                    "product_id": "init.BED-DAILY",
+                                    "name": "Daily Bed Charge - ${exchangeProperty.todayDate}",
+                                    "quantity": 1,
+                                    "move_id": ${header.odooInvoiceId}
+                                }
+                            </setProperty>
+
+                            <!-- Resolve product ID to integer -->
+                            <enrich uri="direct:resolve-product-id-to-int"/>
+
+                            <setProperty name="odooInvoiceLine">
+                                <language>simple</language>
+                                {
+                                    "product_id": ${header.odooProductIntId},
+                                    "name": "Daily Bed Charge - ${exchangeProperty.todayDate}",
+                                    "quantity": 1,
+                                    "move_id": ${header.odooInvoiceId}
+                                }
+                            </setProperty>
+
+                            <setBody>
+                                <simple>${exchangeProperty.odooInvoiceLine}</simple>
+                            </setBody>
+
+                            <to uri="odoo:account.move.line?method=create"/>
+                            <log message="Bed charge added to Odoo Invoice ${header.odooInvoiceId} for Encounter ${exchangeProperty.openmrsEncounterUuid}"/>
+                        </when>
+                        <otherwise>
+                            <log message="Bed charge already exists for today (${exchangeProperty.todayDate}) on Invoice ${header.odooInvoiceId}. Skipping."/>
+                        </otherwise>
+                    </choice>
+                </when>
+                <otherwise>
+                    <log message="No Odoo Invoice found for Encounter: ${exchangeProperty.openmrsEncounterUuid}. Skipping daily charge."/>
+                </otherwise>
+            </choice>
+        </split>
+
+        <log message="Daily IPD Billing Job completed"/>
+    </route>
+
+    <route id="resolve-product-id-to-int">
+        <from uri="direct:resolve-product-id-to-int"/>
+        <toD uri="odoo:product.product?method=search&amp;domain=[('default_code','=','BED-DAILY')]"/>
+        <setHeader name="odooProductIntId">
+            <jsonpath>$.[0]</jsonpath>
+        </setHeader>
+    </route>
+</routes>

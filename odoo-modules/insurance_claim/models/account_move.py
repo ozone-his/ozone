@@ -8,6 +8,7 @@ class AccountMove(models.Model):
     insurance_plan = fields.Char(readonly=True)
     insurance_band = fields.Selection([("A","A"),("B","B"),("C","C"),("D","D")], readonly=True)
     facility_uuid = fields.Char(readonly=False)
+    x_openmrs_encounter_uuid = fields.Char(string="OpenMRS Encounter UUID", readonly=True)
     claim_id = fields.Char(readonly=True)
     claim_status = fields.Selection([
         ("entered","Entered"),("checked","Checked"),("processed","Processed"),("valuated","Valuated"),("rejected","Rejected")

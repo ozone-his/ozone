@@ -1,0 +1,4 @@
+id,name,categ_id/id,type,invoice_policy,lst_price,standard_price,default_code
+init.CONS-OPD,General Consultation fee,init.categ_services_procedure_orders,service,Ordered quantities,3000.0,2000.0,CONS-OPD
+init.CONS-IPD,IPD Admission Fees,init.categ_services_procedure_orders,service,Ordered quantities,15000.0,10000.0,CONS-IPD
+init.BED-DAILY,Daily Bed Charge,init.categ_services_procedure_orders,service,Ordered quantities,5000.0,3000.0,BED-DAILY
