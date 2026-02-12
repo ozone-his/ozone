@@ -1,0 +1,2 @@
+Name,Description,Datatype,Min occurs,Max occurs,Uuid
+Odoo Quotation ID,The ID of the Odoo Sale Order linked to this visit,org.openmrs.customdatatype.datatype.FreeTextDatatype,0,1,8d34346a-728b-4b1f-9975-d1421257199c

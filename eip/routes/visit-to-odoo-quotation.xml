@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="openmrs-visit-to-odoo-quotation">
+        <!-- 1. Listen for New Visits in OpenMRS -->
+        <from uri="openmrs-eip:obs?table=visit"/>
+
+        <log message="New Visit started: ${body.visitType} for Patient: ${body.patientUuid}"/>
+
+        <!-- Store Visit UUID -->
+        <setProperty name="visitUuid">
+            <simple>${body.uuid}</simple>
+        </setProperty>
+        <setProperty name="visitType">
+            <simple>${body.visitType}</simple>
+        </setProperty>
+
+        <!-- 2. Fetch Odoo Partner and Hospital Company Context -->
+        <enrich uri="direct:get-odoo-partner-id"/>
+        <enrich uri="direct:resolve-hospital-company"/>
+        <enrich uri="direct:get-consultation-product"/>
+
+        <!-- 3. Create Odoo Sale Order (Quotation) -->
+        <setProperty name="odoo-quotation">
+            <language>simple</language>
+            {
+                "partner_id": ${header.odooPartnerId},
+                "company_id": ${header.hospitalCompanyId},
+                "origin": "OpenMRS Visit: ${exchangeProperty.visitUuid}",
+                "order_line": [
+                    [0, 0, {
+                        "product_id": ${header.consultationProductId},
+                        "name": "Initial Consultation - ${exchangeProperty.visitType}",
+                        "product_uom_qty": 1
+                    }]
+                ]
+            }
+        </setProperty>
+
+        <setBody>
+            <simple>${exchangeProperty.odoo-quotation}</simple>
+        </setBody>
+
+        <!-- 4. Execute Creation in Odoo -->
+        <to uri="odoo:sale.order?method=create"/>
+
+        <!-- 5. Link the Odoo Order ID back to the OpenMRS Visit -->
+        <setHeader name="odooOrderId">
+            <jsonpath>$.id</jsonpath>
+        </setHeader>
+
+        <to uri="direct:link-visit-to-quotation"/>
+        <log message="Quotation created in Odoo with ID ${header.odooOrderId} for Visit UUID: ${exchangeProperty.visitUuid}"/>
+    </route>
+
+    <route id="link-visit-to-quotation">
+        <from uri="direct:link-visit-to-quotation"/>
+        <log message="Linking Odoo Quotation ${header.odooOrderId} to OpenMRS Visit ${exchangeProperty.visitUuid}"/>
+
+        <setProperty name="visitAttributeJson">
+            <simple>
+            {
+                "attributeType": "8d34346a-728b-4b1f-9975-d1421257199c",
+                "value": "${header.odooOrderId}"
+            }
+            </simple>
+        </setProperty>
+
+        <setBody>
+            <simple>${exchangeProperty.visitAttributeJson}</simple>
+        </setBody>
+
+        <!-- Call OpenMRS REST API -->
+        <setHeader name="CamelHttpMethod">
+            <constant>POST</constant>
+        </setHeader>
+        <setHeader name="Content-Type">
+            <constant>application/json</constant>
+        </setHeader>
+
+        <toD uri="{{openmrs.baseUrl}}/visit/${exchangeProperty.visitUuid}/attribute?authMethod=Basic&amp;authUsername={{openmrs.username}}&amp;authPassword={{openmrs.password}}"/>
+    </route>
+</routes>

@@ -47,6 +47,7 @@
     <module>maven-archetype</module>
     <module>samples</module>
     <module>services/eip-hcwathome-openmrs-rabbitmq</module>
+    <module>services/ozone-eip</module>
   </modules>
 
   <dependencies>
