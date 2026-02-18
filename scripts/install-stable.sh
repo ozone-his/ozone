@@ -22,7 +22,7 @@ echo ""
 
 
 # TODO: Upon release, replace this with the latest stable version
-ozoneVersion=${1:-1.0.0-alpha.13}
+ozoneVersion=${1:-1.0.0-alpha.15}
 
 echo "$INFO Ozone version: $ozoneVersion"
 
@@ -44,7 +44,7 @@ fi
 
 # Download Maven and install locally
 echo "$INFO Installing Maven $mavenVersion..."
-mavenVersion="3.9.11"
+mavenVersion="3.9.12"
 mvn=apache-maven-${mavenVersion}/bin/mvn
 if [ -f "$mvn" ]
 then

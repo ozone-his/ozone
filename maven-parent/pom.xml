@@ -410,7 +410,7 @@
                 <configuration>
                     <target>
                         <!-- Copy all files from subfolders into the parent folder -->
-                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config/addresshierarchy" overwrite="true">
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config/addresshierarchy" overwrite="true" failonerror="false">
                             <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/distro/configs/openmrs/initializer_config/addresshierarchy">
                                 <!-- Include all subfolder files -->
                                 <include name="*/**"/>
@@ -486,49 +486,6 @@
                 <script>
                   file://${project.build.directory}/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
               </scripts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- Compile and compare the dependency report -->
-      <plugin>
-        <groupId>net.mekomsolutions.maven.plugin</groupId>
-        <artifactId>dependency-tracker-maven-plugin</artifactId>
-        <configuration>
-          <compare>true</compare>
-        </configuration>
-        <executions>
-          <execution>
-            <id>Compile local dependency report and compare with remote</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>track</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- Attach the dependency report to the build -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>Attach the dependency report</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>
-                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt
-                  </file>
-                  <type>txt</type>
-                  <classifier>dependencies</classifier>
-                </artifact>
-              </artifacts>
             </configuration>
           </execution>
         </executions>

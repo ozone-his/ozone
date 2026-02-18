@@ -29,7 +29,6 @@
 
     <!-- Dependency versions -->
     <referenceapplicationDistroVersion>3.5.0</referenceapplicationDistroVersion>
-    <openmrsDistroBahmniemrVersion>1.2.0-SNAPSHOT</openmrsDistroBahmniemrVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
     <!-- OpenMRS modules versions -->
@@ -40,14 +39,17 @@
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
 
     <!-- Odoo addons versions -->
-    <odooInitializerVersion>2.3.0-SNAPSHOT</odooInitializerVersion>
+    <odooInitializerVersion>2.4.0-SNAPSHOT</odooInitializerVersion>
     <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
+    <odooAuthRolesVersion>1.1.0-SNAPSHOT</odooAuthRolesVersion>
+    <odooSsoUserRolesArtifactId>odoo-sso-user-roles</odooSsoUserRolesArtifactId>
 
     <!-- EIP Routes artifact versions -->
-    <eipOpenMRSSenaiteVersion>2.2.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
-    <eipOdooOpenMRSVersion>2.2.0-SNAPSHOT</eipOdooOpenMRSVersion>
-    <eipERPNextOpenMRSVersion>1.3.0-SNAPSHOT</eipERPNextOpenMRSVersion>
+    <eipOpenMRSSenaiteVersion>2.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
+    <eipOdooOpenMRSVersion>2.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
+    <eipERPNextOpenMRSVersion>1.4.0-SNAPSHOT</eipERPNextOpenMRSVersion>
     <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
+    <eipOdooOpenElisVersion>1.0.0-SNAPSHOT</eipOdooOpenElisVersion>
     <eipOpenMRSHcwAtHomeVersion>1.0.0-SNAPSHOT</eipOpenMRSHcwAtHomeVersion>
 
     <!-- EIP Routes artifact Ids -->
@@ -55,12 +57,17 @@
     <eipOdooOpenMRSArtifactId>eip-odoo-openmrs</eipOdooOpenMRSArtifactId>
     <eipERPNextOpenMRSArtifactId>eip-erpnext-openmrs</eipERPNextOpenMRSArtifactId>
     <eipOpenMRSOrthancArtifactId>eip-openmrs-orthanc</eipOpenMRSOrthancArtifactId>
+    <eipOdooOpenElisArtifactId>eip-odoo-openelis</eipOdooOpenElisArtifactId>
       <eipOpenMRSHcwAtHomeArtifactId>eip-hcwathome-openmrs</eipOpenMRSHcwAtHomeArtifactId>
 
     <!-- Ozone Analytics Queries -->
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
 
+    <openelis.version>3.2.1.2</openelis.version>
+
+    <!-- Classifier for the dependency report artifact -->
+    <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
 
   <modules>
@@ -84,20 +91,18 @@
       <version>${referenceapplicationDistroVersion}</version>
     </dependency>
 
-    <!-- Bahmni EMR distro -->
-    <dependency>
-      <groupId>org.openmrs.distro</groupId>
-      <artifactId>distro</artifactId>
-      <type>zip</type>
-      <version>${openmrsDistroBahmniemrVersion}</version>
-    </dependency>
-
     <!--  Odoo addons-->
     <dependency>
       <groupId>net.mekomsolutions.odoo</groupId>
       <artifactId>${odooInitializerArtifactId}</artifactId>
       <version>${odooInitializerVersion}</version>
       <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>com.ozonehis.odoo</groupId>
+      <artifactId>${odooSsoUserRolesArtifactId}</artifactId>
+      <type>zip</type>
+      <version>${odooAuthRolesVersion}</version>
     </dependency>
 
     <!--  OpenMRS modules -->
@@ -156,6 +161,12 @@
       <artifactId>${eipERPNextOpenMRSArtifactId}</artifactId>
       <version>${eipERPNextOpenMRSVersion}</version>
     </dependency>
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>${eipOdooOpenElisArtifactId}</artifactId>
+      <version>${eipOdooOpenElisVersion}</version>
+      <type>jar</type>
+    </dependency>
       <dependency>
           <groupId>com.ozonehis</groupId>
           <artifactId>${eipOpenMRSHcwAtHomeArtifactId}</artifactId>
@@ -204,6 +215,20 @@
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons</outputDirectory>
               <includeArtifactIds>${odooInitializerArtifactId}</includeArtifactIds>
+            </configuration>
+          </execution>
+          <execution>
+            <id>Copy Odoo Ozone Auth Roles add-on</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/odoo/addons/sso_user_roles
+              </outputDirectory>
+              <includeArtifactIds>${odooSsoUserRolesArtifactId}</includeArtifactIds>
             </configuration>
           </execution>
 
@@ -329,6 +354,27 @@
             </execution>
 
           <execution>
+            <id>Copy EIP Odoo OpenELIS JAR</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.ozonehis</groupId>
+                  <artifactId>${eipOdooOpenElisArtifactId}</artifactId>
+                  <version>${eipOdooOpenElisVersion}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>
+                      ${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOdooOpenElisArtifactId}</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+
+          <execution>
             <id>Unpack OpenMRS Ref App in a temporary location</id>
             <phase>generate-resources</phase>
             <goals>
@@ -395,25 +441,47 @@
               <includeArtifactIds>ozone-openmrs-configs</includeArtifactIds>
             </configuration>
           </execution>
-
-          <execution>
-            <id>Copy Bahmni EMR binaries to a temporary location</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <excludeTransitive>true</excludeTransitive>
-              <outputDirectory>${project.build.directory}/bahmniemr_binaries/</outputDirectory>
-              <includeArtifactIds>distro</includeArtifactIds>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
+            <!-- Download openelis-docker -->
+            <execution>
+                <id>download openelis-docker</id>
+                <phase>generate-resources</phase>
+                <goals>
+                    <goal>exec</goal>
+                </goals>
+                <configuration>
+                    <executable>curl</executable>
+                    <arguments>
+                        <argument>-L</argument>
+                        <argument>-o</argument>
+                        <argument>${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip</argument>
+                        <argument>https://github.com/DIGI-UW/openelis-magadascar-distro/archive/refs/tags/3.2.1.2.zip</argument>
+                    </arguments>
+                </configuration>
+            </execution>
+
+            <!-- Extract openelis-docker -->
+            <execution>
+                <id>extract openelis-docker zip</id>
+                <phase>generate-resources</phase>
+                <goals>
+                    <goal>exec</goal>
+                </goals>
+                <configuration>
+                    <executable>sh</executable>
+                    <arguments>
+                        <argument>-c</argument>
+                        <argument>
+                            unzip -o ${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip -d ${project.build.directory}
+                        </argument>
+                    </arguments>
+                </configuration>
+            </execution>
           <execution>
             <!-- Prefix content packages so that the overwrite order can be determined -->
             <id>prefix content packages</id>
@@ -540,6 +608,29 @@
             </configuration>
           </execution>
 
+            <execution>
+                <!-- Copy over the OpenELIS volume directory -->
+                <id>Copy OpenELIS files and directories</id>
+                <phase>process-resources</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>
+                        ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/
+                    </outputDirectory>
+                    <overwrite>true</overwrite>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}/openelis-magadascar-distro-${openelis.version}</directory>
+                            <includes>
+                                <include>configs/**</include>
+                            </includes>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
+
           <execution>
             <!-- Exclude files from O3 Ref App -->
             <id>Exclude some OpenMRS Ref App files</id>
@@ -605,6 +696,22 @@
             </goals>
           </execution>
 
+            <!-- Overwrite OpenELIS common.properties -->
+            <execution>
+                <id>override-config-in-volumes</id>
+                <phase>process-resources</phase>
+                <configuration>
+                    <target>
+                        <copy file="${project.basedir}/configs/openelis/properties/common.properties"
+                              tofile="${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/configs/properties/common.properties"
+                              overwrite="true"/>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+
           <!-- Copy Openmrs config and modify initializer_config to mimic content package structure -->
           <execution>
             <id>copy-openmrs--config-and-modify-initializer-config</id>
@@ -626,31 +733,28 @@
             </goals>
           </execution>
 
-          <!-- Temporary workaround because of AH not loading in Ref App 3.4.0 -->
-          <!-- Flatten addresshierarchy folder structure -->
-          <execution>
-            <id>Flatten OpenMRS Address Hierarchy files</id>
-            <phase>package</phase>
-            <configuration>
-              <target>
-                <!-- Copy all files from subfolders into the parent folder -->
-                <copy
-                  todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy"
-                  overwrite="true">
-                  <fileset
-                    dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
-                    <!-- Include all subfolder files -->
-                    <include name="*/**" />
-                  </fileset>
-                  <!-- flattenmapper removes the subfolder structure -->
-                  <flattenmapper />
-                </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
+            <!-- Temporary workaround because of AH not loading in Ref App 3.4.0 -->
+            <!-- Flatten addresshierarchy folder structure -->
+            <execution>
+                <id>Flatten OpenMRS Address Hierarchy files</id>
+                <phase>package</phase>
+                <configuration>
+                    <target>
+                        <!-- Copy all files from subfolders into the parent folder -->
+                        <copy todir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy" overwrite="true">
+                            <fileset dir="${project.build.directory}/${project.artifactId}-${project.version}/configs/openmrs/initializer_config/addresshierarchy">
+                                <!-- Include all subfolder files -->
+                                <include name="*/**"/>
+                            </fileset>
+                            <!-- flattenmapper removes the subfolder structure -->
+                            <flattenmapper/>
+                        </copy>
+                    </target>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
 
           <execution>
             <id>Remove non-OMODs from Modules</id>
@@ -708,7 +812,7 @@
                 </goals>
             </execution>
 
-          <execution>
+            <execution>
             <id>Copy filtered OpenMRS configuration</id>
             <phase>prepare-package</phase>
             <configuration>
@@ -737,23 +841,6 @@
                     <exclude name="authentication-*.omod"/>
                     <exclude name="fhir2-2.7.0.omod"/>
                   </fileset>
-                </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>Copy filtered Bahmni EMR modules</id>
-            <phase>prepare-package</phase>
-            <configuration>
-              <target>
-                <copy
-                  todir="${project.build.directory}/${project.artifactId}-${project.version}/binaries/bahmniemr/modules" flatten="true">
-                  <!-- Only include .omod files -->
-                  <fileset dir="${project.build.directory}/bahmniemr_binaries" includes="**/*.omod"/>
                 </copy>
               </target>
             </configuration>
@@ -894,16 +981,13 @@
         </executions>
       </plugin>
 
-      <!-- Compile and compare the dependency report -->
+      <!-- Compile a dependency report -->
       <plugin>
         <groupId>net.mekomsolutions.maven.plugin</groupId>
         <artifactId>dependency-tracker-maven-plugin</artifactId>
-        <configuration>
-          <compare>true</compare>
-        </configuration>
         <executions>
           <execution>
-            <id>Compile local dependency report and compare with remote</id>
+            <id>Compile dependency report</id>
             <phase>compile</phase>
             <goals>
               <goal>track</goal>
@@ -911,6 +995,7 @@
           </execution>
         </executions>
       </plugin>
+
       <!-- Attach the dependency report to the build -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -926,10 +1011,9 @@
               <artifacts>
                 <artifact>
                   <file>
-                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt
-                  </file>
+                    ${project.build.directory}/${project.artifactId}-${project.version}-dependencies.txt</file>
                   <type>txt</type>
-                  <classifier>dependencies</classifier>
+                  <classifier>${dependencyReportClassifier}</classifier>
                 </artifact>
               </artifacts>
             </configuration>
