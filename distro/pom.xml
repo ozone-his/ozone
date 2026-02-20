@@ -542,29 +542,6 @@
             </configuration>
           </execution>
 
-            <execution>
-                <!-- Copy over the OpenELIS volume directory -->
-                <id>Copy OpenELIS files and directories</id>
-                <phase>process-resources</phase>
-                <goals>
-                    <goal>copy-resources</goal>
-                </goals>
-                <configuration>
-                    <outputDirectory>
-                        ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/
-                    </outputDirectory>
-                    <overwrite>true</overwrite>
-                    <resources>
-                        <resource>
-                            <directory>${project.build.directory}/openelis-magadascar-distro-${openelis.version}</directory>
-                            <includes>
-                                <include>configs/**</include>
-                            </includes>
-                        </resource>
-                    </resources>
-                </configuration>
-            </execution>
-
           <execution>
             <!-- Exclude files from O3 Ref App -->
             <id>Exclude some OpenMRS Ref App files</id>
