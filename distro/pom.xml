@@ -62,8 +62,6 @@
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
 
-    <openelis.version>3.2.1.2</openelis.version>
-
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
   </properties>
@@ -418,41 +416,6 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
-            <!-- Download openelis-docker -->
-            <execution>
-                <id>download openelis-docker</id>
-                <phase>generate-resources</phase>
-                <goals>
-                    <goal>exec</goal>
-                </goals>
-                <configuration>
-                    <executable>curl</executable>
-                    <arguments>
-                        <argument>-L</argument>
-                        <argument>-o</argument>
-                        <argument>${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip</argument>
-                        <argument>https://github.com/DIGI-UW/openelis-magadascar-distro/archive/refs/tags/3.2.1.2.zip</argument>
-                    </arguments>
-                </configuration>
-            </execution>
-
-            <!-- Extract openelis-docker -->
-            <execution>
-                <id>extract openelis-docker zip</id>
-                <phase>generate-resources</phase>
-                <goals>
-                    <goal>exec</goal>
-                </goals>
-                <configuration>
-                    <executable>sh</executable>
-                    <arguments>
-                        <argument>-c</argument>
-                        <argument>
-                            unzip -o ${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip -d ${project.build.directory}
-                        </argument>
-                    </arguments>
-                </configuration>
-            </execution>
           <execution>
             <!-- Prefix content packages so that the overwrite order can be determined -->
             <id>prefix content packages</id>
@@ -578,29 +541,6 @@
               </resources>
             </configuration>
           </execution>
-
-            <execution>
-                <!-- Copy over the OpenELIS volume directory -->
-                <id>Copy OpenELIS files and directories</id>
-                <phase>process-resources</phase>
-                <goals>
-                    <goal>copy-resources</goal>
-                </goals>
-                <configuration>
-                    <outputDirectory>
-                        ${project.build.directory}/${project.artifactId}-${project.version}/binaries/openelis/
-                    </outputDirectory>
-                    <overwrite>true</overwrite>
-                    <resources>
-                        <resource>
-                            <directory>${project.build.directory}/openelis-magadascar-distro-${openelis.version}</directory>
-                            <includes>
-                                <include>configs/**</include>
-                            </includes>
-                        </resource>
-                    </resources>
-                </configuration>
-            </execution>
 
           <execution>
             <!-- Exclude files from O3 Ref App -->
