@@ -55,7 +55,7 @@ services:
       context: .
       dockerfile: infra/docker/imis-connect.Dockerfile
     environment:
-      OPENIMIS_BASE_URL: http://openimis:8000
+      OPENIMIS_BASE_URL: http://openimis-be:8000
       OPENIMIS_AUTH: "basic"
       RABBITMQ_URI: amqp://guest:guest@rabbitmq:5672
       FHIR_STRATEGY: "R4"

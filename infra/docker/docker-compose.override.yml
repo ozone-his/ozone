@@ -39,8 +39,7 @@ services:
       - oznhmo
 
   # ---------------------------------------------------------------------------
-  # openIMIS (placeholder local stack)
-  # For real deployments, replace with your organization’s openIMIS images/compose.
+  # openIMIS Stack
   # ---------------------------------------------------------------------------
   openimis-db:
     image: postgres:14
@@ -55,21 +54,40 @@ services:
     networks:
       - oznhmo
 
-  openimis:
-    image: openimis/openimis:latest
-    container_name: oznhmo-openimis
+  openimis-be:
+    image: ghcr.io/openimis/openimis-be:${BE_TAG:-develop}
+    container_name: oznhmo-openimis-be
     restart: unless-stopped
     environment:
-      # Adjust these per your chosen openIMIS image/distribution
       DATABASE_URL: postgres://${OPENIMIS_DB_USER:-openimis}:${OPENIMIS_DB_PASSWORD:-openimis}@openimis-db:5432/${OPENIMIS_DB_NAME:-openimis}
-      # Example: DJANGO_SETTINGS_MODULE, SECRET_KEY, etc., if your image requires them
-      # DJANGO_SETTINGS_MODULE: openIMIS.settings
+      # Add any additional backend environment variables here
     ports:
       - "8000:8000"                # host → container
     depends_on:
       - openimis-db
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:8000/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    networks:
+      - oznhmo
+
+  openimis-fe:
+    image: ghcr.io/openimis/openimis-fe:${FE_TAG:-develop}
+    container_name: oznhmo-openimis-fe
+    restart: unless-stopped
+    environment:
+      # Configure frontend to connect to backend
+      REACT_APP_API_URL: http://openimis-be:8000
+      # Add any additional frontend environment variables here
+    ports:
+      - "3000:80"                  # host → container
+    depends_on:
+      - openimis-be
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/ || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 30
@@ -88,7 +106,7 @@ services:
     restart: unless-stopped
     environment:
       # openIMIS endpoint inside the compose network:
-      OPENIMIS_BASE_URL: ${OPENIMIS_BASE_URL:-http://openimis:8000}
+      OPENIMIS_BASE_URL: ${OPENIMIS_BASE_URL:-http://openimis-be:8000}
       # AMQP broker URI for RabbitMQ:
       RABBITMQ_URI: ${RABBITMQ_URI:-amqp://${RABBITMQ_DEFAULT_USER:-guest}:${RABBITMQ_DEFAULT_PASS:-guest}@rabbitmq:5672}
       # Service port (Spring Boot server.port)
@@ -100,7 +118,7 @@ services:
       - "8085:8080"                            # host → container
     depends_on:
       - rabbitmq
-      - openimis
+      - openimis-be
     healthcheck: *healthcheck_http
     networks:
       - oznhmo
@@ -108,8 +126,21 @@ services:
   # ---------------------------------------------------------------------------
   # HCW@Home (Healthcare Workers at Home platform)
   # ---------------------------------------------------------------------------
+  hcwathome-db:
+    image: postgres:15
+    container_name: oznhmo-hcwathome-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hcwathome
+      POSTGRES_USER: hcwathome
+      POSTGRES_PASSWORD: hcwathome
+    volumes:
+      - hcwathome-db:/var/lib/postgresql/data
+    networks:
+      - oznhmo
+
   hcwathome:
-    image: ozone-his/hcwathome:latest
+    image: hcwat-home/hcwathome:latest
     container_name: oznhmo-hcwathome
     restart: unless-stopped
     ports:
@@ -124,6 +155,7 @@ services:
       RABBIT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
       RABBIT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
       OPENMRS_API_URL: http://openmrs:8080/openmrs/ws/rest/v1
+      # Add any additional HCW@Home environment variables here
     depends_on:
       - hcwathome-db
       - rabbitmq
@@ -133,19 +165,6 @@ services:
       timeout: 5s
       retries: 30
       start_period: 30s
-    networks:
-      - oznhmo
-
-  hcwathome-db:
-    image: postgres:15
-    container_name: oznhmo-hcwathome-db
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: hcwathome
-      POSTGRES_USER: hcwathome
-      POSTGRES_PASSWORD: hcwathome
-    volumes:
-      - hcwathome-db:/var/lib/postgresql/data
     networks:
       - oznhmo
 
