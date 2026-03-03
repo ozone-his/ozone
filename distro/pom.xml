@@ -62,7 +62,8 @@
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
     <analyticsQueriesArtifactId>analytics-queries</analyticsQueriesArtifactId>
 
-    <openelis.version>3.2.1.2</openelis.version>
+    <openelisDockerVersion>3.2.1.2</openelisDockerVersion>
+    <openelisDockerArtifactId>openelis-docker</openelisDockerArtifactId>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
@@ -430,8 +431,8 @@
                     <arguments>
                         <argument>-L</argument>
                         <argument>-o</argument>
-                        <argument>${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip</argument>
-                        <argument>https://github.com/DIGI-UW/openelis-magadascar-distro/archive/refs/tags/3.2.1.2.zip</argument>
+                        <argument>${project.build.directory}/${openelisDockerArtifactId}-${openelisDockerVersion}.zip</argument>
+                        <argument>https://github.com/DIGI-UW/${openelisDockerArtifactId}/archive/refs/tags/${openelisDockerVersion}.zip</argument>
                     </arguments>
                 </configuration>
             </execution>
@@ -448,7 +449,7 @@
                     <arguments>
                         <argument>-c</argument>
                         <argument>
-                            unzip -o ${project.build.directory}/openelis-magadascar-distro-${openelis.version}.zip -d ${project.build.directory}
+                            unzip -o ${project.build.directory}/${openelisDockerArtifactId}-${openelisDockerVersion}.zip -d ${project.build.directory}
                         </argument>
                     </arguments>
                 </configuration>
@@ -593,7 +594,7 @@
                     <overwrite>true</overwrite>
                     <resources>
                         <resource>
-                            <directory>${project.build.directory}/openelis-magadascar-distro-${openelis.version}</directory>
+                            <directory>${project.build.directory}/${openelisDockerArtifactId}-${openelisDockerVersion}</directory>
                             <includes>
                                 <include>configs/**</include>
                             </includes>
