@@ -888,19 +888,20 @@
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
         <executions>
-          <execution>
-            <id>Build OpenMRS Frontend</id>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <phase>process-resources</phase>
-            <configuration>
-              <scripts>
-                <script>
-                  file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>
-              </scripts>
-            </configuration>
-          </execution>
+          <!-- Build OpenMRS Frontend - Temporarily disabled because the frontend build is failing due unresolved dependencies. Also, it's unnecessary until we have frontend customizations. -->
+<!--          <execution>-->
+<!--            <id>Build OpenMRS Frontend</id>-->
+<!--            <goals>-->
+<!--              <goal>execute</goal>-->
+<!--            </goals>-->
+<!--            <phase>process-resources</phase>-->
+<!--            <configuration>-->
+<!--              <scripts>-->
+<!--                <script>-->
+<!--                  file://${project.basedir}/../scripts/openmrs/frontend_assembly/build-openmrs-frontend.groovy</script>-->
+<!--              </scripts>-->
+<!--            </configuration>-->
+<!--          </execution>-->
 
           <execution>
             <id>Generate Ozone Info JSON file</id>
