@@ -52,7 +52,7 @@ then
     echo "$INFO Skipping Maven installation..."
 else
     echo "$INFO Downloading Maven $mavenVersion..."
-    curl -O https://dlcdn.apache.org/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.tar.gz
+    curl -O https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/${mavenVersion}/apache-maven-${mavenVersion}-bin.tar.gz
     tar -xzvf apache-maven-${mavenVersion}-bin.tar.gz
 fi
 
