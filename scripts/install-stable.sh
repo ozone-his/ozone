@@ -44,7 +44,7 @@ fi
 
 # Download Maven and install locally
 echo "$INFO Installing Maven $mavenVersion..."
-mavenVersion="3.9.15"
+mavenVersion="3.9.16"
 mvn=apache-maven-${mavenVersion}/bin/mvn
 if [ -f "$mvn" ]
 then
