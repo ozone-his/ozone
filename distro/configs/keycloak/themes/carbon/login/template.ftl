@@ -35,14 +35,34 @@
   <div id="page">
     <div class="login-container">
       <#if displayMessage && message?has_content>
-          <div class="bx--inline-notification bx--inline-notification--error" style="width: 23rem">
+          <#assign messageType = (message.type!'error')?lower_case>
+          <#assign notificationClass = "bx--inline-notification--error">
+          <#assign notificationTitle = "Error">
+          <#if messageType == "warning">
+            <#assign notificationClass = "bx--inline-notification--warning">
+            <#assign notificationTitle = "Warning">
+          <#elseif messageType == "success">
+            <#assign notificationClass = "bx--inline-notification--success">
+            <#assign notificationTitle = "Success">
+          </#if>
+          <div class="bx--inline-notification ${notificationClass}" style="width: 23rem">
             <div class="bx--inline-notification__details">
-              <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" class="bx--inline-notification__icon">
-                <path d="M10,1c-5,0-9,4-9,9s4,9,9,9s9-4,9-9S15,1,10,1z M13.5,14.5l-8-8l1-1l8,8L13.5,14.5z"></path>
-                <path d="M13.5,14.5l-8-8l1-1l8,8L13.5,14.5z" data-icon-path="inner-path" opacity="0"></path>
-              </svg>
+              <#if messageType == "error">
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" class="bx--inline-notification__icon">
+                  <path d="M10,1c-5,0-9,4-9,9s4,9,9,9s9-4,9-9S15,1,10,1z M13.5,14.5l-8-8l1-1l8,8L13.5,14.5z"></path>
+                  <path d="M13.5,14.5l-8-8l1-1l8,8L13.5,14.5z" data-icon-path="inner-path" opacity="0"></path>
+                </svg>
+              <#elseif messageType == "warning">
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" class="bx--inline-notification__icon">
+                  <path d="M10,1c-5,0-9,4-9,9s4,9,9,9s9-4,9-9S15,1,10,1z M9.2,6.1h1.6v5.4H9.2V6.1z M10,13.3c-0.6,0-1.1-0.5-1.1-1.1s0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S10.6,13.3,10,13.3z"></path>
+                </svg>
+              <#else>
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" class="bx--inline-notification__icon">
+                  <path d="M10,1c-5,0-9,4-9,9s4,9,9,9s9-4,9-9S15,1,10,1z M8.5,14.5l-3-3l1-1l2,2l5-5l1,1L8.5,14.5z"></path>
+                </svg>
+              </#if>
               <div class="bx--inline-notification__text-wrapper">
-                <p class="bx--inline-notification__title">Error</p>
+                <p class="bx--inline-notification__title">${notificationTitle}</p>
                 <div class="bx--inline-notification__subtitle">${kcSanitize(message.summary)?no_esc}</div>
               </div>
             </div>

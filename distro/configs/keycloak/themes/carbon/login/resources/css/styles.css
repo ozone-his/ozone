@@ -409,6 +409,70 @@ button:hover {
   fill: var(--cds-inverse-support-01, #fa4d56);
 }
 
+/* Warning Notification Styles */
+.bx--inline-notification--warning {
+  border: 0px none;
+  box-sizing: border-box;
+  color: var(--cds-inverse-01, #fff);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: inherit;
+  font-size: 100%;
+  height: auto;
+  margin-bottom: 3rem;
+  max-width: 18rem;
+  min-height: 3rem;
+  min-width: 18rem;
+  padding: 0px;
+  position: relative;
+  vertical-align: baseline;
+  width: 100%;
+  background: var(--cds-inverse-02, #393939);
+  border-left: 3px solid #f1c21b;
+  min-width: 23rem;
+}
+
+.bx--inline-notification--warning .bx--actionable-notification__icon,
+.bx--inline-notification--warning .bx--inline-notification__icon,
+.bx--inline-notification--warning .bx--toast-notification__icon,
+:host(bx-inline-notification[kind="warning"]) .bx--actionable-notification__icon,
+:host(bx-inline-notification[kind="warning"]) .bx--inline-notification__icon,
+:host(bx-inline-notification[kind="warning"]) .bx--toast-notification__icon {
+  fill: #f1c21b;
+}
+
+/* Success Notification Styles */
+.bx--inline-notification--success {
+  border: 0px none;
+  box-sizing: border-box;
+  color: var(--cds-inverse-01, #fff);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: inherit;
+  font-size: 100%;
+  height: auto;
+  margin-bottom: 3rem;
+  max-width: 18rem;
+  min-height: 3rem;
+  min-width: 18rem;
+  padding: 0px;
+  position: relative;
+  vertical-align: baseline;
+  width: 100%;
+  background: var(--cds-inverse-02, #393939);
+  border-left: 3px solid #24a148;
+  min-width: 23rem;
+}
+
+.bx--inline-notification--success .bx--actionable-notification__icon,
+.bx--inline-notification--success .bx--inline-notification__icon,
+.bx--inline-notification--success .bx--toast-notification__icon,
+:host(bx-inline-notification[kind="success"]) .bx--actionable-notification__icon,
+:host(bx-inline-notification[kind="success"]) .bx--inline-notification__icon,
+:host(bx-inline-notification[kind="success"]) .bx--toast-notification__icon {
+  fill: #24a148;
+}
+
 .bx--inline-notification__icon {
   flex-shrink: 0;
   margin-right: 1rem;
