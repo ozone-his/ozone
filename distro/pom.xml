@@ -28,7 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
-    <referenceapplicationDistroVersion>3.5.0</referenceapplicationDistroVersion>
+    <referenceapplicationDistroVersion>3.7.0-rc.1</referenceapplicationDistroVersion>
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
     <!-- OpenMRS modules versions -->
