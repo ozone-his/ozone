@@ -478,6 +478,14 @@
           "clientRole": true,
           "containerId": "${ODOO_CLIENT_UUID}",
           "attributes": {}
+        },
+        {
+          "id": "c953885f-1046-4e68-a70c-ee93a6386030",
+          "name": "Invoicing / Billing",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "${ODOO_CLIENT_UUID}",
+          "attributes": {}
         }
       ],
       "security-admin-console": [],

@@ -42,6 +42,20 @@ if (shouldBuildFrontend) {
         outputDirectoryFile.eachDir(it -> { if (it.getName() != "ozone") { it.deleteDir() } })
     }
 
+    def cleanupBuildToolArtifacts = {
+        ["package.json", "package-lock.json"].each { fileName ->
+            def buildArtifactFile = new File(outputDirectory, fileName)
+            if (buildArtifactFile.exists() && !buildArtifactFile.delete()) {
+                log.warn("Failed to remove temporary frontend build artifact ${buildArtifactFile.getAbsolutePath()}")
+            }
+        }
+
+        def nodeModulesDirectory = new File(outputDirectory, "node_modules")
+        if (nodeModulesDirectory.exists() && !nodeModulesDirectory.deleteDir()) {
+            log.warn("Failed to remove temporary frontend dependency directory ${nodeModulesDirectory.getAbsolutePath()}")
+        }
+    }
+
     log.info("Running assemble command...")
     log.info(assembleCommand)
 
@@ -54,13 +68,46 @@ if (shouldBuildFrontend) {
     }
 
     log.info("Running build command...")
+    cleanupBuildToolArtifacts()
 
-    def buildProcess = "npx --legacy-peer-deps openmrs@${openmrsVersion} build --config-url \$SPA_CONFIG_URLS --default-locale \$SPA_DEFAULT_LOCALE --target ${outputDirectory}".execute()
-    buildProcess.consumeProcessOutput(System.out, System.err)
-    buildProcess.waitFor()
+    try {
+        def packageJsonFile = new File(outputDirectory, "package.json")
+        log.info("Writing package.json with openmrs dependency and overrides to ${packageJsonFile.getAbsolutePath()}...")
+        packageJsonFile.text = """\
+        {
+          "name": "openmrs-frontend-build",
+          "version": "1.0.0",
+          "dependencies": {
+            "openmrs": "${openmrsVersion}"
+          },
+          "overrides": {
+            "react-aria-components": "1.8.0"
+          }
+        }
+        """
 
-    if (buildProcess.exitValue() != 0) {
-        throw new RuntimeException("'openmrs build' step failed. See previous messages for details.")
+        // Install openmrs and all dependencies locally so webpack can resolve overridden packages correctly.
+        log.info("Installing openmrs@${openmrsVersion} and dependencies with overrides in ${outputDirectory}...")
+        def installProcess = "npm install --legacy-peer-deps".execute(null, new File(outputDirectory))
+        installProcess.consumeProcessOutput(System.out, System.err)
+        installProcess.waitFor()
+
+        if (installProcess.exitValue() != 0) {
+            throw new RuntimeException("Failed to install openmrs and dependencies. See previous messages for details.")
+        }
+
+        log.info("Using OpenMRS Frontend Core Version for build: ${openmrsVersion}")
+
+        // Run the build using the locally installed openmrs binary so it picks up the local node_modules with overrides.
+        def buildProcess = "${outputDirectory}/node_modules/.bin/openmrs build --config-url \$SPA_CONFIG_URLS --default-locale \$SPA_DEFAULT_LOCALE --target ${outputDirectory}".execute()
+        buildProcess.consumeProcessOutput(System.out, System.err)
+        buildProcess.waitFor()
+
+        if (buildProcess.exitValue() != 0) {
+            throw new RuntimeException("'openmrs build' step failed. See previous messages for details.")
+        }
+    } finally {
+        cleanupBuildToolArtifacts()
     }
 } else {
     log.info("No need to re-build the frontend detected")
