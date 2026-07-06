@@ -1,0 +1,40 @@
+:root {
+  /* Brand color, used for primary buttons, links, and the card accent border */
+  --pf-v5-global--primary-color--100: #3CB393;
+  --pf-v5-global--primary-color--light-100: #6ecbae;
+  --pf-v5-global--primary-color--dark-100: #2c8f74;
+  --pf-v5-global--link--Color: #2c8f74;
+  --pf-v5-global--link--Color--hover: #21725c;
+  --keycloak-card-top-color: #3CB393;
+
+  /* Logo, rendered via the "kc-logo-text" element that ozone-realm.json's
+     realm.displayNameHtml already provides */
+  --keycloak-logo-url: url("../img/logo.png");
+  --keycloak-logo-height: 56px;
+  --keycloak-logo-width: 220px;
+}
+
+.login-pf body {
+  background: #FCF4E5;
+}
+
+/* PatternFly's dark-mode button rule reads a separate "-300"/"-200" tier of color
+   tokens instead of the "-100" tier above, and wins the cascade tie on load order.
+   Setting the button's own consumed variables directly sidesteps that entirely. */
+.pf-v5-c-button {
+  --pf-v5-c-button--m-primary--BackgroundColor: #3CB393;
+  --pf-v5-c-button--m-primary--hover--BackgroundColor: #2c8f74;
+  --pf-v5-c-button--m-primary--focus--BackgroundColor: #2c8f74;
+  --pf-v5-c-button--m-primary--active--BackgroundColor: #2c8f74;
+}
+
+/* PatternFly switches to a two-column "card beside logo" split layout at wide
+   viewports (meant for a full-height brand image filling the second column),
+   which wins over keycloak.v2's own single-column rule at that breakpoint via
+   load order. Reassert single-column so the logo always stays above the card. */
+@media (min-width: 1200px) {
+  .pf-v5-c-login__container {
+    grid-template-columns: 34rem;
+    grid-template-areas: "header" "main";
+  }
+}
