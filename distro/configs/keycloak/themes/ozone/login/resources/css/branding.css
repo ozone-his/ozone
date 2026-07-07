@@ -7,11 +7,24 @@
   --pf-v5-global--link--Color--hover: #21725c;
   --keycloak-card-top-color: #3CB393;
 
-  /* Logo, rendered via the "kc-logo-text" element that ozone-realm.json's
-     realm.displayNameHtml already provides */
+  /* Logo, rendered via the "kc-logo-text" element that the theme's own
+     loginTitleHtml message (messages_en.properties) renders into */
   --keycloak-logo-url: url("../img/logo.png");
   --keycloak-logo-height: 56px;
   --keycloak-logo-width: 220px;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --pf-v5-global--FontFamily--text: "Geist", helvetica, arial, sans-serif;
+  --pf-v5-global--FontFamily--heading: "Geist", helvetica, arial, sans-serif;
 }
 
 .login-pf body {
@@ -37,4 +50,59 @@
     grid-template-columns: 34rem;
     grid-template-areas: "header" "main";
   }
+}
+
+/* Partner "powered by" logos, rendered by footer.ftl. keycloak.v2's template calls
+   footer.ftl as the last direct child of .pf-v5-c-login__main (the card itself), so
+   by default it renders inside the card. Lift it out and place it centered below
+   the card instead, matching the old carbon theme's placement. The direct-child
+   combinator targets only this footer instance, not the (usually empty) social
+   providers footer nested deeper inside .pf-v5-c-login__main-body. */
+.pf-v5-c-login__main {
+  position: relative;
+}
+
+.pf-v5-c-login__main > .pf-v5-c-login__main-footer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4rem;
+  padding: 0;
+}
+
+.ozone-powered-by-text {
+  text-align: center;
+  color: #525252;
+  font-size: 0.75rem;
+  line-height: 1.34;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+}
+
+.ozone-powered-by-logos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2rem;
+  width: 100%;
+}
+
+.ozone-powered-by-logo {
+  display: flex;
+  align-items: center;
+  height: 1.75rem;
+}
+
+/* height-boxed + object-fit means logos of differing internal padding/aspect
+   ratio still line up on a common baseline, without per-logo margin tweaks -
+   important since a child theme's own logos won't share the current ones'
+   proportions. */
+.ozone-powered-by-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 7rem;
+  object-fit: contain;
 }
