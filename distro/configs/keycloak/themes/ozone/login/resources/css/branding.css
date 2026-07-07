@@ -68,7 +68,11 @@
   left: 0;
   right: 0;
   margin-top: 6rem;
-  padding: 0;
+  /* padding-bottom, not margin-bottom: this box is out of normal flow, so only
+     its own box (padding included) extends the page's scrollable area. A
+     margin here would be invisible on tall pages since nothing would ever
+     scroll far enough to reveal it. */
+  padding: 0 0 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
