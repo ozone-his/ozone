@@ -88,10 +88,13 @@
   margin-bottom: 1.5rem;
 }
 
+/* flex-wrap: nowrap plus flex: 1 on each logo below means the row never wraps
+   to a second line, no matter how many logos a child theme lists: they just
+   share the available width evenly instead. */
 .ozone-powered-by-logos {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   column-gap: 2rem;
@@ -101,16 +104,20 @@
 .ozone-powered-by-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 1.75rem;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 /* height-boxed + object-fit means logos of differing internal padding/aspect
    ratio still line up on a common baseline, without per-logo margin tweaks -
    important since a child theme's own logos won't share the current ones'
-   proportions. */
+   proportions. The image itself keeps its natural aspect ratio (width: auto)
+   even though its flex cell above can stretch or shrink to fit the row. */
 .ozone-powered-by-logo img {
   height: 100%;
   width: auto;
-  max-width: 7rem;
+  max-width: 100%;
   object-fit: contain;
 }
