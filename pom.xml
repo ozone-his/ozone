@@ -219,4 +219,37 @@
       <url>https://jitpack.io</url>
     </pluginRepository>
   </pluginRepositories>
+  <profiles>
+    <profile>
+      <id>check-deps</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.1.4</version>
+            <configuration>
+              <deployAtEnd>true</deployAtEnd>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>net.mekomsolutions.maven.plugin</groupId>
+            <artifactId>dependency-tracker-maven-plugin</artifactId>
+            <version>1.1.0-SNAPSHOT</version>
+            <configuration>
+              <compare>true</compare>
+              <skipDeployIfNoChanges>true</skipDeployIfNoChanges>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>track</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
