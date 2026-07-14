@@ -1,0 +1,123 @@
+:root {
+  /* Brand color, used for primary buttons, links, and the card accent border */
+  --pf-v5-global--primary-color--100: #3CB393;
+  --pf-v5-global--primary-color--light-100: #6ecbae;
+  --pf-v5-global--primary-color--dark-100: #2c8f74;
+  --pf-v5-global--link--Color: #2c8f74;
+  --pf-v5-global--link--Color--hover: #21725c;
+  --keycloak-card-top-color: #3CB393;
+
+  /* Logo, rendered via the "kc-logo-text" element that the theme's own
+     loginTitleHtml message (messages_en.properties) renders into */
+  --keycloak-logo-url: url("../img/logo.png");
+  --keycloak-logo-height: 56px;
+  --keycloak-logo-width: 220px;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --pf-v5-global--FontFamily--text: "Geist", helvetica, arial, sans-serif;
+  --pf-v5-global--FontFamily--heading: "Geist", helvetica, arial, sans-serif;
+}
+
+.login-pf body {
+  background: #FCF4E5;
+}
+
+/* PatternFly's dark-mode button rule reads a separate "-300"/"-200" tier of color
+   tokens instead of the "-100" tier above, and wins the cascade tie on load order.
+   Setting the button's own consumed variables directly sidesteps that entirely. */
+.pf-v5-c-button {
+  --pf-v5-c-button--m-primary--BackgroundColor: #3CB393;
+  --pf-v5-c-button--m-primary--hover--BackgroundColor: #2c8f74;
+  --pf-v5-c-button--m-primary--focus--BackgroundColor: #2c8f74;
+  --pf-v5-c-button--m-primary--active--BackgroundColor: #2c8f74;
+}
+
+/* PatternFly switches to a two-column "card beside logo" split layout at wide
+   viewports (meant for a full-height brand image filling the second column),
+   which wins over keycloak.v2's own single-column rule at that breakpoint via
+   load order. Reassert single-column so the logo always stays above the card. */
+@media (min-width: 1200px) {
+  .pf-v5-c-login__container {
+    grid-template-columns: 34rem;
+    grid-template-areas: "header" "main";
+  }
+}
+
+/* Partner "powered by" logos, rendered by footer.ftl. keycloak.v2's template calls
+   footer.ftl as the last direct child of .pf-v5-c-login__main (the card itself), so
+   by default it renders inside the card. Lift it out and place it centered below
+   the card instead, matching the old carbon theme's placement. The direct-child
+   combinator targets only this footer instance, not the (usually empty) social
+   providers footer nested deeper inside .pf-v5-c-login__main-body. */
+.pf-v5-c-login__main {
+  position: relative;
+}
+
+.pf-v5-c-login__main > .pf-v5-c-login__main-footer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 6rem;
+  /* padding-bottom, not margin-bottom: this box is out of normal flow, so only
+     its own box (padding included) extends the page's scrollable area. A
+     margin here would be invisible on tall pages since nothing would ever
+     scroll far enough to reveal it. */
+  padding: 0 0 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ozone-powered-by-text {
+  text-align: center;
+  color: #525252;
+  font-size: 0.75rem;
+  line-height: 1.34;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  margin-bottom: 1.5rem;
+}
+
+/* flex-wrap: nowrap plus flex: 1 on each logo below means the row never wraps
+   to a second line, no matter how many logos a child theme lists: they just
+   share the available width evenly instead. */
+.ozone-powered-by-logos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2rem;
+  width: 100%;
+}
+
+.ozone-powered-by-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.75rem;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* height-boxed + object-fit means logos of differing internal padding/aspect
+   ratio still line up on a common baseline, without per-logo margin tweaks -
+   important since a child theme's own logos won't share the current ones'
+   proportions. The image itself keeps its natural aspect ratio (width: auto)
+   even though its flex cell above can stretch or shrink to fit the row. */
+.ozone-powered-by-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
