@@ -1433,6 +1433,89 @@
       ]
     },
     {
+      "id": "${HCW_AT_HOME_CLIENT_UUID}",
+      "clientId": "hcw@home",
+      "name": "HCW@Home",
+      "surrogateAuthRequired": false,
+      "enabled": "${HCW_AT_HOME_CLIENT_ENABLED}",
+      "alwaysDisplayInConsole": false,
+      "baseUrl": "${HCW_AT_HOME_PUBLIC_URL}",
+      "rootUrl": "${HCW_AT_HOME_PUBLIC_URL}",
+      "adminUrl": "${HCW_AT_HOME_PUBLIC_URL}",
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${HCW_AT_HOME_CLIENT_SECRET}",
+      "redirectUris": [
+        "${HCW_AT_HOME_PUBLIC_URL}/*"
+      ],
+      "webOrigins": [],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "saml.assertion.signature": "false",
+        "saml.multivalued.roles": "false",
+        "saml.force.post.binding": "false",
+        "saml.encrypt": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "use.refresh.tokens": "true",
+        "exclude.session.state.from.auth.response": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "saml.artifact.binding": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "saml.onetimeuse.condition": "false",
+        "frontchannel.logout.url": "${HCW_AT_HOME_PUBLIC_URL}/logout"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "name": "client roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-client-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "user.attribute": "foo",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "roles",
+            "jsonType.label": "String",
+            "usermodel.clientRoleMapping.clientId": "hcw@home"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
       "clientId": "keycloak-admin-sa",
       "name": "Keycloak Admin Service Account",
       "description": "Service account client for interacting with the Keycloak Admin REST API.",
