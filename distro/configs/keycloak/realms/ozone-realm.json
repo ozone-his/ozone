@@ -2981,6 +2981,6 @@
     "clientOfflineSessionIdleTimeout": "0",
     "cibaInterval": "5"
   },
-  "keycloakVersion": "13.0.1",
+  "keycloakVersion": "26.7.1",
   "userManagedAccessAllowed": false
 }
