@@ -32,7 +32,7 @@
     <bahmniStandardConfigVersion>bcc491474fbe941a8d5727b01afe70a2fa343001</bahmniStandardConfigVersion>
 
     <!-- OpenMRS modules versions -->
-    <commonreportsVersion>1.6.0-SNAPSHOT</commonreportsVersion>
+    <commonreportsVersion>1.6.0</commonreportsVersion>
     <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
@@ -44,8 +44,8 @@
     <odooSsoUserRolesArtifactId>odoo-sso-user-roles</odooSsoUserRolesArtifactId>
 
     <!-- EIP Routes artifact versions -->
-    <eipOpenMRSSenaiteVersion>2.3.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
-    <eipOdooOpenMRSVersion>2.3.0-SNAPSHOT</eipOdooOpenMRSVersion>
+    <eipOpenMRSSenaiteVersion>2.4.0-SNAPSHOT</eipOpenMRSSenaiteVersion>
+    <eipOdooOpenMRSVersion>2.4.0-SNAPSHOT</eipOdooOpenMRSVersion>
     <eipERPNextOpenMRSVersion>1.4.0-SNAPSHOT</eipERPNextOpenMRSVersion>
     <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
     <eipOdooOpenElisVersion>1.0.0-SNAPSHOT</eipOdooOpenElisVersion>
