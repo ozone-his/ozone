@@ -49,6 +49,7 @@
     <eipERPNextOpenMRSVersion>1.4.0-SNAPSHOT</eipERPNextOpenMRSVersion>
     <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
     <eipOdooOpenElisVersion>1.0.0-SNAPSHOT</eipOdooOpenElisVersion>
+    <eipOpenMRSHcwAtHomeVersion>1.0.0-SNAPSHOT</eipOpenMRSHcwAtHomeVersion>
 
     <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
@@ -56,6 +57,7 @@
     <eipERPNextOpenMRSArtifactId>eip-erpnext-openmrs</eipERPNextOpenMRSArtifactId>
     <eipOpenMRSOrthancArtifactId>eip-openmrs-orthanc</eipOpenMRSOrthancArtifactId>
     <eipOdooOpenElisArtifactId>eip-odoo-openelis</eipOdooOpenElisArtifactId>
+    <eipOpenMRSHcwAtHomeArtifactId>eip-hcwathome-openmrs</eipOpenMRSHcwAtHomeArtifactId>
 
     <!-- Ozone Analytics Queries -->
     <analyticsQueriesVersion>1.4.0-SNAPSHOT</analyticsQueriesVersion>
@@ -159,6 +161,12 @@
       <version>${eipOdooOpenElisVersion}</version>
       <type>jar</type>
     </dependency>
+      <dependency>
+          <groupId>com.ozonehis</groupId>
+          <artifactId>${eipOpenMRSHcwAtHomeArtifactId}</artifactId>
+          <version>${eipOpenMRSHcwAtHomeVersion}</version>
+          <type>jar</type>
+      </dependency>
 
     <!-- Ozone Analytics Queries -->
     <dependency>
@@ -317,6 +325,27 @@
               </artifactItems>
             </configuration>
           </execution>
+
+            <execution>
+                <id>Copy EIP OpenMRS HcwAtHome JAR</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>copy</goal>
+                </goals>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>com.ozonehis</groupId>
+                            <artifactId>${eipOpenMRSHcwAtHomeArtifactId}</artifactId>
+                            <version>${eipOpenMRSHcwAtHomeVersion}</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                            <outputDirectory>
+                                ${project.build.directory}/${project.artifactId}-${project.version}/binaries/${eipOpenMRSHcwAtHomeArtifactId}</outputDirectory>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
 
           <execution>
             <id>Copy EIP Odoo OpenELIS JAR</id>
