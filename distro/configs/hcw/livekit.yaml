@@ -12,8 +12,8 @@ redis:
 keys:
   ozoneAdmin: 19d2de15-f7ef-44a2-abd3-a2c59a825bd2
 turn:
-  enabled: true
-  domain: ${HOST_NAME}
+  enabled: false
+  domain: localhost
   tls_port: 5349
   udp_port: 3478
   external_tls: true
