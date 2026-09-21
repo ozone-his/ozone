@@ -37,6 +37,9 @@
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
     <fhir2Version>4.3.0</fhir2Version>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
+    <bahmniWebservicesRestVersion>3.3.0</bahmniWebservicesRestVersion>
+    <fhir2ModuleVersion>2.5.2-SNAPSHOT</fhir2ModuleVersion>
+    <fhir2ExtensionModuleVersion>2.0.0-c2c-496</fhir2ExtensionModuleVersion>
 
     <!-- Odoo addons versions -->
     <odooInitializerVersion>2.4.0-SNAPSHOT</odooInitializerVersion>
@@ -197,6 +200,64 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
+          <!-- Keep Bahmni overrides separate from the OpenMRS Ref App module set. -->
+          <execution>
+            <id>copy-bahmni-webservices-rest</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.openmrs.module</groupId>
+                  <artifactId>webservices.rest-omod</artifactId>
+                  <version>${bahmniWebservicesRestVersion}</version>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/bahmniemr/modules</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>copy-fhir2-2.5.2</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.openmrs.module</groupId>
+                  <artifactId>fhir2-omod</artifactId>
+                  <version>${fhir2ModuleVersion}</version>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/bahmniemr/modules</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>copy-fhir2Extension</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.bahmni.module</groupId>
+                  <artifactId>fhir2Extension-omod</artifactId>
+                  <version>${fhir2ExtensionModuleVersion}</version>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/binaries/bahmniemr/modules</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+
           <execution>
             <id>Copy Odoo Initializer add-on</id>
             <phase>generate-resources</phase>
