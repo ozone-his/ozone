@@ -48,3 +48,44 @@ init.162397AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Cartridge,1,uom.product_uom_categ_unit
 init.162396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Box,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.162395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Bag,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.1514AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,Packets,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_413516001,Ampule(s),1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_413568008,Application,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_428003006,Bar,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_226557000,Biscuit wafer,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_429308001,Can,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_428641000,Capsule,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_408103002,Container,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_404218003,Drop,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_385186005,Enema,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.snomed_ct_282118007,Fluid ounce,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_282120005,Gallon,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258682000,Gram,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_430281005,Gum,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258677007,Inch,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258997004,International units,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258683005,Kilogram,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258770004,Liter,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_429587008,Lozenge,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258727004,Milliequivalent,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+[CHECK]init.snomed_ct_404218003,Metric drop,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258685003,Microgram,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258684004,Milligram,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.snomed_ct_396174004,Milligram per meter squared,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258773002,Milliliter,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_396186001,Million units,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+[CHECK]init.snomed_ct_334947002,Nebulizer,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_421823004,Pad,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_419702001,Patch,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_282119004,Pint,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_415215001,Puff,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_336782009,Ring pessary,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_415505006,Scoopful,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.snomed_ct_419694003,Spray,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
+init.snomed_ct_385194003,Suppository,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_61968008,Syringe,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_385055001,Tablet,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_415702006,Tablespoon,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_415703001,Teaspoon,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_418530008,Tube,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_258666001,Unit,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_415818006,Vial,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
