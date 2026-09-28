@@ -67,13 +67,12 @@ init.snomed_ct_258683005,Kilogram,1,uom.product_uom_categ_unit,0.01,Bigger than 
 init.snomed_ct_258770004,Liter,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_429587008,Lozenge,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_258727004,Milliequivalent,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
-[CHECK]init.snomed_ct_404218003,Metric drop,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_258685003,Microgram,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_258684004,Milligram,1,uom.product_uom_categ_unit,0.01,Smaller than the reference Unit of Measure
 init.snomed_ct_396174004,Milligram per meter squared,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_258773002,Milliliter,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_396186001,Million units,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
-[CHECK]init.snomed_ct_334947002,Nebulizer,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
+init.snomed_ct_334947002,Nebulizer,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_421823004,Pad,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_419702001,Patch,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
 init.snomed_ct_282119004,Pint,1,uom.product_uom_categ_unit,0.01,Bigger than the reference Unit of Measure
