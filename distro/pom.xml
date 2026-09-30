@@ -37,7 +37,7 @@
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <bahmniWebservicesRestVersion>3.3.0</bahmniWebservicesRestVersion>
-    <fhir2ModuleVersion>2.5.2-SNAPSHOT</fhir2ModuleVersion>
+    <fhir2ModuleVersion>2.5.2</fhir2ModuleVersion>
     <fhir2ExtensionModuleVersion>2.0.0-c2c-496</fhir2ExtensionModuleVersion>
 
     <!-- Odoo addons versions -->
