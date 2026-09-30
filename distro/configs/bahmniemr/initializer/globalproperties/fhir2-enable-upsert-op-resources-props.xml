@@ -1,0 +1,8 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>fhir2.upsert.supported.resources</property>
+            <value>Medication</value>
+        </globalProperty>
+    </globalProperties>
+</config>
