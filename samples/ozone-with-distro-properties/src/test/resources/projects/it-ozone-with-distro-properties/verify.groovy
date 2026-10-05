@@ -178,7 +178,7 @@ distroPropertiesFile.withInputStream {
 // Verify that the OpenMRS modules exist in the binaries directory
 def binariesOpenmrsModulesDir = buildDir.resolve("distro/binaries/openmrs/modules")
 def results = verifyOpenmrsBackendModules(properties, binariesOpenmrsModulesDir)
-assert results.found.size() == 28
+assert results.found.size() == 30
 assert results.missing.size() == 0
 assert results.skipped.size() == 0
 
