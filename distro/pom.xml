@@ -35,6 +35,7 @@
     <commonreportsVersion>1.6.0</commonreportsVersion>
     <oauth2loginVersion>1.6.0-SNAPSHOT</oauth2loginVersion>
     <fhirproxyVersion>1.1.0-SNAPSHOT</fhirproxyVersion>
+    <fhir2Version>4.3.0</fhir2Version>
     <patientsummaryVersion>2.2.0</patientsummaryVersion>
     <bahmniWebservicesRestVersion>3.3.0</bahmniWebservicesRestVersion>
     <fhir2ModuleVersion>2.5.2</fhir2ModuleVersion>
@@ -129,6 +130,12 @@
       <groupId>org.openmrs.module</groupId>
       <artifactId>oauth2login-omod</artifactId>
       <version>${oauth2loginVersion}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>fhir2-omod</artifactId>
+      <version>${fhir2Version}</version>
       <type>jar</type>
     </dependency>
 
@@ -672,6 +679,8 @@
                   <directory>${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_config</directory>
                   <excludes>
                     <exclude>**/globalproperties-core_demo*</exclude>
+                    <exclude>**/drugs-core_demo*</exclude>
+                    <exclude>**/drugs_concepts-core_demo*</exclude>
                   </excludes>
                 </resource>
               </resources>
@@ -864,6 +873,7 @@
                   <fileset
                           dir="${project.build.directory}/distro-emr-configuration/sdk-distro/web/openmrs_modules">
                     <exclude name="authentication-*.omod"/>
+                    <exclude name="fhir2-4.2.0.omod"/>
                   </fileset>
                 </copy>
               </target>
