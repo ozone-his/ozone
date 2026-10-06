@@ -41,7 +41,7 @@
     <!-- Odoo addons versions -->
     <odooInitializerVersion>2.4.0-SNAPSHOT</odooInitializerVersion>
     <odooInitializerArtifactId>odoo-initializer</odooInitializerArtifactId>
-    <odooAuthRolesVersion>1.1.0-SNAPSHOT</odooAuthRolesVersion>
+    <odooAuthRolesVersion>1.2.0-SNAPSHOT</odooAuthRolesVersion>
     <odooSsoUserRolesArtifactId>odoo-sso-user-roles</odooSsoUserRolesArtifactId>
 
     <!-- EIP Routes artifact versions -->
