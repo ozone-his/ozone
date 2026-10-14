@@ -380,7 +380,7 @@
         </sql>
     </changeSet>
     <changeSet id="postbahmni-2026-10-06-lab-notes-uuid" author="siddharth">
-        <preConditions onFail="CONTINUE">
+        <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 SELECT COUNT(DISTINCT concept_id) FROM concept_name WHERE name = 'LAB_NOTES' AND voided = 0;
             </sqlCheck>
