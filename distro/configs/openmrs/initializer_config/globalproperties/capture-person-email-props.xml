@@ -1,0 +1,9 @@
+<config>
+    <globalProperties>
+        <globalProperty>
+            <property>patient.viewingAttributeTypes</property>
+            <value>email</value>
+            <description>Attributes shown when viewing a patient's metadata</description>
+        </globalProperty>
+    </globalProperties>
+</config>
