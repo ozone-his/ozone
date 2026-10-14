@@ -657,6 +657,29 @@
       "notBefore": 0
     },
     {
+      "id": "b8309b6c-1dfe-4950-84a3-29323398c611",
+      "createdTimestamp": 1632895017907,
+      "username": "service-account-keycloak-active-users-exporter",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "keycloak-active-users-exporter",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-ozone"
+      ],
+      "clientRoles": {
+        "realm-management": [
+          "view-users",
+          "view-realm",
+          "view-clients",
+          "query-users"
+        ]
+      },
+      "notBefore": 0
+    },
+    {
       "id": "6762eb08-3271-489b-87e7-03357c7966a4",
       "createdTimestamp": 1627046549319,
       "username": "service-account-keycloak-admin",
@@ -970,6 +993,62 @@
         "offline_access",
         "microprofile-jwt"
       ]
+    },
+    {
+      "id": "d3a6be4f-9db0-4942-b44e-caf6044b65ed",
+      "clientId": "keycloak-active-users-exporter",
+      "name": "Keycloak Active Users Exporter",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${KC_ACTIVE_USERS_EXPORTER_CLIENT_SECRET}",
+      "redirectUris": [
+        "/*"
+      ],
+      "webOrigins": [
+        "/*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "realm_client": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "client.secret.creation.time": "1789478328",
+        "backchannel.logout.session.required": "true",
+        "standard.token.exchange.enabled": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "dpop.bound.access.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ],
+      "access": {
+        "view": true,
+        "configure": true,
+        "manage": true
+      }
     },
     {
       "id": "${ODOO_CLIENT_UUID}",
