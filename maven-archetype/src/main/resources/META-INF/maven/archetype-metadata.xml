@@ -25,6 +25,20 @@ under the License.
 
   <requiredProperties>
     <requiredProperty key="distributionName" />
+    <!-- The company or facility whose HIS requirements this distribution
+         serves, e.g. 'Care2Communities' -->
+    <requiredProperty key="projectName" />
+    <!-- Optional: the company website URL. Keep as 'none' when there is no
+         website; the README header is rendered only when both this and
+         logoUrl are provided (i.e. not 'none'). -->
+    <requiredProperty key="companyUrl">
+      <defaultValue>none</defaultValue>
+    </requiredProperty>
+    <!-- Optional: URL of the company logo image. Keep as 'none' when there
+         is no logo. -->
+    <requiredProperty key="logoUrl">
+      <defaultValue>none</defaultValue>
+    </requiredProperty>
     <requiredProperty key="version">
       <!-- Work-around for https://issues.apache.org/jira/browse/ARCHETYPE-308
            By using an expression, we should prompt for the value, with a default of 1.0.0-SNAPSHOT -->
@@ -43,6 +57,7 @@ under the License.
       <directory />
       <includes>
         <include>gitignore</include>
+        <include>LICENSE</include>
       </includes>
     </fileSet>
     <fileSet filtered="true">
