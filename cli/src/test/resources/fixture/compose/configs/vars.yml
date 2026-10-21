@@ -1,0 +1,13 @@
+# Fixture code-level vars
+apps:
+  alpha:
+    configs:
+      ALPHA_USER: alphauser
+      ALPHA_PASSWORD: alphapass
+      ALPHA_DB: alphadb
+    sso:
+      ALPHA_CLIENT_SECRET: code-level-secret
+modes:
+  sso:
+    configs:
+      KEYCLOAK_USER: kcadmin

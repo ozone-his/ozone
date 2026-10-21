@@ -45,6 +45,7 @@
     <module>scripts</module>
     <module>distro</module>
     <module>maven-archetype</module>
+    <module>cli</module>
     <module>samples</module>
   </modules>
 

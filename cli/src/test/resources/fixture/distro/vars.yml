@@ -1,0 +1,10 @@
+# Fixture distro-level overrides
+apps:
+  alpha:
+    configs:
+      ALPHA_PASSWORD: distro-pass
+    paths:
+      ALPHA_DATA_PATH: data
+databases:
+  paths:
+    SQL_SCRIPTS_PATH: data

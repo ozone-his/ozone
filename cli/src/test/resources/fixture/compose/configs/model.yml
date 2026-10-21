@@ -1,0 +1,57 @@
+# Fixture model for the ozonectl tests
+base:
+  compose: [other/init.yml]
+
+database-services:
+  mysql: other/mysql.yml
+  postgresql: other/postgresql.yml
+
+apps:
+  alpha:
+    compose: [apps/alpha.yml]
+    sso: sso/alpha.yml
+    restore-profiles: [alpha-restore]
+    db-init: [alpha]
+    db: mysql
+    url: ${SERVER_SCHEME}://${ALPHA_HOSTNAME}
+    credentials: [ALPHA_USER, ALPHA_PASSWORD]
+  beta:
+    compose: [apps/beta.yml]
+    db-init: [beta]
+    db: postgresql
+  gamma:
+    compose: [apps/gamma.yml]
+    db-init: [gamma]
+    db: mysql
+
+integrations:
+  alpha-beta:
+    requires: [alpha, beta]
+    compose: [integrations/alpha-beta.yml]
+    db: mysql
+
+modes:
+  sso:
+    compose: [sso/keycloak.yml]
+    db-init: [keycloak]
+    db: postgresql
+    restore-compose: [sso/restore.yml]
+    restore-profiles: [keycloak-restore]
+  backup:
+    compose: [support/backup.yml]
+  extra:
+    compose: [support/extra.yml]
+    sso: [sso/extra-sso.yml]
+  restore:
+    compose: [support/restore.yml, support/backup.yml]
+
+incompatibilities:
+  - [alpha, gamma]
+
+deployment:
+  services:
+    alpha:
+      hostnames:
+        ALPHA_HOSTNAME: ${HOST_NAME}:8080
+  extra:
+    TIMEZONE: UTC
