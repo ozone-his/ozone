@@ -1,0 +1,4 @@
+# Fixture distro-level compose file of the c2c-connector app
+services:
+  c2c-connector:
+    image: c2c-connector:latest

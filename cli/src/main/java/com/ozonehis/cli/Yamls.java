@@ -1,5 +1,6 @@
-package com.ozonehis.ozonectl;
+package com.ozonehis.cli;
 
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -64,6 +65,16 @@ final class Yamls {
 
     static String string(Object value) {
         return value == null ? null : String.valueOf(value);
+    }
+
+    /**
+     * Dumps a map as block-style YAML — the same layout as the hand-written
+     * sources (SnakeYAML's default would inline compact nested collections).
+     */
+    static String dump(Map<String, Object> map) {
+        DumperOptions options = new DumperOptions();
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        return new Yaml(options).dump(map);
     }
 
     static String fileHeader(String... lines) {

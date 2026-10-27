@@ -1,4 +1,4 @@
-package com.ozonehis.ozonectl;
+package com.ozonehis.cli;
 
 import java.io.File;
 import java.io.IOException;
@@ -183,8 +183,11 @@ final class Resolver {
 
     private void checkFilesExist(List<String> files) throws IOException {
         for (String file : files) {
-            if (!new File(composeRoot, file).isFile()) {
-                throw new IOException("Model error: compose file does not exist: " + file);
+            File resolved = ComposePaths.resolve(composeRoot, distroDir, file,
+                    model.composeRootFiles, model.distroDirFiles);
+            if (!resolved.isFile()) {
+                throw new IOException("Model error: declared compose file does not exist: " + file
+                        + " (expected at " + resolved + ")");
             }
         }
     }

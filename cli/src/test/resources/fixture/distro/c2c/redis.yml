@@ -1,0 +1,4 @@
+# Fixture distro-level compose file of the overlay-declared redis engine
+services:
+  redis:
+    image: redis:7

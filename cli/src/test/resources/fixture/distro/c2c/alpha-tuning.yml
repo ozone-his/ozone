@@ -1,0 +1,5 @@
+# Fixture distro-level compose override appended to the alpha app's chain
+services:
+  alpha:
+    environment:
+      TUNED_BY: c2c

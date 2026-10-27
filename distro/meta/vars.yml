@@ -1,0 +1,104 @@
+# ---------------------------------------------------------------------------
+# Distro-level vars: this distro's overrides of the distribution defaults
+# (compose/configs/vars.yml).
+#
+# Same structure and same ownership rules as the code-level file: a value is
+# declared exactly once, in the block of its owner, and blocks mirror the
+# model (apps / integrations / modes / databases). Values absent here fall
+# back to the code-level defaults.
+# ---------------------------------------------------------------------------
+
+apps:
+  openmrs:
+    configs:
+      SPA_CONFIG_URLS: /openmrs/spa/configs/referenceapplication/config.json,/openmrs/spa/configs/referenceapplication-demo/config.json,/openmrs/spa/configs/ozone-frontend-config.json
+      SPA_DEFAULT_LOCALE: en
+      # OpenMRS concepts (also consumed by the bahmniemr app)
+      WEIGHT_CONCEPT_UUID: 5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      HEIGHT_CONCEPT_UUID: 5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    paths:
+      OPENMRS_CONFIG_PATH: configs/openmrs/initializer_config
+      OPENMRS_PROPERTIES_PATH: configs/openmrs/properties
+      OPENMRS_TOMCAT_CONFIG_PATH: configs/openmrs/tomcat
+      OPENMRS_MODULES_PATH: binaries/openmrs/modules
+      OPENMRS_FRONTEND_BINARY_PATH: binaries/openmrs/frontend
+      OPENMRS_FRONTEND_CONFIG_PATH: configs/openmrs/frontend_config
+
+  bahmniemr:
+    paths:
+      BAHMNI_OPENMRS_MODULES_PATH: binaries/bahmniemr/modules
+      BAHMNI_CONFIG_OVERRIDE_PATH: configs/bahmniemr
+
+  senaite:
+    paths:
+      SENAITE_CONFIG_PATH: configs/senaite/initializer_config
+      SENAITE_OIDC_CONFIG_PATH: configs/senaite/oidc
+
+  odoo:
+    configs:
+      ODOO_ADDONS: sale_management,stock,account,purchase,mrp,odoo_initializer,mrp_product_expiry,product_expiry,l10n_generic_coa,sale_stock_margin
+    paths:
+      ODOO_EXTRA_ADDONS: binaries/odoo/addons
+      ODOO_CONFIG_PATH: configs/odoo/initializer_config
+      ODOO_CONFIG_FILE_PATH: configs/odoo/config/odoo.conf
+
+  erpnext:
+    paths:
+      ERPNEXT_CONFIG_PATH: configs/erpnext/initializer_config
+      ERPNEXT_SCRIPTS_PATH: binaries/erpnext/scripts
+
+  orthanc:
+    paths:
+      ORTHANC_CONFIG_PATH: configs/orthanc/initializer_config
+
+  openelis:
+    paths:
+      OPENELIS_CONFIG_PATH: binaries/openelis/configs
+      OPENELIS_BINARIES_PATH: binaries/openelis
+      OPENELIS_PROPERTIES_PATH: configs/openelis/properties
+
+# The values owned by each integration (mostly their route templates and
+# their runtime configuration).
+integrations:
+  eip-odoo-openmrs:
+    # Values consumed by the EIP route templates
+    configs:
+      CONCEPT_COMPLEX_UUID: b16066fa-6291-4375-3a39-f9f987320f88
+      OPENMRS_IDENTIFIER_TYPE_UUID: 05a29f94-c0ed-11e2-94be-8c13b969e334
+      EMR_WEIGHT_CONCEPT: ''
+      ODOO_ENABLE_EXTRA_CUSTOMER_FIELDS_ROUTE: false
+      ODOO_ENABLE_EXTRA_QUOTATION_FIELDS_ROUTE: false
+      CREATE_CUSTOMER_IF_NOT_EXIST: false
+    paths:
+      EIP_ODOO_OPENMRS_ROUTES_PATH: binaries/eip-odoo-openmrs
+
+  eip-openmrs-senaite:
+    configs:
+      RESULTS_ENCOUNTER_TYPE_UUID: 3596fafb-6f6f-4396-8c87-6e63a0f1bd71
+    paths:
+      EIP_OPENMRS_SENAITE_ROUTES_PATH: binaries/eip-openmrs-senaite
+
+  eip-erpnext-openmrs:
+    paths:
+      EIP_ERPNEXT_OPENMRS_ROUTES_PATH: binaries/eip-erpnext-openmrs
+
+  eip-openmrs-orthanc:
+    paths:
+      EIP_OPENMRS_ORTHANC_ROUTES_PATH: binaries/eip-openmrs-orthanc
+
+  eip-odoo-openelis:
+    paths:
+      EIP_ODOO_OPENELIS_ROUTES_PATH: binaries/eip-odoo-openelis
+      EIP_ODOO_OPENELIS_DATA_DIR: data/eip_odoo_openelis
+
+modes:
+  sso:
+    paths:
+      KEYCLOAK_CONFIG_PATH: configs/keycloak
+      KEYCLOAK_BINARIES_PATH: binaries/keycloak
+
+databases:
+  # The data tree serving the database init scripts, shared by mysql and
+  # postgresql (see other/databases.yml).
+  paths:
+    SQL_SCRIPTS_PATH: data

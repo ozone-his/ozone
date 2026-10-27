@@ -1,4 +1,4 @@
-package com.ozonehis.ozonectl;
+package com.ozonehis.cli;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
