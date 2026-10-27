@@ -1,0 +1,6 @@
+id,name,categ_id/id,type,uom_id/id,uom_po_id/id,sale_ok,purchase_ok,invoice_policy,lst_price
+init.7b0f5697-27e3-40c4-8bae-f4049abfb4ed,Facility Visit,init.categ_services_visit_orders,service,uom.product_uom_day,uom.product_uom_day,TRUE,FALSE,Ordered quantities,0
+init.d66e9fe0-7d51-4801-a550-5d462ad1c944,Home Visit,init.categ_services_visit_orders,service,uom.product_uom_day,uom.product_uom_day,TRUE,FALSE,Ordered quantities,0
+init.287463d3-2233-4c69-9851-5841a1f5e109,OPD Visit,init.categ_services_visit_orders,service,uom.product_uom_day,uom.product_uom_day,TRUE,FALSE,Ordered quantities,0
+init.a22733fa-3501-4020-a520-da024eeff088,Offline Visit,init.categ_services_visit_orders,service,uom.product_uom_day,uom.product_uom_day,TRUE,FALSE,Ordered quantities,0
+init.78370d15-38ad-48a1-825f-f0e9ff60d5a1,Group Session,init.categ_services_visit_orders,service,uom.product_uom_day,uom.product_uom_day,TRUE,FALSE,Ordered quantities,0
