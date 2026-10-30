@@ -52,6 +52,43 @@
   }
 }
 
+/* PatternFly centers the whole "logo + card" stack vertically (flex
+   align-items on .pf-v5-c-login), so the card - the element the user actually
+   reads - ends up half a header-block below the viewport's true center.
+   Nudge the stack up by half of (space above the card minus space below it),
+   expressed via the same variables PatternFly derives those spaces from, so
+   the card is what ends up centered while the logo keeps sitting on top of
+   it. A transform rather than a negative margin: it is purely visual, so it
+   cannot reflow the card or shift the absolutely-positioned "powered by"
+   footer away from the card it belongs to. Scoped from 576px up: below that
+   breakpoint PatternFly does not vertically center anything (content starts
+   at the top), so there is nothing to compensate. */
+@media (min-width: 576px) {
+  .pf-v5-c-login__container {
+    transform: translateY(calc(
+      -1 * (var(--keycloak-logo-height)
+            + var(--pf-v5-c-login__header--c-brand--MarginBottom)
+            - var(--pf-v5-c-login__main--MarginBottom)) / 2));
+  }
+}
+
+/* At the xl breakpoint PatternFly re-styles the header for its split "brand
+   beside card" layout (which the grid override above disables), additionally
+   giving it a 4rem margin-block-start and zeroing the card's own bottom
+   margin. The brand margin above has also switched to its xl value at this
+   breakpoint, via PatternFly's own media query. The zeroed bottom margin is
+   deliberately not part of the calc: it is defined as a unitless 0, which
+   turns "px - var()" into a type error that would invalidate the whole
+   transform declaration. */
+@media (min-width: 1200px) {
+  .pf-v5-c-login__container {
+    transform: translateY(calc(
+      -1 * (var(--keycloak-logo-height)
+            + var(--pf-v5-c-login__header--c-brand--MarginBottom)
+            + var(--pf-v5-c-login__header--xl--MarginTop)) / 2));
+  }
+}
+
 /* Partner "powered by" logos, rendered by footer.ftl. keycloak.v2's template calls
    footer.ftl as the last direct child of .pf-v5-c-login__main (the card itself), so
    by default it renders inside the card. Lift it out and place it centered below
