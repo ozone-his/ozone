@@ -11,11 +11,11 @@
     <relativePath>../maven-commons</relativePath>
   </parent>
 
-  <artifactId>ozonectl</artifactId>
+  <artifactId>cli</artifactId>
   <packaging>jar</packaging>
 
-  <name>Ozone Control</name>
-  <description>Assembles the Docker Compose command of an Ozone distribution from the compose model and the distro's selection</description>
+  <name>Ozone CLI</name>
+  <description>The Ozone CLI: assembles the Docker Compose command of an Ozone distribution from the compose model and the distro's selection, and resolves the distro build's inheritance chain</description>
 
   <properties>
     <snakeyaml.version>2.2</snakeyaml.version>
@@ -51,7 +51,7 @@
             <configuration>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>com.ozonehis.ozonectl.Cli</mainClass>
+                  <mainClass>com.ozonehis.cli.OzoneCli</mainClass>
                 </transformer>
               </transformers>
               <filters>

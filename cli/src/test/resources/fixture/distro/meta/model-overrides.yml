@@ -1,4 +1,4 @@
-# Fixture distro-level model overlay: strictly additive — new entries and
+# Fixture distro-level model overlay: strictly additive - new entries and
 # appended files; declared scalars override the base's values.
 apps:
   alpha:

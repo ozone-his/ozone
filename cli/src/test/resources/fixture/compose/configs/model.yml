@@ -1,4 +1,4 @@
-# Fixture model for the ozonectl tests
+# Fixture model for the Ozone CLI tests
 base:
   compose: [other/init.yml]
 

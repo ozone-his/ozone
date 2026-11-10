@@ -13,7 +13,7 @@ import java.util.Set;
  * The compose project's model (compose/configs/model.yml): everything that
  * CAN run and the rules of combination. A distro may extend it with an
  * optional model-overrides.yml (see mergeOverlay) to add entries of its
- * own or append files to existing ones — never to remove anything.
+ * own or append files to existing ones - never to remove anything.
  */
 final class Model {
 
@@ -30,16 +30,16 @@ final class Model {
     final List<String[]> incompatibilities = new ArrayList<String[]>();
 
     /**
-     * The model's `deployment:` section — deployment-provided value
+     * The model's `deployment:` section - deployment-provided value
      * declarations (hostname templates, datadirs, extra globals). The
      * values themselves are deployment-time; this declares the knobs.
      */
     final Map<String, Object> deployment = new LinkedHashMap<String, Object>();
 
-    /** compose files declared by the base model — resolved against the compose root */
+    /** compose files declared by the base model - resolved against the compose root */
     final Set<String> composeRootFiles = new LinkedHashSet<String>();
 
-    /** compose files declared by the distro's model-overrides.yml — resolved against the distro dir */
+    /** compose files declared by the distro's model-overrides.yml - resolved against the distro dir */
     final Set<String> distroDirFiles = new LinkedHashSet<String>();
 
     /** One model entry: an app, an integration or a mode. */
@@ -55,7 +55,7 @@ final class Model {
         final List<String> db = new ArrayList<String>();
         String url;
         final List<String> credentials = new ArrayList<String>();
-        /** e.g. demo-data's `sso-users:` — the Keycloak users a mode provisions */
+        /** e.g. demo-data's `sso-users:` - the Keycloak users a mode provisions */
         String ssoUsers;
     }
 
@@ -89,7 +89,7 @@ final class Model {
      * modes, database engines, incompatibility pairs, deployment knobs)
      * are added; on existing entries list fields are appended and declared
      * scalars (url, sso-users, a database engine's file) are overridden
-     * with the child's value. Nothing can be removed — disabling a service
+     * with the child's value. Nothing can be removed - disabling a service
      * is done in selection.yml.
      */
     void mergeOverlay(Map<String, Object> overlay) throws IOException {
@@ -189,7 +189,7 @@ final class Model {
 
     /**
      * deployment section merge: services.&lt;name&gt;.{hostnames,datadirs,configs}
-     * and the extra block — per var, the child-declared value wins.
+     * and the extra block - per var, the child-declared value wins.
      */
     private static void mergeDeployment(Map<String, Object> target, Map<String, Object> overlay) {
         Map<String, Object> services = Yamls.map(target.get("services"));

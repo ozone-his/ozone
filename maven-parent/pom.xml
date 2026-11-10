@@ -35,6 +35,7 @@
     <ozone.groupId>com.ozonehis</ozone.groupId>
     <ozone.version>1.0.0-SNAPSHOT</ozone.version>
     <ozone-scripts.version>1.0.0-SNAPSHOT</ozone-scripts.version>
+    <cli.version>1.0.0-SNAPSHOT</cli.version>
   </properties>
 
   <dependencies>
@@ -82,8 +83,10 @@
               <excludeTransitive>true</excludeTransitive>
               <useBaseVersion>true</useBaseVersion>
               <outputDirectory>${project.build.directory}/openmrs_modules/</outputDirectory>
-              <!-- copying jars and omods only -->
+              <!-- copying jars and omods only; the Ozone CLI jar is a build
+                   tool, not an OpenMRS module -->
               <includeTypes>jar, omod</includeTypes>
+              <excludeArtifactIds>cli</excludeArtifactIds>
             </configuration>
           </execution>
 
@@ -848,7 +851,7 @@
       <activation>
         <file>
           <!-- Activates only if distro.properties is present in the configs/openmrs/distro_assembly directory -->
-          <exists>${project.basedir}/configs/openmrs/distro_assembly/distro.properties</exists>
+          <exists>${basedir}/configs/openmrs/distro_assembly/distro.properties</exists>
         </file>
       </activation>
       <build>
@@ -967,6 +970,93 @@
                 <configuration>
                   <distro>${project.build.directory}/distro_assembly/distro.properties</distro>
                   <dir>${project.build.directory}/sdk-distro</dir>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Activated for distros carrying a meta/ dir: resolve the meta sources
+         at build time with the Ozone CLI ('ozone resolve'), so the published
+         artifact ships a ready-to-deploy meta/resolved/ chain. Nothing is
+         generated in the source tree. -->
+    <profile>
+      <id>meta</id>
+      <activation>
+        <file>
+          <exists>${basedir}/meta</exists>
+        </file>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.ozonehis</groupId>
+          <artifactId>cli</artifactId>
+          <version>${cli.version}</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Copy the distro's own meta/ sources into the assembled
+                     distro; resolved/, .env and manifest.yml are generated
+                     (by 'Resolve meta sources' and at deployment), never copied -->
+                <id>Copy local meta/ resources</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/distro/meta</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>${project.basedir}/meta</directory>
+                      <excludes>
+                        <exclude>resolved/**</exclude>
+                        <exclude>.env</exclude>
+                        <exclude>manifest.yml</exclude>
+                      </excludes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <!-- Merge this distro's meta/ sources with the parent distro's
+                     resolved chain (the Ozone zip unpacked above) and record
+                     the distro's identity as meta/resolved/info.yml -->
+                <id>Resolve meta sources</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+                <configuration>
+                  <mainClass>com.ozonehis.cli.OzoneCli</mainClass>
+                  <arguments>
+                    <argument>resolve</argument>
+                    <argument>--from</argument>
+                    <argument>${project.build.directory}/${ozone.artifactId}/distro</argument>
+                    <argument>--to</argument>
+                    <argument>${project.build.directory}/${project.artifactId}-${project.version}/distro</argument>
+                    <argument>--project-name</argument>
+                    <argument>${project.artifactId}</argument>
+                    <argument>--project-version</argument>
+                    <argument>${project.version}</argument>
+                    <argument>--project-description</argument>
+                    <argument>${project.description}</argument>
+                  </arguments>
                 </configuration>
               </execution>
             </executions>

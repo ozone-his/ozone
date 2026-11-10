@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * Resolves model-declared compose files to their file system location. The
- * declaring model decides the root — never the state of the file system:
+ * declaring model decides the root - never the state of the file system:
  * files declared by the base model resolve against the compose root, files
  * declared by a distro's model-overrides.yml against the distro dir.
  */

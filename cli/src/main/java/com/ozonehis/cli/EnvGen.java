@@ -88,7 +88,7 @@ final class EnvGen {
      * Each section holds named blocks (e.g. apps.openmrs), each block with
      * configs / paths (always merged) and sso (merged only when SSO is
      * enabled). A section may also carry configs / paths directly, e.g. the
-     * shared databases paths — but not sso: a section child named 'sso' is
+     * shared databases paths - but not sso: a section child named 'sso' is
      * the sso mode block, a named block, not an sso sub-block.
      */
     private void mergeOwnerBlocks(Map<String, String> env, Map<String, Object> vars, boolean override) {
@@ -133,7 +133,7 @@ final class EnvGen {
 
     /**
      * deployment_vars.yml: services.&lt;name&gt;.{hostnames,datadirs,configs}
-     * and the extra block — all flattened, always overriding.
+     * and the extra block - all flattened, always overriding.
      */
     private void mergeDeploymentVars(Map<String, String> env, Map<String, Object> deploymentVars) {
         for (Map.Entry<String, Object> service : Yamls.map(deploymentVars.get("services")).entrySet()) {

@@ -12,7 +12,7 @@
 
     <artifactId>samples</artifactId>
     <packaging>pom</packaging>
-    <name>Ozone samples</name>
+    <name>Ozone Samples</name>
     <description>Sample applications demonstrating Ozone features</description>
 
     <modules>

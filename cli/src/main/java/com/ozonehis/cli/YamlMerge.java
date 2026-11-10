@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * The structural merge of distro files (vars.yml, model-overrides.yml):
  * maps merge recursively per key, lists append, scalars are overridden
- * with the child's value — the declared inheritance rules, with type
+ * with the child's value - the declared inheritance rules, with type
  * conflicts rejected loudly.
  */
 final class YamlMerge {

@@ -188,6 +188,13 @@
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
+
+    <!-- The Ozone CLI, run at build time to resolve the meta/ sources -->
+    <dependency>
+      <groupId>com.ozonehis</groupId>
+      <artifactId>cli</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -454,6 +461,31 @@
                 </configuration>
             </execution>
           <execution>
+            <!-- Resolve the meta/ sources with the Ozone CLI ('ozone resolve'):
+                 this is the root distro, so there is no parent to merge from;
+                 the own sources are published as-is and the distro's identity
+                 is recorded as meta/resolved/info.yml -->
+            <id>Resolve meta sources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>com.ozonehis.cli.OzoneCli</mainClass>
+              <arguments>
+                <argument>resolve</argument>
+                <argument>--to</argument>
+                <argument>${project.build.directory}/${project.artifactId}-${project.version}</argument>
+                <argument>--project-name</argument>
+                <argument>${project.artifactId}</argument>
+                <argument>--project-version</argument>
+                <argument>${project.version}</argument>
+                <argument>--project-description</argument>
+                <argument>${project.description}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
             <!-- Prefix content packages so that the overwrite order can be determined -->
             <id>prefix content packages</id>
             <phase>package</phase>
@@ -476,6 +508,32 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
+          <execution>
+            <!-- Copy the distro's own meta/ sources into the assembled distro;
+                 resolved/, .env and manifest.yml are generated (by 'Resolve
+                 meta sources' and at deployment), never copied -->
+            <id>Copy local meta/ resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/meta</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/meta</directory>
+                  <excludes>
+                    <exclude>resolved/**</exclude>
+                    <exclude>.env</exclude>
+                    <exclude>manifest.yml</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
           <execution>
             <!-- Copy binaries/ folder -->
             <id>Copy local binaries/ resources</id>

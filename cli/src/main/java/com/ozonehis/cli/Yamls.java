@@ -68,7 +68,7 @@ final class Yamls {
     }
 
     /**
-     * Dumps a map as block-style YAML — the same layout as the hand-written
+     * Dumps a map as block-style YAML - the same layout as the hand-written
      * sources (SnakeYAML's default would inline compact nested collections).
      */
     static String dump(Map<String, Object> map) {

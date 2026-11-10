@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The presentation layer of the ozone CLI: everything the tool prints. This is
- * the "frontend" — isolated from the assembly logic (Model, Resolver, EnvGen,
+ * The presentation layer of the Ozone CLI: everything the tool prints. This is
+ * the "frontend" - isolated from the assembly logic (Model, Resolver, EnvGen,
  * and the command orchestration in OzoneCli) so the console output can evolve
  * independently.
  *
@@ -28,7 +28,7 @@ final class Display {
     }
 
     void validated(int chainSize) {
-        System.out.println("✓ Selection is valid — " + chainSize + " compose files on the chain.");
+        System.out.println("✓ Selection is valid - " + chainSize + " compose files on the chain.");
     }
 
     void command(String command) {
@@ -91,7 +91,7 @@ final class Display {
      * service from its users file.
      */
     private void ssoCredentials(Model model, Plan plan, Map<String, String> env) {
-        System.out.println("🔑 Credentials — app logins are managed by Keycloak (SSO enabled)");
+        System.out.println("🔑 Credentials - app logins are managed by Keycloak (SSO enabled)");
         Model.Entry sso = model.modes.get("sso");
         if (sso != null && !sso.credentials.isEmpty()) {
             System.out.println("  ● " + column("keycloak", credentialValue(sso, env), "keycloak".length()));

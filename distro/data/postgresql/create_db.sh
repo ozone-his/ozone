@@ -11,7 +11,7 @@
 #
 # DB_INIT_LIST restricts which database directories are initialized: a
 # space- or comma-separated list of directory names, as produced by
-# ozonectl from the compose model's `db-init` selection. When DB_INIT_LIST
+# the Ozone CLI from the compose model's `db-init` selection. When DB_INIT_LIST
 # is unset or empty, every directory is initialized.
 #
 set -e

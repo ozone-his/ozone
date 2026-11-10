@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The distro's selection (distro/selection.yml): what WILL run — the
+ * The distro's selection (distro/selection.yml): what WILL run - the
  * selected apps and the enabled modes. Integrations are never listed here;
  * they activate automatically when their required apps are all selected.
  */

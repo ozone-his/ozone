@@ -32,7 +32,7 @@
 
     <!-- Dependency versions -->
     <ozoneDistroVersion>1.0.0-SNAPSHOT</ozoneDistroVersion>
-    <ozoneDockerComposeVersion>1.0.0-SNAPSHOT</ozoneDockerComposeVersion>
+    <composeVersion>1.0.0-SNAPSHOT</composeVersion>
 
     <!-- Classifier for the dependency report artifact -->
     <dependencyReportClassifier>dependencies</dependencyReportClassifier>
@@ -58,9 +58,9 @@
     </dependency>
     <dependency>
       <groupId>com.ozonehis</groupId>
-      <artifactId>ozone-docker-compose</artifactId>
+      <artifactId>compose</artifactId>
       <type>zip</type>
-      <version>${ozoneDockerComposeVersion}</version>
+      <version>${composeVersion}</version>
     </dependency>
   </dependencies>
   <build>
@@ -71,7 +71,9 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
-            <id>Copy Ozone Docker Compose</id>
+            <!-- The compose project artifact, unpacked as the compose root:
+                 the deployment's compose root is this run/docker dir -->
+            <id>Copy the compose project</id>
             <phase>generate-resources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
@@ -80,7 +82,7 @@
               <excludeTransitive>true</excludeTransitive>
               <outputDirectory>
                 ${project.build.directory}/${project.artifactId}-${project.version}/run/docker</outputDirectory>
-              <includeArtifactIds>ozone-docker-compose</includeArtifactIds>
+              <includeArtifactIds>compose</includeArtifactIds>
             </configuration>
           </execution>
 
@@ -97,24 +99,6 @@
               <includeArtifactIds>ozone-distro</includeArtifactIds>
             </configuration>
           </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <artifactId>exec-maven-plugin</artifactId>
-        <groupId>org.codehaus.mojo</groupId>
-        <executions>
-          <execution><!-- Replace the Ozone Dir value in order for start-demo.sh to work -->
-            <id>Set OZONE_DIR (needed by start-demo.sh)</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <configuration>
-              <executable>${project.build.directory}/set-ozone-dir.sh</executable>
-            </configuration>
-          </execution>
-
         </executions>
       </plugin>
 
