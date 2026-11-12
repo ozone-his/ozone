@@ -1,9 +1,0 @@
-apps:
-  - openmrs
-  - odoo
-  - senaite
-
-modes:
-  proxy: false
-  sso: false
-  demo-data: true

@@ -35,7 +35,6 @@
     <ozone.groupId>com.ozonehis</ozone.groupId>
     <ozone.version>1.0.0-SNAPSHOT</ozone.version>
     <ozone-scripts.version>1.0.0-SNAPSHOT</ozone-scripts.version>
-    <cli.version>1.0.0-SNAPSHOT</cli.version>
   </properties>
 
   <dependencies>
@@ -978,15 +977,15 @@
       </build>
     </profile>
 
-    <!-- Activated for distros carrying a meta/ dir: resolve the meta sources
-         at build time with the Ozone CLI ('ozone resolve'), so the published
-         artifact ships a ready-to-deploy meta/resolved/ chain. Nothing is
+    <!-- Activated for distros carrying an ozone.yml: resolve its sections at
+         build time with the Ozone CLI ('ozone resolve'), so the published
+         artifact ships a ready-to-deploy resolved/ chain. Nothing is
          generated in the source tree. -->
     <profile>
-      <id>meta</id>
+      <id>ozone-yml</id>
       <activation>
         <file>
-          <exists>${basedir}/meta</exists>
+          <exists>${basedir}/ozone.yml</exists>
         </file>
       </activation>
       <dependencies>
@@ -1003,26 +1002,25 @@
             <artifactId>maven-resources-plugin</artifactId>
             <executions>
               <execution>
-                <!-- Copy the distro's own meta/ sources into the assembled
-                     distro; resolved/, .env and manifest.yml are generated
-                     (by 'Resolve meta sources' and at deployment), never copied -->
-                <id>Copy local meta/ resources</id>
+                <!-- Copy the distro's own ozone.yml declaration into the
+                     assembled distro; resolved/, .env and manifest.yml are
+                     generated (by 'Resolve the ozone.yml sections' and at
+                     deployment), never copied -->
+                <id>Copy local ozone.yml</id>
                 <phase>process-resources</phase>
                 <goals>
                   <goal>copy-resources</goal>
                 </goals>
                 <configuration>
                   <outputDirectory>
-                    ${project.build.directory}/${project.artifactId}-${project.version}/distro/meta</outputDirectory>
+                    ${project.build.directory}/${project.artifactId}-${project.version}/distro</outputDirectory>
                   <overwrite>true</overwrite>
                   <resources>
                     <resource>
-                      <directory>${project.basedir}/meta</directory>
-                      <excludes>
-                        <exclude>resolved/**</exclude>
-                        <exclude>.env</exclude>
-                        <exclude>manifest.yml</exclude>
-                      </excludes>
+                      <directory>${project.basedir}</directory>
+                      <includes>
+                        <include>ozone.yml</include>
+                      </includes>
                     </resource>
                   </resources>
                 </configuration>
@@ -1034,10 +1032,11 @@
             <artifactId>exec-maven-plugin</artifactId>
             <executions>
               <execution>
-                <!-- Merge this distro's meta/ sources with the parent distro's
-                     resolved chain (the Ozone zip unpacked above) and record
-                     the distro's identity as meta/resolved/info.yml -->
-                <id>Resolve meta sources</id>
+                <!-- Resolve this distro's ozone.yml sections (vars:,
+                     model-overrides:) with the parent distro's resolved chain
+                     (the Ozone zip unpacked above) and record the distro's
+                     identity as resolved/info.yml -->
+                <id>Resolve the ozone.yml sections</id>
                 <phase>prepare-package</phase>
                 <goals>
                   <goal>java</goal>

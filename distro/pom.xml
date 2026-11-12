@@ -189,11 +189,12 @@
       <type>zip</type>
     </dependency>
 
-    <!-- The Ozone CLI, run at build time to resolve the meta/ sources -->
+    <!-- The Ozone CLI (own repo: ozone-cli), run at build time to resolve the
+         ozone.yml sections -->
     <dependency>
       <groupId>com.ozonehis</groupId>
       <artifactId>cli</artifactId>
-      <version>${project.version}</version>
+      <version>${cli.version}</version>
     </dependency>
   </dependencies>
 
@@ -461,11 +462,11 @@
                 </configuration>
             </execution>
           <execution>
-            <!-- Resolve the meta/ sources with the Ozone CLI ('ozone resolve'):
-                 this is the root distro, so there is no parent to merge from;
-                 the own sources are published as-is and the distro's identity
-                 is recorded as meta/resolved/info.yml -->
-            <id>Resolve meta sources</id>
+            <!-- Resolve the ozone.yml sections with the Ozone CLI ('ozone
+                 resolve'): this is the root distro, so there is no parent to
+                 merge from; the own sections are published as-is and the
+                 distro's identity is recorded as resolved/info.yml -->
+            <id>Resolve the ozone.yml sections</id>
             <phase>prepare-package</phase>
             <goals>
               <goal>java</goal>
@@ -509,26 +510,25 @@
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
           <execution>
-            <!-- Copy the distro's own meta/ sources into the assembled distro;
-                 resolved/, .env and manifest.yml are generated (by 'Resolve
-                 meta sources' and at deployment), never copied -->
-            <id>Copy local meta/ resources</id>
+            <!-- Copy the distro's own ozone.yml declaration into the assembled
+                 distro; resolved/, .env and manifest.yml are generated (by
+                 'Resolve the ozone.yml sections' and at deployment), never
+                 copied -->
+            <id>Copy local ozone.yml</id>
             <phase>process-resources</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
               <outputDirectory>
-                ${project.build.directory}/${project.artifactId}-${project.version}/meta</outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
               <overwrite>true</overwrite>
               <resources>
                 <resource>
-                  <directory>${project.basedir}/meta</directory>
-                  <excludes>
-                    <exclude>resolved/**</exclude>
-                    <exclude>.env</exclude>
-                    <exclude>manifest.yml</exclude>
-                  </excludes>
+                  <directory>${project.basedir}</directory>
+                  <includes>
+                    <include>ozone.yml</include>
+                  </includes>
                 </resource>
               </resources>
             </configuration>

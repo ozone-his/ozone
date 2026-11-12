@@ -1,7 +1,0 @@
-apps:
-  - alpha
-  - beta
-
-modes:
-  sso: true
-  backup: true

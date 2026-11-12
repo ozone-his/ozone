@@ -13,6 +13,10 @@
     <fileSet>
       <outputDirectory>.</outputDirectory>
       <directory>${project.build.directory}/${project.artifactId}-${project.version}</directory>
+      <excludes>
+        <!-- bin/ is added by the dedicated fileSet below, with the exec bit -->
+        <exclude>bin/**</exclude>
+      </excludes>
     </fileSet>
     <!-- the launcher must stay executable in the zip -->
     <fileSet>
