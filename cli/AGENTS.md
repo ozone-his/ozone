@@ -1,4 +1,4 @@
-# DEVELOPMENT.md - developing the Ozone CLI
+# AGENTS.md - developing the Ozone CLI
 
 Development guide for this module (`cli/`, artifact `com.ozonehis:cli`,
 command `ozone`). Written for human developers and equally usable by AI
@@ -79,6 +79,14 @@ classes in `com.ozonehis.cli`:
   Maven inherits the parent's - there is no way to detect that, by design).
 
 ## Build, test, smoke
+
+The `ozone` launcher and its PATH helpers live in this module at `cli/bin/`
+(`ozone`, `ozone-path.sh` for sh/bash/zsh, `ozone-path.fish` for fish); the
+root build copies them into the artifact as `bin/*` next to `bin/cli.jar`
+(the CLI jar), so a built Ozone zip runs `bin/ozone ...` directly. The
+session-local dev shims `ozone-local.sh` / `ozone-local.fish` (define an
+`ozone` shell function over `cli/target/cli-*.jar`) are excluded from the
+artifact; source them from the repo root to use the CLI built from source.
 
 ```
 cd cli && mvn clean package

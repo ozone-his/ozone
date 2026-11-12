@@ -1,0 +1,3 @@
+#!/bin/sh
+# Launches the Ozone CLI from the jar shipped next to this script (bin/cli.jar in the artifact).
+exec java -jar "$(dirname "$0")/cli.jar" "$@"

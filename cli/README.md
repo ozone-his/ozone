@@ -108,6 +108,28 @@ that belongs to the base model (loud error).
 
 ## Usage
 
+In a built Ozone artifact the CLI is bundled as `bin/ozone` (a launcher for
+the shipped `bin/cli.jar`). To use the bare `ozone` command, either source the
+helper or export PATH yourself:
+
+```
+. ./bin/ozone-path.sh        # sh/bash/zsh; in fish: source ./bin/ozone-path.fish
+                             # or simply: export PATH="$PWD/bin:$PATH"
+ozone --compose-root ...    # then use 'ozone' directly
+```
+
+Elsewhere, run the jar directly: `java -jar cli-<version>.jar ...`.
+
+### From the source tree (development)
+
+Build the CLI and source the session-local shim - no artifact needed:
+
+```
+mvn -pl cli package
+. cli/bin/ozone-local.sh        # sh/bash/zsh; in fish: source cli/bin/ozone-local.fish
+ozone --compose-root ...        # uses cli/target/cli-*.jar, this session only
+```
+
 ```
 ozone resolve [--from <parent-distro-dir>] --to <distro-dir>
               [--project-name <n>] [--project-version <v>] [--project-description <d>]
@@ -146,6 +168,27 @@ DISTRO_PATH='<distro dir>' \
   up -d
 ```
 
+## Examples
+
+`ozone --help` prints the same examples.
+
+Build time - resolve this distro's `meta/` sources against its parent (run by
+the Maven build; run by hand only to regenerate `meta/resolved/`):
+
+```
+ozone resolve --from target/ozone/distro --to target/my-distro-1.0.0-SNAPSHOT/distro \
+              --project-name my-distro --project-version 1.0.0-SNAPSHOT \
+              --project-description 'My distro'
+```
+
+Deployment - from an unpacked Ozone artifact:
+
+```
+ozone --compose-root run/docker --distro distro --hostname demo.local run
+ozone --compose-root run/docker --distro distro --hostname demo.local up backup
+ozone --compose-root run/docker --distro distro --hostname demo.local down
+```
+
 ## Build wiring (Maven)
 
 Child distros inherit the resolve step from `maven-parent` via the `meta`
@@ -155,5 +198,6 @@ against the parent Ozone zip unpacked in `target/`. The root Ozone distro
 (`distro/pom.xml`) runs the same step without a parent. Nothing is generated
 in source trees - only in the built artifact.
 
-See `DEVELOPMENT.md` in this module for the development conventions of the CLI
-itself.
+See `AGENTS.md` in this module for the development conventions of the CLI
+itself. Migrating an existing child distro from the old scripts/-based setup?
+See `MIGRATION.md` in this module.

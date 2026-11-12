@@ -14,5 +14,11 @@
       <outputDirectory>.</outputDirectory>
       <directory>${project.build.directory}/${project.artifactId}-${project.version}</directory>
     </fileSet>
+    <!-- the launcher must stay executable in the zip -->
+    <fileSet>
+      <outputDirectory>bin</outputDirectory>
+      <directory>${project.build.directory}/${project.artifactId}-${project.version}/bin</directory>
+      <fileMode>0755</fileMode>
+    </fileSet>
   </fileSets>
 </assembly>

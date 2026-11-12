@@ -36,15 +36,6 @@ public final class OzoneCli {
             + "                    [--scheme <http|https>] [--env-file <path>] [--manifest <path>]\n"
             + "                    [--no-credentials] <run | up [mode] | down | restore | validate | manifest>\n"
             + "\n"
-            + "  Everything 'ozone' reads and writes lives in the distro's meta/ dir:\n"
-            + "  the own selection.yml, vars.yml and model-overrides.yml sources, the\n"
-            + "  build-generated resolved/ files (the only vars and model source read at\n"
-            + "  run time - run 'ozone resolve' or the distro build to generate them),\n"
-            + "  resolved/info.yml (the build-declared distro identity: the compose\n"
-            + "  project name, and later the final versions used), and the generated\n"
-            + "  .env and manifest.yml. paths: values and overlay compose paths are\n"
-            + "  relative to the distro root, not to the meta/ dir.\n"
-            + "\n"
             + "  --compose-root  required (except for resolve): the Docker Compose project location.\n"
             + "  --distro        required (except for resolve): the distro location.\n"
             + "  --hostname      required for run/up/restore/down: the deployment's hostname,\n"
@@ -60,6 +51,24 @@ public final class OzoneCli {
             + "  restore        print the pre-computed restore command\n"
             + "  validate       run all validation rules, print nothing on success\n"
             + "  manifest       generate manifest.yml and .env, print the summary\n";
+
+    private static final String EXAMPLES = "\n"
+            + "Examples:\n"
+            + "  # build time - resolve this distro's meta/ sources against its parent\n"
+            + "  # (run by the Maven build; run by hand only to regenerate):\n"
+            + "  ozone resolve --from target/ozone/distro --to target/my-distro-1.0.0-SNAPSHOT/distro \\\n"
+            + "                --project-name my-distro --project-version 1.0.0-SNAPSHOT \\\n"
+            + "                --project-description 'My distro'\n"
+            + "\n"
+            + "  # deployment - from an unpacked Ozone artifact:\n"
+            + "  ozone --compose-root run/docker --distro distro --hostname demo.local run\n"
+            + "  ozone --compose-root run/docker --distro distro --hostname demo.local up backup\n"
+            + "  ozone --compose-root run/docker --distro distro --hostname demo.local down\n";
+
+    private static final String HELP = USAGE + EXAMPLES;
+
+    /** Appended to error messages instead of the full help text. */
+    private static final String HINT = " Type 'ozone --help' for usage and examples.";
 
     private File composeRoot;
     private File distroDir = new File(".");
@@ -89,13 +98,19 @@ public final class OzoneCli {
     }
 
     private void run(String[] args) throws Exception {
+        for (String arg : args) {
+            if ("--help".equals(arg) || "-h".equals(arg)) {
+                System.out.println(HELP);
+                return;
+            }
+        }
         parse(args);
         if ("resolve".equals(command)) {
             if (commandArg != null) {
                 throw new IOException("Unexpected argument: " + commandArg);
             }
             if (toDir == null) {
-                throw new IOException("Missing --to.\n\n" + USAGE);
+                throw new IOException("Missing --to." + HINT);
             }
             // The build-declared distro identity, recorded as resolved/info.yml
             Map<String, String> info = new LinkedHashMap<String, String>();
@@ -114,7 +129,7 @@ public final class OzoneCli {
             return;
         }
         if (command == null || composeRoot == null) {
-            throw new IOException("Missing command or --compose-root.\n\n" + USAGE);
+            throw new IOException("Missing command or --compose-root." + HINT);
         }
         distroDir = distroDir.getCanonicalFile();
         composeRoot = composeRoot.getCanonicalFile();
@@ -225,7 +240,7 @@ public final class OzoneCli {
             return;
         }
 
-        throw new IOException("Unknown command '" + command + "'.\n\n" + USAGE);
+        throw new IOException("Unknown command '" + command + "'." + HINT);
     }
 
     /**
@@ -305,14 +320,14 @@ public final class OzoneCli {
                     throw new IOException("Unexpected argument: " + arg);
                 }
             } else {
-                throw new IOException("Unknown option: " + arg + "\n\n" + USAGE);
+                throw new IOException("Unknown option: " + arg + "." + HINT);
             }
         }
     }
 
     private static String optionValue(String[] args, int index, String option) throws IOException {
         if (index >= args.length) {
-            throw new IOException("Missing value for " + option + ".\n\n" + USAGE);
+            throw new IOException("Missing value for " + option + "." + HINT);
         }
         return args[index];
     }
