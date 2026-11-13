@@ -1,0 +1,2 @@
+"id","name","field_description","model_id/id","ttype","index","store","readonly"
+"init.7244e9fc-67c1-4b65-8ae3-95d68af558bd","x_resource_uuid","Resource UUID","sale.model_sale_order_line","char","True","True","False"
