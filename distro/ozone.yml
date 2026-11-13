@@ -22,7 +22,7 @@ vars:
 
   apps:
     openmrs:
-      configs:
+      common:
         SPA_CONFIG_URLS: /openmrs/spa/configs/referenceapplication/config.json,/openmrs/spa/configs/referenceapplication-demo/config.json,/openmrs/spa/configs/ozone-frontend-config.json
         SPA_DEFAULT_LOCALE: en
         # OpenMRS concepts (also consumed by the bahmniemr app)
@@ -48,7 +48,7 @@ vars:
         SENAITE_OIDC_CONFIG_PATH: configs/senaite/oidc
 
     odoo:
-      configs:
+      common:
         ODOO_ADDONS: sale_management,stock,account,purchase,mrp,odoo_initializer,mrp_product_expiry,product_expiry,l10n_generic_coa,sale_stock_margin
       paths:
         ODOO_EXTRA_ADDONS: binaries/odoo/addons
@@ -80,7 +80,7 @@ vars:
   integrations:
     eip-odoo-openmrs:
       # Values consumed by the EIP route templates
-      configs:
+      common:
         CONCEPT_COMPLEX_UUID: b16066fa-6291-4375-3a39-f9f987320f88
         OPENMRS_IDENTIFIER_TYPE_UUID: 05a29f94-c0ed-11e2-94be-8c13b969e334
         EMR_WEIGHT_CONCEPT: ''
@@ -91,7 +91,7 @@ vars:
         EIP_ODOO_OPENMRS_ROUTES_PATH: binaries/eip-odoo-openmrs
 
     eip-openmrs-senaite:
-      configs:
+      common:
         RESULTS_ENCOUNTER_TYPE_UUID: 3596fafb-6f6f-4396-8c87-6e63a0f1bd71
       paths:
         EIP_OPENMRS_SENAITE_ROUTES_PATH: binaries/eip-openmrs-senaite
