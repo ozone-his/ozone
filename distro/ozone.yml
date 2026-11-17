@@ -28,7 +28,6 @@ vars:
         # OpenMRS concepts (also consumed by the bahmniemr app)
         WEIGHT_CONCEPT_UUID: 5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         HEIGHT_CONCEPT_UUID: 5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        O3_DOCKER_IMAGE_TAG: XYZ
       paths:
         OPENMRS_CONFIG_PATH: configs/openmrs/initializer_config
         OPENMRS_PROPERTIES_PATH: configs/openmrs/properties
