@@ -52,7 +52,7 @@
     <eipOdooOpenMRSVersion>2.4.0-SNAPSHOT</eipOdooOpenMRSVersion>
     <eipERPNextOpenMRSVersion>1.4.0-SNAPSHOT</eipERPNextOpenMRSVersion>
     <eipOpenMRSOrthancVersion>1.0.0-SNAPSHOT</eipOpenMRSOrthancVersion>
-    <eipOdooOpenElisVersion>1.0.0-SNAPSHOT</eipOdooOpenElisVersion>
+    <eipOdooOpenElisVersion>1.1.0-SNAPSHOT</eipOdooOpenElisVersion>
 
     <!-- EIP Routes artifact Ids -->
     <eipOpenMRSSenaiteArtifactId>eip-openmrs-senaite</eipOpenMRSSenaiteArtifactId>
