@@ -9,3 +9,4 @@ createdb ${db_name}
 
 psql -d ${db_name} -c "alter user ${db_username} with password '${db_password}';"
 psql -d ${db_name} -c "grant all privileges on database ${db_name} to ${db_username};"
+psql -d ${db_name} -c "alter schema public owner to ${db_username};"
