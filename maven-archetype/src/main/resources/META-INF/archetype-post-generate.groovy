@@ -3,8 +3,6 @@ import java.nio.file.Paths
 import java.util.logging.Logger
 import java.util.zip.ZipInputStream
 
-import groovy.util.XmlParser
-
 // directory of the newly created project
 projectDirectory = Paths.get(request.outputDirectory, request.artifactId);
 
@@ -51,9 +49,9 @@ projectDirectory.resolve("gitignore").toFile().renameTo(projectDirectory.resolve
 
 // Download the Maven wrapper without directly using Maven to do so
 // Less flexible, but beginner friendly!
-def mavenWrapperVersions = "https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper-distribution/maven-metadata.xml".toURL().text
-def mavenWrapperXml = new XmlParser().parseText(mavenWrapperVersions)
-def mavenWrapperVersion = mavenWrapperXml.versioning.release.text()
+// NB: the wrapper version is pinned on purpose so that generated projects are reproducible;
+// bump it manually here (and in the IT reference files) when upgrading
+def mavenWrapperVersion = "3.3.4"
 
 unzip(
     (InputStream) "https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper-distribution/${mavenWrapperVersion}/maven-wrapper-distribution-${mavenWrapperVersion}-bin.zip".toURL().newInputStream(),
@@ -72,13 +70,9 @@ wrapperJarUrl.toURL().newInputStream().withStream { wrapperJar ->
 }
 
 Logger log = Logger.getAnonymousLogger()
-// determine the Maven version
-// We default to the most recent non-alpha, non-snapshot Maven version
-def mavenDistributionVersions = "https://repo.maven.apache.org/maven2/org/apache/maven/maven/maven-metadata.xml".toURL().text
-def mavenDistributionVersionsXml = new XmlParser().parseText(mavenDistributionVersions)
-def mavenVersion = mavenDistributionVersionsXml.versioning.versions.version.findAll({ version ->
-    !version.text().contains("-")
-}).last().text()
+// The Maven version is pinned on purpose so that generated projects are reproducible;
+// bump it manually here (and in the IT reference files) when upgrading
+def mavenVersion = "3.10.1"
 log.info("Using Maven: ${mavenVersion}")
 
 
